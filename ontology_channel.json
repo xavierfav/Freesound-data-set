@@ -1,0 +1,322 @@
+[
+  {
+    "id": "/t/dd00123",
+    "name": "Channel, environment and background",
+    "description": "A class for sound categories that suggest information about attributes other than the foreground or target objects.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/t/dd00093", "/m/096m7z", "/m/07bm98"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["environment"]
+  },
+  {
+    "id": "/t/dd00093",
+    "name": "Acoustic environment",
+    "description": "A class for sounds that convey the spatiality of the recording.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/t/dd00125", "/t/dd00126", "/t/dd00127", "/t/dd00128", "/t/dd00129", "/m/01b9nn", "/m/01jnbd"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["environment"]
+  },
+  {
+    "id": "/t/dd00125",
+    "name": "Inside, small room",
+    "description": "Sounds that appear to have been recorded within a small room, such as one that can accommodate no more than 15 people.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/eqWF_TDX4NM?start=190&end=200", "youtu.be/rLqyFZBYlD4?start=410&end=420", "youtu.be/k3_EmfJcNaY?start=100&end=110", "youtu.be/-vxWG4YoKZM?start=120&end=130", "youtu.be/ONXKc7AVfNY?start=310&end=320", "youtu.be/QZ9oN_zqEdc?start=310&end=320", "youtu.be/L7GtX6Kvr4s?start=60&end=70", "youtu.be/oIoaqgtM9NU?start=80&end=90"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["small", "room"], ["inside", "small"]]
+  },
+  {
+    "id": "/t/dd00126",
+    "name": "Inside, large room or hall",
+    "description": "Sounds that appear to have been recorded in a large room or hall, often with clearly perceptible reverberation.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/2Jddu5vI4QY?start=70&end=80", "youtu.be/avlwY9gdjV0?start=240&end=250", "youtu.be/a4jcJ7QZ-OQ?start=150&end=160", "youtu.be/KPq-sqU58-Y?start=100&end=110", "youtu.be/zPMchtKMXkc?start=100&end=110", "youtu.be/cbirYMm7Vzk?start=420&end=430"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["large", "room"], ["inside", "large"], "hall"]
+  },
+  {
+    "id": "/t/dd00127",
+    "name": "Inside, public space",
+    "description": "Sounds that appear to have been recorded in a public space such as store, restaurant, or travel terminus, often characterized by both reverberation and continuous background noise.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/d5PnDZ0LMDw?start=510&end=520", "youtu.be/Qtm98j24sQU?start=160&end=170", "youtu.be/GAXY3-A4EU0?start=10&end=20", "youtu.be/6kBgDyL1IPM?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["store", "public-place", "public-space", "restaurant", "terminus"]
+  },
+  {
+    "id": "/t/dd00128",
+    "name": "Outside, urban or manmade",
+    "description": "Sounds that appear to have been recorded outdoors in a human-constructed environment.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/BzVGMdWM27I?start=400&end=410", "youtu.be/n878F0QbyYk?start=90&end=100", "youtu.be/Buf__Z-1cfQ?start=120&end=130", "youtu.be/fdR79DRDZKA?start=30&end=40", "youtu.be/H7V96qPFZ3g?start=40&end=50", "youtu.be/rhtw3CBDw3I?start=10&end=20", "youtu.be/LmsnecVb_GU?start=330&end=340"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["urban", "city"]
+  },
+  {
+    "id": "/t/dd00129",
+    "name": "Outside, rural or natural",
+    "description": "Sounds that appear to have been recorded outdoors in a natural, non-manmade environment.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/9oeGmqm6g8E?start=60&end=70", "youtu.be/-RbwX4LX-2U?start=170&end=180", "youtu.be/PRpUxcQtvNo?start=300&end=310", "youtu.be/FyhUO5Luq6Y?start=290&end=300", "youtu.be/W8qYyw3F5kA?start=520&end=530", "youtu.be/4Ohhodom94c?start=70&end=80", "youtu.be/TtXooTU9_6s?start=100&end=110", "youtu.be/TM9EFeC9ZUk?start=380&end=390", "youtu.be/w2_oQgcIpqI?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["rural", "nature"]
+  },
+  {
+    "id": "/m/01b9nn",
+    "name": "Reverberation",
+    "description": "The sound of an acoustic environment that includes substantial reflection from multiple walls or other hard surfaces. Reverberation is generally perceived as being able to 'hear' the presence and size of the room or space in which the sound is made.  The reflected sounds should remain audible for hundreds of milliseconds or longer.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Reverberation",
+    "positive_examples": ["youtu.be/DqM1zpXPUgs?start=520&end=530", "youtu.be/QARJ4o82SrM?start=430&end=440", "youtu.be/f3HnJ2DhIyQ?start=180&end=190", "youtu.be/MsnMRiqmouI?start=170&end=180", "youtu.be/HpLcGBgPh5s?start=110&end=120", "youtu.be/FcHvkDWXPno?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["reverberation", "reverb"]
+  },
+  {
+    "id": "/m/01jnbd",
+    "name": "Echo",
+    "description": "A sound which is a delayed and attenuated repetition of an earlier sound, for example because the sound wave has been reflected back from a distant, planar surface. To be perceived as an echo, the repetion must be delayed by around 100 milliseconds or more.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Echo",
+    "positive_examples": ["youtu.be/OplvFkbmN-8?start=190&end=200", "youtu.be/P6AQcAJG8NU?start=160&end=170", "youtu.be/I3X2Yl0snS4?start=30&end=40", "youtu.be/ijsyajsdSoU?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["echo"]
+  },
+  {
+    "id": "/m/096m7z",
+    "name": "Noise",
+    "description": "A sound that has no perceptible structure and that typically interferes with the perception of more interesting or important sounds.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Noise_(radio)",
+    "positive_examples": ["youtu.be/lTiF59wDZ5o?start=100&end=110", "youtu.be/Q_rZIH5_5C0?start=80&end=90", "youtu.be/RjF9D8xDYFg?start=30&end=40"],
+    "child_ids": ["/m/093_4n", "/m/07qfr4h", "/m/07szfh9", "/m/0chx_", "/m/0cj0r", "/m/07p_0gm", "/m/01jwx6"],
+    "restrictions": [],
+    "fs_tags": ["noise"]
+  },
+  {
+    "id": "/m/093_4n",
+    "name": "Background noise",
+    "description": "Sounds present alongside a sound of interest but typically weaker in energy and generally not of interest.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Background_noise",
+    "positive_examples": ["youtu.be/Ea0mjqDst9E?start=80&end=90", "youtu.be/utMYmua1SkE?start=30&end=40", "youtu.be/hRJM4JH3rjE?start=410&end=420", "youtu.be/qQBAvAZHvAg?start=10&end=20", "youtu.be/tQYVJlOnx8s?start=60&end=70", "youtu.be/f8AwggqxxVM?start=140&end=150"],
+    "child_ids": ["/m/06_y0by", "/m/09d1b1", "/m/07rgkc5", "/m/06xkwv", "/m/0g12c5", "/m/08p9q4"],
+    "restrictions": [],
+    "fs_tags": ["background", "background-sound"]
+  },
+  {
+    "id": "/m/06_y0by",
+    "name": "Environmental noise",
+    "description": "The combined sounds of transport, industrial, and recreational activities.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Environmental_noise",
+    "positive_examples": ["youtu.be/LmafBI1fKw0?start=340&end=350", "youtu.be/8_M3lTg3_oU?start=10&end=20", "youtu.be/OEVLtm3IzWw?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["environmental-noise"]
+  },
+  {
+    "id": "/m/09d1b1",
+    "name": "Tape hiss",
+    "description": "A high frequency noise present on analog magnetic tape recordings caused by the size of the magnetic particles used to make the tape.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Tape_hiss",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["tape-hiss", ["tape","hiss"], ["tape-recorder","hiss"], ["tape-recorder","noise"], ["cassette","hiss"], ["cassette","noise"]]
+  },
+  {
+    "id": "/m/07rgkc5",
+    "name": "Static",
+    "description": "A crackling or hissing noise caused by electrical interference.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=static",
+    "positive_examples": ["youtu.be/zQv5mqOaysE?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["static", "interference", "electric"]
+  },
+  {
+    "id": "/m/06xkwv",
+    "name": "Mains hum",
+    "description": "A low, continuous tone caused by electromagnetic interference from the alternating current of the mains electricity. The fundamental frequency of this sound is usually 50 Hz or 60 Hz, depending on the local power-line frequency.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Mains_hum",
+    "positive_examples": ["youtu.be/GH-sJJ04axg?start=520&end=530", "youtu.be/fd3DJ0rY_RU?start=270&end=280", "youtu.be/xf0TIS26BUE?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["electric", "hum"], ["hum", "50hz"], ["hum", "60hz"], ["electric", "50hz"],["electric", "60hz"]]
+  },
+  {
+    "id": "/m/0g12c5",
+    "name": "Distortion",
+    "description": "A sound that has been modified in a nonlinear fashion, usually in electronic equipment, to introduce sound correlated with the original signal. In many cases, notably with amplified electric musical instruments, distortion is introduced as an effect by increasing the gain and clipping the source signal.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Distortion_(music)",
+    "positive_examples": ["youtu.be/EAHYCGhoyM4?start=30&end=40", "youtu.be/MXtktxGEdOY?start=30&end=40", "youtu.be/L2ImCbQsRUk?start=60&end=70", "youtu.be/PaIuJvwzZW8?start=40&end=50", "youtu.be/F1PUkKI4sR0?start=40&end=50", "youtu.be/VCEOxg9ZX24?start=230&end=240"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["distortion", "dist", "distorted"]
+  },
+  {
+    "id": "/m/08p9q4",
+    "name": "Sidetone",
+    "description": "The audible feedback on a telecommunications channel that allows the speaker to know that the channel is operational.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sidetone",
+    "positive_examples": ["youtu.be/Qmw5vuWbdkM?start=160&end=170", "youtu.be/afnR1C7HTh8?start=30&end=40", "youtu.be/j-8EgxtL-Tw?start=510&end=520"],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": []
+  },
+  {
+    "id": "/m/07szfh9",
+    "name": "Cacophony",
+    "description": "A loud, confusing, disagreeable sound, such as many voices shouting simultaneously.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=cacophony",
+    "positive_examples": ["youtu.be/-r4PDh9kiuo?start=90&end=100", "youtu.be/YGTJ2LlaSAQ?start=30&end=40", "youtu.be/ruaeTvNFGTQ?start=530&end=540", "youtu.be/Y-Zxw19hwZQ?start=80&end=90"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["cacophony"]
+  },
+  {
+    "id": "/m/0chx_",
+    "name": "White noise",
+    "description": "A random, unstructured sound in which the value at any moment provides no information about the value at any other moment. White noise has equal energy in all frequency bands.",
+    "citation_uri": "http://en.wikipedia.org/wiki/White_noise",
+    "positive_examples": ["youtu.be/IEdT5i6ogWI?start=360&end=370", "youtu.be/4oIp7EgT7B4?start=80&end=90", "youtu.be/G_iWfCQ3fOU?start=110&end=120", "youtu.be/9DKPBZ00Q3A?start=17&end=27"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["white-noise", ["white", "noise"]]
+  },
+  {
+    "id": "/m/0cj0r",
+    "name": "Pink noise",
+    "description": "Unstructured noise whose energy decreases with frequency such that equal amounts of energy are distributed in logarithmic bands of frequency, typically octaves.  Pink noise sounds more like a rumble where white noise sounds like a hiss.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Pink_noise",
+    "positive_examples": ["youtu.be/XKNWjAq3xUk?start=162&end=172"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["pink-noise", ["pink", "noise"]]
+  },
+  {
+    "id": "/m/07p_0gm",
+    "name": "Throbbing",
+    "description": "A dull, continunous sound with a strong rhythmic modulation.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=throbbing",
+    "positive_examples": ["youtu.be/K2E-WWG597Q?start=30&end=40", "youtu.be/8Py7bmA96xA?start=30&end=40", "youtu.be/fTE53ntPQf4?start=40&end=50", "youtu.be/nD3ZyFWYlLM?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["throb"]
+  },
+  {
+    "id": "/m/01jwx6",
+    "name": "Vibration",
+    "description": "The general class of sounds caused by a periodic mechanical oscillation.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Vibration",
+    "positive_examples": ["youtu.be/-FpGTCaiioc?start=30&end=40", "youtu.be/T_g9P-K-9Ac?start=30&end=40", "youtu.be/LriokFTJZt4?start=40&end=50", "youtu.be/OR2yfr-Cb4Y?start=3&end=13", "youtu.be/CBX4Kl8ibRM?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["vibration"]
+  },
+  {
+    "id": "/m/07bm98",
+    "name": "Sound reproduction",
+    "description": "A class for sounds that reveal the particular equipment used to capture or reproduce the sound.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sound_recording_and_reproduction",
+    "positive_examples": [],
+    "child_ids": ["/m/07c52", "/m/06bz3", "/m/0cfpc", "/m/01b7fy", "/m/025l19", "/m/0174nj", "/m/01www", "/m/04zc0"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["recorder", "production"]
+  },
+  {
+    "id": "/m/07c52",
+    "name": "Television",
+    "description": "A sound that appears to have been produced by a television set.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Television",
+    "positive_examples": ["youtu.be/VrUCCto21RU?start=20&end=30", "youtu.be/zdkybSg9Ddw?start=130&end=140", "youtu.be/irMaO2tcCns?start=260&end=270"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["television", "tv"]
+  },
+  {
+    "id": "/m/06bz3",
+    "name": "Radio",
+    "description": "A sound that appears to have been produced by a radio receiver.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Radio",
+    "positive_examples": ["youtu.be/soyKe4M8EUM?start=180&end=190", "youtu.be/E0Q6l3_VTLY?start=590&end=600", "youtu.be/UAT_j1ma23E?start=50&end=60", "youtu.be/MdjoPGi_A2Y?start=110&end=120", "youtu.be/3m2i2PQubjc?start=30&end=40", "youtu.be/AQXT9gOjT4s?start=30&end=40", "youtu.be/ogIv5VmM71Y?start=200&end=210"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["radio"]
+  },
+  {
+    "id": "/m/0cfpc",
+    "name": "Loudspeaker",
+    "description": "A sound that appears to have been produced by a loudspeaker.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Loudspeaker",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["loudspeaker", "speaker"]
+  },
+  {
+    "id": "/m/01b7fy",
+    "name": "Headphones",
+    "description": "A sound that appears to have been produced by headphones.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Headphones",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["headphone"]
+  },
+  {
+    "id": "/m/025l19",
+    "name": "Recording",
+    "description": "A sound that appears to come from a recording of a sound, rather than the original sound itself.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Recording",
+    "positive_examples": [],
+    "child_ids": ["/m/07hvw1"],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["record"]
+  },
+  {
+    "id": "/m/07hvw1",
+    "name": "Field recording",
+    "description": "A sound that appears to have been recorded in some specific environment, usually with the intention of capturing and representing that environment.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Field_recording",
+    "positive_examples": ["youtu.be/Gxc0gxJpato?start=490&end=500", "youtu.be/2HxnUDbhgFM?start=30&end=40", "youtu.be/6KVFGJVJ6QY?start=18&end=28", "youtu.be/wDGzCV1lJJY?start=190&end=200", "youtu.be/1en9fyEUfYU?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["field-recording"]
+  },
+  {
+    "id": "/m/0174nj",
+    "name": "Gramophone record",
+    "description": "A sound which appears to come from a gramophone or vinyl record disc being played on a turntable.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Gramophone_record",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["gramaphone", "vinyl", "turntable"]
+  },
+  {
+    "id": "/m/01www",
+    "name": "Compact disc",
+    "description": "A sound which appears to come from a digital audio Compact Disc.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Compact_disc",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["cd", "disc", ["compact","disc"]]
+  },
+  {
+    "id": "/m/04zc0",
+    "name": "MP3",
+    "description": "A sound which appears to come from a compressed digital file using the MP3 format, discernible by containing nearly imperceptible compression artifacts.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["mp3"]
+  }
+]
