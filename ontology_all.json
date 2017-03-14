@@ -7,7 +7,7 @@
     "positive_examples": [],
     "child_ids": ["/m/09l8g", "/m/01w250", "/m/09hlz4", "/m/0bpl036", "/m/0160x5", "/m/0k65p", "/m/01jg02", "/m/04xp5v", "/t/dd00012"],
     "restrictions": ["abstract"],
-    "fs_tags": ["human"]
+    "fs_tags": ["human", "review"]
   },
   {
     "id": "/m/09l8g",
@@ -87,7 +87,7 @@
     "positive_examples": ["youtu.be/ZR48r_8OhUI?start=50&end=60", "youtu.be/2ZxE0uMIfa0?start=10&end=20", "youtu.be/vFbu0dH7f-U?start=10&end=20", "youtu.be/soXBLBCaClA?start=90&end=100", "youtu.be/ICajcUYAan8?start=410&end=420", "youtu.be/lluzItlOMlQ?start=10&end=20", "youtu.be/EyCpVw_Xn60?start=130&end=140"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["babble"]
+    "fs_tags": [["babble", "human"], ["babble", "voice"], ["babble", "mouth"]]
   },
   {
     "id": "/m/0brhx",
@@ -107,7 +107,7 @@
     "positive_examples": ["youtu.be/-aY64NxBVas?start=480&end=490", "youtu.be/mPr3kCL5y10?start=210&end=220", "youtu.be/5YB13i75Nr4?start=60&end=70", "youtu.be/X04FOAQFn5I?start=130&end=140"],
     "child_ids": ["/m/07q4ntr", "/m/07rwj3x", "/m/07sr1lc", "/m/04gy_2", "/t/dd00135"],
     "restrictions": [],
-    "fs_tags": [["talk","loud"],["voice","loud"],["speak","loud"], ["voice", "shout"], ["talk","shout"],["speak","shout"]]
+    "fs_tags": [["talk","loud"],["voice","loud"],["speak","loud"], ["voice", "shout"], ["talk","shout"],["speak","shout"],"review"]
   },
   {
     "id": "/m/07q4ntr",
@@ -127,7 +127,7 @@
     "positive_examples": ["youtu.be/TKwuq-O67VE?start=9&end=19", "youtu.be/yfwQgGVZtqI?start=30&end=40", "youtu.be/2Z0FSALnSmM?start=30&end=40", "youtu.be/TDJ746q3sAU?start=170&end=180", "youtu.be/pB4Bh36b1Ss?start=30&end=40", "youtu.be/4Gw8jFlJyLI?start=50&end=60", "youtu.be/7yGHDT7r2u8?start=1&end=11", "youtu.be/5yD_YeSuTzQ?start=150&end=160", "youtu.be/NPkO63FcFXM?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": [["whoop", "voice"], ["whoop", "male"], ["whoop", "female"],["whoop", "crowd"], "review"]
   },
   {
     "id": "/m/07sr1lc",
@@ -157,7 +157,7 @@
     "positive_examples": ["youtu.be/W4AptCGYj5w?start=30&end=40", "youtu.be/w4VqralR-6E?start=10&end=20", "youtu.be/vsgHNEEOKxk?start=150&end=160", "youtu.be/7koyNkRHO8U?start=20&end=30", "youtu.be/Q8NC8aHonOU?start=70&end=80"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["child", "shout"]]
+    "fs_tags": [["child", "shout"],["kid", "shout"],"review"]
   },
   {
     "id": "/m/03qc9zr",
@@ -217,7 +217,7 @@
     "positive_examples": ["youtu.be/0Xsny5M-hyE?start=140&end=150", "youtu.be/2sDFQiVB67I?start=80&end=90", "youtu.be/PgiVYe0HbNg?start=290&end=300", "youtu.be/ZMwa1h1Aa8I?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["snicker"]
+    "fs_tags": ["snicker", "review"]
   },
   {
     "id": "/m/07sq110",
@@ -287,7 +287,7 @@
     "positive_examples": ["youtu.be/XOphuM8ZUhM?start=560&end=570", "youtu.be/giY25pWyJxM?start=140&end=150"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["sigh"]
+    "fs_tags": ["sigh", "review"]
   },
   {
     "id": "/m/015lz1",
