@@ -12,8 +12,9 @@ def preproc_ontology(ontology):
         ontology_stem[idx]["fs_tags"] = []
         for t in category["fs_tags"]:
             if isinstance(t, unicode):
-                t_stem = stemmer.stem(t.lower())
-                ontology_stem[idx]["fs_tags"].append(t_stem)
+                if t != 'review': # for removing "review" tags - abigous
+                    t_stem = stemmer.stem(t.lower())
+                    ontology_stem[idx]["fs_tags"].append(t_stem)
             elif isinstance(t, list):
                 t_stem = [stemmer.stem(i.lower()) for i in t]
                 ontology_stem[idx]["fs_tags"].append(t_stem)
@@ -62,13 +63,13 @@ def display_occurrences_labels(occurrences):
     print '\n'
     print 'Audio Set labels occurrences:\n'
     for i in occurrences.keys():
-        print str(ontology_by_id[i]["name"]).ljust(30) + str(occurrences[i][0])
+        print str(ontology_by_id[i]["name"]).ljust(40) + str(occurrences[i][0])
 
     
 if __name__ == '__main__':
     c = manager.Client(False)
     b = c.load_basket_pickle('freesound_db_030317.pkl')
-    ontology = json.load(open('ontology_nature.json','rb'))
+    ontology = json.load(open('ontology_human.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     b.text_preprocessing() # stem and lower case for tags in freesound basket
     ontology_stem = preproc_ontology(ontology)

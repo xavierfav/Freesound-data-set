@@ -206,7 +206,7 @@
     "positive_examples": [],
     "child_ids": ["/t/dd000138", "/m/07rjwbb", "/m/07qh7jl", "/m/07qn4z3", "/m/07rqsjt", "/m/07qwyj0", "/m/07s34ls", "/m/07qmpdm", "/m/07p9k1k", "/m/07qc9xj", "/m/07phhsh", "/m/07r_r9m", "/m/07qyrcz", "/m/07qfgpx", "/t/dd00118", "/m/07q34h3", "/m/07rcgpl", "/m/07qlwh6", "/m/07p78v5", "/t/dd00121", "/m/07pzfmf", "/m/07s12q4", "/m/07qs1cx", "/m/07pc8l3"],
     "restrictions": ["abstract"],
-    "fs_tags": ["onomatopoeia"]
+    "fs_tags": ["onomatopoeia", "onomatopee"]
   },
   {
     "id": "/t/dd000138",
@@ -216,7 +216,7 @@
     "positive_examples": [],
     "child_ids": ["/m/02fs_r", "/m/07qwdck", "/m/07phxs1", "/m/07rv4dm", "/m/07rpk1c", "/m/07pggtn", "/m/07pjwq1", "/m/07q6cd_", "/m/07s02z0", "/m/07q8k13"],
     "restrictions": ["abstract"],
-    "fs_tags": [["brief", "tone"]]
+    "fs_tags": [["brief", "tone"], ["short", "tone"]]
   },
   {
     "id": "/m/02fs_r",

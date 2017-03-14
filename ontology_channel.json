@@ -7,7 +7,7 @@
     "positive_examples": [],
     "child_ids": ["/t/dd00093", "/m/096m7z", "/m/07bm98"],
     "restrictions": ["abstract"],
-    "fs_tags": ["environment"]
+    "fs_tags": ["environment", "channel", "background"]
   },
   {
     "id": "/t/dd00093",
@@ -167,7 +167,7 @@
     "positive_examples": ["youtu.be/Qmw5vuWbdkM?start=160&end=170", "youtu.be/afnR1C7HTh8?start=30&end=40", "youtu.be/j-8EgxtL-Tw?start=510&end=520"],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": []
+    "fs_tags": ["review"]
   },
   {
     "id": "/m/07szfh9",
