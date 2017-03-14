@@ -11,8 +11,6 @@ import copy
 import freesound
 import os
 import json
-import ijson
-import simplejson
 from numpy import array
 import numpy as np
 from functools import reduce

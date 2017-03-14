@@ -21,7 +21,7 @@ except ImportError: #python 2.7
     from urllib import urlencode, FancyURLopener, quote
     from urllib2 import HTTPError, urlopen, Request
 
-import ijson
+#import ijson
 
 class URIS():
     HOST = 'www.freesound.org'

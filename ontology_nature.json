@@ -1,4 +1,5 @@
-[  {
+[  
+  {
     "id": "/m/059j3w",
     "name": "Natural sounds",
     "description": "Sounds produced by natural sources in their normal soundscape, excluding animal and human sounds.",
@@ -106,7 +107,7 @@
     "positive_examples": ["youtu.be/1r0Y4VFXrmE?start=30&end=40", "youtu.be/1C7lFCTvd6U?start=30&end=40", "youtu.be/0j9XJr31TA4?start=24&end=34"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["rain", "roof"], ["drop", "window"]]
+    "fs_tags": [["rain", "roof"], ["drop", "window"], ["rain","window"], ["drop", "roof"]]
   },
   {
     "id": "/m/0j6m2",
@@ -197,14 +198,5 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["wildfire"]
-  },
-  {
-    "id": "/t/dd00041",
-    "name": "Sounds of things",
-    "description": "Set of sound classes referring to sounds that are immediately understood by listeners as arising from specific objects (rather than being heard more literally as \"sounds\").",
-    "citation_uri": "",
-    "positive_examples": [],
-    "child_ids": ["/m/07yv9", "/m/02mk9", "/t/dd00071", "/m/0395lw", "/m/07pp_mv", "/t/dd00077", "/m/07k1x", "/m/014zdl", "/m/083vt", "/m/039jq", "/m/04k94", "/t/dd00089", "/t/dd00133"],
-    "restrictions": ["blacklist"]
-  },
+  }
 ]
