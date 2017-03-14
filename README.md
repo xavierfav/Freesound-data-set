@@ -13,8 +13,13 @@ For now each annotator will provide an ontology_***.json file with his annotatio
 
 manager.py: tool for playing with freesound stuff
 https://github.com/xavierfav/freesound-python
+
 >>> virtualenv venv
+
 >>> source virtualenv/bin/activate
+
 >>> pip install -r requirements
+
+
 freesound.py: freesound python api wrapper
 
