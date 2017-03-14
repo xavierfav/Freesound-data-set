@@ -1,1 +1,9 @@
 *.pkl
+api_key.py
+*.pyc
+venv/
+baskets/
+basket_pickle/
+previews/
+analysis_stats/
+analysis/
