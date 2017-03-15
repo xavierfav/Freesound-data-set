@@ -1561,8 +1561,93 @@
     "fs_tags": ["whale","whale-song","whalesong"]
   },
 
-___ INSTRUMENTS ____
+___ INSTRUMENTS
+Harp
 
+
+  {
+    "id": "/m/0395lw",
+    "name": "Bell",
+    "description": "The sound of a simple instrument usually consisting of metal cast in the shape of a hollow cup, whose sides form a resonator which vibrates in a single tone upon being struck by a \"clapper\" suspended within, or by a separate mallet or hammer.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Bell",
+    "positive_examples": ["youtu.be/e-MkVbRmlIo?start=80&end=90", "youtu.be/hTb_hLSPH3w?start=200&end=210", "youtu.be/7WoxYO6rWLo?start=430&end=440", "youtu.be/btFRBcWGlbU?start=550&end=560", "youtu.be/tYZLPFuzNIs?start=20&end=30", "youtu.be/Qklbd5OLmac?start=60&end=70", "youtu.be/8Jp638z8SEs?start=30&end=40", "youtu.be/u3doJa_O5p8?start=30&end=40", "youtu.be/AlSWSI50R7U?start=60&end=70"],
+    "child_ids": ["/m/03w41f", "/m/0239kh", "/m/027m70_", "/m/0gy1t2s", "/m/07n_g", "/m/0f8s22", "/m/0150b9"],
+    "restrictions": [],
+    "fs_tags": ["bell"]
+  },
+  {
+    "id": "/m/03w41f",
+    "name": "Church bell",
+    "description": "The sound of a large bell usually encountered in churches where it used either to signify the hour or the time for worshippers to go to church.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Church_bell",
+    "positive_examples": ["youtu.be/CwhbaRYl3kQ?start=180&end=190", "youtu.be/8c_pb6dimmU?start=180&end=190", "youtu.be/hTb_hLSPH3w?start=200&end=210", "youtu.be/ySKvlZdECBI?start=30&end=40", "youtu.be/xDFzNhcSDCU?start=30&end=40", "youtu.be/whFx67_zhFw?start=100&end=110", "youtu.be/YL_yzbTuiic?start=10&end=20", "youtu.be/qMZ1nj4fDas?start=290&end=300", "youtu.be/ITFzMwD9Q64?start=150&end=160"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Church", "bell"], "Church-bell", "Church-bells", ["cathedral", "bell"] , "Churchbell"]
+  },
+  {
+    "id": "/m/027m70_",
+    "name": "Jingle bell",
+    "description": "The sound of a type of bell which produces a distinctive 'jingle' sound, especially in large numbers. They are commonly produced from a single piece of sheet metal bent into a roughly spherical shape containing a small ball bearing.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Jingle_bell",
+    "positive_examples": ["youtu.be/m4ysMjnrTnQ?start=10&end=20", "youtu.be/TWQXP_v8opY?start=260&end=270", "youtu.be/VY9hzBD-Sh4?start=100&end=110", "youtu.be/dl793c9RCJY?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["jingle","bell"],["christmas","bell"]]
+  },
+  {
+    "id": "/m/0gy1t2s",
+    "name": "Bicycle bell",
+    "description": "The sound of a percussive signaling instrument mounted on a bicycle for warning pedestrians and other cyclists.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Bicycle_bell",
+    "positive_examples": ["youtu.be/LK8j0Q4UU4g?start=10&end=20", "youtu.be/s0F2kzW8quU?start=160&end=170", "youtu.be/k7oGk-ozhKI?start=30&end=40", "youtu.be/kTkG_z_GWFs?start=18&end=28", "youtu.be/OY-jfOrL-_A?start=20&end=30", "youtu.be/vSPaTX3nq5A?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Bicycle","bell"],["bike","bell"],["Bicycle","ring"],["bike","ring"]]
+  },
+  {
+    "id": "/m/07n_g",
+    "name": "Tuning fork",
+    "description": "The sound of an acoustic resonator in the form of a two-pronged fork with the prongs formed from a U-shaped bar of elastic metal. It emits a pure musical tone and is frequently used as a standard of pitch to tune musical instruments.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Tuning_fork",
+    "positive_examples": ["youtu.be/A96UdAiDxfI?start=30&end=40", "youtu.be/NxPqGv1MYh4?start=180&end=190", "youtu.be/s7sRKH_EdAY?start=60&end=70", "youtu.be/rlSvS7InhjE?start=30&end=40", "youtu.be/X1iK3Un7bbI?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Tuning","fork"],"review"]
+  },
+  {
+    "id": "/m/0f8s22",
+    "name": "Chime",
+    "description": "The sound of a musical instrument consisting of multiple tuned bells, usually rung by an automated mechanism to produce a short, characteristic tone or melody.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Chime_(bell_instrument)",
+    "positive_examples": ["youtu.be/2cJw4p0NzL8?start=30&end=40", "youtu.be/-OIgmZ_M7Co?start=60&end=70", "youtu.be/JO3yqua94PM?start=17&end=27", "youtu.be/B4WnT62BRog?start=500&end=510", "youtu.be/wiYHKu0-9XM?start=170&end=180", "youtu.be/ofNRyTtPZ8I?start=10&end=20", "youtu.be/So5SUEh2bZc?start=100&end=110", "youtu.be/m9qHnNaAskw?start=20&end=30", "youtu.be/_RbYie-Fxo4?start=60&end=70", "youtu.be/caVRLI71CAA?start=25&end=35", "youtu.be/ZpZsTWwUCSY?start=3&end=13"],
+    "child_ids": ["/m/026fgl"],
+    "restrictions": [],
+    "fs_tags": ["chime","review"]
+  },
+  {
+    "id": "/m/026fgl",
+    "name": "Wind chime",
+    "description": "The sound of an instrument constructed from suspended tubes, rods, bells, or other objects that are often made of metal or wood along with some type of weight the tubes or rods can strike when they or another wind-catching surface are blown by the natural movement of air outside.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Wind_chime",
+    "positive_examples": ["youtu.be/1zmAwtZgohE?start=170&end=180", "youtu.be/3aR0vdDSuAA?start=0&end=10", "youtu.be/2xzSvnP5LHU?start=10&end=20", "youtu.be/LhXxwS30-es?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["wind","chime"],"windchime","wind-chimes"]
+  },
+  {
+    "id": "/m/0150b9",
+    "name": "Change ringing (campanology)",
+    "description": "Sounds of the art of ringing a set of (typically large) tuned bells in a controlled manner to produce variations in their sounding order.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Change_ringing",
+    "positive_examples": ["youtu.be/OP1OQKL0LJc?start=280&end=290", "youtu.be/NmKVkgXB64g?start=280&end=290", "youtu.be/2_Ea3T14HNA?start=130&end=140", "youtu.be/vaMn20oJ4Bc?start=10&end=20", "youtu.be/MJI_9fDsX3I?start=40&end=50", "youtu.be/OMMjjf5O1gY?start=240&end=250", "youtu.be/KHapBfftSoE?start=70&end=80", "youtu.be/gKEIFL2uFgU?start=30&end=40", "youtu.be/DhEiv81k5BI?start=180&end=190"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["change","ringing"],"change-ringing","campanology"]
+  },
+
+Harmonica
+___ instruments
 ___ NUSIC_____
 
   {
@@ -2324,11 +2409,387 @@ ___ NUSIC_____
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["accelerate", "revving", "vroom"]
-  }
-
-___ domestic sounds
-___ bell
-
+  },
+  {
+    "id": "/t/dd00071",
+    "name": "Domestic sounds, home sounds",
+    "description": "Sounds that suggest they have been recorded in the home.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/02dgv", "/m/0642b4", "/m/0fqfqc", "/m/04brg2", "/m/023pjk", "/m/07pn_8q", "/m/0dxrf", "/m/0fx9l", "/m/02pjr4", "/g/11b630rrvh", "/m/02jz0l", "/m/0130jx", "/m/03dnzn", "/m/03wvsk", "/m/01jt3m", "/m/012xff", "/m/0d31p", "/m/01s0vc", "/m/0zmy2j9", "/m/03v3yw", "/m/0242l", "/m/05mxj0q", "/m/01lsmm", "/m/02g901", "/m/05rj2", "/m/0316dw", "/m/081rb"],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["domestic", "home", "house"]
+  },
+  {
+    "id": "/m/02dgv",
+    "name": "Door",
+    "description": "Sounds of a moving structure used to open or close an entrance to an enclosed space such as a building or vehicle.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Door",
+    "positive_examples": ["youtu.be/yM25TgQQ6Ug?start=30&end=40", "youtu.be/XPZnacpWtGI?start=100&end=110", "youtu.be/OcDE75D-O9k?start=230&end=240", "youtu.be/HMp3VHakVKw?start=30&end=40", "youtu.be/kKhnHNY2eqs?start=18&end=28", "youtu.be/8nPjSFqIIoo?start=200&end=210", "youtu.be/nzPQjQppcjc?start=30&end=40"],
+    "child_ids": ["/m/03wwcy", "/m/02y_763", "/m/07rjzl8", "/m/07r4wb8", "/m/07qcpgn", "/m/07q6cd_"],
+    "restrictions": [],
+    "fs_tags": ["door"]
+  },
+  {
+    "id": "/m/03wwcy",
+    "name": "Doorbell",
+    "description": "The sound of a signaling device typically placed near a building's entrance with which a visitor can announce their presence to occupants.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Doorbell",
+    "positive_examples": ["youtu.be/_oiZ9F6EVtw?start=130&end=140", "youtu.be/2NV5jIsXl0g?start=2&end=12", "youtu.be/-DoFDKsAOo4?start=30&end=40", "youtu.be/JvgYGGBGZpM?start=30&end=40", "youtu.be/hqCL8MieXp8?start=20&end=30"],
+    "child_ids": ["/m/07r67yg"],
+    "restrictions": [],
+    "fs_tags": ["doorbell","door-bell","ding","dong","bing","bong","review"]
+  },
+  {
+    "id": "/m/07r67yg",
+    "name": "Ding-dong",
+    "description": "A multi-tone chime made by a doorbell.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=ding-dong",
+    "positive_examples": ["youtu.be/bVvJzXMLaS8?start=20&end=30", "youtu.be/mP0zSmVOMNE?start=1&end=11", "youtu.be/pNoFoH57fOg?start=210&end=220"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["ding-dong","bing-bong",["ding","dong"]]
+  },
+  {
+    "id": "/m/02y_763",
+    "name": "Sliding door",
+    "description": "The sound of a type of door which opens horizontally by sliding, usually parallel to a wall.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sliding_door",
+    "positive_examples": ["youtu.be/Fs462T7ODUQ?start=30&end=40", "youtu.be/49thYHlXkSA?start=21&end=31", "youtu.be/bH_4hTLhZi4?start=30&end=40", "youtu.be/HeUnxmbKYqc?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["sliding", "door"],"sliding-door",["opening", "door"],["open", "door"], ["elevator", "door"],["slide", "door"],["lift", "door"] ]
+  },
+  {
+    "id": "/m/07rjzl8",
+    "name": "Slam",
+    "description": "The sound of a door or other hinged cover being closed violently.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=slam",
+    "positive_examples": ["youtu.be/0W4KKR9sUIo?start=50&end=60"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["slam", "door"],["closing", "door"],["close", "door"],["shut", "door"],["slamming", "door"],["lock", "door"]]
+  },
+  {
+    "id": "/m/07r4wb8",
+    "name": "Knock",
+    "description": "A sharp noise of a rigid surface being struck, usually without damage and deliberately, most often with the knuckles of the hand.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=knock",
+    "positive_examples": ["youtu.be/bWppskIvs40?start=30&end=40", "youtu.be/qhR8NGj4QJU?start=10&end=20", "youtu.be/Lc17Q6sGH48?start=120&end=130", "youtu.be/-OsX9u6oJw8?start=40&end=50", "youtu.be/ZQ0OfMZRPGM?start=10&end=20", "youtu.be/TIjqdHhg6n0?start=220&end=230"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["knock", "door"],["knocking", "door"],["hit", "door"],["knocks", "door"]]
+  },
+  {
+    "id": "/m/07qcpgn",
+    "name": "Tap",
+    "description": "The sound of a light collision between a rigid object and a rigid surface, for instance to deliberately attract attention.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=tap",
+    "positive_examples": ["youtu.be/DOG1JX-hIC8?start=30&end=40", "youtu.be/EcMb6OIRnWQ?start=30&end=40", "youtu.be/-WwGFIPH6us?start=30&end=40", "youtu.be/lII65O5C_H0?start=400&end=410", "youtu.be/ch4_bbDOKMc?start=30&end=40", "youtu.be/CbeZxCPsS2w?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["tap","tapping","review",["tap", "container"],["tap", "can"],["tap", "door"],["tap", "surface"]]
+  },
+  {
+    "id": "/m/07q6cd_",
+    "name": "Squeak",
+    "description": "A short, high-pitched noise without a sharp attack.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=squeak",
+    "positive_examples": ["youtu.be/sS9j4nxxw4c?start=30&end=40", "youtu.be/4YPpyKEKZzc?start=350&end=360", "youtu.be/z_iUAQCVLwo?start=130&end=140", "youtu.be/l9kNnBvzQyE?start=170&end=180", "youtu.be/7v51jrS0aWw?start=80&end=90", "youtu.be/VKhsmuzuwSA?start=460&end=470", "youtu.be/-2XJTklj-Y0?start=30&end=40", "youtu.be/0K8CacUc7bc?start=260&end=270", "youtu.be/UD0pisqyLKA?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["squeak", "door"],"review"]
+  },
+  {
+    "id": "/m/0642b4",
+    "name": "Cupboard open or close",
+    "description": "The sound of the door to a storage cabinet being opened or closed.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Cupboard",
+    "positive_examples": ["youtu.be/zdA3_n7rbVA?start=350&end=360", "youtu.be/f-4xmt1Ny_A?start=20&end=30", "youtu.be/VY4Z_VyHQx8?start=440&end=450"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["cupboard","cabinet"]
+  },
+  {
+    "id": "/m/0fqfqc",
+    "name": "Drawer open or close",
+    "description": "The sound of the opening or closing of a box-shaped container that fits into a piece of furniture in such a way that it can be drawn out horizontally to reach its contents.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Drawer_(furniture)",
+    "positive_examples": ["youtu.be/CR3HqozYwos?start=130&end=140", "youtu.be/w3vWTE4U-C0?start=280&end=290", "youtu.be/RYyqlQusoWk?start=30&end=40", "youtu.be/u__XGncVbM4?start=190&end=200", "youtu.be/zNG3JJY1Gq0?start=430&end=440"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["drawer"]
+  },
+  {
+    "id": "/m/04brg2",
+    "name": "Dishes, pots, and pans",
+    "description": "The sound of non-destructive collisions between plates, dishes, glassware, cooking vessels, and kitchen and eating utensils.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Tableware",
+    "positive_examples": ["youtu.be/5ohCslwvxdw?start=40&end=50", "youtu.be/il4kvln-pMk?start=160&end=170", "youtu.be/T4EAWRT6XoE?start=110&end=120", "youtu.be/T9z7Ju7S7rs?start=70&end=80", "youtu.be/i34M-tBZLtA?start=480&end=490", "youtu.be/It7mU9zMI4w?start=80&end=90", "youtu.be/1X3ab9ycVL0?start=180&end=190", "youtu.be/uA_0qDi-_a0?start=350&end=360"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["dish","porcelain","cup", "pot", "pan","ceramic","plate",["bowl","kitchen"],"glassware",["clank","kitchen"],["metallic","kitchen"],["hit","kitchen"],["glass","kitchen"],["clink","kitchen"], "saucepan"]
+  },
+  {
+    "id": "/m/023pjk",
+    "name": "Cutlery, silverware",
+    "description": "The sounds of hand implements such as knife, fork, and spoon, that are typically made of steel and are used in preparing, serving, and eating food in the Western world.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Cutlery",
+    "positive_examples": ["youtu.be/-MhcTz7hPIE?start=210&end=220", "youtu.be/2osey_ew_Kw?start=80&end=90", "youtu.be/3jSNHT62tAc?start=2&end=12", "youtu.be/4dG_VyOjAqc?start=200&end=210"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["knife", "fork", "spoon","knive","cutlery","silverware"]
+  },
+  {
+    "id": "/m/07pn_8q",
+    "name": "Chopping (food)",
+    "description": "The sound of cutting ingredients into pieces with a knife or similar blade tool.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=chop",
+    "positive_examples": ["youtu.be/_BETXRVC4bs?start=30&end=40", "youtu.be/AGjDiJ4mfYY?start=25&end=35", "youtu.be/EtvVawYx2pc?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["chopping", "review",["cutting","kitchen"],["cutting","food"],["cutting","vegetables"],["slice","vegetables"],["slice","food"],["slice","kitchen"]]
+  },
+  {
+    "id": "/m/0dxrf",
+    "name": "Frying (food)",
+    "description": "The sound of cooking food in oil or another fat.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Frying",
+    "positive_examples": ["youtu.be/KP-sFwyyi2k?start=160&end=170", "youtu.be/N_0XMZaUHtE?start=510&end=520", "youtu.be/OQYqCbdDWFc?start=50&end=60", "youtu.be/HJRCxcMFOMk?start=290&end=300", "youtu.be/zCghjBsfJEc?start=30&end=40", "youtu.be/yGx08kFWCSE?start=100&end=110", "youtu.be/g765TOvaIcY?start=140&end=150", "youtu.be/CrIC2a3X1Y0?start=100&end=110"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["frying", "cooking","fry"]
+  },
+  {
+    "id": "/m/0fx9l",
+    "name": "Microwave oven",
+    "description": "Sounds made by a kitchen appliance that heats food by exposing it to microwave radiation, including the noise of the fan, rotation mechanism, and microwave source, as well as the alert sound used to indicate that cooking is complete.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Microwave_oven",
+    "positive_examples": ["youtu.be/bvMxz7Rmvus?start=110&end=120", "youtu.be/gxPVEluTzWg?start=130&end=140", "youtu.be/l0AcPKfa5hY?start=19&end=29", "youtu.be/ZusvtL69US0?start=60&end=70", "youtu.be/vHuPSThm1Hs?start=50&end=60", "youtu.be/JQsWiBWEQlc?start=470&end=480", "youtu.be/jPlFLbfXfWc?start=140&end=150", "youtu.be/OGRxucs06r8?start=280&end=290"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["microwave","oven"]
+  },
+  {
+    "id": "/m/02pjr4",
+    "name": "Blender",
+    "description": "The sound of a kitchen and laboratory appliance used to mix, purée, or emulsify food and other substances, usually by means of metal blades at the base of a container spun rapidly by an electric motor.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Blender",
+    "positive_examples": ["youtu.be/VGgQ2zyaClY?start=30&end=40", "youtu.be/DptBcsuywGc?start=90&end=100", "youtu.be/Uqj2GGPVo2E?start=420&end=430", "youtu.be/-ghB9TOCBR8?start=50&end=60", "youtu.be/FOUjOK2AZ30?start=550&end=560", "youtu.be/CcUoNeNvHOc?start=260&end=270", "youtu.be/pSyQDrAA9sg?start=140&end=150", "youtu.be/ATI2Fz0g4yk?start=3&end=13", "youtu.be/JZq60-sNsEY?start=290&end=300"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["blender",["mixer","kitchen"],["mixer","cooking"]]
+  },
+  {
+    "id": "/g/11b630rrvh",
+    "name": "Kettle whistle",
+    "description": "The high-pitched sound of a whistle attached to the spout of an appliance for boiling water.  When the water boils, steam is forced through the whistle, alerting users that boiling is complete.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/5n1i0WeteUk?start=80&end=90", "youtu.be/Zo5WbFdzMKY?start=220&end=230"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["kettle","whistle"]
+  },
+  {
+    "id": "/m/02jz0l",
+    "name": "Water tap, faucet",
+    "description": "The sound of a hand-operated valve controlling the release of water, for instance as fitted to a sink or bath, and the resulting water flow.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Tap_(valve)",
+    "positive_examples": ["youtu.be/-VvftMHnhLA?start=30&end=40", "youtu.be/iED4FnsSrt4?start=40&end=50", "youtu.be/ApyWX6Zstno?start=30&end=40", "youtu.be/5Ms9SsvnVIQ?start=80&end=90", "youtu.be/K23jUY6DnrE?start=390&end=400", "youtu.be/ixFsIj_CcN4?start=330&end=340", "youtu.be/Uu7u_EcCIXg?start=400&end=410"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["faucet","running-water",["water","tap"]]
+  },
+  {
+    "id": "/m/0130jx",
+    "name": "Sink (filling or washing)",
+    "description": "Sounds originating from a bowl-shaped plumbing fixture that stores and drains water and that is used for washing hands, dishwashing, and other purposes.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sink",
+    "positive_examples": ["youtu.be/p4HKDsrHt80?start=310&end=320", "youtu.be/O4_OKqnPKU8?start=1&end=11", "youtu.be/IZpgE9_0SKw?start=70&end=80", "youtu.be/8kffb_v6MG0?start=90&end=100", "youtu.be/csNTcYADSIQ?start=90&end=100", "youtu.be/27NlyHgiaPw?start=120&end=130"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["sink","drain"]
+  },
+  {
+    "id": "/m/03dnzn",
+    "name": "Bathtub (filling or washing)",
+    "description": "Sounds originating from a large container for holding water in which a person may bathe.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Bathtub",
+    "positive_examples": ["youtu.be/J3YxLTjCXt8?start=60&end=70", "youtu.be/9uSqapjvYrg?start=420&end=430", "youtu.be/NrqUBYJB1_w?start=100&end=110", "youtu.be/i8TgI5kv5AE?start=240&end=250"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Bathtub","bath","shower","drain","tub","review"]
+  },
+  {
+    "id": "/m/03wvsk",
+    "name": "Hair dryer",
+    "description": "The sound of an electromechanical device designed to blow normal or hot air over damp hair, in order to dry the hair.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Hair_dryer",
+    "positive_examples": ["youtu.be/ezfz-icEVek?start=520&end=530", "youtu.be/HbKbkTkvOL0?start=180&end=190", "youtu.be/jwGfwbsF4c4?start=30&end=40", "youtu.be/IsGRLS6yPuE?start=500&end=510"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Hair", "dryer"], "hairdryer","hair-dryer"]
+  },
+  {
+    "id": "/m/01jt3m",
+    "name": "Toilet flush",
+    "description": "The sound of a toilet flushing water along with any waste through a drainpipe.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Flush_toilet",
+    "positive_examples": ["youtu.be/DZa-AIhRZDM?start=40&end=50", "youtu.be/wmkFfxfOHLA?start=120&end=130", "youtu.be/P3VT_FsOCW8?start=270&end=280", "youtu.be/sQEk9hRHvqQ?start=30&end=40", "youtu.be/kWpxOCSDKsw?start=10&end=20", "youtu.be/rw7A8gr2nms?start=30&end=40", "youtu.be/7UynE2aCvIQ?start=20&end=30", "youtu.be/uGfdRA5derI?start=20&end=30"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Toilet","flush"],"toilet-flush", "flush", "flushing"]
+  },
+  {
+    "id": "/m/012xff",
+    "name": "Toothbrush",
+    "description": "Sounds of an instrument used to clean the teeth and gums consisting of a head of tightly clustered bristles mounted on a handle.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Toothbrush",
+    "positive_examples": ["youtu.be/JKX35FOb76Q?start=220&end=230", "youtu.be/WQBVIFHMJ40?start=50&end=60", "youtu.be/BpDu70Sa6qo?start=50&end=60", "youtu.be/bnjY4k3Pk5Y?start=20&end=30", "youtu.be/1BXaCy0ox3c?start=280&end=290", "youtu.be/AyA6zrWfkYY?start=310&end=320", "youtu.be/Gt50mgYkDH0?start=100&end=110"],
+    "child_ids": ["/m/04fgwm"],
+    "restrictions": [],
+    "fs_tags": ["Toothbrush",["tooth"," brush"],["brushing"," teeth"],"brushing-teeth"]
+  },
+  {
+    "id": "/m/04fgwm",
+    "name": "Electric toothbrush",
+    "description": "The sound of a toothbrush that makes rapid, automatic bristle motions driven by an electric motor in order to clean teeth.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Electric_toothbrush",
+    "positive_examples": ["youtu.be/dm0tSDrMGUA?start=360&end=370", "youtu.be/WG08A74Cnf4?start=70&end=80", "youtu.be/mV8WUIvEKk0?start=16&end=26"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Electric","toothbrush"],["motor","toothbrush"]]
+  },
+  {
+    "id": "/m/0d31p",
+    "name": "Vacuum cleaner",
+    "description": "The sound of a device that uses an air pump to create a partial vacuum to suck up dust and dirt, usually from floors and other surfaces such as upholstery and draperies.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Vacuum_cleaner",
+    "positive_examples": ["youtu.be/zPyYpAWVarc?start=150&end=160", "youtu.be/zmIwBvOXJXQ?start=130&end=140", "youtu.be/CgtYVinJPa8?start=290&end=300", "youtu.be/Qyolp0Qf9Nc?start=140&end=150", "youtu.be/cP-OvBQ5RmA?start=30&end=40", "youtu.be/QVZKgL4EORQ?start=220&end=230", "youtu.be/7HXiTVCIiQM?start=180&end=190"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["vacuum","review","hoover"]
+  },
+  {
+    "id": "/m/01s0vc",
+    "name": "Zipper (clothing)",
+    "description": "The sound of a device consisting of two rows of small interlocking teeth for binding the edges of an opening of fabric or other flexible material, like on a garment or a bag.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Zipper",
+    "positive_examples": ["youtu.be/0XX0K_HNflo?start=30&end=40", "youtu.be/39sSIF_5oiA?start=30&end=40", "youtu.be/zjeigOmIz7U?start=30&end=40", "youtu.be/mpJolOCZ-_E?start=30&end=40", "youtu.be/t1APkUsoNhg?start=18&end=28", "youtu.be/kckdevn05rM?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["zipper","zip","zipping","unzip","unzipping","coat","jacket"]
+  },
+  {
+    "id": "/m/0zmy2j9",
+    "name": "Velcro, hook and loop fastener",
+    "description": "Sounds of fasteners typically consisting of two lineal fabric strips, one featuring tiny hooks, the second consisting of even smaller and \"hairier\" loops.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Hook_and_loop_fastener",
+    "positive_examples": ["youtu.be/i6_BUnSbcmg?start=380&end=390", "youtu.be/nawwAJZQfzU?start=21&end=31", "youtu.be/BqtXSwmi4o0?start=170&end=180", "youtu.be/Sc-fSFNSfkg?start=30&end=40", "youtu.be/Qe6J61XXTZw?start=30&end=40", "youtu.be/3ej1cmiQYGM?start=24&end=34"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Velcro",["loop","fastener"]]
+  },
+  {
+    "id": "/m/03v3yw",
+    "name": "Keys jangling",
+    "description": "Sounds made by the mutual collision of small pieces of metal, which are often linked on a ring, used to operate locks.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Key_(lock)",
+    "positive_examples": ["youtu.be/eHHBXazWbpc?start=180&end=190", "youtu.be/EMtKMP3HVs0?start=280&end=290", "youtu.be/4zEv7RY2kTg?start=20&end=30"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Keys","jangling"],["Keys","jingle"],["Keys","jangle"],["Keys","metal"],["Keys","jingling"]]
+  },
+  {
+    "id": "/m/0242l",
+    "name": "Coin (dropping)",
+    "description": "The sound of a small, flat, round piece of hard material such as metal or plastic colliding with or bouncing on a hard surface.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Coin",
+    "positive_examples": ["youtu.be/LT0udusisI4?start=570&end=580", "youtu.be/_-u7RBpA2_Y?start=40&end=50", "youtu.be/yZDtVd414io?start=20&end=30", "youtu.be/beZ5vqRqO5U?start=220&end=230", "youtu.be/D6_LkeTx4uE?start=350&end=360", "youtu.be/KRfb-rFWqZk?start=50&end=60"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["coin","money","currency"]
+  },
+  {
+    "id": "/m/05mxj0q",
+    "name": "Packing tape, duct tape",
+    "description": "Sounds associated with self-adhesive tape from wide rolls used to seal cardboard boxes and other temporary attachments. Specifically includes the distinctive noise of the tape being dispensed from a roll.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Box-sealing_tape",
+    "positive_examples": ["youtu.be/30gm0gZpYrw?start=90&end=100"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Packing","tape"], ["duct", "tape"],"duct-tape", "ductape",["rip", "tape"],["tear", "tape"],["sticky", "tape"],"adhesive-tape",["adhesive", "tape"]]
+  },
+  {
+    "id": "/m/01lsmm",
+    "name": "Scissors",
+    "description": "The sound of hand-operated shearing tools consisting of a pair of metal blades pivoted so that the sharpened edges slide against each other when the handles opposite to the pivot are closed.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Scissors",
+    "positive_examples": ["youtu.be/HDZ2_fLVZm0?start=30&end=40", "youtu.be/orxEbCkwH9M?start=320&end=330", "youtu.be/pbwT9PIfJcU?start=300&end=310", "youtu.be/1hba9jmspEQ?start=30&end=40", "youtu.be/l2LSwFtqGKk?start=470&end=480", "youtu.be/3hBvEDX7Q8k?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Scissors"]
+  },
+  {
+    "id": "/m/02g901",
+    "name": "Electric shaver, electric razor",
+    "description": "The sound of a bladed tool primarily used in the removal of unwanted body hair where the blades are continually moved by an electric motor.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Razor",
+    "positive_examples": ["youtu.be/raXE9JRtcHQ?start=40&end=50", "youtu.be/De4WXe0RE7A?start=300&end=310", "youtu.be/JODPEwUPyUE?start=40&end=50", "youtu.be/OS-kL4p0XpI?start=80&end=90", "youtu.be/EtM-2FtKBf0?start=30&end=40", "youtu.be/wHoSjefsmsE?start=420&end=430", "youtu.be/IEC8cLcZ6IE?start=170&end=180"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Electric","shaver"],["electric", "razor"]]
+  },
+  {
+    "id": "/m/05rj2",
+    "name": "Shuffling cards",
+    "description": "The sound of playing cards being manually rearranged into a random order.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Shuffling",
+    "positive_examples": ["youtu.be/83W_DUSS830?start=410&end=420", "youtu.be/nn9iLR99iAM?start=30&end=40", "youtu.be/4KMp9SlzNjk?start=380&end=390", "youtu.be/dI95aySekBI?start=50&end=60", "youtu.be/QfF8hRWie4c?start=30&end=40", "youtu.be/9ju96NjwhVY?start=260&end=270", "youtu.be/fu--BTYNcKw?start=230&end=240"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Shuffling","cards"],["Shuffle","cards"]]
+  },
+  {
+    "id": "/m/0316dw",
+    "name": "Typing",
+    "description": "The sound of writing or inputting text by pressing keys on a typewriter, computer keyboard, cell phone, or calculator.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Typing",
+    "positive_examples": ["youtu.be/pfZpFTHWpEI?start=160&end=170", "youtu.be/_iOR9VnJ_iQ?start=30&end=40", "youtu.be/0_yN1k-S99I?start=30&end=40", "youtu.be/fuGiiIhekW8?start=390&end=400", "youtu.be/Rpx9ROxCJ04?start=190&end=200", "youtu.be/StRjbDLa23U?start=20&end=30", "youtu.be/-b1bMK154QU?start=280&end=290", "youtu.be/O9tM5h9beDM?start=30&end=40"],
+    "child_ids": ["/m/0c2wf", "/m/01m2v"],
+    "restrictions": [],
+    "fs_tags": ["Typing"]
+  },
+  {
+    "id": "/m/0c2wf",
+    "name": "Typewriter",
+    "description": "Sounds of a mechanical or electromechanical machine for printing characters by means of keyboard-operated types striking a ribbon to transfer ink or carbon impressions onto paper.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Typewriter",
+    "positive_examples": ["youtu.be/I82-B02oOBg?start=380&end=390", "youtu.be/UJ9xKsKaKAA?start=30&end=40", "youtu.be/c40hgtfiYm0?start=30&end=40", "youtu.be/yoiR7G1Y85Y?start=30&end=40", "youtu.be/9H7ugTcVbXQ?start=10&end=20", "youtu.be/L4uwP5teSwM?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Typewriter"]
+  },
+  {
+    "id": "/m/01m2v",
+    "name": "Computer keyboard",
+    "description": "Sounds created by a typewriter-style device which uses an arrangement of buttons or keys controlling switches to enter text or other information into a computer or other electronic device.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Computer_keyboard",
+    "positive_examples": ["youtu.be/MK-hwHhgDLY?start=450&end=460", "youtu.be/7rGGBa_lZ54?start=260&end=270", "youtu.be/xMTVzNoGOxA?start=50&end=60", "youtu.be/jHtAPbCj0U4?start=410&end=420", "youtu.be/oBEvBG2D8AE?start=190&end=200", "youtu.be/9NcxNH75ByE?start=30&end=40", "youtu.be/eW83JnAnMww?start=260&end=270", "youtu.be/AL-dutJvx0s?start=30&end=40", "youtu.be/8GHLfJ6y6zA?start=570&end=580"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["Computer","keyboard"],["laptop","keyboard"],["mac","keyboard"],["pc","keyboard"]]
+  },
+  {
+    "id": "/m/081rb",
+    "name": "Writing",
+    "description": "The sound of inscribing signs and symbols, most often by using a purpose-made hand-held device, such as a pen or pencil, directly upon paper or similar media.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Writing",
+    "positive_examples": ["youtu.be/JO3nmsEXrro?start=340&end=350", "youtu.be/Y8uYhcPssuE?start=80&end=90", "youtu.be/74Vqth_HvqU?start=130&end=140", "youtu.be/HIfhUyU9W20?start=80&end=90", "youtu.be/drtbr0LpLDI?start=22&end=32", "youtu.be/-YKVzemh9RQ?start=30&end=40", "youtu.be/eD-ANIqSWzU?start=90&end=100"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Writing","write","drawing","review"]
+  },
   {
     "id": "/m/07pp_mv",
     "name": "Alarm",
@@ -2639,10 +3100,87 @@ ___ bell
     "restrictions": [],
     "fs_tags": [["reflex", "camera"], "review"]
   },
+  {
+    "id": "/m/07k1x",
+    "name": "Tools",
+    "description": "Sounds associated with any physical item that can be used to achieve a goal, especially if the item is not consumed in the process.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Tool",
+    "positive_examples": ["youtu.be/6EvqESUDuh4?start=150&end=160", "youtu.be/--hYWyUh_BY?start=30&end=40", "youtu.be/GJhuBSoQeRg?start=170&end=180", "youtu.be/gnytgNTz4Tw?start=460&end=470", "youtu.be/YpjgUzOBWSM?start=420&end=430", "youtu.be/WpeT6stfbac?start=40&end=50", "youtu.be/itFDsYrpdQ4?start=80&end=90", "youtu.be/5I8lmN8rwDM?start=540&end=550", "youtu.be/bE2hGIuk3nE?start=20&end=30"],
+    "child_ids": ["/m/03l9g", "/m/03p19w", "/m/01b82r", "/m/02p01q", "/m/023vsd", "/m/0_ksk"],
+    "restrictions": [],
+    "fs_tags": ["Tools","review"]
 
-
-___ tools
-
+  },
+  {
+    "id": "/m/03l9g",
+    "name": "Hammer",
+    "description": "Sounds made by a tool or device that delivers a blow to an object. Most hammers are hand tools used to drive nails, fit parts, forge metal, and break apart objects.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Hammer",
+    "positive_examples": ["youtu.be/DPWTr_fAamU?start=50&end=60", "youtu.be/gwz2RRFSp_I?start=70&end=80", "youtu.be/UJubaPeUu58?start=100&end=110", "youtu.be/rUyjioYts8k?start=220&end=230", "youtu.be/hqeM4MaM8AY?start=270&end=280", "youtu.be/QnKuwMUYhIo?start=120&end=130", "youtu.be/oy_ZYPJ_i4U?start=130&end=140"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Hammer","Hammering"]
+  },
+  {
+    "id": "/m/03p19w",
+    "name": "Jackhammer",
+    "description": "The sound of a pneumatic or electro-mechanical tool that combines a hammer directly with a chisel, usually used to break up rock, pavement, and concrete.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Jackhammer",
+    "positive_examples": ["youtu.be/D8ZGG2r9rw4?start=70&end=80", "youtu.be/9PXlmLwYdSU?start=30&end=40", "youtu.be/2OVIxKp0tDY?start=30&end=40", "youtu.be/4qWfY_x6hpA?start=20&end=30", "youtu.be/2_MZIyjeHkg?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Jackhammer","jack-hammer","pneumatic","pneumatic-hammer"]
+  },
+  {
+    "id": "/m/01b82r",
+    "name": "Sawing",
+    "description": "Sounds of a tool consisting of a tough blade, wire, or chain with a hard toothed edge, used to cut through material, most often wood.  Includes both manual and motorized saws.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Saw",
+    "positive_examples": ["youtu.be/2cA6U33DhmU?start=21&end=31", "youtu.be/IIrxuKxXgbI?start=50&end=60", "youtu.be/4UhoP_5tq-8?start=40&end=50", "youtu.be/CZbwyN1DAUU?start=30&end=40", "youtu.be/dSdfeqU-CHE?start=390&end=400", "youtu.be/tHaynxVvo0k?start=30&end=40", "youtu.be/KkO1_TZkPmA?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Sawing","circular-saw","chainsaw","bandsaw","band-saw","bench-saw","jigsaw","woodcutter","handsaw"]
+  },
+  {
+    "id": "/m/02p01q",
+    "name": "Filing (rasp)",
+    "description": "Sounds of a common wood- and metal-working tool used to remove fine amounts of material from a workpiece.",
+    "citation_uri": "http://en.wikipedia.org/wiki/File_(tool)",
+    "positive_examples": ["youtu.be/WvLRozv0VO8?start=480&end=490", "youtu.be/xobSVmWsS3M?start=230&end=240", "youtu.be/bmlAZ217IeQ?start=390&end=400", "youtu.be/QsuVk4wgxVA?start=210&end=220", "youtu.be/1lkHxuNt0ys?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["filing","rasp","filing-cabinet","review"]
+  },
+  {
+    "id": "/m/023vsd",
+    "name": "Sanding",
+    "description": "The sounds of a surface being scraped by an abrasive material affixed to sheets of paper or cloth, either to make the surface smoother, remove a layer of material, or sometimes to make the surface rougher.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sandpaper",
+    "positive_examples": ["youtu.be/5f2ygkdBhXQ?start=180&end=190", "youtu.be/gq3mrdhrUco?start=370&end=380", "youtu.be/6KPXNKlaAo8?start=60&end=70", "youtu.be/6SjftAv04VM?start=440&end=450", "youtu.be/l4raHxFuVIU?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["Sanding","sander","sandpaper","review"]
+  },
+  {
+    "id": "/m/0_ksk",
+    "name": "Power tool",
+    "description": "Sounds of tools that employ a power source other than the manual labor used with hand tools. The most common types of power tools use electric motors.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Power_tool",
+    "positive_examples": ["youtu.be/xcqLleK10js?start=50&end=60", "youtu.be/awcVolHHBHA?start=100&end=110", "youtu.be/AVst_gI8r0Y?start=130&end=140", "youtu.be/c7WBUf2Rslg?start=300&end=310", "youtu.be/iXJ6cCkogvA?start=130&end=140", "youtu.be/w7Ar6TrvBiE?start=460&end=470", "youtu.be/ggP0GzUehZ8?start=100&end=110", "youtu.be/pPbaKEYpP-4?start=60&end=70", "youtu.be/oQA78VCxa2U?start=60&end=70"],
+    "child_ids": ["/m/01d380"],
+    "restrictions": [],
+    "fs_tags": [["Power","tool"]]
+  },
+  {
+    "id": "/m/01d380",
+    "name": "Drill",
+    "description": "Sounds of a tool used for making holes in various materials via a rotating drill bit.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Drill",
+    "positive_examples": ["youtu.be/2hYNQDynVrY?start=20&end=30", "youtu.be/g2Q3U2nID1o?start=50&end=60", "youtu.be/0zfWGqDMT04?start=60&end=70", "youtu.be/g_tNcWk39d8?start=20&end=30", "youtu.be/MDWok2Z9eK8?start=100&end=110", "youtu.be/-XoJN3kzimY?start=90&end=100"],
+    "child_ids": ["/m/08j51y"],
+    "restrictions": [],
+    "fs_tags": ["Drill","Drilling"]
+  },
   {
     "id": "/m/014zdl",
     "name": "Explosion",
@@ -2764,7 +3302,6 @@ ___ tools
     "fs_tags": ["sonic-boom", "sonicboom", "review"]
   },
 
-___ dimensional doors
 
 ___ wood
 
@@ -2772,10 +3309,176 @@ ___ glass
 
 ___ liquid 
 
-___ misc
-
-___ specifict
-
+  {
+    "id": "/t/dd00089",
+    "name": "Miscellaneous sources",
+    "description": "Portmanteau class for sound categories that clearly suggest specific sources not covered in the other categories.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/0790c", "/m/04179zz", "/m/0dl83", "/t/dd00091"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["review"]
+  },
+  {
+    "id": "/m/0790c",
+    "name": "Sonar",
+    "description": "Sounds associated with underwater sensing via acoustic signals. A classic sonar sound involves reverberant reflections of an emitted tone pip.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sonar",
+    "positive_examples": ["youtu.be/_l2qH62qG-Y?start=30&end=40", "youtu.be/rbN9akpEJh4?start=40&end=50", "youtu.be/f47LeLK_ucU?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["sonar"]
+  },
+  {
+    "id": "/m/04179zz",
+    "name": "Duck call (hunting tool)",
+    "description": "The sound of a tool which imitates the communication calls of waterfowl and is used primarily by hunters to lure prey.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Duck_call",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": [["duck", "call"], "review"]
+  },
+  {
+    "id": "/m/0dl83",
+    "name": "Arrow",
+    "description": "Sounds of a shafted projectile that is shot with a bow.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Arrow",
+    "positive_examples": ["youtu.be/STeG7lU2seQ?start=70&end=80", "youtu.be/uFROlibANvw?start=40&end=50", "youtu.be/AAdoBK3LG_s?start=110&end=120", "youtu.be/SgZSBDALO1k?start=210&end=220", "youtu.be/sb4VwqX1Wss?start=130&end=140", "youtu.be/lPbA3GnfWDQ?start=30&end=40", "youtu.be/KP74BeNnPjU?start=60&end=70", "youtu.be/FfMwEVBCmaQ?start=360&end=370"],
+    "child_ids": ["/m/07rqsjt", "/m/07qnq_y", "/m/07pk7mg"],
+    "restrictions": [],
+    "fs_tags": ["arrow"]
+  },
+  {
+    "id": "/m/07rqsjt",
+    "name": "Whoosh, swoosh, swish",
+    "description": "A sibilant sound caused by a rigid object sweeping through the air.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=whoosh",
+    "positive_examples": ["youtu.be/jRocgDvVV6U?start=30&end=40", "youtu.be/-xuq3kOwGGw?start=30&end=40", "youtu.be/HuoE9pT4DFw?start=0&end=5", "youtu.be/DdMAiFT2dIY?start=30&end=40", "youtu.be/1SDz3QpoPRk?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["whoosh", "swoosh", "swish", "review"]
+  },
+  {
+    "id": "/m/07qnq_y",
+    "name": "Thump, thud",
+    "description": "A heavy dull sound, as made by impact of heavy objects with a relatively soft point of contact.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=thump",
+    "positive_examples": ["youtu.be/t6rniZNuoM4?start=60&end=70", "youtu.be/t4Q8i_J-Fos?start=50&end=60", "youtu.be/gNMsHIMAHXs?start=280&end=290", "youtu.be/StjeR1EIv0A?start=410&end=420", "youtu.be/b4a1SE8pJtw?start=150&end=160", "youtu.be/cx8hGMuV5Ok?start=420&end=430", "youtu.be/NLilfM4RVOA?start=50&end=60", "youtu.be/_FDKLplMbf4?start=320&end=330"],
+    "child_ids": ["/m/07rrh0c", "/t/dd00108"],
+    "restrictions": [],
+    "fs_tags": ["thump", ["heavy","impact"], ["dull", "impact"], "review"]
+  },
+  {
+    "id": "/m/07rrh0c",
+    "name": "Thunk",
+    "description": "A partly dull hollow sound with a damped resonance.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=thunk",
+    "positive_examples": ["youtu.be/Ze1hkRWoz-M?start=110&end=120", "youtu.be/txiZk4ap_4c?start=100&end=110", "youtu.be/e57je4YO9cM?start=230&end=240", "youtu.be/DPI_-objvnY?start=110&end=120", "youtu.be/Q4mvcscgRdA?start=30&end=40", "youtu.be/HzQphRe4bgM?start=130&end=140", "youtu.be/qD9Uvxrq63U?start=100&end=110"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["thunk", ["dull", "impact"], ["hollow", "impact"], "review"]
+  },
+  {
+    "id": "/t/dd00108",
+    "name": "Clunk",
+    "description": "A predominantly low-frequency impact noise that starts with a cleaner, high-frequency click, suggesting the contact of rigid surfaces (as of a car door closing).",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/x-dLBbkPEKA?start=26&end=36", "youtu.be/fdD2UwvJdC4?start=20&end=30", "youtu.be/p-nnE3kbpCQ?start=30&end=40", "youtu.be/KULfVYWeYgw?start=30&end=40", "youtu.be/d3-_V1rijLo?start=20&end=30", "youtu.be/otLsSpCumO8?start=30&end=40", "youtu.be/aQ7m0KUB0xY?start=30&end=40", "youtu.be/HTQ7u3pcdYs?start=20&end=30"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["clunk", "review"]
+  },
+  {
+    "id": "/m/07pk7mg",
+    "name": "Wobble",
+    "description": "The sound of a structure shaking unsteadily back and forth, as in response to an impact.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=wobble",
+    "positive_examples": ["youtu.be/AesYVC3ej1g?start=340&end=350"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": []
+  },
+  {
+    "id": "/t/dd00091",
+    "name": "Sound equipment",
+    "description": "Sounds that suggest the involvement of electronic audio processing equipment.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/a_eC1dvlFyQ?start=60&end=70", "youtu.be/yZJCg_RBPpg?start=290&end=300", "youtu.be/wJsvxEHIUwc?start=280&end=290", "youtu.be/UEDM20GlRlA?start=10&end=20", "youtu.be/oEr9yy3dx-w?start=100&end=110"],
+    "child_ids": ["/m/0hg7b", "/m/0b_fwt", "/m/01vfsf", "/m/02rr_"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["review"]
+  },
+  {
+    "id": "/m/0hg7b",
+    "name": "Microphone",
+    "description": "Sounds whose origin lie with the microphone used in the recording, rather than the external sound source that was intended to be recorded.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Microphone",
+    "positive_examples": [],
+    "child_ids": ["/t/dd00092"],
+    "restrictions": ["blacklist"],
+    "fs_tags": [["microphone","noise"], "review"]
+  },
+  {
+    "id": "/m/0b_fwt",
+    "name": "Electronic tuner",
+    "description": "Sounds produced by an electronic device whose purpose is to aid in the tuning of musical instruments.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Electronic_tuner",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": [["electronic", "tuner"], ["electric", "tuner"], "review"]
+  },
+  {
+    "id": "/m/01vfsf",
+    "name": "Guitar amplifier",
+    "description": "Sounds specifically associated with an audio amplifier intended for use with an electric guitar, such as overdrive distortion.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Guitar_amplifier",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": [["guitar", "amplifier"], ["guitar", "amp"]]
+  },
+  {
+    "id": "/m/02rr_",
+    "name": "Effects unit",
+    "description": "Sounds associated with an electronic device that alters how a musical instrument or other audio source sounds. Some effects subtly \"color\" a sound while others transform it dramatically.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Effects_unit",
+    "positive_examples": ["youtu.be/aAmyLNfCbyo?start=580&end=590", "youtu.be/7lTBoMcuy10?start=190&end=200", "youtu.be/ND-Fs2VaFL0?start=30&end=40", "youtu.be/8FiXfyDdaZo?start=160&end=170", "youtu.be/thvxJisK52g?start=50&end=60", "youtu.be/PFr8GwUVzfw?start=300&end=310", "youtu.be/GsAUcq1V2HY?start=30&end=40", "youtu.be/UMkFu4MsDjc?start=160&end=170"],
+    "child_ids": ["/m/07m2kt"],
+    "restrictions": [],
+    "fs_tags": [["electronic", "effect"], ["digital", "effect"], ["electronic", "fx"], ["digital", "fx"]]
+  },
+  {
+    "id": "/m/07m2kt",
+    "name": "Chorus effect",
+    "description": "The ensemble sound produced by an electronic effects unit which outputs simultaneous versions of the input source with small variations in pitch and timbre.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Chorus_effect",
+    "positive_examples": ["youtu.be/QK200gvvi68?start=60&end=70", "youtu.be/XXzpCKOVswg?start=200&end=210", "youtu.be/vKNGqQ3GRB8?start=90&end=100"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["chorus", "effect"], ["chorus", "fx"]]
+  },
+  {
+    "id": "/t/dd00133",
+    "name": "Specific impact sounds",
+    "description": "Transient contact sounds that are strongly suggestive of the particular objects involved in the collision.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/018w8"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["review"]
+  },
+  {
+    "id": "/m/018w8",
+    "name": "Basketball bounce",
+    "description": "The sound of a basketball bouncing on a hard surface, such as a basketball court.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Basketball",
+    "positive_examples": ["youtu.be/-64NRxM2YLg?start=60&end=70", "youtu.be/2Tg8LHzMOgs?start=150&end=160", "youtu.be/WXtRxqxRIHQ?start=50&end=60", "youtu.be/zjxL61AXNTI?start=60&end=70", "youtu.be/ZGYGusrK84E?start=220&end=230", "youtu.be/GUSqE3a1P3I?start=100&end=110"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["basket-ball", "basketball", ["basket", "ball"]]
+  },
   {
     "id": "/t/dd00098",
     "name": "Source-ambiguous sounds",
