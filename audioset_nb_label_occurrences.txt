@@ -1,0 +1,571 @@
+Audio Set nb of labels occurrences:
+
+Chorus effect                           28
+Thunderstorm                            1572
+Ice cream truck, ice cream van          19
+Wolf-whistling                          11
+Pizzicato                               205
+Stir                                    42
+Insect                                  1661
+Sneeze                                  170
+Ambulance (siren)                       107
+Grunt                                   54
+Cacophony                               38
+Spray                                   14
+Male speech, man speaking               1745
+Clip-clop                               124
+Alarm                                   1259
+Lawn mower                              117
+Piano                                   4505
+Bass drum                               2953
+Background music                        429
+Crowd                                   2693
+Splash, splatter                        1407
+Tambourine                              354
+Doorbell                                1286
+Drum beat                               743
+Bark                                    1088
+Tick                                    968
+Television                              504
+Tap                                     1552
+Camera                                  520
+Throbbing                               37
+Infrasound                              1478
+Electric guitar                         1375
+Loudspeaker                             318
+Chipmunk                                117
+Fly, housefly                           747
+Wind instrument, woodwind instrument    68
+Natural sounds                          7773
+Rattle                                  1372
+Vehicle                                 1799
+Croak                                   182
+Thunder                                 2350
+Heart sounds, heartbeat                 368
+Vehicle horn, car horn, honking         255
+Applause                                753
+Banjo                                   0
+Bicycle                                 486
+Zither                                  0
+Wedding music                           0
+Turkey                                  167
+Bassoon                                 242
+Whimper                                 2
+Propeller, airscrew                     32
+Chink, clink                            621
+Sizzle                                  249
+Clavinet                                1
+Stomach rumble                          64
+Idling                                  214
+Yodeling                                9
+Silence                                 235
+Honk                                    35
+Biting                                  960
+Bassline                                711
+Outside, rural or natural               7973
+Outside, urban or manmade               4941
+Wheeze                                  31
+Cupboard open or close                  310
+Inside, public space                    751
+Inside, large room or hall              617
+Boing                                   337
+Police car (siren)                      166
+Channel, environment and background     3749
+Other sourceless                        0
+Engine                                  4919
+Clatter                                 430
+Trickle, dribble                        392
+Hiccup                                  33
+Liquid                                  1483
+Motorcycle                              575
+Siren                                   279
+Chewing, mastication                    311
+Bathtub (filling or washing)            1448
+Clarinet                                1928
+Wood block                              35
+Run                                     1323
+Plucked string instrument               0
+Jingle (music)                          150
+Civil defense siren                     54
+Water                                   10290
+Stream                                  2130
+Chord                                   2833
+Screech                                 694
+Ringing (of resonator)                  2531
+Whistling                               34
+Plop                                    1889
+Cricket                                 1702
+Distortion                              4216
+Crack                                   1294
+Animal                                  2763
+Air conditioning                        137
+Meow                                    414
+Train whistle                           148
+Twang                                   216
+Slap, smack                             852
+Soprano saxophone                       146
+Waves, surf                             3105
+Skidding                                113
+Steam                                   444
+Pigeon, dove                            191
+Sniff                                   110
+Hi-hat                                  1249
+Power windows, electric windows         18
+Ding                                    974
+Bagpipes                                2026
+Music                                   0
+Jet engine                              107
+Whack, thwack                           92
+Tire squeal                             14
+Dance music                             0
+Bugle                                   16
+Human voice                             17777
+Canidae, dogs, wolves                   428
+Babbling                                200
+Raindrop                                2988
+Busy signal                             16
+MP3                                     147
+Sailboat, sailing ship                  58
+Reverberation                           3589
+Squeal                                  327
+Squish                                  34
+Pump (liquid)                           7
+Dial tone                               130
+Clicking                                5051
+Timpani                                 136
+Fireworks                               1050
+Machine gun                             201
+Train wheels squealing                  8
+Narration, monologue                    63
+Scissors                                204
+Bee, wasp, etc.                         357
+Cat communication                       0
+Patter                                  31
+Bleat                                   92
+Toothbrush                              107
+Cat                                     824
+Shout                                   358
+Arrow                                   96
+Snicker                                 7
+Hoot                                    66
+Chuckle, chortle                        108
+Dental drill, dentist's drill           26
+Belly laugh                             2
+Oink                                    72
+Lullaby                                 33
+Car                                     5078
+Children playing                        308
+Tubular bells                           0
+Ping                                    968
+Computer keyboard                       277
+Tearing                                 885
+Dog                                     1816
+Chant                                   452
+Sampler                                 0
+Coin (dropping)                         1205
+Drawer open or close                    277
+Rapping                                 569
+Rustling leaves                         100
+Coo                                     50
+Wail, moan                              113
+Crowing, cock-a-doodle-doo              417
+Sitar                                   0
+Thump, thud                             746
+Snare drum                              7831
+Firecracker                             223
+Kettle whistle                          1999
+Subway, metro, underground              1763
+Tools                                   887
+Sawing                                  1068
+Crushing                                1644
+Beep, bleep                             3344
+Choir                                   445
+Marimba, xylophone                      435
+Digestive                               14
+Sound reproduction                      5446
+Chicken, rooster                        516
+Power tool                              60
+Cowbell                                 360
+Whoop                                   6
+Drum machine                            372
+Flute                                   1842
+Squeak                                  577
+Frog                                    802
+Cheering                                728
+Fire alarm                              76
+Horse                                   447
+Field recording                         30314
+Theremin                                148
+Brass instrument                        0
+Electric toothbrush                     29
+Bouncing                                1199
+Oboe                                    351
+Wild animals                            16
+Wind                                    6144
+Child speech, kid speaking              349
+Singing bowl                            134
+Screaming                               1968
+Finger snapping                         233
+Mosquito                                68
+Steelpan                                265
+Whistle                                 5
+Conversation                            1268
+Gargling                                70
+Deformable shell                        198
+Crumpling, crinkling                    415
+Fizz                                    230
+Ringtone                                483
+Typing                                  567
+Whip                                    318
+Grind                                   541
+Electronic tuner                        3
+Scrape                                  1398
+Rhodes piano                            110
+Laughter                                1701
+Drone                                   7460
+Sine wave                               319
+Accelerating, revving, vroom            625
+Clang                                   1358
+Chirp, tweet                            606
+Bicycle bell                            145
+Crackle                                 1102
+Zipper (clothing)                       516
+Goose                                   200
+Light engine (high frequency)           11
+Medium engine (mid frequency)           113
+Gasp                                    216
+Non-motorized land vehicle              0
+Hammond organ                           17
+Steam whistle                           77
+Gramophone record                       964
+Emergency vehicle                       26
+Car alarm                               47
+Funny music                             62
+Crunch                                  1161
+Train                                   3899
+Water tap, faucet                       758
+Truck                                   758
+Church bell                             1034
+Pour                                    0
+Packing tape, duct tape                 152
+Violin, fiddle                          2436
+Skateboard                              185
+Mouse                                   39
+Bay                                     0
+Tinnitus, ringing in the ears           51
+Bird                                    7891
+Humming                                 55
+Drum kit                                51
+Domestic animals, pets                  336
+Foghorn                                 54
+Yip                                     22
+Rattle (instrument)                     0
+Rail transport                          168
+Tabla                                   254
+Maraca                                  59
+Keyboard (musical)                      0
+Tuning fork                             10
+String section                          303
+Cash register                           126
+Sounds of things                        700
+Noise                                   18990
+Trumpet                                 1808
+Shuffle                                 15
+Livestock, farm animals, working animals208
+Burping, eructation                     405
+Breathing                               1806
+Rowboat, canoe, kayak                   20
+Musical instrument                      0
+Breaking                                2612
+Heart murmur                            1
+French horn                             59
+Roaring cats (lions, tigers)            135
+Buzz                                    1601
+Static                                  6307
+Singing                                 1564
+Harpsichord                             96
+Bow-wow                                 0
+Boat, Water vehicle                     684
+Crash cymbal                            4212
+Hum                                     1433
+Filing (rasp)                           315
+Hubbub, speech noise, speech babble     287
+Scratch                                 1356
+Roar                                    815
+Pig                                     166
+Musical concepts                        0
+Music role                              0
+Birthday music                          0
+Nicker                                  6
+Growling                                1198
+Cattle, bovinae                         309
+Snap                                    1159
+Motor vehicle (road)                    456
+Writing                                 742
+Moo                                     100
+Drum                                    774
+Tick-tock                               358
+Loop                                    19202
+Snort                                   112
+Mechanical fan                          318
+Air horn, truck horn                    55
+Bird flight, flapping wings             243
+Background noise                        4367
+Knock                                   446
+Engine knocking                         3
+Bass (frequency range)                  11504
+Whispering                              741
+Didgeridoo                              161
+Heavy engine (low frequency)            28
+Mains hum                               240
+Goat                                    110
+Rain on surface                         247
+Neigh, whinny                           39
+Blare                                   20
+Cap gun                                 19
+Printer                                 302
+Microwave oven                          322
+Whale vocalization                      54
+Acoustic guitar                         2239
+Harmonica                               294
+Echo                                    2153
+Giggle                                  305
+Motorboat, speedboat                    27
+Wobble                                  0
+Aircraft                                533
+Hair dryer                              69
+Cello                                   1566
+Recording                               5308
+Reversing beeps                         12
+Mallet percussion                       81
+Electric piano                          118
+Bass guitar                             0
+Hiss                                    1244
+Fire                                    1937
+Human group actions                     22
+Waterfall                               440
+Throat clearing                         48
+Chopping (food)                         354
+Air brake                               65
+Rimshot                                 55
+Mandolin                                0
+Explosion                               1895
+Smoke detector, smoke alarm             8
+Helicopter                              538
+Yell                                    851
+Slam                                    2482
+Cough                                   390
+Chirp tone                              780
+Squawk                                  33
+Respiratory sounds                      15
+Scratching (performance technique)      1356
+Chime                                   2922
+Splinter                                305
+Sigh                                    176
+Pulse                                   805
+Quack                                   87
+Owl                                     189
+Shofar                                  1
+Ratchet, pawl                           122
+Surface contact                         0
+Clunk                                   189
+Vibration                               688
+Inside, small room                      32
+Steel guitar, slide guitar              119
+Christmas music                         15
+Whoosh, swoosh, swish                   1542
+Bellow                                  28
+White noise                             1569
+Cornet                                  0
+Sound effect                            18801
+Gush                                    38
+Miscellaneous sources                   0
+Radio                                   2643
+Chop                                    105
+Velcro, hook and loop fastener          87
+Typewriter                              176
+Howl                                    819
+Rustle                                  794
+Bell                                    4165
+Domestic sounds, home sounds            4853
+Mechanisms                              1237
+Pant                                    146
+Crow                                    448
+Yak                                     0
+Buzzer                                  103
+Environmental noise                     18
+Guitar                                  0
+Wildfire                                1
+Compact disc                            342
+Boiling                                 400
+Sonar                                   126
+Musical ensemble                        0
+Human sounds                            4049
+Bird vocalization, bird call, bird song 1993
+Fixed-wing aircraft, airplane           816
+Glass                                   3132
+Gong                                    729
+Alarm clock                             118
+Bus                                     859
+Beat                                    9753
+Roll                                    1104
+Effects unit                            3318
+Ocean                                   3857
+Mantra                                  70
+Harp                                    454
+Hammer                                  834
+Vibraphone                              70
+Duck call (hunting tool)                8
+Gurgling                                688
+Gunshot, gunfire                        1371
+Jingle, tinkle                          1083
+Artillery fire                          53
+Human locomotion                        3
+Rumble                                  1576
+Fill (with liquid)                      165
+Gobble                                  13
+Single-lens reflex camera               3
+Sidetone                                0
+Creak                                   1500
+Toilet flush                            530
+Organ                                   0
+Sewing machine                          51
+Mellotron                               0
+Glockenspiel                            170
+Gull, seagull                           412
+Drum roll                               37
+Rub                                     718
+Cellphone buzz, vibrating alert         201
+Pulleys                                 24
+Double bass                             369
+Soundtrack music                        2421
+Snort (horse)                           16
+Yawn                                    17
+Booing                                  8
+Duck                                    286
+Sliding door                            1896
+Jackhammer                              174
+Microphone                              53
+Telephone bell ringing                  524
+Caterwaul                               0
+Slosh                                   80
+Melody                                  1271
+Keys jangling                           339
+Tapping (guitar technique)              26
+Groan                                   37
+Sonic boom                              4
+Scary music                             221
+Angry music                             0
+Exciting music                          4
+Sheep                                   210
+Sad music                               90
+Alto saxophone                          237
+Happy music                             84
+Music mood                              0
+Whimper (dog)                           17
+Traffic noise, roadway noise            1333
+Car passing by                          291
+Children shouting                       113
+Door                                    4914
+Specific impact sounds                  0
+Engine starting                         380
+Bang                                    2825
+Speech                                  7980
+Railroad car, train wagon               86
+Saxophone                               673
+Battle cry                              12
+Blender                                 67
+Jingle bell                             175
+Fusillade                               15
+Video game music                        137
+Rain                                    3781
+Rodents, rats, mice                     80
+Donkey, ass                             38
+Cluck                                   60
+Eruption                                8
+Vacuum cleaner                          372
+Shatter                                 685
+Telephone dialing, DTMF                 205
+Telephone                               1860
+Sink (filling or washing)               1064
+Musical note                            60833
+Synthesizer                             53857
+Smash, crash                            2499
+Thunk                                   68
+Electric shaver, electric razor         50
+Chatter                                 625
+Bass (instrument role)                  0
+Boom                                    519
+Change ringing (campanology)            21
+Howl (wind)                             187
+Strum                                   304
+Crying, sobbing                         614
+Dishes, pots, and pans                  2851
+Puff                                    84
+Fire engine, fire truck (siren)         42
+Electronic organ                        0
+Accordion                               157
+Gears                                   228
+Purr                                    256
+Fowl                                    22
+Clock                                   1036
+Burst, pop                              58
+Snake                                   33
+Toot                                    19
+Zing                                    30
+Shuffling cards                         47
+Orchestra                               598
+Snoring                                 249
+Ding-dong                               179
+Wood                                    5797
+Trombone                                106
+Whir                                    178
+Fart                                    904
+Walk, footsteps                         4650
+Brief tone                              42
+Drill                                   431
+Theme music                             85
+Ship                                    789
+Tape hiss                               73
+Female speech, woman speaking           2905
+Aircraft engine                         108
+Clickety-clack                          201
+Basketball bounce                       179
+Clapping                                1860
+Sanding                                 371
+Harmony                                 0
+Chainsaw                                86
+Frying (food)                           721
+Caw                                     33
+Wind chime                              6288
+Cutlery, silverware                     1544
+Harmonic                                531
+Headphones                              65
+Song                                    1625
+Bowed string instrument                 0
+Train horn                              120
+Sound equipment                         0
+Acoustic environment                    314
+Wind noise (microphone)                 55
+Guitar amplifier                        138
+Pink noise                              81
+Otoacoustic emission                    0
+Generic impact sounds                   10751
+Source-ambiguous sounds                 0
+Tender music                            0
+Onomatopoeia                            2
+Cymbal                                  2832
+Hands                                   1115
+Drip                                    1241
+Synthetic singing                       62
+Female singing                          255
+Child singing                           73
+Baby cry, infant cry                    176
+Male singing                            185
+Baby laughter                           80
+Ukulele                                 0
+Race car, auto racing                   411
+Flap                                    293
+Speech synthesizer                      169
+Percussion                              21376
+
