@@ -1873,7 +1873,7 @@ ___ NUSIC_____
     "positive_examples": ["youtu.be/PrNMIEfwmm4?start=240&end=250", "youtu.be/ikJlmuxCMgo?start=50&end=60", "youtu.be/0SoVB6iEHTU?start=100&end=110", "youtu.be/wN0i4-VxOgc?start=120&end=130", "youtu.be/Mcuclfu6kcg?start=100&end=110", "youtu.be/EYsAX8CaJ-4?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["toot","horn"],["toot","vehicle"], ["toot", "automobile"] "review"]
+    "fs_tags": [["toot","horn"],["toot","vehicle"], ["toot", "automobile"], "review"]
   },
   {
     "id": "/m/02mfyn",
