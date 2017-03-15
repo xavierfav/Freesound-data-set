@@ -1,0 +1,111 @@
+[  {
+    "id": "/m/02mk9",
+    "name": "Engine",
+    "description": "The sound of a machine designed to produce mechanical energy. Combustion engines burn a fuel to create heat, which then creates a force. Electric motors convert electrical energy into mechanical motion. Other classes of engines include pneumatic motors and clockwork motors.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Engine",
+    "positive_examples": ["youtu.be/rD1XBW018e4?start=120&end=130", "youtu.be/21Hv4dPd-5c?start=21&end=31", "youtu.be/1OulOUPg7-8?start=3&end=13", "youtu.be/DgyFll5DJeQ?start=30&end=40", "youtu.be/ETVA-wrKgtA?start=120&end=130", "youtu.be/33eq2a2BeZI?start=30&end=40", "youtu.be/V0CRYp34c2k?start=30&end=40", "youtu.be/fO250kjXV7U?start=20&end=30"],
+    "child_ids": ["/t/dd00065", "/t/dd00066", "/t/dd00067", "/m/04229", "/m/01h82_", "/t/dd00130", "/m/07pb8fc", "/m/07q2z82"],
+    "restrictions": [],
+    "fs_tags": ["engine", ["machine", "mechanic"]]
+  },
+  {
+    "id": "/t/dd00065",
+    "name": "Light engine (high frequency)",
+    "description": "The sound of a small engine such as a toy car, sewing machine, or moped.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/i69icWu7vgM?start=120&end=130", "youtu.be/_yFwVTg-V-M?start=10&end=20", "youtu.be/Bt-h7IczpuM?start=40&end=50", "youtu.be/5xiXwDn7eJ8?start=80&end=90", "youtu.be/HI7BKGzGerc?start=190&end=200", "youtu.be/SaUTCeOPdUQ?start=50&end=60", "youtu.be/Lzec-fG2xwI?start=520&end=530", "youtu.be/ki9Mnrelw5s?start=360&end=370"],
+    "child_ids": ["/m/08j51y", "/m/01yg9g", "/m/01j4z9"],
+    "restrictions": [],
+    "fs_tags": [["light", "engine"], "review"]
+  },
+  {
+    "id": "/m/08j51y",
+    "name": "Dental drill, dentist's drill",
+    "description": "The sound of a small, high-speed drill used during dental procedures, usually to remove decay and shape tooth structure prior to the insertion of a filling or crown.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Dental_drill",
+    "positive_examples": ["youtu.be/Z5I3qUNg8Xg?start=280&end=290", "youtu.be/52sTvbwi7Mg?start=130&end=140"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["dental", "drill"], ["dentist", "drill"], "dentist-drilling"]
+  },
+  {
+    "id": "/m/01yg9g",
+    "name": "Lawn mower",
+    "description": "The sound of a machine utilizing one or more revolving blades to cut grass, powered by an electric motor, a small internal combustion engine, or by a human pushing the machine.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Lawn_mower",
+    "positive_examples": ["youtu.be/095CdSbYrFc?start=30&end=40", "youtu.be/CPjttawNaII?start=50&end=60", "youtu.be/zj_gAYMxfQ8?start=20&end=30", "youtu.be/LB4w_fc8F-A?start=60&end=70", "youtu.be/16d3D1AWFu8?start=20&end=30", "youtu.be/UM5xPbgiDbs?start=60&end=70"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["lawn", "mower"], "lawnmower", "lawn-mower"]
+  },
+  {
+    "id": "/m/01j4z9",
+    "name": "Chainsaw",
+    "description": "The sound of a portable mechanical saw which cuts with a set of teeth attached to a rotating chain. Chainsaws are commonly powered by a small two-stroke internal combustion engine.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Chainsaw",
+    "positive_examples": ["youtu.be/uFenFl01Eu8?start=360&end=370", "youtu.be/8yBGrAo62iQ?start=70&end=80", "youtu.be/-RNbb1ZTu8Y?start=30&end=40", "youtu.be/HZ69dl6yTYM?start=90&end=100", "youtu.be/Ae6pZjdGfRY?start=30&end=40", "youtu.be/vRa8ncJ-Zrw?start=230&end=240", "youtu.be/iWOlAJb2ogg?start=30&end=40", "youtu.be/CDm5VBH6nL4?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["chainsaw", "chain-saw"]
+  },
+  {
+    "id": "/t/dd00066",
+    "name": "Medium engine (mid frequency)",
+    "description": "The sound of a moderately-sized engine such as that which powers a motorcycle, sedan, or small truck.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/1uTnWkTP9a0?start=24&end=34", "youtu.be/2zsjLiSNK0Q?start=30&end=40", "youtu.be/s0irKAYCfOE?start=30&end=40", "youtu.be/6Pv8cptxmaI?start=17&end=27", "youtu.be/2aQWtSZafxA?start=30&end=40", "youtu.be/0Xny2kBTr1U?start=340&end=350", "youtu.be/BrGwC9j8gZg?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["medium", "engine"], "review"]
+  },
+  {
+    "id": "/t/dd00067",
+    "name": "Heavy engine (low frequency)",
+    "description": "The sound of a large, heavy-duty internal combustion engine, such as that which powers a large truck, locomotive, or ship.  Jet engines, steam engines, rocket engines etc. are excluded.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/-TBHymyAbCs?start=30&end=40", "youtu.be/-TFvKCs-Nlc?start=30&end=40", "youtu.be/QkBBROJPasI?start=30&end=40", "youtu.be/-kXfIGe5I8Y?start=28&end=38", "youtu.be/-olpPhZLSWI?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["heavy", "engine"], ["large", "engine"] "review"]
+  },
+  {
+    "id": "/m/01h82_",
+    "name": "Engine knocking",
+    "description": "A metallic \"pinging\" sound caused by a malfunctioning spark-ignited internal combustion engine. Engine knocking indicates that the combustion of the air/fuel mixture in the cylinder is occurring at the wrong point in the piston's stroke.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Engine_knocking",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": [["engine", "knocking"], "review"]
+  },
+  {
+    "id": "/t/dd00130",
+    "name": "Engine starting",
+    "description": "The sound of an engine starting from rest, which may involve a specific starter mechanism (as in a standard car).",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/6O2fJUnSxnE?start=30&end=40", "youtu.be/4fl09vJXgH4?start=30&end=40", "youtu.be/tRl0-Q0ZJZI?start=18&end=28", "youtu.be/AnpUWRakgmE?start=150&end=160", "youtu.be/BEKB0WKczpg?start=15&end=25"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["engine", "start"], ["motor", "start"]]
+  },
+  {
+    "id": "/m/07pb8fc",
+    "name": "Idling",
+    "description": "The sound of an engine (typically in an automobile) running without any load and at minimal RPM.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=idling",
+    "positive_examples": ["youtu.be/-QN2auumfOI?start=30&end=40", "youtu.be/BJb9Idgq_xo?start=30&end=40", "youtu.be/1E8u66vm870?start=20&end=30", "youtu.be/9H_aqeYUlak?start=17&end=27", "youtu.be/--lKwp2nVm0?start=30&end=40", "youtu.be/90oHXiTbKGU?start=30&end=40", "youtu.be/7t2M6fwsvzs?start=510&end=520", "youtu.be/73Vz2uj8iKY?start=300&end=310"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["idling"]
+  },
+  {
+    "id": "/m/07q2z82",
+    "name": "Accelerating, revving, vroom",
+    "description": "The sound made by the engine of a vehicle undergoing acceleration, usually involving an increase in loudness and a rising pitch.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=accelerating",
+    "positive_examples": ["youtu.be/FkyO6R1Frgw?start=30&end=40", "youtu.be/bU-KxtzE1CA?start=30&end=40", "youtu.be/gif5KpUlVT0?start=90&end=100", "youtu.be/HxiEFMumhHY?start=28&end=38", "youtu.be/M4f5MMdu4mY?start=30&end=40", "youtu.be/1NGdiCVV7iM?start=30&end=40", "youtu.be/Y7nMy5Ei_2A?start=10&end=20", "youtu.be/x2mQVZ3NpG0?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["accelerate", "revving", "vroom"]
+  }
+]
