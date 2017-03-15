@@ -2499,9 +2499,163 @@ ___ bell
     "restrictions": [],
     "fs_tags": [["steam", "whistle"], "review"]
   },
+  {
+    "id": "/t/dd00077",
+    "name": "Mechanisms",
+    "description": "Sounds that originate from human-created machinery and devices.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/5K6zvn-Zdw0?start=1&end=11", "youtu.be/EFB1v8UGXZk?start=590&end=600", "youtu.be/wY3hhIqVvjo?start=60&end=70", "youtu.be/kcqmwG_rHFA?start=80&end=90"],
+    "child_ids": ["/m/02bm9n", "/m/01x3z", "/m/0l7xg", "/m/05zc1", "/m/0llzx", "/m/02x984l", "/m/025wky1", "/m/024dl", "/m/01m4t", "/m/0dv5r"],
+    "restrictions": [],
+    "fs_tags": [["mechanisms", "engine"], "machinery", "review"]
+  },
+  {
+    "id": "/m/02bm9n",
+    "name": "Ratchet, pawl",
+    "description": "The sound of a mechanical device that allows continuous linear or rotary motion in only one direction while preventing motion in the opposite direction.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Ratchet_(device)",
+    "positive_examples": ["youtu.be/CGk8RdSyKVs?start=30&end=40", "youtu.be/6Ks0uENycv4?start=1&end=11", "youtu.be/7S55nEHxIHE?start=30&end=40", "youtu.be/V2M4UI7O0Jo?start=0&end=6", "youtu.be/I3z4A5M-XEQ?start=4&end=14"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["ratchet", "pawl"]
+  },
+  {
+    "id": "/m/01x3z",
+    "name": "Clock",
+    "description": "Sounds made by an instrument designed to keep and indicate time.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Clock",
+    "positive_examples": ["youtu.be/iq62ay8Lv4o?start=450&end=460", "youtu.be/FuWDfaQjbvs?start=150&end=160", "youtu.be/CJCwr2gl2CM?start=120&end=130", "youtu.be/G40Kohywqh4?start=20&end=30", "youtu.be/CuOWQr1a5-c?start=120&end=130", "youtu.be/G23Me3A60b8?start=20&end=30", "youtu.be/Qda2h9SXacs?start=20&end=30", "youtu.be/OL63NVm1v7A?start=20&end=30"],
+    "child_ids": ["/m/07qjznt", "/m/07qjznl"],
+    "restrictions": [],
+    "fs_tags": ["clock", "review"]
+  },
+  {
+    "id": "/m/07qjznt",
+    "name": "Tick",
+    "description": "A metallic tapping sound.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=tick",
+    "positive_examples": ["youtu.be/aTcKrIlKI9o?start=30&end=40", "youtu.be/y-hd-Ol4ES4?start=30&end=40", "youtu.be/GgpH6htMmQQ?start=30&end=40", "youtu.be/xNZ0aU2X5uQ?start=30&end=40", "youtu.be/R6VUgJzDwBQ?start=30&end=40", "youtu.be/WupBieE-8Us?start=30&end=40", "youtu.be/YKtbQkTmvnY?start=30&end=40", "youtu.be/t6Hlse8lKmg?start=20&end=30", "youtu.be/8nS-KGITte8?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["tick", "review"]
+  },
+  {
+    "id": "/m/07qjznl",
+    "name": "Tick-tock",
+    "description": "A steady recurrent ticking sound as made by a clock.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=ticktock",
+    "positive_examples": ["youtu.be/gD5Pft3FKdU?start=8&end=18", "youtu.be/wRnYhBhofVY?start=30&end=40", "youtu.be/pDjj6MiFNuc?start=30&end=40", "youtu.be/4ftDFi4684Y?start=30&end=40", "youtu.be/y5cRJZB83ZA?start=4&end=14"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["tick-tock", ["tick", "tock"], "ticktock"]
+  },
+  {
+    "id": "/m/0l7xg",
+    "name": "Gears",
+    "description": "Sounds of rotating machine parts having cut teeth, or cogs, which mesh with other toothed parts to transmit torque.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Gear",
+    "positive_examples": ["youtu.be/0HGFcukxF9Q?start=30&end=40", "youtu.be/0xyapQxC7yM?start=30&end=40", "youtu.be/3EnkJZx4b94?start=20&end=30"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["gears"]
+  },
+  {
+    "id": "/m/05zc1",
+    "name": "Pulleys",
+    "description": "Sounds of a wheel on an axle or shaft that is designed to support movement and change of direction of a taut cable or belt along its circumference.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Pulley",
+    "positive_examples": ["youtu.be/LYbzpPSQLbI?start=30&end=40", "youtu.be/j7KrjKwz1VY?start=30&end=40", "youtu.be/OuKRNNbgsGc?start=20&end=30"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["pulley", "review"]
+  },
+  {
+    "id": "/m/0llzx",
+    "name": "Sewing machine",
+    "description": "Sounds of a machine used to stitch fabric and other materials together with thread.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sewing_machine",
+    "positive_examples": ["youtu.be/3ejlQ7u5kkU?start=220&end=230", "youtu.be/x7ROZ8Lps2k?start=130&end=140", "youtu.be/DMbLpqQlYjc?start=30&end=40", "youtu.be/r9MHNEIYNBY?start=80&end=90", "youtu.be/9ZjoQLYo03Y?start=130&end=140", "youtu.be/qZMkCBSNzLo?start=450&end=460", "youtu.be/AfZTLVMTAD4?start=30&end=40", "youtu.be/4GYEVk6ngdk?start=40&end=50", "youtu.be/4zEP9py4ZO0?start=310&end=320"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["sewing", "machine"], "sewing-machine", "stitching-machine", ["stitching", "machine"]]
+  },
+  {
+    "id": "/m/02x984l",
+    "name": "Mechanical fan",
+    "description": "Sounds of a machine used to create air flow via the motion of a rotating arrangement of vanes or blades.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Mechanical_fan",
+    "positive_examples": ["youtu.be/DwTfsGSG3y8?start=30&end=40", "youtu.be/3qeBcAw5T8U?start=240&end=250", "youtu.be/ESeWXm2Obnc?start=60&end=70", "youtu.be/S5KErFSn92w?start=210&end=220", "youtu.be/rJZo6erXckU?start=180&end=190", "youtu.be/ZVtm-Pw6gJU?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["fan", "air"], ["fan", "wind"], "ventilation"]
+  },
+  {
+    "id": "/m/025wky1",
+    "name": "Air conditioning",
+    "description": "The sound of a device that removes heat from the air inside a building or vehicle, thus lowering the air temperature.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Air_conditioning",
+    "positive_examples": ["youtu.be/wRBGmik5Dz0?start=160&end=170", "youtu.be/xBxsVs1BQh0?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["air-conditioning", ["air", "conditioning"]]
+  },
+  {
+    "id": "/m/024dl",
+    "name": "Cash register",
+    "description": "Sounds of a mechanical or electronic device for registering and calculating transactions, usually attached to a drawer for storing cash.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Cash_register",
+    "positive_examples": ["youtu.be/OY5485e1_yM?start=30&end=40", "youtu.be/mJiXm0TbS1w?start=460&end=470", "youtu.be/w3wyawCHZOM?start=110&end=120", "youtu.be/nvY30V3-kD8?start=250&end=260", "youtu.be/Wb3ZTFSc7bc?start=120&end=130", "youtu.be/GuFTgsvMAUc?start=23&end=33", "youtu.be/twQ9-kxoJ70?start=10&end=20", "youtu.be/dXKql7mi4rU?start=60&end=70"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["cash-register", ["cash", "register"]]
+  },
+  {
+    "id": "/m/01m4t",
+    "name": "Printer",
+    "description": "Sounds of a computer peripheral which makes a persistent human readable representation of graphics or text on paper or similar physical media.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Printer_(computing)",
+    "positive_examples": ["youtu.be/NjDe3O45xjI?start=470&end=480", "youtu.be/xCK4-CaqGBw?start=40&end=50", "youtu.be/4uSbpeUmxAk?start=30&end=40", "youtu.be/mRtqC_FswFc?start=30&end=40", "youtu.be/7BzyG8MV_zs?start=30&end=40", "youtu.be/MFFrOFlAXQ8?start=30&end=40", "youtu.be/1qkdvq7Qlsc?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["printer"]
+  },
+  {
+    "id": "/m/0dv5r",
+    "name": "Camera",
+    "description": "Sounds of mechanical or electronic instruments that employ optics to record or capture images.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Camera",
+    "positive_examples": ["youtu.be/sH33P94VpZQ?start=50&end=60", "youtu.be/QdGg7SIlTj8?start=350&end=360", "youtu.be/eF7BVZza7qg?start=390&end=400", "youtu.be/bq8-CK-dXfY?start=40&end=50", "youtu.be/djy4CXMXZls?start=310&end=320", "youtu.be/mYmn4kAwLG8?start=300&end=310", "youtu.be/a4eISIE97EU?start=260&end=270", "youtu.be/APJEtvVrv1Q?start=30&end=40", "youtu.be/vQwg9vG_7E0?start=40&end=50"],
+    "child_ids": ["/m/07bjf"],
+    "restrictions": [],
+    "fs_tags": ["camera", "photography"]
+  },
+  {
+    "id": "/m/07bjf",
+    "name": "Single-lens reflex camera",
+    "description": "Sounds of camera that uses a mirror and prism system to permit the photographer to view through the lens and see exactly what will be captured.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Single-lens_reflex_camera",
+    "positive_examples": ["youtu.be/7o2YlSlfLp8?start=30&end=40", "youtu.be/9hzWgd8CNoI?start=30&end=40", "youtu.be/4bibld_jSR0?start=30&end=40", "youtu.be/51pSJYU7wdU?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["reflex", "camera"], "review"]
+  },
 
-___ mechanisms
-and next
+
+___ tools
+
+___ explosion
+
+___ dimensional doors
+
+___ wood
+
+___ glass
+
+___ liquid 
+
+___ misc
+
+___ specifict
 
   {
     "id": "/t/dd00098",
@@ -2511,7 +2665,7 @@ and next
     "positive_examples": [],
     "child_ids": ["/t/dd00099", "/t/dd00109", "/t/dd00110", "/m/05n1m", "/m/028v0c", "/t/dd00122"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": ["review"]
   },
   {
     "id": "/t/dd00099",
