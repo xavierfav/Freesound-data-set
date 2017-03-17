@@ -2316,76 +2316,6 @@
     "omit_fs_tags": ["mouth","jew"]
   },
   {
-    "id": "/m/03w41f",
-    "name": "Church bell",
-    "description": "The sound of a large bell usually encountered in churches where it used either to signify the hour or the time for worshippers to go to church.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Church_bell",
-    "positive_examples": ["youtu.be/CwhbaRYl3kQ?start=180&end=190", "youtu.be/8c_pb6dimmU?start=180&end=190", "youtu.be/hTb_hLSPH3w?start=200&end=210", "youtu.be/ySKvlZdECBI?start=30&end=40", "youtu.be/xDFzNhcSDCU?start=30&end=40", "youtu.be/whFx67_zhFw?start=100&end=110", "youtu.be/YL_yzbTuiic?start=10&end=20", "youtu.be/qMZ1nj4fDas?start=290&end=300", "youtu.be/ITFzMwD9Q64?start=150&end=160"],
-    "child_ids": [],
-    "restrictions": [],
-    "fs_tags": [["church", "bell"]]
-  },
-  {
-    "id": "/m/027m70_",
-    "name": "Jingle bell",
-    "description": "The sound of a type of bell which produces a distinctive 'jingle' sound, especially in large numbers. They are commonly produced from a single piece of sheet metal bent into a roughly spherical shape containing a small ball bearing.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Jingle_bell",
-    "positive_examples": ["youtu.be/m4ysMjnrTnQ?start=10&end=20", "youtu.be/TWQXP_v8opY?start=260&end=270", "youtu.be/VY9hzBD-Sh4?start=100&end=110", "youtu.be/dl793c9RCJY?start=30&end=40"],
-    "child_ids": [],
-    "restrictions": [],
-    "fs_tags": ["jingle-bell", ["jingle", "bell"]]
-  },
-  {
-    "id": "/m/0gy1t2s",
-    "name": "Bicycle bell",
-    "description": "The sound of a percussive signaling instrument mounted on a bicycle for warning pedestrians and other cyclists.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Bicycle_bell",
-    "positive_examples": ["youtu.be/LK8j0Q4UU4g?start=10&end=20", "youtu.be/s0F2kzW8quU?start=160&end=170", "youtu.be/k7oGk-ozhKI?start=30&end=40", "youtu.be/kTkG_z_GWFs?start=18&end=28", "youtu.be/OY-jfOrL-_A?start=20&end=30", "youtu.be/vSPaTX3nq5A?start=40&end=50"],
-    "child_ids": [],
-    "restrictions": [],
-    "fs_tags": ["bicycle-bell"]
-  },
-  {
-    "id": "/m/07n_g",
-    "name": "Tuning fork",
-    "description": "The sound of an acoustic resonator in the form of a two-pronged fork with the prongs formed from a U-shaped bar of elastic metal. It emits a pure musical tone and is frequently used as a standard of pitch to tune musical instruments.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Tuning_fork",
-    "positive_examples": ["youtu.be/A96UdAiDxfI?start=30&end=40", "youtu.be/NxPqGv1MYh4?start=180&end=190", "youtu.be/s7sRKH_EdAY?start=60&end=70", "youtu.be/rlSvS7InhjE?start=30&end=40", "youtu.be/X1iK3Un7bbI?start=30&end=40"],
-    "child_ids": [],
-    "restrictions": [],
-    "fs_tags": ["tuning-fork"]
-  },
-  {
-    "id": "/m/0f8s22",
-    "name": "Chime",
-    "description": "The sound of a musical instrument consisting of multiple tuned bells, usually rung by an automated mechanism to produce a short, characteristic tone or melody.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Chime_(bell_instrument)",
-    "positive_examples": ["youtu.be/2cJw4p0NzL8?start=30&end=40", "youtu.be/-OIgmZ_M7Co?start=60&end=70", "youtu.be/JO3yqua94PM?start=17&end=27", "youtu.be/B4WnT62BRog?start=500&end=510", "youtu.be/wiYHKu0-9XM?start=170&end=180", "youtu.be/ofNRyTtPZ8I?start=10&end=20", "youtu.be/So5SUEh2bZc?start=100&end=110", "youtu.be/m9qHnNaAskw?start=20&end=30", "youtu.be/_RbYie-Fxo4?start=60&end=70", "youtu.be/caVRLI71CAA?start=25&end=35", "youtu.be/ZpZsTWwUCSY?start=3&end=13"],
-    "child_ids": ["/m/026fgl"],
-    "restrictions": [],
-    "fs_tags": ["chime"]
-  },
-  {
-    "id": "/m/026fgl",
-    "name": "Wind chime",
-    "description": "The sound of an instrument constructed from suspended tubes, rods, bells, or other objects that are often made of metal or wood along with some type of weight the tubes or rods can strike when they or another wind-catching surface are blown by the natural movement of air outside.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Wind_chime",
-    "positive_examples": ["youtu.be/1zmAwtZgohE?start=170&end=180", "youtu.be/3aR0vdDSuAA?start=0&end=10", "youtu.be/2xzSvnP5LHU?start=10&end=20", "youtu.be/LhXxwS30-es?start=30&end=40"],
-    "child_ids": [],
-    "restrictions": [],
-    "fs_tags":["chime","wind"]
-  },
-  {
-    "id": "/m/0150b9",
-    "name": "Change ringing (campanology)",
-    "description": "Sounds of the art of ringing a set of (typically large) tuned bells in a controlled manner to produce variations in their sounding order.",
-    "citation_uri": "http://en.wikipedia.org/wiki/Change_ringing",
-    "positive_examples": ["youtu.be/OP1OQKL0LJc?start=280&end=290", "youtu.be/NmKVkgXB64g?start=280&end=290", "youtu.be/2_Ea3T14HNA?start=130&end=140", "youtu.be/vaMn20oJ4Bc?start=10&end=20", "youtu.be/MJI_9fDsX3I?start=40&end=50", "youtu.be/OMMjjf5O1gY?start=240&end=250", "youtu.be/KHapBfftSoE?start=70&end=80", "youtu.be/gKEIFL2uFgU?start=30&end=40", "youtu.be/DhEiv81k5BI?start=180&end=190"],
-    "child_ids": [],
-    "restrictions": [],
-    "fs_tags":["campanology","review"]
-  },
-  {
     "id": "/m/03qjg",
     "name": "Harmonica",
     "description": "The sound of a wind instrument played by using the mouth to direct air into or out of one or more holes along a mouthpiece. Behind each hole is a chamber containing at least one reed, producing a specific note or notes.",
@@ -3491,7 +3421,7 @@
     "positive_examples": ["youtu.be/m4ysMjnrTnQ?start=10&end=20", "youtu.be/TWQXP_v8opY?start=260&end=270", "youtu.be/VY9hzBD-Sh4?start=100&end=110", "youtu.be/dl793c9RCJY?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["jingle","bell"],["christmas","bell"]]
+    "fs_tags": [["jingle","bell"],["christmas","bell"], "jingle-bell"]
   },
   {
     "id": "/m/0gy1t2s",
@@ -3501,7 +3431,7 @@
     "positive_examples": ["youtu.be/LK8j0Q4UU4g?start=10&end=20", "youtu.be/s0F2kzW8quU?start=160&end=170", "youtu.be/k7oGk-ozhKI?start=30&end=40", "youtu.be/kTkG_z_GWFs?start=18&end=28", "youtu.be/OY-jfOrL-_A?start=20&end=30", "youtu.be/vSPaTX3nq5A?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["Bicycle","bell"],["bike","bell"],["Bicycle","ring"],["bike","ring"]]
+    "fs_tags": [["Bicycle","bell"],["bike","bell"],["Bicycle","ring"],["bike","ring"], "bicycle-bell"]
   },
   {
     "id": "/m/07n_g",
@@ -3511,7 +3441,7 @@
     "positive_examples": ["youtu.be/A96UdAiDxfI?start=30&end=40", "youtu.be/NxPqGv1MYh4?start=180&end=190", "youtu.be/s7sRKH_EdAY?start=60&end=70", "youtu.be/rlSvS7InhjE?start=30&end=40", "youtu.be/X1iK3Un7bbI?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["Tuning","fork"],"review"]
+    "fs_tags": [["Tuning","fork"], "turning-fork", "review"]
   },
   {
     "id": "/m/0f8s22",
