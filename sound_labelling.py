@@ -43,6 +43,7 @@ def auto_label(basket, ontology):
                 elif isinstance(t, list):
                     if set(t).issubset(set(sound.tags)):
                         is_from_category = True
+            # add a for loop on omit_tags
             if is_from_category:
                 sound.aso_labels.append(category["name"])
                 sound.aso_ids.append(category["id"])
@@ -183,6 +184,19 @@ def get_aso_class_fs_sound_id_dict(ontology, basket):
             aso_class_fs_id_dict[idx].append(sound.id)
     return aso_class_fs_id_dict
     
+def get_aso_class_fs_sound_dict(ontology, basket):
+    """
+    Returns a dict {"<aso_class>": [<fs_sound_object>, ...]}
+    Arguments:  - ontology from ASO json file (list of dict)
+                - basket object of Freesound collection
+    """
+    aso_class_fs_sound_dict = {o['id']:[] for o in ontology}
+    for sound in basket.sounds:
+        for idx in sound.aso_ids:
+            aso_class_fs_sound_dict[idx].append(sound)
+    return aso_class_fs_sound_dict   
+    
+    
 def get_parents_dict(ontology):
     """
     Returns a dict {"<aso_class>": [<all_parent_classes>, ...]}
@@ -233,7 +247,56 @@ def populate_aso_class(ontology, dict_parents, basket):
         new_basket.sounds[idx].aso_ids = list(set(new_basket.sounds[idx].aso_ids))
         new_basket.sounds[idx].aso_labels = [ontology_by_id[a]['name'] for a in new_basket.sounds[idx].aso_ids]
     return new_basket
+
+def return_list_baskets_each_aso_category(basket, ontology):
+    """
+    Returns a list of basket objects containing each of the sound from each categories
+    Arguments:  - basket object of Freesound collection
+                - ontology from ASO json file (list of dict)      
+    """
+    ontology_by_id = {o['id']:o for o in ontology}
+    aso_class_fs_sound_dict = get_aso_class_fs_sound_dict(ontology, basket)
+    list_baskets = []
+    for aso_id in aso_class_fs_sound_dict.keys():
+        list_baskets.append(c.new_basket())
+        list_baskets[-1].aso_category = ontology_by_id[aso_id]['name']
+    for idx, aso_id in enumerate(aso_class_fs_sound_dict.keys()):
+        for s in aso_class_fs_sound_dict[aso_id]:
+            list_baskets[idx].push(s)
+    # add also a basket with the sounds that were not mapped
+    list_baskets.append(c.new_basket())
+    list_baskets[-1].aso_category = 'None labeled sounds'
+    list_sounds_no_labeled = [s for s in basket.sounds if len(s.aso_ids)==0]
+    for s in list_sounds_no_labeled:
+        list_baskets[-1].push(s)
+    return list_baskets
     
+def display_tags_list_baskets(list_baskets):
+    """
+    Display the tags occurrences for each basket in list_baskets
+    """
+    tags_occurrences = [basket.return_tags_occurrences() for basket in list_baskets]
+    normalized_tags_occurrences = []
+    for idx, tag_occurrence in enumerate(tags_occurrences):
+        normalized_tags_occurrences.append([(t_o[0], float(t_o[1])/len(list_baskets[idx].sounds)) for t_o in tag_occurrence])  
+        
+    def print_basket(list_baskets, normalized_tags_occurrences, num_basket, max_tag = 20):
+        """Print tag occurrences"""
+        print '\n Category %s, containing %s sounds' % (list_baskets[num_basket].aso_category, len(list_baskets[num_basket])) 
+        for idx, tag in enumerate(normalized_tags_occurrences[num_basket]):
+            if idx < max_tag:
+                print tag[0].ljust(30) + str(tag[1])[0:5]
+            else:
+                break
+                
+    print '\n\n'
+    print '\n ___________________________________________________________'
+    print '|_________________________RESULTS___________________________|'
+    print '\n ASO categories tags occurrences (normalized):'
+    for i in range(len(list_baskets)):
+            print_basket(list_baskets, normalized_tags_occurrences, i, 20)
+
+
 if __name__ == '__main__':
     c = manager.Client(False)
     b = c.load_basket_pickle('freesound_db_160317.pkl')

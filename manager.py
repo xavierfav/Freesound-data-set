@@ -41,6 +41,7 @@ import pandas as pd
 import operator
 import networkx as nx
 from sklearn.decomposition import LatentDirichletAllocation
+import simplejson
 
 LENGTH_BAR = 30 # length of the progress bar
 
@@ -1047,6 +1048,7 @@ class Basket:
         return tags_occurrences
     
     def return_tags_occurrences(self):
+        """ NEW AND FAST """
         #tags = self.tags_extract_all()
         tags = list(set(flat_list([sound.tags for sound in self.sounds])))
         #default_value = [0, []]

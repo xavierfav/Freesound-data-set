@@ -39,3 +39,4 @@ stop-words==2015.2.23.1
 subprocess32==3.2.7
 traitlets==4.3.2
 wcwidth==0.1.7
+simplejson
