@@ -44,7 +44,10 @@ def auto_label(basket, ontology):
                 elif isinstance(t, list):
                     if set(t).issubset(set(sound.tags)):
                         is_from_category = True
-            # add a for loop on omit_tags
+            if 'omit_fs_tags' in category.keys():
+                for t in category['omit_fs_tags']:
+                    if t in sound.tags:
+                        is_from_category = False
             if is_from_category:
                 sound.aso_labels.append(category["name"])
                 sound.aso_ids.append(category["id"])
