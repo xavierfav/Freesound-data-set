@@ -311,7 +311,7 @@ if __name__ == '__main__':
     b_stem = copy.deepcopy(b)
     b_stem.text_preprocessing() # stem and lower case for tags in freesound basket
     ontology_stem = preproc_ontology(ontology)
-    b_stem = auto_label(b_stem, ontology_stem)
+    b_stem = auto_label(b_stem, b, ontology_stem)
     parents_dict = get_parents_dict(ontology)
     b_pupulated = populate_aso_class(ontology, parents_dict, b_stem) 
     aso_category_occurrences = calculate_occurrences_aso_categories(b_pupulated, ontology)
