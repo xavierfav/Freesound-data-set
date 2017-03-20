@@ -6390,6 +6390,6 @@
     "positive_examples": [],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["mp3"]
+    "fs_tags": ["mp3","ALGO"]
   }
 ]
