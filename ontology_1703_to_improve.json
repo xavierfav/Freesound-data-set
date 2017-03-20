@@ -3508,7 +3508,8 @@
     "positive_examples": ["youtu.be/JRyhdsQwFXM?start=110&end=120", "_youtu.be/-PJrbyYLtS4?start=330&end=340", "youtu.be/dOU3KOnQM2Q?start=200&end=210", "youtu.be/48HQ_eeoygY?start=10&end=20", "youtu.be/HfaFm2c4a78?start=40&end=50", "youtu.be/aqAvJgN6GOE?start=220&end=230", "youtu.be/aN-oXqXdsVM?start=100&end=110", "youtu.be/cpFdPrI-8EQ?start=120&end=130", "youtu.be/U-WqWv0pXwI?start=20&end=30", "youtu.be/urfP_4xhJCE?start=90&end=100"],
     "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
     "restrictions": [],
-    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"]
+    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"],
+    "comments_XF": "Precision problem. Got wind instrument for example"
   },
   {
     "id": "/m/07q8f3b",
@@ -3698,7 +3699,8 @@
     "positive_examples": [],
     "child_ids": ["/m/07yv9", "/m/02mk9", "/t/dd00071", "/m/0395lw", "/m/07pp_mv", "/t/dd00077", "/m/07k1x", "/m/014zdl", "/m/083vt", "/m/039jq", "/m/04k94", "/t/dd00089", "/t/dd00133"],
     "restrictions": ["blacklist"],
-    "fs_tags": ["object", "review"]
+    "fs_tags": [],
+    "comments_XF": "Better not to map it. The population will get these"
   },
   {
     "id": "/m/07yv9",
