@@ -37,7 +37,7 @@
     "positive_examples": ["youtu.be/6niRPYpLOpQ?start=30&end=40", "youtu.be/fPgUDHwQOmM?start=320&end=330", "youtu.be/g3YNJ3ESIW0?start=30&end=40", "youtu.be/Dys9DJoFnGA?start=30&end=40", "youtu.be/3PESOesDniw?start=30&end=40", "youtu.be/E8RfeFAzHK4?start=30&end=40", "youtu.be/A_WSbkJozPs?start=90&end=100", "youtu.be/-yZuFZRojYA?start=30&end=40", "youtu.be/ECOK21oFttk?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"]]
+    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"], "male-voice"]
   },
   {
     "id": "/m/02zsn",
@@ -47,7 +47,7 @@
     "positive_examples": ["youtu.be/4l05nCOnIRg?start=30&end=40", "youtu.be/5zyOhZsvIzI?start=30&end=40", "youtu.be/q0wv9AOl4r0?start=100&end=110", "youtu.be/AyPqm-tm2y4?start=30&end=40", "youtu.be/1xXqIpjxYG4?start=30&end=40", "youtu.be/xYPZJkfiyjk?start=90&end=100", "youtu.be/46lVxNflfDw?start=30&end=40", "youtu.be/8OpLsWMn6P0?start=30&end=40", "youtu.be/WLi5_z61zCE?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"]]
+    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"], "female-voice"]
   },
   {
     "id": "/m/0ytgt",
@@ -1612,7 +1612,8 @@
     "positive_examples": ["youtu.be/623y1sJMR3k?start=50&end=60", "youtu.be/cW7XnBXFi6w?start=30&end=40", "youtu.be/OFWD8T1wqHo?start=80&end=90", "youtu.be/sYoJJnswtZc?start=180&end=190", "youtu.be/e6yoR0fEmR0?start=30&end=40", "youtu.be/BxOQq1ZNtCk?start=30&end=40", "youtu.be/wBK_7cToiNU?start=50&end=60", "youtu.be/h-UHIxkUhBM?start=90&end=100"],
     "child_ids": ["/m/0342h", "/m/018j2", "/m/0jtg0", "/m/04rzd", "/m/01bns_", "/m/07xzm"],
     "restrictions": [],
-    "fs_tags": [["plucked","string","instrument"],"review"],
+    "fs_tags": [["plucked","string","instrument"],"plucked-strings","review"],
+    "less_priority2user": ["toiletrolltube"],
     "comments_JP": "Father has a few examples, children populates this class"
   },
   {
@@ -1644,6 +1645,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["bass", "guitar"],"bass","review"],
+    "omit_fs_tags": ["drum"],
     "comments_JP": "Noisy class."
 
   },
@@ -1796,6 +1798,7 @@
     "child_ids": ["/m/03xq_f", "/m/03gvt"],
     "restrictions": [],
     "fs_tags": ["organ","review"],
+    "omit_fs_tags": ["organic"],
     "comments_JP": "Noisy class."
   },
   {
@@ -1838,7 +1841,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["sampler","review"],
-    "comments_JP": "Very difficult to find a song which is generated with a sampler."
+    "comments_JP": "Very difficult to find a song which is generated with a sampler. Remove class."
   },
   {
     "id": "/m/0gkd1",
@@ -1880,7 +1883,8 @@
     "positive_examples": ["youtu.be/-VqHJfjcNl8?start=70&end=80", "youtu.be/-kgUDrfLbKw?start=10&end=20", "youtu.be/a7N-Oa4NKKI?start=30&end=40", "youtu.be/BuHnSV6592c?start=30&end=40", "youtu.be/klUmhkMVtN8?start=70&end=80", "youtu.be/hcjHzFKgXSE?start=30&end=40", "youtu.be/xaHjFAy54dU?start=40&end=50", "youtu.be/p9Rh85FgFYk?start=90&end=100", "youtu.be/lhH4TTaAQvU?start=150&end=160"],
     "child_ids": ["/m/0cfdd"],
     "restrictions": [],
-    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"review","bigConfusionWithDrumMachine"]
+    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"review"],
+    "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
     "id": "/m/0cfdd",
@@ -1891,7 +1895,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["review",["drum","machine"]],
-    "comments_JP": "Many drum kits are drum machines"
+    "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
     "id": "/m/026t6",
@@ -1901,7 +1905,7 @@
     "positive_examples": ["youtu.be/65uPPy5e8oI?start=30&end=40", "youtu.be/GZ-jXUN0Hpg?start=70&end=80", "youtu.be/P1f09xVBNTc?start=150&end=160", "youtu.be/lYALJ6L251c?start=320&end=330", "youtu.be/EyopPrqUxcU?start=180&end=190", "youtu.be/6WdMSnWhppk?start=280&end=290", "youtu.be/2ZEkawx_eL8?start=120&end=130", "youtu.be/7E4uaC3YkHM?start=60&end=70", "youtu.be/aJpy-R7ZFb8?start=30&end=40"],
     "child_ids": ["/m/06rvn", "/m/0bm02", "/m/011k_j", "/m/01p970"],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": ["drum","review"]
   },
   {
     "id": "/m/06rvn",
@@ -1941,8 +1945,7 @@
     "positive_examples": ["youtu.be/umIND3KZyqs?start=70&end=80", "youtu.be/h1L06porcL0?start=220&end=230", "youtu.be/khRBhDUyLb0?start=360&end=370", "youtu.be/ts76TqD6eiQ?start=30&end=40", "youtu.be/k36gVPLVPU4?start=50&end=60", "youtu.be/vYoHjD5slzg?start=80&end=90", "youtu.be/yTgBSKCZ1ag?start=240&end=250", "youtu.be/fokECmrANcs?start=310&end=320", "youtu.be/cBJGUfPyGcw?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["kick", "drum"],"review"],
-    "comments_JP": "In bass drums it appear a lot of bass notes"
+    "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum"]
   },
   {
     "id": "/m/011k_j",
@@ -1984,7 +1987,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["hi-hat", "review"],
-    "comments_JP": "It appear lots of synthethized reversed ones."
+    "omit_fs_tags": ["snare"]
   },
   {
     "id": "/m/0bm0k",
@@ -2202,7 +2205,8 @@
     "positive_examples": ["youtu.be/59bu7JPOqR8?start=80&end=90", "youtu.be/rBOkr_DAlK4?start=500&end=510", "youtu.be/xKmDVsO2uSw?start=10&end=20", "youtu.be/ich_-wya6Cs?start=60&end=70", "youtu.be/SrQRhZVLFI0?start=530&end=540"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["string-quartet","review","violins-section","viola-section","cello-section"]
+    "fs_tags": ["string-quartet","review","violins-section","viola-section","cello-section","strings",["orchestral","strings"]],
+    "comments_JP": "Be careful with midi notes, if we want to remove midi notes filter with tags such as midi-velocity. This class we should be careful with the defenition, because this should be a group!"
   },
   {
     "id": "/m/07y_7",
@@ -2212,7 +2216,8 @@
     "positive_examples": ["youtu.be/5HLDUExzhYU?start=30&end=40", "youtu.be/DY9Xm0boaeA?start=30&end=40", "youtu.be/qTeVf7bOztU?start=30&end=40", "youtu.be/lzp88JPSpJE?start=130&end=140", "youtu.be/-fFHHJmhnuM?start=10&end=20", "youtu.be/QJPNBp9eI5M?start=80&end=90", "youtu.be/9a572z81TIw?start=30&end=40", "youtu.be/OiEPSWBQMl0?start=30&end=40", "youtu.be/JyiVnMB8Z1A?start=30&end=40", "youtu.be/2KffWn62wZ4?start=6&end=16"],
     "child_ids": ["/m/0d8_n"],
     "restrictions": [],
-    "fs_tags": ["violin","review","fiddle"]
+    "fs_tags": ["violin","review","fiddle"],
+    "comments_JP": "when presenting this class, show parents and childs for annotation"
   },
   {
     "id": "/m/0d8_n",
@@ -2429,7 +2434,8 @@
     "positive_examples": [],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["bass","review"]
+    "fs_tags": ["bass","review"],
+    "comments_JP": "Remove this one, is very difficult"
   },
   {
     "id": "/m/01hgjl",
@@ -2449,7 +2455,8 @@
     "positive_examples": [],
     "child_ids": ["/m/064t9", "/m/0glt670", "/m/06by7", "/m/06j6l", "/m/0gywn", "/m/06cqb", "/m/01lyv", "/m/02x8m", "/m/02w4v", "/m/06j64v", "/m/03_d0", "/m/026z9", "/m/0ggq0m", "/m/02lkt", "/m/0g293", "/m/0155w", "/m/05fw6t", "/m/02v2lh", "/m/0y4f8", "/m/0164x2", "/m/02mscn", "/m/028sqc", "/m/06rqw", "/m/02p0sh1", "/m/05rwpb"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": [],
+    "comments_JP": "27/145 have the review tag"
   },
   {
     "id": "/m/064t9",
@@ -3229,7 +3236,8 @@
     "positive_examples": [],
     "child_ids": ["/m/025td0t", "/m/02cjck", "/m/03r5q_", "/m/0l14gg", "/m/07pkxdp", "/m/01z7dr", "/m/0140xf", "/m/0ggx5q", "/m/04wptg", "/t/dd00029"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": [],
+    "comments_JP": "8/10 classes have the review tag. I propose blacklisting most of them, because some of them might be very useful."
   },
   {
     "id": "/m/025td0t",
@@ -3343,7 +3351,8 @@
     "positive_examples": [],
     "child_ids": ["/t/dd00031", "/t/dd00032", "/t/dd00033", "/t/dd00034", "/t/dd00035", "/t/dd00036", "/t/dd00037"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": [],
+    "comments_JP": "5/7 music moods have review tag. I propose blacklisting most of them, because some of them might be very useful."
   },
   {
     "id": "/t/dd00031",
@@ -3777,7 +3786,7 @@
     "positive_examples": ["youtu.be/tMPg88c5ciQ?start=160&end=170", "youtu.be/-znLAiE_r_w?start=30&end=40", "youtu.be/2R2qwpgb0Dw?start=30&end=40", "youtu.be/ko91_sThwdo?start=290&end=300", "youtu.be/u8rFWqmbx18?start=240&end=250", "youtu.be/g6o47ksKlpQ?start=70&end=80", "youtu.be/gKKzQNZiymI?start=130&end=140", "youtu.be/f1yc8bkg0sc?start=10&end=20", "youtu.be/B1vvkDwpgLQ?start=30&end=40"],
     "child_ids": ["/m/0k4j", "/m/07r04", "/m/01bjv", "/m/03j1ly", "/m/04_sv", "/m/0btp2"],
     "restrictions": [],
-    "fs_tags": [["motor", "road"], ["motor", "transport"], ["motor", "vehicle"], ["engine", "transport"]]
+    "fs_tags": [["motor", "road"], ["motor", "transport"], ["motor", "vehicle"], ["engine", "transport"], "auto"]
   },
   {
     "id": "/m/0k4j",
@@ -4117,7 +4126,7 @@
     "positive_examples": ["youtu.be/Gv7ZFYKFmqg?start=130&end=140", "youtu.be/8voZhq4ZUdw?start=60&end=70", "youtu.be/Ie2KkAvU1zU?start=130&end=140", "youtu.be/8vIButnIMp4?start=30&end=40", "youtu.be/ghcZErZzTPI?start=10&end=20", "youtu.be/t6-3INu2258?start=90&end=100", "youtu.be/j9N_Q9EXFP0?start=23&end=33", "youtu.be/XGammZXc2Eo?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["airplane", "review"]
+    "fs_tags": ["airplane", "aviation"]
   },
   {
     "id": "/t/dd00061",
@@ -4127,7 +4136,7 @@
     "positive_examples": ["youtu.be/Dv-Ey9Na0C8?start=4&end=14"],
     "child_ids": ["/m/0199g", "/m/06_fw"],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": []
   },
   {
     "id": "/m/0199g",
@@ -4147,7 +4156,8 @@
     "positive_examples": ["youtu.be/ja4EA1MiDs8?start=130&end=140", "youtu.be/4mLv61JADOQ?start=40&end=50", "youtu.be/kwQQSiYG1lk?start=70&end=80", "youtu.be/eKFbKpSfddE?start=25&end=35", "youtu.be/7awbfTNKjWc?start=30&end=40", "youtu.be/IGBRNQ9-9r0?start=250&end=260", "youtu.be/APYR7TeoGCQ?start=30&end=40", "youtu.be/yRzTXFjC-Hw?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["skateboard", "skate-board"]
+    "fs_tags": ["skateboard", "skate-board", "skate"],
+    "omit_fs_tags": ["loop", "ice"]
   },
   {
     "id": "/m/02mk9",
@@ -5554,7 +5564,7 @@
     "positive_examples": [],
     "child_ids": ["/t/dd00099", "/t/dd00109", "/t/dd00110", "/m/05n1m", "/m/028v0c", "/t/dd00122"],
     "restrictions": ["abstract"],
-    "fs_tags": ["review"]
+    "fs_tags": []
   },
   {
     "id": "/t/dd00099",
@@ -5574,7 +5584,8 @@
     "positive_examples": ["youtu.be/0zsRRg6NZDQ?start=21&end=31", "youtu.be/ayhkvgG1Cvw?start=210&end=220", "youtu.be/Oe6sYXWAM7E?start=90&end=100", "youtu.be/rhG_ie69Nwc?start=300&end=310"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["bang", "boom"]
+    "fs_tags": ["bang", "boom"],
+    "comments_XF": "Does this include firework for example?"
   },
   {
     "id": "/m/07ryjzk",
@@ -5584,7 +5595,8 @@
     "positive_examples": ["youtu.be/-gfaj2Evqus?start=290&end=300", "youtu.be/KDQV3eSkhZ4?start=70&end=80", "youtu.be/toWBIJlu2NM?start=80&end=90", "youtu.be/yjEZx7TvwcA?start=60&end=70", "youtu.be/kasvqBhDBC0?start=240&end=250", "youtu.be/ls_QsNFNDbg?start=10&end=20", "youtu.be/v-Al9LqV9Mo?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["smack", "slap"]
+    "fs_tags": ["smack", "slap"],
+    "omit_fs_tags": ["bass", "kick"]
   },
   {
     "id": "/m/07rdhzs",
@@ -5594,7 +5606,8 @@
     "positive_examples": ["youtu.be/redtHVmxs7s?start=30&end=40", "youtu.be/dVi2QoAYsAQ?start=180&end=190", "youtu.be/aB5CD4u16gM?start=40&end=50", "youtu.be/zruJV_pq4z0?start=270&end=280", "youtu.be/e-lOchEQ1i0?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["whack", "thwack"]
+    "fs_tags": ["whack", "thwack"],
+    "omit_fs_tags": ["techno", "effect"]
   },
   {
     "id": "/m/07pjjrj",
@@ -5604,7 +5617,8 @@
     "positive_examples": ["youtu.be/-3MV6T3u9Ig?start=30&end=40", "youtu.be/-DTgp1cbyug?start=0&end=2", "youtu.be/Ywc4_D3sKHQ?start=30&end=40", "youtu.be/PBTPWOf_E-w?start=250&end=260", "youtu.be/c0nVFint5bk?start=160&end=170", "youtu.be/5lLMWk_-fQw?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["smash", "crash"]
+    "fs_tags": ["smash", "crash"],
+    "omit_fs_tags": ["cymbal", "cymbals"]
   },
   {
     "id": "/m/07pc8lb",
@@ -5614,7 +5628,8 @@
     "positive_examples": ["youtu.be/frZUEXzWE5Q?start=30&end=40", "youtu.be/1SAdEjaSf3g?start=6&end=16", "youtu.be/mKTTCj3WrLg?start=30&end=40", "youtu.be/LF-070rGEbQ?start=230&end=240", "youtu.be/FeaKHpQ4UhE?start=90&end=100", "youtu.be/wyv4blKX3No?start=390&end=400"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["break"]
+    "fs_tags": ["break"],
+    "omit_fs_tags": ["beat", "loop", "beats", "engine", "motor", "core", "loops"]
   },
   {
     "id": "/m/07pqn27",
@@ -5624,7 +5639,8 @@
     "positive_examples": ["youtu.be/Tk2v1UaTgmk?start=40&end=50", "youtu.be/Od85JwO7ChQ?start=10&end=20", "youtu.be/FSVfPifghQ4?start=50&end=60", "youtu.be/00XaUxjGuX8?start=170&end=180", "youtu.be/BKnuN5hoZnM?start=40&end=50", "youtu.be/QErefA2Ms4c?start=390&end=400", "youtu.be/tHcW8l5ifLQ?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["bounce"]
+    "fs_tags": ["bounce"],
+    "omit_fs_tags": ["techno", "electronic", "rave", "trance", "house"]
   },
   {
     "id": "/m/07rbp7_",
@@ -5634,7 +5650,8 @@
     "positive_examples": ["youtu.be/LhbzdtNRTKs?start=30&end=40", "youtu.be/ivoEsA_OErY?start=30&end=40", "youtu.be/9qMbQFMHA5g?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["whip"]
+    "fs_tags": ["whip"],
+    "comments_XF": "this category overlaps with onomatopoeia"
   },
   {
     "id": "/m/07pyf11",
@@ -5644,7 +5661,9 @@
     "positive_examples": ["youtu.be/-1MpcvB9PAI?start=30&end=40", "youtu.be/M3301jxTkto?start=5&end=15", "youtu.be/7dIIVzcYhD4?start=310&end=320"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["flap"]
+    "fs_tags": ["flap"],
+    "omit_fs_tags": ["bird", "birds"],
+    "comments_XF": "does this include bird flap sounds?"
   },
   {
     "id": "/t/dd00109",
@@ -5664,7 +5683,8 @@
     "positive_examples": ["youtu.be/tgHySwhil9s?start=50&end=60", "youtu.be/Y9R0M2gQE04?start=30&end=40", "youtu.be/yUEDrDKIYV0?start=450&end=460", "youtu.be/7GapruwcCO0?start=300&end=310", "youtu.be/NG_Pa0_Rc74?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["scratch"]
+    "fs_tags": ["scratch"],
+    "omit_fs_tags": ["vinyl", "dj", "hip-hop", "rap", "loop"]
   },
   {
     "id": "/m/07qv4k0",
@@ -5684,7 +5704,8 @@
     "positive_examples": ["youtu.be/LSEjPSU7wSA?start=210&end=220", "youtu.be/hngBJnxLVmQ?start=180&end=190", "youtu.be/AXsR125JDEA?start=520&end=530", "youtu.be/fHmROtp_U00?start=410&end=420", "youtu.be/MDPCZrtDl5c?start=450&end=460", "youtu.be/cLuDhdm-1tc?start=20&end=30", "youtu.be/H5nQnPCk0Uo?start=100&end=110", "youtu.be/4ugXkiWI-7A?start=25&end=35"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["rub"]
+    "fs_tags": ["rub"],
+    "comments_XF": "complicated..."
   },
   {
     "id": "/m/07s8j8t",
@@ -5694,7 +5715,8 @@
     "positive_examples": ["youtu.be/2TE4hAMo9EE?start=4&end=14", "youtu.be/3250CBWhvWE?start=30&end=40", "youtu.be/45fwQe0d62o?start=30&end=40", "youtu.be/Fx0tr98DzN8?start=0&end=8", "youtu.be/OoAtJAR6qto?start=0&end=5"],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["roll", "rotate"]
+    "fs_tags": ["roll", "rotate"],
+    "omit_fs_tags": ["drum", "percussion", "snare", "drums"]
   },
   {
     "id": "/m/07pt6mm",
@@ -5704,7 +5726,8 @@
     "positive_examples": ["youtu.be/6jborgl8I1c?start=30&end=40", "youtu.be/KcNqclVaRCg?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["grind"]
+    "fs_tags": ["grind"],
+    "omit_fs_tags": ["loop"]
   },
   {
     "id": "/t/dd00110",
@@ -5714,7 +5737,8 @@
     "positive_examples": [],
     "child_ids": ["/m/07plct2", "/t/dd00112", "/m/07qcx4z"],
     "restrictions": ["abstract"],
-    "fs_tags": ["shell"]
+    "fs_tags": ["shell"],
+    "omit_fs_tags": ["gun", "fire", "firearm"]
   },
   {
     "id": "/m/07plct2",
@@ -5724,7 +5748,8 @@
     "positive_examples": ["youtu.be/-LRl10YdS-U?start=30&end=40", "youtu.be/R9aRI18jBsg?start=40&end=50", "youtu.be/0bbgeqkDm6U?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["crush", "crunch"]
+    "fs_tags": ["crush", "crunch"],
+    "omit_fs_tags": ["footstep"]
   },
   {
     "id": "/t/dd00112",
