@@ -4119,7 +4119,7 @@
     "positive_examples": ["youtu.be/Gv7ZFYKFmqg?start=130&end=140", "youtu.be/8voZhq4ZUdw?start=60&end=70", "youtu.be/Ie2KkAvU1zU?start=130&end=140", "youtu.be/8vIButnIMp4?start=30&end=40", "youtu.be/ghcZErZzTPI?start=10&end=20", "youtu.be/t6-3INu2258?start=90&end=100", "youtu.be/j9N_Q9EXFP0?start=23&end=33", "youtu.be/XGammZXc2Eo?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["airplane", "review"]
+    "fs_tags": ["airplane", "aviation"]
   },
   {
     "id": "/t/dd00061",
@@ -4129,7 +4129,7 @@
     "positive_examples": ["youtu.be/Dv-Ey9Na0C8?start=4&end=14"],
     "child_ids": ["/m/0199g", "/m/06_fw"],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": []
   },
   {
     "id": "/m/0199g",
