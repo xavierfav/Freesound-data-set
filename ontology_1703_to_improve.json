@@ -128,7 +128,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["whoop", "voice"], ["whoop", "male"], ["whoop", "female"],["whoop", "crowd"], "review"],
-    "XF_comment": "what is the difference with 'boo'?"
+    "comments_XF": "what is the difference with 'boo'?"
   },
   {
     "id": "/m/07sr1lc",
@@ -159,7 +159,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["child", "shout"],["kid", "shout"],"review"],
-    "XF_comment": "Need plural form for that. Maybe add more tags (eg synonyms of 'shout')"
+    "comments_XF": "Need plural form for that. Maybe add more tags (eg synonyms of 'shout')"
   },
   {
     "id": "/m/03qc9zr",
@@ -350,7 +350,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["male", "sing"], ["man","sing"]],
-    "XF_comment": "Plural or no? Recall problem but solved with population of aso labels"
+    "comments_XF": "Plural or no? Recall problem but solved with population of aso labels"
   },
   {
     "id": "/t/dd00004",
@@ -361,7 +361,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["female", "sing"], ["woman","sing"]],
-    "XF_comment": "Plural or no? Recall problem but solved with population of aso labels"
+    "comments_XF": "Plural or no? Recall problem but solved with population of aso labels"
   },
   {
     "id": "/t/dd00005",
@@ -392,7 +392,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["rap"],
-    "XF_comment": "Precision problem here. Retrieve loops for rap..."
+    "comments_XF": "Precision problem here. Retrieve loops for rap..."
   },
   {
     "id": "/m/02fxyj",
@@ -403,7 +403,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["hum", "voice"], "review"],
-    "XF_comment": "Precision problem here.... 'hum' used in different context"
+    "comments_XF": "Precision problem here.... 'hum' used in different context"
   },
   {
     "id": "/m/07s2xch",
@@ -414,7 +414,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["groan","human"], ["groan","woman"], ["groan","man"]],
-    "XF_comment": "get other kind of sounds (orgasm, monster groan)"
+    "comments_XF": "get other kind of sounds (orgasm, monster groan)"
   },
   {
     "id": "/m/07r4k75",
@@ -445,7 +445,7 @@
     "child_ids": ["/m/079vc8"],
     "restrictions": [],
     "fs_tags": [["whistling", "human"], ["whistling", "man"], ["whistling", "woman"]],
-    "XF_comment": "Low recall here. Complicated because 'Whistling' can refer to different stuff"
+    "comments_XF": "Low recall here. Complicated because 'Whistling' can refer to different stuff"
   },
   {
     "id": "/m/079vc8",
@@ -466,7 +466,7 @@
     "child_ids": ["/m/0lyf6", "/m/01b_21", "/m/01hsr_", "/m/07ppn3j"],
     "restrictions": ["abstract"],
     "fs_tags": ["respiration"],
-    "XF_comment": "Problem of Recall and Precision"
+    "comments_XF": "Problem of Recall and Precision"
   },
   {
     "id": "/m/0lyf6",
@@ -597,7 +597,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["shuffle","walk"]],
-    "XF_comment": "bad Recall"
+    "comments_XF": "bad Recall"
   },
   {
     "id": "/m/07pbtc8",
@@ -698,7 +698,7 @@
     "child_ids": ["/m/025_jnm", "/m/0l15bq"],
     "restrictions": [],
     "fs_tags": ["hands"],
-    "XF_comment": "Precision problem"
+    "comments_XF": "Precision problem"
   },
   {
     "id": "/m/025_jnm",
@@ -719,7 +719,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["clap"],
-    "XF_comment": "keep synthesized clap/snares ?"
+    "comments_XF": "keep synthesized clap/snares ?"
   },
   {
     "id": "/m/01jg02",
@@ -750,7 +750,7 @@
     "child_ids": ["/m/0pv6y"],
     "restrictions": ["blacklist"],
     "fs_tags": ["review"],
-    "XF_comment": "Don't find any of these in Freesound"
+    "comments_XF": "Don't find any of these in Freesound"
   },
   {
     "id": "/m/0pv6y",
@@ -771,7 +771,7 @@
     "child_ids": ["/m/0l15bq", "/m/053hz1", "/m/028ght", "/m/07rkbfh", "/m/03qtwd", "/m/07qfr4h", "/m/04v5dt", "/t/dd00013", "/t/dd00135"],
     "restrictions": ["abstract"],
     "fs_tags": [["human","group"], "review"],
-    "XF_comment": "Idea of group of humans. Need plural form? (no stem)"
+    "comments_XF": "Idea of group of humans. Need plural form? (no stem)"
   },
   {
     "id": "/m/053hz1",
@@ -802,7 +802,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["chatter"],
-    "XF_comment": "Precision problem"
+    "comments_XF": "Precision problem"
   },
   {
     "id": "/m/03qtwd",
@@ -823,7 +823,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["hubbub", ["speech","noise"], ["speech", "babble"]],
-    "XF_comment": "Precision problem"
+    "comments_XF": "Precision problem"
   },
   {
     "id": "/m/04v5dt",
@@ -834,7 +834,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["booing", "voice"], ["booing", "vocal"]],
-    "XF_comment": "Recall problem"
+    "comments_XF": "Recall problem"
   },
   {
     "id": "/t/dd00013",
@@ -1810,7 +1810,7 @@
     "positive_examples": ["youtu.be/d9r_kYpOvW8?start=30&end=40", "youtu.be/BjPvQnVQsOw?start=20&end=30", "youtu.be/YQSYAXHgZ24?start=30&end=40", "youtu.be/UxOSSoMg7eA?start=30&end=40", "youtu.be/n6JP70Sr76k?start=10&end=20", "youtu.be/2eP3SBgYDEQ?start=30&end=40", "youtu.be/aDJDaIgme3k?start=30&end=40", "youtu.be/HH3qmmKao2E?start=100&end=110"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["Hammond", "organ"],["review"]]
+    "fs_tags": [["Hammond", "organ"],"review"]
   },
   {
     "id": "/m/0l14qv",
