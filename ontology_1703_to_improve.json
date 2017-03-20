@@ -977,7 +977,7 @@
     "positive_examples": ["youtu.be/7fuyNj3y8z8?start=30&end=40", "youtu.be/sNFrUosKoq4?start=140&end=150", "youtu.be/3GkJeelJCB0?start=30&end=40", "youtu.be/uN4LHeFWBHY?start=30&end=40", "youtu.be/l4fED3GwuwY?start=30&end=40", "youtu.be/-dN7rnGYtNQ?start=30&end=40", "youtu.be/5wScdWqlS0c?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["hiss", "hissing", "steam","review"]
+    "fs_tags": ["hiss", "hissing", "steam"]
   },
   {
     "id": "/m/0f25s6",
@@ -1027,7 +1027,7 @@
     "positive_examples": ["youtu.be/06JrdfCNSso?start=3&end=13", "youtu.be/HRFAq0D6ROY?start=30&end=40", "youtu.be/-qbPc4nh5ac?start=13&end=23", "youtu.be/DuWkYCyOrN0?start=30&end=40", "youtu.be/Ej-VJMQVxuc?start=30&end=40", "youtu.be/0O5xF0PdtBg?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["clip-clop","horses-walking","gallop","hooves","horseshoes","review","hoof","hoofbeats","horseshoe","trot","horse-carriage","trotting"]
+    "fs_tags": ["clip-clop","horses-walking","gallop","hooves","horseshoes","hoof","hoofbeats","horseshoe","trot","horse-carriage","trotting"]
   },
   {
     "id": "/m/07q5rw0",
@@ -1107,7 +1107,7 @@
     "positive_examples": ["youtu.be/BV3sltuQaJE?start=20&end=30", "youtu.be/ZcULeCFl-1o?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": []
   },
   {
     "id": "/m/068zj",
