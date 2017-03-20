@@ -3,6 +3,7 @@ import manager
 from nltk.stem.porter import PorterStemmer
 import copy
 import webbrowser
+import random
 
 
 # stem and lower case of fs tags in Audio Set Ontology:
