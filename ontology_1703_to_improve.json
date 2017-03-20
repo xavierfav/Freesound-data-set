@@ -1605,7 +1605,8 @@
     "positive_examples": ["youtu.be/623y1sJMR3k?start=50&end=60", "youtu.be/cW7XnBXFi6w?start=30&end=40", "youtu.be/OFWD8T1wqHo?start=80&end=90", "youtu.be/sYoJJnswtZc?start=180&end=190", "youtu.be/e6yoR0fEmR0?start=30&end=40", "youtu.be/BxOQq1ZNtCk?start=30&end=40", "youtu.be/wBK_7cToiNU?start=50&end=60", "youtu.be/h-UHIxkUhBM?start=90&end=100"],
     "child_ids": ["/m/0342h", "/m/018j2", "/m/0jtg0", "/m/04rzd", "/m/01bns_", "/m/07xzm"],
     "restrictions": [],
-    "fs_tags": [["plucked","string","instrument"],"review"],
+    "fs_tags": [["plucked","string","instrument"],"plucked-strings","review"],
+    "less_priority2user": ["toiletrolltube"],
     "comments_JP": "Father has a few examples, children populates this class"
   },
   {
@@ -1637,6 +1638,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["bass", "guitar"],"bass","review"],
+    "omit_fs_tags": ["drum"],
     "comments_JP": "Noisy class."
 
   },
@@ -1789,6 +1791,7 @@
     "child_ids": ["/m/03xq_f", "/m/03gvt"],
     "restrictions": [],
     "fs_tags": ["organ","review"],
+    "omit_fs_tags": ["organic"],
     "comments_JP": "Noisy class."
   },
   {
@@ -1831,7 +1834,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["sampler","review"],
-    "comments_JP": "Very difficult to find a song which is generated with a sampler."
+    "comments_JP": "Very difficult to find a song which is generated with a sampler. Remove class."
   },
   {
     "id": "/m/0gkd1",
@@ -1873,7 +1876,8 @@
     "positive_examples": ["youtu.be/-VqHJfjcNl8?start=70&end=80", "youtu.be/-kgUDrfLbKw?start=10&end=20", "youtu.be/a7N-Oa4NKKI?start=30&end=40", "youtu.be/BuHnSV6592c?start=30&end=40", "youtu.be/klUmhkMVtN8?start=70&end=80", "youtu.be/hcjHzFKgXSE?start=30&end=40", "youtu.be/xaHjFAy54dU?start=40&end=50", "youtu.be/p9Rh85FgFYk?start=90&end=100", "youtu.be/lhH4TTaAQvU?start=150&end=160"],
     "child_ids": ["/m/0cfdd"],
     "restrictions": [],
-    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"review","bigConfusionWithDrumMachine"]
+    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"review"],
+    "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
     "id": "/m/0cfdd",
@@ -1884,7 +1888,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["review",["drum","machine"]],
-    "comments_JP": "Many drum kits are drum machines"
+    "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
     "id": "/m/026t6",
@@ -1894,7 +1898,7 @@
     "positive_examples": ["youtu.be/65uPPy5e8oI?start=30&end=40", "youtu.be/GZ-jXUN0Hpg?start=70&end=80", "youtu.be/P1f09xVBNTc?start=150&end=160", "youtu.be/lYALJ6L251c?start=320&end=330", "youtu.be/EyopPrqUxcU?start=180&end=190", "youtu.be/6WdMSnWhppk?start=280&end=290", "youtu.be/2ZEkawx_eL8?start=120&end=130", "youtu.be/7E4uaC3YkHM?start=60&end=70", "youtu.be/aJpy-R7ZFb8?start=30&end=40"],
     "child_ids": ["/m/06rvn", "/m/0bm02", "/m/011k_j", "/m/01p970"],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": ["drum","review"]
   },
   {
     "id": "/m/06rvn",
@@ -1934,7 +1938,7 @@
     "positive_examples": ["youtu.be/umIND3KZyqs?start=70&end=80", "youtu.be/h1L06porcL0?start=220&end=230", "youtu.be/khRBhDUyLb0?start=360&end=370", "youtu.be/ts76TqD6eiQ?start=30&end=40", "youtu.be/k36gVPLVPU4?start=50&end=60", "youtu.be/vYoHjD5slzg?start=80&end=90", "youtu.be/yTgBSKCZ1ag?start=240&end=250", "youtu.be/fokECmrANcs?start=310&end=320", "youtu.be/cBJGUfPyGcw?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["kick", "drum"],"review"],
+    "fs_tags": [["kick", "drum"],"kickdrum","bass-drum","bassdrum","review"],
     "comments_JP": "In bass drums it appear a lot of bass notes"
   },
   {
@@ -2195,7 +2199,8 @@
     "positive_examples": ["youtu.be/59bu7JPOqR8?start=80&end=90", "youtu.be/rBOkr_DAlK4?start=500&end=510", "youtu.be/xKmDVsO2uSw?start=10&end=20", "youtu.be/ich_-wya6Cs?start=60&end=70", "youtu.be/SrQRhZVLFI0?start=530&end=540"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["string-quartet","review","violins-section","viola-section","cello-section"]
+    "fs_tags": ["string-quartet","review","violins-section","viola-section","cello-section","strings",["orchestral","strings"]],
+    "comments_JP": "Be careful with midi notes, if we want to remove midi notes filter with tags such as midi-velocity. This class we should be careful with the defenition, because this should be a group!"
   },
   {
     "id": "/m/07y_7",
@@ -2205,7 +2210,8 @@
     "positive_examples": ["youtu.be/5HLDUExzhYU?start=30&end=40", "youtu.be/DY9Xm0boaeA?start=30&end=40", "youtu.be/qTeVf7bOztU?start=30&end=40", "youtu.be/lzp88JPSpJE?start=130&end=140", "youtu.be/-fFHHJmhnuM?start=10&end=20", "youtu.be/QJPNBp9eI5M?start=80&end=90", "youtu.be/9a572z81TIw?start=30&end=40", "youtu.be/OiEPSWBQMl0?start=30&end=40", "youtu.be/JyiVnMB8Z1A?start=30&end=40", "youtu.be/2KffWn62wZ4?start=6&end=16"],
     "child_ids": ["/m/0d8_n"],
     "restrictions": [],
-    "fs_tags": ["violin","review","fiddle"]
+    "fs_tags": ["violin","review","fiddle"],
+    "comments_JP": "when presenting this class, show parents and childs for annotation"
   },
   {
     "id": "/m/0d8_n",
@@ -2422,7 +2428,8 @@
     "positive_examples": [],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["bass","review"]
+    "fs_tags": ["bass","review"],
+    "comments_JP": "Remove this one, is very difficult"
   },
   {
     "id": "/m/01hgjl",
@@ -2442,7 +2449,8 @@
     "positive_examples": [],
     "child_ids": ["/m/064t9", "/m/0glt670", "/m/06by7", "/m/06j6l", "/m/0gywn", "/m/06cqb", "/m/01lyv", "/m/02x8m", "/m/02w4v", "/m/06j64v", "/m/03_d0", "/m/026z9", "/m/0ggq0m", "/m/02lkt", "/m/0g293", "/m/0155w", "/m/05fw6t", "/m/02v2lh", "/m/0y4f8", "/m/0164x2", "/m/02mscn", "/m/028sqc", "/m/06rqw", "/m/02p0sh1", "/m/05rwpb"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": [],
+    "comments_JP": "27/145 have the review tag"
   },
   {
     "id": "/m/064t9",
@@ -3222,7 +3230,8 @@
     "positive_examples": [],
     "child_ids": ["/m/025td0t", "/m/02cjck", "/m/03r5q_", "/m/0l14gg", "/m/07pkxdp", "/m/01z7dr", "/m/0140xf", "/m/0ggx5q", "/m/04wptg", "/t/dd00029"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": [],
+    "comments_JP": "8/10 classes have the review tag. I propose blacklisting most of them, because some of them might be very useful."
   },
   {
     "id": "/m/025td0t",
@@ -3336,7 +3345,8 @@
     "positive_examples": [],
     "child_ids": ["/t/dd00031", "/t/dd00032", "/t/dd00033", "/t/dd00034", "/t/dd00035", "/t/dd00036", "/t/dd00037"],
     "restrictions": ["abstract"],
-    "fs_tags": []
+    "fs_tags": [],
+    "comments_JP": "5/7 music moods have review tag. I propose blacklisting most of them, because some of them might be very useful."
   },
   {
     "id": "/t/dd00031",
