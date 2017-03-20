@@ -47,7 +47,7 @@ def auto_label(basket_stem, basket, ontology):
                         is_from_category = True
             if 'omit_fs_tags' in category.keys():
                 for t in category['omit_fs_tags']:
-                    sound_no_stem = basket.sounds[idx].
+                    sound_no_stem = basket.sounds[idx]
                     if t in sound_no_stem.tags:
                         is_from_category = False
             if is_from_category:
