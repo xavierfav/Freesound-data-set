@@ -128,7 +128,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["whoop", "voice"], ["whoop", "male"], ["whoop", "female"],["whoop", "crowd"], "review"],
-    "XF_comment": "what is the difference with 'boo'?"
+    "comments_XF": "what is the difference with 'boo'?"
   },
   {
     "id": "/m/07sr1lc",
@@ -159,7 +159,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["child", "shout"],["kid", "shout"],"review"],
-    "XF_comment": "Need plural form for that. Maybe add more tags (eg synonyms of 'shout')"
+    "comments_XF": "Need plural form for that. Maybe add more tags (eg synonyms of 'shout')"
   },
   {
     "id": "/m/03qc9zr",
@@ -350,7 +350,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["male", "sing"], ["man","sing"]],
-    "XF_comment": "Plural or no? Recall problem but solved with population of aso labels"
+    "comments_XF": "Plural or no? Recall problem but solved with population of aso labels"
   },
   {
     "id": "/t/dd00004",
@@ -361,7 +361,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["female", "sing"], ["woman","sing"]],
-    "XF_comment": "Plural or no? Recall problem but solved with population of aso labels"
+    "comments_XF": "Plural or no? Recall problem but solved with population of aso labels"
   },
   {
     "id": "/t/dd00005",
@@ -392,7 +392,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["rap"],
-    "XF_comment": "Precision problem here. Retrieve loops for rap..."
+    "comments_XF": "Precision problem here. Retrieve loops for rap..."
   },
   {
     "id": "/m/02fxyj",
@@ -403,7 +403,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["hum", "voice"], "review"],
-    "XF_comment": "Precision problem here.... 'hum' used in different context"
+    "comments_XF": "Precision problem here.... 'hum' used in different context"
   },
   {
     "id": "/m/07s2xch",
@@ -414,7 +414,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["groan","human"], ["groan","woman"], ["groan","man"]],
-    "XF_comment": "get other kind of sounds (orgasm, monster groan)"
+    "comments_XF": "get other kind of sounds (orgasm, monster groan)"
   },
   {
     "id": "/m/07r4k75",
@@ -445,7 +445,7 @@
     "child_ids": ["/m/079vc8"],
     "restrictions": [],
     "fs_tags": [["whistling", "human"], ["whistling", "man"], ["whistling", "woman"]],
-    "XF_comment": "Low recall here. Complicated because 'Whistling' can refer to different stuff"
+    "comments_XF": "Low recall here. Complicated because 'Whistling' can refer to different stuff"
   },
   {
     "id": "/m/079vc8",
@@ -466,7 +466,7 @@
     "child_ids": ["/m/0lyf6", "/m/01b_21", "/m/01hsr_", "/m/07ppn3j"],
     "restrictions": ["abstract"],
     "fs_tags": ["respiration"],
-    "XF_comment": "Problem of Recall and Precision"
+    "comments_XF": "Problem of Recall and Precision"
   },
   {
     "id": "/m/0lyf6",
@@ -516,7 +516,7 @@
     "positive_examples": ["youtu.be/LCB8rW5cvWk?start=30&end=40", "youtu.be/rgOSgFy0S3Q?start=350&end=360", "youtu.be/gOB0nM0PRTc?start=30&end=40", "youtu.be/e90rd071P-E?start=20&end=30", "youtu.be/jRcrVp2LZTo?start=50&end=60", "youtu.be/Kn-WVGzPVZg?start=20&end=30", "youtu.be/JWP10M-t0jo?start=110&end=120", "youtu.be/yOO9UmPZfns?start=460&end=470"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["pant"]
+    "fs_tags": [["pant", "human"], ["pant", "male"], ["pant", "female"], ["pant", "man"], ["pant", "woman"]]
   },
   {
     "id": "/m/07q0yl5",
@@ -526,7 +526,7 @@
     "positive_examples": ["youtu.be/2PXcJCAVf38?start=50&end=60", "youtu.be/AJIRlmjloBo?start=300&end=310", "youtu.be/3xvs8X-u8NA?start=140&end=150", "youtu.be/fSilzq77oTE?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["snort"]
+    "fs_tags": [["snort", "human"], ["snort", "male"], ["snort", "female"], ["snort", "man"], ["snort", "woman"]]
   },
   {
     "id": "/m/01b_21",
@@ -576,7 +576,7 @@
     "positive_examples": [],
     "child_ids": ["/m/06h7j", "/m/07qv_x_", "/m/07pbtc8"],
     "restrictions": ["abstract"],
-    "fs_tags": [["human","locomotion"], ["man","locomotion"], ["woman","locomotion"], ["body","locomotion"], ["body","move"], "review"]
+    "fs_tags": [["human","locomotion"], ["man","locomotion"], ["woman","locomotion"], ["body","locomotion"], ["body","move"]]
   },
   {
     "id": "/m/06h7j",
@@ -596,7 +596,8 @@
     "positive_examples": ["youtu.be/SJRNlFrlL6I?start=1&end=11", "youtu.be/u-xy9MsPuAI?start=7&end=17"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["shuffle","walk"]]
+    "fs_tags": [["shuffle","walk"]],
+    "comments_XF": "bad Recall"
   },
   {
     "id": "/m/07pbtc8",
@@ -626,7 +627,7 @@
     "positive_examples": ["youtu.be/EBnrA85wsc4?start=530&end=540", "youtu.be/EkCIh67xI_w?start=30&end=40", "youtu.be/fCQMflXjGU8?start=460&end=470", "youtu.be/A7MnWIjUVw8?start=40&end=50", "youtu.be/q2m5ChTEe4k?start=450&end=460", "youtu.be/mE092i7zPqY?start=19&end=29", "youtu.be/G3it26Z8E8U?start=30&end=40", "youtu.be/5xAEW3g6en8?start=100&end=110", "youtu.be/9lKmiUIJfGc?start=280&end=290"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["chewing", "mastication"]
+    "fs_tags": [["chewing", "human"], ["mastication", "human"], ["chewing", "man"], ["mastication", "man"], ["chewing", "men"], ["mastication", "men"], ["chewing", "woman"], ["mastication", "woman"], ["chewing", "male"], ["mastication", "male"], ["chewing", "female"], ["mastication", "female"]]
   },
   {
     "id": "/m/07pdhp0",
@@ -636,7 +637,7 @@
     "positive_examples": ["youtu.be/3CkwNL_UGoA?start=30&end=40", "youtu.be/WoA9_cYAlfc?start=240&end=250", "youtu.be/XMGG2w26ea4?start=30&end=40", "youtu.be/PRsBCvps7D0?start=30&end=40", "youtu.be/BH4UwESvYw8?start=160&end=170", "youtu.be/X8ulg-9etoU?start=80&end=90"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["bit"]
+    "fs_tags": [["bit", "human"], ["bit", "men"], ["bit", "male"], ["bit", "female"], ["bit", "woman"], ["bit", "man"], ["bit", "teeth"]]
   },
   {
     "id": "/m/0939n_",
@@ -696,7 +697,8 @@
     "positive_examples": ["youtu.be/tHASgPEwR_4?start=60&end=70", "youtu.be/s9ODY2HdI7g?start=30&end=40", "youtu.be/qPsooNWBc90?start=40&end=50", "youtu.be/S-n7Rkg32tE?start=230&end=240", "youtu.be/nGmhfmCVnnc?start=30&end=40", "youtu.be/O9z0AAuWG20?start=420&end=430", "youtu.be/PU-4TfhBjrA?start=60&end=70", "youtu.be/cJAm1VXhvGA?start=150&end=160", "youtu.be/KSOxq1eovtw?start=30&end=40"],
     "child_ids": ["/m/025_jnm", "/m/0l15bq"],
     "restrictions": [],
-    "fs_tags": ["hands"]
+    "fs_tags": ["hands"],
+    "comments_XF": "Precision problem"
   },
   {
     "id": "/m/025_jnm",
@@ -716,7 +718,8 @@
     "positive_examples": ["youtu.be/ATHjFAM3ehk?start=80&end=90", "youtu.be/TCI_qydc554?start=20&end=30", "youtu.be/8byxt0IjVcQ?start=30&end=40", "youtu.be/0aSF6X4-Ksg?start=50&end=60", "youtu.be/-FRGpQEpEWM?start=30&end=40", "youtu.be/ikdaGO5jUYU?start=80&end=90", "youtu.be/3qEb6Y-D7Mw?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["clap"]
+    "fs_tags": ["clap"],
+    "comments_XF": "keep synthesized clap/snares ?"
   },
   {
     "id": "/m/01jg02",
@@ -746,7 +749,8 @@
     "positive_examples": [],
     "child_ids": ["/m/0pv6y"],
     "restrictions": ["blacklist"],
-    "fs_tags": ["review"]
+    "fs_tags": ["review"],
+    "comments_XF": "Don't find any of these in Freesound"
   },
   {
     "id": "/m/0pv6y",
@@ -766,7 +770,8 @@
     "positive_examples": [],
     "child_ids": ["/m/0l15bq", "/m/053hz1", "/m/028ght", "/m/07rkbfh", "/m/03qtwd", "/m/07qfr4h", "/m/04v5dt", "/t/dd00013", "/t/dd00135"],
     "restrictions": ["abstract"],
-    "fs_tags": [["human","group"], "review"]
+    "fs_tags": [["human","group"], "review"],
+    "comments_XF": "Idea of group of humans. Need plural form? (no stem)"
   },
   {
     "id": "/m/053hz1",
@@ -796,7 +801,8 @@
     "positive_examples": ["youtu.be/ViYMLK4dujU?start=200&end=210", "youtu.be/XXsfmD0Bss0?start=400&end=410", "youtu.be/NyEcj25jlSY?start=40&end=50", "youtu.be/Fvbyp4w6EaM?start=220&end=230", "youtu.be/3YCmyruGOK8?start=140&end=150", "youtu.be/VmPeBqOwI-Y?start=140&end=150"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["chatter", "review"]
+    "fs_tags": ["chatter"],
+    "comments_XF": "Precision problem"
   },
   {
     "id": "/m/03qtwd",
@@ -816,7 +822,8 @@
     "positive_examples": ["youtu.be/7kw_my9mSSY?start=30&end=40", "youtu.be/9heeSXrNtXY?start=60&end=70", "youtu.be/_frFEY2PG-8?start=140&end=150", "youtu.be/WIKHKccnhCg?start=190&end=200", "youtu.be/DTmnaeDISTY?start=20&end=30", "youtu.be/4Csr25pn41Q?start=30&end=40", "youtu.be/c8CsTpDQlaE?start=280&end=290", "youtu.be/ca5yYSLOcpY?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["hubbub", ["speech","noise"], ["speech", "babble"], "review"]
+    "fs_tags": ["hubbub", ["speech","noise"], ["speech", "babble"]],
+    "comments_XF": "Precision problem"
   },
   {
     "id": "/m/04v5dt",
@@ -826,7 +833,8 @@
     "positive_examples": ["youtu.be/-Cz0muXWdeU?start=310&end=320", "youtu.be/X6xMdMyx4Q8?start=190&end=200", "youtu.be/07ckQxmU9KM?start=23&end=33"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["booing", "voice"], ["booing", "vocal"]]
+    "fs_tags": [["booing", "voice"], ["booing", "vocal"]],
+    "comments_XF": "Recall problem"
   },
   {
     "id": "/t/dd00013",
@@ -1802,7 +1810,7 @@
     "positive_examples": ["youtu.be/d9r_kYpOvW8?start=30&end=40", "youtu.be/BjPvQnVQsOw?start=20&end=30", "youtu.be/YQSYAXHgZ24?start=30&end=40", "youtu.be/UxOSSoMg7eA?start=30&end=40", "youtu.be/n6JP70Sr76k?start=10&end=20", "youtu.be/2eP3SBgYDEQ?start=30&end=40", "youtu.be/aDJDaIgme3k?start=30&end=40", "youtu.be/HH3qmmKao2E?start=100&end=110"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["Hammond", "organ"],["review"]]
+    "fs_tags": [["Hammond", "organ"],"review"]
   },
   {
     "id": "/m/0l14qv",
@@ -3500,7 +3508,8 @@
     "positive_examples": ["youtu.be/JRyhdsQwFXM?start=110&end=120", "_youtu.be/-PJrbyYLtS4?start=330&end=340", "youtu.be/dOU3KOnQM2Q?start=200&end=210", "youtu.be/48HQ_eeoygY?start=10&end=20", "youtu.be/HfaFm2c4a78?start=40&end=50", "youtu.be/aqAvJgN6GOE?start=220&end=230", "youtu.be/aN-oXqXdsVM?start=100&end=110", "youtu.be/cpFdPrI-8EQ?start=120&end=130", "youtu.be/U-WqWv0pXwI?start=20&end=30", "youtu.be/urfP_4xhJCE?start=90&end=100"],
     "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
     "restrictions": [],
-    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"]
+    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"],
+    "comments_XF": "Precision problem. Got wind instrument for example"
   },
   {
     "id": "/m/07q8f3b",
@@ -3690,7 +3699,8 @@
     "positive_examples": [],
     "child_ids": ["/m/07yv9", "/m/02mk9", "/t/dd00071", "/m/0395lw", "/m/07pp_mv", "/t/dd00077", "/m/07k1x", "/m/014zdl", "/m/083vt", "/m/039jq", "/m/04k94", "/t/dd00089", "/t/dd00133"],
     "restrictions": ["blacklist"],
-    "fs_tags": ["object", "review"]
+    "fs_tags": [],
+    "comments_XF": "Better not to map it. The population will get these"
   },
   {
     "id": "/m/07yv9",
