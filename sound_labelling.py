@@ -301,7 +301,7 @@ def display_tags_list_baskets(list_baskets):
 if __name__ == '__main__':
     c = manager.Client(False)
     b = c.load_basket_pickle('freesound_db_160317.pkl')
-    ontology = json.load(open('ontology_to_process2.json','rb'))
+    ontology = json.load(open('ontology_1703_to_improve.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     b.text_preprocessing() # stem and lower case for tags in freesound basket
     ontology_stem = preproc_ontology(ontology)

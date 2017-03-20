@@ -17,7 +17,8 @@ For now each annotator will provide an ontology_***.json file with his annotatio
 LABELLING FREESOUND SOUNDS:
 
 Need 'freesound_db_030317' pickle file placed in folder ./baskets_pickle/
-https://drive.google.com/open?id=0B6I4aBwnXxoGR1J0Ukl6SlRzeUE
+https://drive.google.com/open?id=0B6I4aBwnXxoGRUk5b201NlZTazQ
+new one: https://drive.google.com/open?id=0B6I4aBwnXxoGU2xmakRwaS1OUWM
 
 manager.py: tool for playing with freesound stuff
 freesound.py: freesound python api wrapper
