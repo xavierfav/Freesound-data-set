@@ -413,7 +413,8 @@
     "positive_examples": ["youtu.be/UfJczyLcB40?start=170&end=180", "youtu.be/NrD9vrfyBLc?start=40&end=50", "youtu.be/AjQpqRcpG4E?start=30&end=40", "youtu.be/OHIIpJzP8_8?start=20&end=30", "youtu.be/Dp0FeEXOdgM?start=260&end=270", "youtu.be/vL1goz4n82k?start=140&end=150", "youtu.be/DkK4GuqTzHw?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["groan","human"], ["groan","woman"], ["groan","man"]]
+    "fs_tags": [["groan","human"], ["groan","woman"], ["groan","man"]],
+    "XF_comment": "get other kind of sounds (orgasm, monster groan)"
   },
   {
     "id": "/m/07r4k75",
@@ -433,7 +434,7 @@
     "positive_examples": ["youtu.be/nKdPjkVUbzc?start=90&end=100", "youtu.be/yMmc3uMa5xY?start=30&end=40", "youtu.be/C6Dh2wI6yss?start=70&end=80", "youtu.be/m5UQZ-zHd6I?start=13&end=23"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["yawn","human"], ["yawn","woman"], ["yawn","man"]]
+    "fs_tags": ["yawn"]
   },
   {
     "id": "/m/01w250",
@@ -443,7 +444,8 @@
     "positive_examples": ["youtu.be/MJJv-SQVbQY?start=140&end=150", "youtu.be/snXiUKVgEVI?start=30&end=40", "youtu.be/7lqma04srnA?start=380&end=390", "youtu.be/78F0DHyl8BU?start=30&end=40", "youtu.be/_UahfxFAx0g?start=10&end=20", "youtu.be/EJr6MusXp-o?start=26&end=36", "youtu.be/zhTVzULeZQU?start=12&end=22"],
     "child_ids": ["/m/079vc8"],
     "restrictions": [],
-    "fs_tags": [["whistling", "human"], ["whistling", "man"], ["whistling", "woman"]]
+    "fs_tags": [["whistling", "human"], ["whistling", "man"], ["whistling", "woman"]],
+    "XF_comment": "Low recall here. Complicated because 'Whistling' can refer to different stuff"
   },
   {
     "id": "/m/079vc8",
@@ -463,7 +465,8 @@
     "positive_examples": [],
     "child_ids": ["/m/0lyf6", "/m/01b_21", "/m/01hsr_", "/m/07ppn3j"],
     "restrictions": ["abstract"],
-    "fs_tags": ["respiration"]
+    "fs_tags": ["respiration"],
+    "XF_comment": "Problem of Recall and Precision"
   },
   {
     "id": "/m/0lyf6",
