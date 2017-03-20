@@ -1938,7 +1938,7 @@
     "positive_examples": ["youtu.be/umIND3KZyqs?start=70&end=80", "youtu.be/h1L06porcL0?start=220&end=230", "youtu.be/khRBhDUyLb0?start=360&end=370", "youtu.be/ts76TqD6eiQ?start=30&end=40", "youtu.be/k36gVPLVPU4?start=50&end=60", "youtu.be/vYoHjD5slzg?start=80&end=90", "youtu.be/yTgBSKCZ1ag?start=240&end=250", "youtu.be/fokECmrANcs?start=310&end=320", "youtu.be/cBJGUfPyGcw?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum"],
+    "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum"]
   },
   {
     "id": "/m/011k_j",
