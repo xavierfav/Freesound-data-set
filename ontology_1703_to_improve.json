@@ -5543,7 +5543,7 @@
     "positive_examples": [],
     "child_ids": ["/t/dd00099", "/t/dd00109", "/t/dd00110", "/m/05n1m", "/m/028v0c", "/t/dd00122"],
     "restrictions": ["abstract"],
-    "fs_tags": ["review"]
+    "fs_tags": []
   },
   {
     "id": "/t/dd00099",
@@ -5563,7 +5563,8 @@
     "positive_examples": ["youtu.be/0zsRRg6NZDQ?start=21&end=31", "youtu.be/ayhkvgG1Cvw?start=210&end=220", "youtu.be/Oe6sYXWAM7E?start=90&end=100", "youtu.be/rhG_ie69Nwc?start=300&end=310"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["bang", "boom"]
+    "fs_tags": ["bang", "boom"],
+    "comments_XF": "Does this include firework for example?"
   },
   {
     "id": "/m/07ryjzk",
@@ -5573,7 +5574,8 @@
     "positive_examples": ["youtu.be/-gfaj2Evqus?start=290&end=300", "youtu.be/KDQV3eSkhZ4?start=70&end=80", "youtu.be/toWBIJlu2NM?start=80&end=90", "youtu.be/yjEZx7TvwcA?start=60&end=70", "youtu.be/kasvqBhDBC0?start=240&end=250", "youtu.be/ls_QsNFNDbg?start=10&end=20", "youtu.be/v-Al9LqV9Mo?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["smack", "slap"]
+    "fs_tags": ["smack", "slap"],
+    "omit_fs_tags": ["bass", "kick"]
   },
   {
     "id": "/m/07rdhzs",
@@ -5583,7 +5585,8 @@
     "positive_examples": ["youtu.be/redtHVmxs7s?start=30&end=40", "youtu.be/dVi2QoAYsAQ?start=180&end=190", "youtu.be/aB5CD4u16gM?start=40&end=50", "youtu.be/zruJV_pq4z0?start=270&end=280", "youtu.be/e-lOchEQ1i0?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["whack", "thwack"]
+    "fs_tags": ["whack", "thwack"],
+    "omit_fs_tags": ["techno", "effect"]
   },
   {
     "id": "/m/07pjjrj",
@@ -5593,7 +5596,8 @@
     "positive_examples": ["youtu.be/-3MV6T3u9Ig?start=30&end=40", "youtu.be/-DTgp1cbyug?start=0&end=2", "youtu.be/Ywc4_D3sKHQ?start=30&end=40", "youtu.be/PBTPWOf_E-w?start=250&end=260", "youtu.be/c0nVFint5bk?start=160&end=170", "youtu.be/5lLMWk_-fQw?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["smash", "crash"]
+    "fs_tags": ["smash", "crash"],
+    "omit_fs_tags": ["cymbal", "cymbals"]
   },
   {
     "id": "/m/07pc8lb",
@@ -5603,7 +5607,8 @@
     "positive_examples": ["youtu.be/frZUEXzWE5Q?start=30&end=40", "youtu.be/1SAdEjaSf3g?start=6&end=16", "youtu.be/mKTTCj3WrLg?start=30&end=40", "youtu.be/LF-070rGEbQ?start=230&end=240", "youtu.be/FeaKHpQ4UhE?start=90&end=100", "youtu.be/wyv4blKX3No?start=390&end=400"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["break"]
+    "fs_tags": ["break"],
+    "omit_fs_tags": ["beat", "loop", "beats", "engine", "motor", "core", "loops"]
   },
   {
     "id": "/m/07pqn27",
@@ -5613,7 +5618,8 @@
     "positive_examples": ["youtu.be/Tk2v1UaTgmk?start=40&end=50", "youtu.be/Od85JwO7ChQ?start=10&end=20", "youtu.be/FSVfPifghQ4?start=50&end=60", "youtu.be/00XaUxjGuX8?start=170&end=180", "youtu.be/BKnuN5hoZnM?start=40&end=50", "youtu.be/QErefA2Ms4c?start=390&end=400", "youtu.be/tHcW8l5ifLQ?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["bounce"]
+    "fs_tags": ["bounce"],
+    "omit_fs_tags": ["techno", "electronic", "rave", "trance", "house"]
   },
   {
     "id": "/m/07rbp7_",
@@ -5623,7 +5629,8 @@
     "positive_examples": ["youtu.be/LhbzdtNRTKs?start=30&end=40", "youtu.be/ivoEsA_OErY?start=30&end=40", "youtu.be/9qMbQFMHA5g?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["whip"]
+    "fs_tags": ["whip"],
+    "comments_XF": "this category overlaps with onomatopoeia"
   },
   {
     "id": "/m/07pyf11",
@@ -5633,7 +5640,9 @@
     "positive_examples": ["youtu.be/-1MpcvB9PAI?start=30&end=40", "youtu.be/M3301jxTkto?start=5&end=15", "youtu.be/7dIIVzcYhD4?start=310&end=320"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["flap"]
+    "fs_tags": ["flap"],
+    "omit_fs_tags": ["bird", "birds"],
+    "comments_XF": "does this include bird flap sounds?"
   },
   {
     "id": "/t/dd00109",
@@ -5653,7 +5662,8 @@
     "positive_examples": ["youtu.be/tgHySwhil9s?start=50&end=60", "youtu.be/Y9R0M2gQE04?start=30&end=40", "youtu.be/yUEDrDKIYV0?start=450&end=460", "youtu.be/7GapruwcCO0?start=300&end=310", "youtu.be/NG_Pa0_Rc74?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["scratch"]
+    "fs_tags": ["scratch"],
+    "omit_fs_tags": ["vinyl", "dj", "hip-hop", "rap", "loop"]
   },
   {
     "id": "/m/07qv4k0",
@@ -5673,7 +5683,8 @@
     "positive_examples": ["youtu.be/LSEjPSU7wSA?start=210&end=220", "youtu.be/hngBJnxLVmQ?start=180&end=190", "youtu.be/AXsR125JDEA?start=520&end=530", "youtu.be/fHmROtp_U00?start=410&end=420", "youtu.be/MDPCZrtDl5c?start=450&end=460", "youtu.be/cLuDhdm-1tc?start=20&end=30", "youtu.be/H5nQnPCk0Uo?start=100&end=110", "youtu.be/4ugXkiWI-7A?start=25&end=35"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["rub"]
+    "fs_tags": ["rub"],
+    "comments_XF": "complicated..."
   },
   {
     "id": "/m/07s8j8t",
@@ -5683,7 +5694,8 @@
     "positive_examples": ["youtu.be/2TE4hAMo9EE?start=4&end=14", "youtu.be/3250CBWhvWE?start=30&end=40", "youtu.be/45fwQe0d62o?start=30&end=40", "youtu.be/Fx0tr98DzN8?start=0&end=8", "youtu.be/OoAtJAR6qto?start=0&end=5"],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["roll", "rotate"]
+    "fs_tags": ["roll", "rotate"],
+    "omit_fs_tags": ["drum", "percussion", "snare", "drums"]
   },
   {
     "id": "/m/07pt6mm",
@@ -5693,7 +5705,8 @@
     "positive_examples": ["youtu.be/6jborgl8I1c?start=30&end=40", "youtu.be/KcNqclVaRCg?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["grind"]
+    "fs_tags": ["grind"],
+    "omit_fs_tags": ["loop"]
   },
   {
     "id": "/t/dd00110",
@@ -5703,7 +5716,8 @@
     "positive_examples": [],
     "child_ids": ["/m/07plct2", "/t/dd00112", "/m/07qcx4z"],
     "restrictions": ["abstract"],
-    "fs_tags": ["shell"]
+    "fs_tags": ["shell"],
+    "omit_fs_tags": ["gun", "fire", "firearm"]
   },
   {
     "id": "/m/07plct2",
@@ -5713,7 +5727,8 @@
     "positive_examples": ["youtu.be/-LRl10YdS-U?start=30&end=40", "youtu.be/R9aRI18jBsg?start=40&end=50", "youtu.be/0bbgeqkDm6U?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["crush", "crunch"]
+    "fs_tags": ["crush", "crunch"],
+    "omit_fs_tags": ["footstep"]
   },
   {
     "id": "/t/dd00112",
