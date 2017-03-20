@@ -37,7 +37,7 @@
     "positive_examples": ["youtu.be/6niRPYpLOpQ?start=30&end=40", "youtu.be/fPgUDHwQOmM?start=320&end=330", "youtu.be/g3YNJ3ESIW0?start=30&end=40", "youtu.be/Dys9DJoFnGA?start=30&end=40", "youtu.be/3PESOesDniw?start=30&end=40", "youtu.be/E8RfeFAzHK4?start=30&end=40", "youtu.be/A_WSbkJozPs?start=90&end=100", "youtu.be/-yZuFZRojYA?start=30&end=40", "youtu.be/ECOK21oFttk?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"]]
+    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"], "male-voice"]
   },
   {
     "id": "/m/02zsn",
@@ -47,7 +47,7 @@
     "positive_examples": ["youtu.be/4l05nCOnIRg?start=30&end=40", "youtu.be/5zyOhZsvIzI?start=30&end=40", "youtu.be/q0wv9AOl4r0?start=100&end=110", "youtu.be/AyPqm-tm2y4?start=30&end=40", "youtu.be/1xXqIpjxYG4?start=30&end=40", "youtu.be/xYPZJkfiyjk?start=90&end=100", "youtu.be/46lVxNflfDw?start=30&end=40", "youtu.be/8OpLsWMn6P0?start=30&end=40", "youtu.be/WLi5_z61zCE?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"]]
+    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"], "female-voice"]
   },
   {
     "id": "/m/0ytgt",
@@ -3770,7 +3770,7 @@
     "positive_examples": ["youtu.be/tMPg88c5ciQ?start=160&end=170", "youtu.be/-znLAiE_r_w?start=30&end=40", "youtu.be/2R2qwpgb0Dw?start=30&end=40", "youtu.be/ko91_sThwdo?start=290&end=300", "youtu.be/u8rFWqmbx18?start=240&end=250", "youtu.be/g6o47ksKlpQ?start=70&end=80", "youtu.be/gKKzQNZiymI?start=130&end=140", "youtu.be/f1yc8bkg0sc?start=10&end=20", "youtu.be/B1vvkDwpgLQ?start=30&end=40"],
     "child_ids": ["/m/0k4j", "/m/07r04", "/m/01bjv", "/m/03j1ly", "/m/04_sv", "/m/0btp2"],
     "restrictions": [],
-    "fs_tags": [["motor", "road"], ["motor", "transport"], ["motor", "vehicle"], ["engine", "transport"]]
+    "fs_tags": [["motor", "road"], ["motor", "transport"], ["motor", "vehicle"], ["engine", "transport"], "auto"]
   },
   {
     "id": "/m/0k4j",
@@ -4140,7 +4140,8 @@
     "positive_examples": ["youtu.be/ja4EA1MiDs8?start=130&end=140", "youtu.be/4mLv61JADOQ?start=40&end=50", "youtu.be/kwQQSiYG1lk?start=70&end=80", "youtu.be/eKFbKpSfddE?start=25&end=35", "youtu.be/7awbfTNKjWc?start=30&end=40", "youtu.be/IGBRNQ9-9r0?start=250&end=260", "youtu.be/APYR7TeoGCQ?start=30&end=40", "youtu.be/yRzTXFjC-Hw?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["skateboard", "skate-board"]
+    "fs_tags": ["skateboard", "skate-board", "skate"],
+    "omit_fs_tags": ["loop", "ice"]
   },
   {
     "id": "/m/02mk9",
