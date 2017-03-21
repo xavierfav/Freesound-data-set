@@ -1031,7 +1031,7 @@ class Basket:
     def text_preprocessing(self):
         stemmer = PorterStemmer()
         for idx, s in enumerate(self.sounds):
-            self.sounds[idx].tags = [stemmer.stem(t.lower()) for t in s.tags]
+            self.sounds[idx].tags_stem = [stemmer.stem(t.lower()) for t in s.tags]
 
     def return_tags_occurrences_dict(self):
         #tags = self.tags_extract_all()
