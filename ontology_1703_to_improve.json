@@ -3525,7 +3525,7 @@
     "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
     "restrictions": [],
     "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze", "tornado"],
-    "comments_XF": "Precision problem. Got wind instrument for example"
+    "omit_fs_tags": ["instrument", "instrument"]
   },
   {
     "id": "/m/07q8f3b",
@@ -3605,7 +3605,8 @@
     "positive_examples": ["youtu.be/AOYnd6OzO2U?start=30&end=40", "youtu.be/V_J1Zx1PbFU?start=30&end=40", "youtu.be/doi3DiqyMl0?start=6&end=16", "youtu.be/JFWiNHljGFI?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["raindrop", "droplets", "drop", "blub"]
+    "fs_tags": ["raindrop", "droplets", "drop", "blub"],
+    "omit_fs_tags": ["dj"]
   },
   {
     "id": "/t/dd00038",
@@ -3645,7 +3646,8 @@
     "positive_examples": ["youtu.be/b1iahVw7phI?start=240&end=250", "youtu.be/bspTVc-6whI?start=70&end=80", "youtu.be/DVqUkCoFwgk?start=530&end=540", "youtu.be/Hi1HVjOqJa8?start=120&end=130", "youtu.be/Y6ft09j8rwI?start=370&end=380", "youtu.be/lQBqdnyzFH8?start=10&end=20", "youtu.be/2lEGN0fx9t4?start=10&end=20"],
     "child_ids": ["/m/034srq"],
     "restrictions": [],
-    "fs_tags": ["ocean", "sea", "lake", "river"]
+    "fs_tags": ["ocean", "sea", "lake", "river"],
+    "comments_XF": "Should we include sea, liake, river ?"
   },
   {
     "id": "/m/034srq",
@@ -3655,7 +3657,8 @@
     "positive_examples": ["youtu.be/F1acJgs48ug?start=420&end=430", "youtu.be/ciShfkeGGPs?start=140&end=150", "youtu.be/ZVveYlQuMAw?start=30&end=40", "youtu.be/3DhQmxwJ5f0?start=530&end=540", "youtu.be/acCLHAVHOO4?start=80&end=90"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["wave"]
+    "fs_tags": ["wave"],
+    "omit_fs_tags": ["music", "dj"]
   },
   {
     "id": "/m/06wzb",
@@ -3675,7 +3678,8 @@
     "positive_examples": ["youtu.be/ueGrX54zEs4?start=30&end=40", "youtu.be/PlPg7pFN-c0?start=30&end=40", "youtu.be/bN-pEae5Ojk?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["gurgle", "glug"]
+    "fs_tags": ["gurgle", "glug"],
+    "omit_fs_tags": ["electronic", "saxophone"]
   },
   {
     "id": "/m/02_41",
@@ -3695,7 +3699,8 @@
     "positive_examples": ["youtu.be/yD8-rFGIX1Y?start=80&end=90", "youtu.be/bbQgr9juJHU?start=200&end=210", "youtu.be/MNQlSUhlaoU?start=130&end=140", "youtu.be/o2ll07zNfvo?start=20&end=30", "youtu.be/eDRs0CPfUT8?start=350&end=360", "youtu.be/J1gpa4iJ-ds?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["crackle"]
+    "fs_tags": ["crackle"],
+    "omit_fs_tags": ["firework"]
   },
   {
     "id": "/m/0fjy1",
@@ -3916,7 +3921,8 @@
     "positive_examples": ["youtu.be/9OfYjXOhqmk?start=17&end=27", "youtu.be/DlKTxOx07jA?start=60&end=70", "youtu.be/7bBUxUpozzQ?start=40&end=50", "youtu.be/gQ1KUsQayuY?start=190&end=200", "youtu.be/38F6eeIR-s0?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["reversing","beep"], "review"]
+    "fs_tags": [["reversing","beep"], "review"],
+    "comments_XF": "don't know how to do better, low recall"
   },
   {
     "id": "/m/03cl9h",
@@ -3946,7 +3952,7 @@
     "positive_examples": ["youtu.be/xV0eTva6SKQ?start=24&end=34", "youtu.be/E6sS2d-NeTE?start=20&end=30", "youtu.be/JWd6vF4yfG8?start=100&end=110", "youtu.be/VqczA8N9pqM?start=19&end=29", "youtu.be/5gyVNyAY6Ns?start=30&end=40", "youtu.be/WPASuIJUWns?start=180&end=190", "youtu.be/mohBlDuZyYw?start=410&end=420", "youtu.be/XDJ9sFKqTV8?start=90&end=100", "youtu.be/ywRo3KB5AuM?start=10&end=20", "youtu.be/jg9TpmmZ5Ws?start=18&end=28"],
     "child_ids": ["/m/04qvtq", "/m/012n7d", "/m/012ndj"],
     "restrictions": [],
-    "fs_tags": [["emergency", "vehicle"]]
+    "fs_tags": [["emergency", "vehicle"], ["emergency", "car"], ["emergency", "auto"]]
   },
   {
     "id": "/m/04qvtq",
@@ -4016,7 +4022,7 @@
     "positive_examples": ["youtu.be/NTcgZ8rSpNI?start=20&end=30", "youtu.be/ulhaRVr-cVc?start=120&end=130", "youtu.be/-TIHs3wuY9E?start=160&end=170", "youtu.be/q1na9CH3Ufw?start=320&end=330"],
     "child_ids": ["/m/04zmvq", "/m/0284vy3"],
     "restrictions": [],
-    "fs_tags": ["train"]
+    "fs_tags": ["train", "steam-train"]
   },
   {
     "id": "/m/04zmvq",
@@ -4593,7 +4599,7 @@
     "positive_examples": ["youtu.be/HDZ2_fLVZm0?start=30&end=40", "youtu.be/orxEbCkwH9M?start=320&end=330", "youtu.be/pbwT9PIfJcU?start=300&end=310", "youtu.be/1hba9jmspEQ?start=30&end=40", "youtu.be/l2LSwFtqGKk?start=470&end=480", "youtu.be/3hBvEDX7Q8k?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["Scissors"]
+    "fs_tags": ["Scissors", "hair-cut"]
   },
   {
     "id": "/m/02g901",
@@ -4744,7 +4750,7 @@
     "positive_examples": ["youtu.be/q8i4B6lSshE?start=30&end=40", "youtu.be/fqQHxi-CBwY?start=20&end=30", "youtu.be/WSNtES6nmRI?start=50&end=60", "youtu.be/61X1X_LmORw?start=90&end=100", "youtu.be/stiK2hvKAeA?start=24&end=34"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["alarm", "clock"]]
+    "fs_tags": [["alarm", "clock"], "alarm-clock"]
   },
   {
     "id": "/m/03kmc9",
@@ -6140,7 +6146,8 @@
     "positive_examples": [],
     "child_ids": ["/t/dd00093", "/m/096m7z", "/m/07bm98"],
     "restrictions": ["abstract"],
-    "fs_tags": ["environment", "channel", "background"]
+    "fs_tags": [],
+    "comments_XF": "Better not to map it"
   },
   {
     "id": "/t/dd00093",
@@ -6240,7 +6247,7 @@
     "positive_examples": ["youtu.be/Ea0mjqDst9E?start=80&end=90", "youtu.be/utMYmua1SkE?start=30&end=40", "youtu.be/hRJM4JH3rjE?start=410&end=420", "youtu.be/qQBAvAZHvAg?start=10&end=20", "youtu.be/tQYVJlOnx8s?start=60&end=70", "youtu.be/f8AwggqxxVM?start=140&end=150"],
     "child_ids": ["/m/06_y0by", "/m/09d1b1", "/m/07rgkc5", "/m/06xkwv", "/m/0g12c5", "/m/08p9q4"],
     "restrictions": [],
-    "fs_tags": ["background", "background-sound"]
+    "fs_tags": ["background", "background-sound", "background-noise"]
   },
   {
     "id": "/m/06_y0by",
