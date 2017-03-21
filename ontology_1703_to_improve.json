@@ -17,7 +17,7 @@
     "positive_examples": [],
     "child_ids": ["/m/09x0r", "/m/07p6fty", "/m/03qc9zr", "/m/02rtxlg", "/m/01j3sz", "/m/0463cq4", "/m/07qw_06", "/m/07plz5l", "/m/015lz1", "/m/02fxyj", "/m/07s2xch", "/m/07r4k75", "/m/01j423"],
     "restrictions": ["abstract"],
-    "fs_tags": ["voice"]
+    "fs_tags": ["voice", "human-voice"]
   },
   {
     "id": "/m/09x0r",
@@ -607,7 +607,7 @@
     "positive_examples": ["youtu.be/Dl_-9HuKqD0?start=220&end=230", "youtu.be/ulYCw2ZEiz4?start=50&end=60", "youtu.be/0qes0wPqdEs?start=30&end=40", "youtu.be/XYm5hJfJaFo?start=80&end=90", "youtu.be/DBRvVR2KHeg?start=230&end=240", "youtu.be/V851WPfpbwA?start=230&end=240", "youtu.be/Ix5uPjC1gHI?start=70&end=80", "youtu.be/2Z4THg6VA1A?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["footstep", "walk"]
+    "fs_tags": ["footstep", "walk", "feet"]
   },
   {
     "id": "/m/0160x5",
@@ -1602,7 +1602,7 @@
     "positive_examples": ["youtu.be/7umb9yJpkKU?start=70&end=80", "youtu.be/obWlyVlIbXI?start=40&end=50", "youtu.be/5UMC51-0gtY?start=130&end=140", "youtu.be/7RedoApAa5g?start=50&end=60", "youtu.be/kkEwhEEe42E?start=50&end=60", "youtu.be/2SebmDnbwu8?start=120&end=130", "youtu.be/oqToPCSVKvE?start=30&end=40", "youtu.be/74CdH7qHL9Q?start=30&end=40", "youtu.be/QGL1xK5D8Fw?start=30&end=40"],
     "child_ids": ["/m/0fx80y", "/m/05148p4", "/m/0l14md", "/m/05pd6", "/m/01kcd", "/m/0l14_3", "/m/085jw", "/m/03m5k", "/m/0l14jd", "/m/0395lw", "/m/03qjg", "/m/0mkg", "/m/0192l", "/m/02bxd", "/m/0l14l2", "/m/07kc_", "/m/0l14t7", "/m/05229", "/m/01vj9c", "/m/01hgjl"],
     "restrictions": [],
-    "fs_tags": ["instrument",["music","instrument"],["musical","instrument"]]
+    "fs_tags": ["instrument",["music","instrument"],["musical","instrument"], "musical-instrument"]
   },
   {
     "id": "/m/0fx80y",
@@ -1614,7 +1614,7 @@
     "restrictions": [],
     "fs_tags": [["plucked","string","instrument"],"plucked-strings","review"],
     "less_priority2user": ["toiletrolltube"],
-    "comments_JP": "Father has a few examples, children populates this class"
+    "comments_JP": "Father has a few examples, children populate this class"
   },
   {
     "id": "/m/0342h",
@@ -1624,7 +1624,7 @@
     "positive_examples": ["youtu.be/4M8jrnFOsv4?start=250&end=260", "youtu.be/3a7ZQYncZzo?start=30&end=40", "youtu.be/03zEmRftWkE?start=30&end=40", "youtu.be/0EZTOSkuFy0?start=30&end=40", "youtu.be/WhcHkiTCg2Y?start=10&end=20", "youtu.be/YophyPW6R2M?start=40&end=50", "youtu.be/NtjgQir_GwM?start=390&end=400"],
     "child_ids": ["/m/02sgy", "/m/018vs", "/m/042v_gx", "/m/06w87", "/m/01glhc", "/m/07s0s5r"],
     "restrictions": [],
-    "fs_tags": ["guitar"]
+    "fs_tags": ["guitar", "guitar-loop"]
   },
   {
     "id": "/m/02sgy",
@@ -1657,7 +1657,7 @@
     "positive_examples": ["youtu.be/0_MLIPfb84s?start=30&end=40", "youtu.be/-37uZp3L3vw?start=30&end=40", "youtu.be/zeAO1j2LStk?start=10&end=20", "youtu.be/-SOoc9Rr39Y?start=12&end=22", "youtu.be/-DPoX0GdToU?start=130&end=140", "youtu.be/GDfQPFcG74k?start=150&end=160", "youtu.be/4gZkMShMpmc?start=30&end=40", "youtu.be/OSSa7XnAxkk?start=460&end=470", "youtu.be/mPEQ9bBWUYE?start=210&end=220", "youtu.be/ygonIq0Qatk?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["acoustic", "guitar", "nylon"],["acoustic-guitar"],["acoustic", "guitar"],["acoustic-guitar","nylon"],"spanish-guitar", "nylon-string"]
+    "fs_tags": [["acoustic", "guitar", "nylon"],["acoustic-guitar"],["acoustic", "guitar"],["acoustic-guitar","nylon"],"spanish-guitar", "nylon-string", "classical-guitar"]
   },
   {
     "id": "/m/06w87",
@@ -1830,7 +1830,7 @@
     "positive_examples": ["youtu.be/DQ5KwZ2qBMY?start=390&end=400", "youtu.be/wb6eNKCdmgc?start=290&end=300", "youtu.be/drDfZAkVi4k?start=500&end=510", "youtu.be/XBDxkLByWRQ?start=130&end=140", "youtu.be/vxJ_lQpZcRk?start=550&end=560", "youtu.be/xlEZYQOt9-Q?start=210&end=220"],
     "child_ids": ["/m/01v1d8", "/m/0gkd1"],
     "restrictions": [],
-    "fs_tags": ["Synthesizer","synth"]
+    "fs_tags": ["Synthesizer","synth", "synth-bass", "modular-synth", "granular-synth"]
   },
   {
     "id": "/m/01v1d8",
@@ -1935,7 +1935,7 @@
     "positive_examples": ["youtu.be/-r-iX1t7eE8?start=420&end=430", "youtu.be/vBHIihIl_vg?start=50&end=60", "youtu.be/jBIJvd3pUYE?start=230&end=240", "youtu.be/SC8RGKfaJrQ?start=60&end=70"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["snare", "drum", "roll"]]
+    "fs_tags": [["snare", "roll"]]
   },
   {
     "id": "/m/0bm02",
@@ -2196,7 +2196,7 @@
     "positive_examples": ["youtu.be/VicqlR2dxTQ?start=20&end=30", "youtu.be/RK7KFZ9SWOc?start=30&end=40", "youtu.be/ucZ5P4EvFe0?start=140&end=150", "youtu.be/Pk5X4JnfT8o?start=220&end=230", "youtu.be/XxhwXQcX58Y?start=60&end=70", "youtu.be/SyXlIXHKfes?start=510&end=520"],
     "child_ids": ["/m/02qmj0d", "/m/07y_7", "/m/01xqw", "/m/02fsn"],
     "restrictions": [],
-    "fs_tags": [["bow", "string"]]
+    "fs_tags": [["bow", "string"], "viola"]
   },
   {
     "id": "/m/02qmj0d",
@@ -2689,7 +2689,7 @@
     "positive_examples": [],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["middle","eastern","music"],["eastern","music"]]
+    "fs_tags": [["middle","eastern","music"],["eastern","music"], "makam", "turkish-music", "turkish-makam"]
   },
   {
     "id": "/m/03_d0",
@@ -2884,7 +2884,7 @@
     "positive_examples": [],
     "child_ids": ["/m/02ccj9", "/m/0ln16", "/m/0kpck", "/m/080nby", "/m/05q7ms", "/m/0326g"],
     "restrictions": [],
-    "fs_tags": [["music","latin","america"],"review"],
+    "fs_tags": [["music","latin","america"], "tango", "samba", "review"],
     "comments_JP": "Cannot find examples."
   },
   {
@@ -3062,7 +3062,7 @@
     "positive_examples": [],
     "child_ids": ["/m/015vgc", "/m/0dq0md"],
     "restrictions": [],
-    "fs_tags": [["Asia","music"]]
+    "fs_tags": [["Asia","music"], "hindustani"]
   },
   {
     "id": "/m/015vgc",
@@ -3804,7 +3804,7 @@
     "positive_examples": ["youtu.be/EiyEPSJY_cM?start=20&end=30", "youtu.be/dThSTe35jb0?start=250&end=260", "youtu.be/a_35ez_FOY4?start=40&end=50", "youtu.be/S-VtBVNXxHw?start=30&end=40", "youtu.be/qKUVlPkkWNc?start=30&end=40", "youtu.be/TrczACxTtrg?start=270&end=280", "youtu.be/1dOV9NEPc60?start=8&end=18", "youtu.be/717m6D03130?start=100&end=110", "youtu.be/5xOlEfsD0_8?start=14&end=24"],
     "child_ids": ["/m/0912c9", "/m/02mfyn", "/m/04gxbd", "/m/07rknqz", "/m/0h9mv", "/t/dd00134", "/m/0ltv"],
     "restrictions": [],
-    "fs_tags": ["car"]
+    "fs_tags": ["car", "ford"]
   },
   {
     "id": "/m/0912c9",
@@ -3884,7 +3884,7 @@
     "positive_examples": ["youtu.be/VWkQ9L1Uc5M?start=270&end=280", "youtu.be/5BthTpmqpqY?start=580&end=590", "youtu.be/_dQop-gc2hA?start=50&end=60", "youtu.be/MlHCVDr_tAU?start=20&end=30", "youtu.be/bq9EO2TQx8w?start=20&end=30", "youtu.be/H6HLCq8o3KE?start=230&end=240"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["race","car"], ["auto", "race"],  ["vehicle", "race"], ["competition","car"], ["auto", "competition"],  ["vehicle", "competition"]]
+    "fs_tags": [["race","car"], ["auto", "race"],  ["vehicle", "race"], ["competition","car"], ["auto", "competition"],  ["vehicle", "competition"], "race-car"]
   },
   {
     "id": "/m/07r04",
@@ -4298,7 +4298,7 @@
     "positive_examples": ["youtu.be/yM25TgQQ6Ug?start=30&end=40", "youtu.be/XPZnacpWtGI?start=100&end=110", "youtu.be/OcDE75D-O9k?start=230&end=240", "youtu.be/HMp3VHakVKw?start=30&end=40", "youtu.be/kKhnHNY2eqs?start=18&end=28", "youtu.be/8nPjSFqIIoo?start=200&end=210", "youtu.be/nzPQjQppcjc?start=30&end=40"],
     "child_ids": ["/m/03wwcy", "/m/02y_763", "/m/07rjzl8", "/m/07r4wb8", "/m/07qcpgn", "/m/07q6cd_"],
     "restrictions": [],
-    "fs_tags": ["door", "closing-door"]
+    "fs_tags": ["door", "closing-door", "car-door"]
   },
   {
     "id": "/m/03wwcy",
@@ -4338,7 +4338,7 @@
     "positive_examples": ["youtu.be/0W4KKR9sUIo?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["slam", "door"],["closing", "door"],["close", "door"],["shut", "door"],["slamming", "door"],["lock", "door"]]
+    "fs_tags": [["slam", "door"],["closing", "door"],["close", "door"],["shut", "door"],["slamming", "door"],["lock", "door"], "doorslam"]
   },
   {
     "id": "/m/07r4wb8",
@@ -6191,7 +6191,7 @@
     "positive_examples": ["youtu.be/d5PnDZ0LMDw?start=510&end=520", "youtu.be/Qtm98j24sQU?start=160&end=170", "youtu.be/GAXY3-A4EU0?start=10&end=20", "youtu.be/6kBgDyL1IPM?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["store", "public-place", "public-space", "restaurant", "terminus"]
+    "fs_tags": ["store", "public-place", "public-space", "restaurant", "terminus", "mall"]
   },
   {
     "id": "/t/dd00128",
