@@ -627,7 +627,7 @@
     "positive_examples": ["youtu.be/EBnrA85wsc4?start=530&end=540", "youtu.be/EkCIh67xI_w?start=30&end=40", "youtu.be/fCQMflXjGU8?start=460&end=470", "youtu.be/A7MnWIjUVw8?start=40&end=50", "youtu.be/q2m5ChTEe4k?start=450&end=460", "youtu.be/mE092i7zPqY?start=19&end=29", "youtu.be/G3it26Z8E8U?start=30&end=40", "youtu.be/5xAEW3g6en8?start=100&end=110", "youtu.be/9lKmiUIJfGc?start=280&end=290"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["chewing", "human"], ["mastication", "human"], ["chewing", "man"], ["mastication", "man"], ["chewing", "men"], ["mastication", "men"], ["chewing", "woman"], ["mastication", "woman"], ["chewing", "male"], ["mastication", "male"], ["chewing", "female"], ["mastication", "female"]]
+    "fs_tags": [["chewing", "human"], ["mastication", "human"], ["chewing", "man"], ["mastication", "man"], ["chewing", "men"], ["mastication", "men"], ["chewing", "woman"], ["mastication", "woman"], ["chewing", "male"], ["mastication", "male"], ["chewing", "female"], ["mastication", "female"], "eat"]
   },
   {
     "id": "/m/07pdhp0",
@@ -3524,7 +3524,7 @@
     "positive_examples": ["youtu.be/JRyhdsQwFXM?start=110&end=120", "_youtu.be/-PJrbyYLtS4?start=330&end=340", "youtu.be/dOU3KOnQM2Q?start=200&end=210", "youtu.be/48HQ_eeoygY?start=10&end=20", "youtu.be/HfaFm2c4a78?start=40&end=50", "youtu.be/aqAvJgN6GOE?start=220&end=230", "youtu.be/aN-oXqXdsVM?start=100&end=110", "youtu.be/cpFdPrI-8EQ?start=120&end=130", "youtu.be/U-WqWv0pXwI?start=20&end=30", "youtu.be/urfP_4xhJCE?start=90&end=100"],
     "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
     "restrictions": [],
-    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"],
+    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze", "tornado"],
     "comments_XF": "Precision problem. Got wind instrument for example"
   },
   {
@@ -3806,7 +3806,7 @@
     "positive_examples": ["youtu.be/tlyFVJ7P-po?start=23&end=33", "youtu.be/_waM2-2QnK8?start=30&end=40", "youtu.be/-aYumc8KoXg?start=60&end=70"],
     "child_ids": ["/m/07qv_d5"],
     "restrictions": [],
-    "fs_tags": [["horn","vehicle"], ["horn","car"], ["horn","transport"], ["honk","transport"], ["honk","vehicle"], ["honk","car"], ["horn", "automobile"], ["honk", "automobile"]]
+    "fs_tags": [["horn","vehicle"], ["horn","car"], ["horn","transport"], ["honk","transport"], ["honk","vehicle"], ["honk","car"], ["horn", "automobile"], ["honk", "automobile"], "car-horn"]
   },
   {
     "id": "/m/07qv_d5",
@@ -4288,7 +4288,7 @@
     "positive_examples": ["youtu.be/yM25TgQQ6Ug?start=30&end=40", "youtu.be/XPZnacpWtGI?start=100&end=110", "youtu.be/OcDE75D-O9k?start=230&end=240", "youtu.be/HMp3VHakVKw?start=30&end=40", "youtu.be/kKhnHNY2eqs?start=18&end=28", "youtu.be/8nPjSFqIIoo?start=200&end=210", "youtu.be/nzPQjQppcjc?start=30&end=40"],
     "child_ids": ["/m/03wwcy", "/m/02y_763", "/m/07rjzl8", "/m/07r4wb8", "/m/07qcpgn", "/m/07q6cd_"],
     "restrictions": [],
-    "fs_tags": ["door"]
+    "fs_tags": ["door", "closing-door"]
   },
   {
     "id": "/m/03wwcy",
@@ -5070,7 +5070,8 @@
     "positive_examples": ["youtu.be/--PG66A3lo4?start=80&end=90", "youtu.be/PKEhOxE-Ovs?start=130&end=140", "youtu.be/c9030y4sJo0?start=140&end=150", "youtu.be/6slrju_ar9U?start=290&end=300", "youtu.be/K1cnDXbkPu0?start=170&end=180", "youtu.be/AjIQf3HK_Vc?start=130&end=140", "youtu.be/klCJfirqUF8?start=30&end=40", "youtu.be/Ma65O2T_hN0?start=10&end=20", "youtu.be/-Ho5tDtuah0?start=50&end=60"],
     "child_ids": ["/m/04zjc", "/m/02z32qm", "/m/0_1c", "/m/073cg4"],
     "restrictions": [],
-    "fs_tags": ["gunshot", ["gun","shot"], "firearm", "gunfire", ["gun", "fire"], ["gun", "shoot"], ["pistol", "fire"], ["pistol", "shot"], "gun-shot", "review"]
+    "fs_tags": ["gunshot", ["gun","shot"], "firearm", "gunfire", ["gun", "fire"], ["gun", "shoot"], ["pistol", "fire"], ["pistol", "shot"], "gun-shot", "shotgun", "handgun", "review"],
+    "comments_XF": "where are the sounds of reloading guns??"
   },
   {
     "id": "/m/04zjc",
@@ -6069,7 +6070,7 @@
     "positive_examples": ["youtu.be/TWnrcjA6VTk?start=60&end=70"],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["harmonic"]
+    "fs_tags": ["harmonic", "harmonic-sound", "shepard-tone"]
   },
   {
     "id": "/m/0hdsk",
@@ -6079,7 +6080,7 @@
     "positive_examples": ["youtu.be/-kE7IL6pnKU?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["chirp"]
+    "fs_tags": ["chirp", "shepard-tone"]
   },
   {
     "id": "/m/0c1dj",
@@ -6189,7 +6190,7 @@
     "positive_examples": ["youtu.be/BzVGMdWM27I?start=400&end=410", "youtu.be/n878F0QbyYk?start=90&end=100", "youtu.be/Buf__Z-1cfQ?start=120&end=130", "youtu.be/fdR79DRDZKA?start=30&end=40", "youtu.be/H7V96qPFZ3g?start=40&end=50", "youtu.be/rhtw3CBDw3I?start=10&end=20", "youtu.be/LmsnecVb_GU?start=330&end=340"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["urban", "city"]
+    "fs_tags": ["urban", "city", "street-sound"]
   },
   {
     "id": "/t/dd00129",
