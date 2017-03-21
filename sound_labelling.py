@@ -23,16 +23,15 @@ def preproc_ontology(ontology):
     return ontology_stem
             
 # process sound auto-labelling 
-def auto_label(basket_stem, basket, ontology):
+def auto_label(basket, ontology):
     """
     Add attributes aso_labels and aso_ids in basket sounds
     Arguments:  - basket object of Freesound collection (stem)
-                - basket with no stem (for omit_tag)
                 - ontology from ASO json file (list of dict)
     """
-    Bar = manager.ProgressBar(len(basket_stem), 30, 'Linking...')
+    Bar = manager.ProgressBar(len(basket), 30, 'Linking...')
     Bar.update(0)
-    for idx, sound in enumerate(basket_stem.sounds):
+    for idx, sound in enumerate(basket.sounds):
         Bar.update(idx+1)
         sound.aso_labels = []
         sound.aso_ids = []
@@ -40,20 +39,19 @@ def auto_label(basket_stem, basket, ontology):
             is_from_category = False
             for t in category["fs_tags"]:
                 if isinstance(t, unicode):
-                    if t in sound.tags:
+                    if t in sound.tags_stem:
                         is_from_category = True
                 elif isinstance(t, list):
-                    if set(t).issubset(set(sound.tags)):
+                    if set(t).issubset(set(sound.tags_stem)):
                         is_from_category = True
             if 'omit_fs_tags' in category.keys():
                 for t in category['omit_fs_tags']:
-                    sound_no_stem = basket.sounds[idx]
-                    if t in sound_no_stem.tags:
+                    if t in sound.tags:
                         is_from_category = False
             if is_from_category:
                 sound.aso_labels.append(category["name"])
                 sound.aso_ids.append(category["id"])
-    return basket_stem
+    return basket
 
 def calculate_occurrences_aso_categories(basket, ontology):
     """
@@ -172,9 +170,9 @@ def get_list_FS_tags_in_ASO(ontology):
     tags = []
     for t in pre_tags:
         if isinstance(t, unicode):
-            tag.append(t)
+            tags.append(t)
         elif isinstance(t, list):
-            tag += t
+            tags += t
     tags = list(set(tags))
     return tags
 
@@ -308,12 +306,12 @@ if __name__ == '__main__':
     b = c.load_basket_pickle('freesound_db_160317.pkl')
     ontology = json.load(open('ontology_1703_to_improve.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
-    b_stem = copy.deepcopy(b)
-    b_stem.text_preprocessing() # stem and lower case for tags in freesound basket
+    b.tags_lower()
+    b.text_preprocessing() # stem and lower case for tags in freesound basket
     ontology_stem = preproc_ontology(ontology)
-    b_stem = auto_label(b_stem, b, ontology_stem)
+    b = auto_label(b, ontology_stem)
     parents_dict = get_parents_dict(ontology)
-    b_pupulated = populate_aso_class(ontology, parents_dict, b_stem) 
+    b_pupulated = populate_aso_class(ontology, parents_dict, b) 
     aso_category_occurrences = calculate_occurrences_aso_categories(b_pupulated, ontology)
     sorted_occurrences_labels(aso_category_occurrences, b_pupulated)
     

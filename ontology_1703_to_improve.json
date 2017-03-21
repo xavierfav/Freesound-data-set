@@ -37,7 +37,7 @@
     "positive_examples": ["youtu.be/6niRPYpLOpQ?start=30&end=40", "youtu.be/fPgUDHwQOmM?start=320&end=330", "youtu.be/g3YNJ3ESIW0?start=30&end=40", "youtu.be/Dys9DJoFnGA?start=30&end=40", "youtu.be/3PESOesDniw?start=30&end=40", "youtu.be/E8RfeFAzHK4?start=30&end=40", "youtu.be/A_WSbkJozPs?start=90&end=100", "youtu.be/-yZuFZRojYA?start=30&end=40", "youtu.be/ECOK21oFttk?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"]]
+    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"], "male-voice"]
   },
   {
     "id": "/m/02zsn",
@@ -47,7 +47,7 @@
     "positive_examples": ["youtu.be/4l05nCOnIRg?start=30&end=40", "youtu.be/5zyOhZsvIzI?start=30&end=40", "youtu.be/q0wv9AOl4r0?start=100&end=110", "youtu.be/AyPqm-tm2y4?start=30&end=40", "youtu.be/1xXqIpjxYG4?start=30&end=40", "youtu.be/xYPZJkfiyjk?start=90&end=100", "youtu.be/46lVxNflfDw?start=30&end=40", "youtu.be/8OpLsWMn6P0?start=30&end=40", "youtu.be/WLi5_z61zCE?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"]]
+    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"], "female-voice"]
   },
   {
     "id": "/m/0ytgt",
@@ -627,7 +627,7 @@
     "positive_examples": ["youtu.be/EBnrA85wsc4?start=530&end=540", "youtu.be/EkCIh67xI_w?start=30&end=40", "youtu.be/fCQMflXjGU8?start=460&end=470", "youtu.be/A7MnWIjUVw8?start=40&end=50", "youtu.be/q2m5ChTEe4k?start=450&end=460", "youtu.be/mE092i7zPqY?start=19&end=29", "youtu.be/G3it26Z8E8U?start=30&end=40", "youtu.be/5xAEW3g6en8?start=100&end=110", "youtu.be/9lKmiUIJfGc?start=280&end=290"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["chewing", "human"], ["mastication", "human"], ["chewing", "man"], ["mastication", "man"], ["chewing", "men"], ["mastication", "men"], ["chewing", "woman"], ["mastication", "woman"], ["chewing", "male"], ["mastication", "male"], ["chewing", "female"], ["mastication", "female"]]
+    "fs_tags": [["chewing", "human"], ["mastication", "human"], ["chewing", "man"], ["mastication", "man"], ["chewing", "men"], ["mastication", "men"], ["chewing", "woman"], ["mastication", "woman"], ["chewing", "male"], ["mastication", "male"], ["chewing", "female"], ["mastication", "female"], "eat"]
   },
   {
     "id": "/m/07pdhp0",
@@ -1185,7 +1185,8 @@
     "positive_examples": ["youtu.be/jmcpNukZnxA?start=400&end=410", "youtu.be/ky48d3dPjuE?start=20&end=30", "youtu.be/LFscB8kM8Rg?start=22&end=32", "youtu.be/Jur2s-PBjrw?start=26&end=36", "youtu.be/AAsnk4u8lWk?start=60&end=70", "youtu.be/dzNfwINix_I?start=20&end=30", "youtu.be/8mgRjPyCf1E?start=180&end=190", "youtu.be/AfIilScU_Vg?start=10&end=20", "youtu.be/Mb5le4wgNw4?start=27&end=37"],
     "child_ids": ["/m/07st89h", "/m/07qn5dc"],
     "restrictions": [],
-    "fs_tags": ["chicken","rooster","hen","cock","cockerel"]
+    "fs_tags": ["chicken","rooster","hen","cock","cockerel"],
+    "omit_fs_tags": ["shot","pistol","gun"]
   },
   {
     "id": "/m/07st89h",
@@ -1205,7 +1206,8 @@
     "positive_examples": ["youtu.be/iYv9pCf8EGg?start=210&end=220", "youtu.be/onu5WVubMBc?start=170&end=180", "youtu.be/RXo_RIfsF5w?start=220&end=230", "youtu.be/aQZoGTQPAss?start=30&end=40", "youtu.be/U9zltf0ENc0?start=30&end=40", "youtu.be/a_Lz2H2hwuE?start=1&end=11", "youtu.be/dX-hbl17gPA?start=5&end=15", "youtu.be/EMVnxrYkzoM?start=13&end=23", "youtu.be/Q7d8Cpmd-Iw?start=25&end=35", "youtu.be/HdgmT8_o5zQ?start=60&end=70"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["crowing","cock-a-doodle-doo","cocorico","cocoricosound","quiquiriqu","review"]
+    "fs_tags": ["crowing","cock-a-doodle-doo","cocorico","cocoricosound","quiquiriqu","review"],
+    "omit_fs_tags": ["raven","caw","birdsong","forest","bird-call"]
   },
   {
     "id": "/m/01rd7k",
@@ -1215,7 +1217,8 @@
     "positive_examples": ["youtu.be/g13AFjJIpMU?start=19&end=29", "youtu.be/V1F-0D3G0wc?start=220&end=230", "youtu.be/r2zp3mOVp0g?start=30&end=40", "youtu.be/XZzicSdJnIE?start=10&end=20", "youtu.be/JjGjX6lI-V8?start=230&end=240"],
     "child_ids": ["/m/07svc2k"],
     "restrictions": [],
-    "fs_tags": ["turkey","review",["turkey","fowl"], ["turkey","animal"]]
+    "fs_tags": ["turkey",["turkey","fowl"], ["turkey","animal"]],
+    "omit_fs_tags": ["istanbul","music","makam","turkish","islam","compmusic","izmir","kanun","mosque","prayer","muslim","turkish-makam"]
   },
   {
     "id": "/m/07svc2k",
@@ -1275,7 +1278,7 @@
     "positive_examples": ["youtu.be/89IuqwavDU8?start=10&end=20", "youtu.be/8R6H_3neiL8?start=20&end=30", "youtu.be/kQ0eoHaF9X8?start=60&end=70", "youtu.be/bSusH6RqC64?start=360&end=370", "youtu.be/Ku1l5EnaZAQ?start=170&end=180", "youtu.be/UKZrOQfUlIM?start=30&end=40", "youtu.be/JZuwem3Y9Rc?start=250&end=260", "youtu.be/hxnKQk51cMg?start=70&end=80"],
     "child_ids": ["/m/0cdnk", "/m/015p6", "/m/01z5f", "/m/06hps", "/m/03vt0", "/m/09ld4", "/m/078jl", "/m/032n05"],
     "restrictions": [],
-    "fs_tags": [["wild","animals"],"review"]
+    "fs_tags": [["wild","animals"]]
   },
   {
     "id": "/m/0cdnk",
@@ -1295,7 +1298,8 @@
     "positive_examples": ["youtu.be/V_K53wcR_hc?start=200&end=210", "youtu.be/IFQGJ_jeTMQ?start=370&end=380", "youtu.be/JbPNmYKs7P0?start=38&end=48"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["roar","review",["roar","animal"],["roar","dragon"],["roar","vocalization"]]
+    "fs_tags": ["roar",["roar","animal"],["roar","dragon"],["roar","vocalization"]],
+    "omit_fs_tags": ["monster","horror","zombie","creature"]
   },
   {
     "id": "/m/015p6",
@@ -1325,7 +1329,8 @@
     "positive_examples": ["youtu.be/TSGfF4opE18?start=120&end=130", "youtu.be/DAmwRR8EWlc?start=380&end=390", "youtu.be/YWipp1KTXa8?start=480&end=490", "youtu.be/f6tGN34_izc?start=90&end=100", "youtu.be/QS8t1QDrxfo?start=130&end=140", "youtu.be/AbQBlpdjdu0?start=40&end=50", "youtu.be/sqghcdp_C8I?start=110&end=120", "youtu.be/Eh44C8ocwdM?start=550&end=560", "youtu.be/_JkYH257o2c?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["chirp","bird"],"tweet",["chirping","bird"],"review"]
+    "fs_tags": [["chirp","bird"],"tweet",["chirping","bird"],"review"],
+    "omit_fs_tags": ["cricket"]
   },
   {
     "id": "/m/07sx8x_",
@@ -1335,7 +1340,7 @@
     "positive_examples": ["youtu.be/RtxzI2FngL4?start=20&end=30", "youtu.be/9EqiEH9fgwc?start=270&end=280", "youtu.be/apb5dycPX-0?start=7&end=17", "youtu.be/KaL17J_SMzo?start=400&end=410", "youtu.be/pw6ZPTpn0bE?start=580&end=590"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["squawk","bird"],"review"]
+    "fs_tags": [["squawk","bird"],["squawk","birdcall"],"review"]
   },
   {
     "id": "/m/0h0rv",
@@ -1505,7 +1510,8 @@
     "positive_examples": ["youtu.be/OAuVRzogngc?start=340&end=350", "youtu.be/6UOObVAQS_M?start=30&end=40", "youtu.be/41G_oW9IQrk?start=20&end=30", "youtu.be/kiMG-hDyOPk?start=120&end=130", "youtu.be/U24BkLFGDtg?start=490&end=500"],
     "child_ids": ["/m/07pjwq1"],
     "restrictions": [],
-    "fs_tags": ["fly","housefly","flies","diptera","review"]
+    "fs_tags": ["fly","housefly","flies","diptera","review"],
+    "omit_fs_tags": ["flight","airplane","aircraft","jet", "helicopter","engine","aeroplane","plane","airplanes"]
   },
   {
     "id": "/m/07pjwq1",
@@ -1565,7 +1571,8 @@
     "positive_examples": ["youtu.be/cmNsnLQSFjw?start=4&end=14", "youtu.be/TSrlEhhOF5U?start=20&end=30", "youtu.be/8lhdsS_xrvg?start=30&end=40", "youtu.be/f5pPVPk_MY4?start=160&end=170", "youtu.be/uCpEA5JND_c?start=80&end=90"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["rattle","rattling","review"]
+    "fs_tags": ["rattle","rattling","review"],
+    "comments_EF": ["it is very broad, as is the definition. dont know how to narrow down"]
   },
   {
     "id": "/m/032n05",
@@ -1938,7 +1945,11 @@
     "positive_examples": ["youtu.be/umIND3KZyqs?start=70&end=80", "youtu.be/h1L06porcL0?start=220&end=230", "youtu.be/khRBhDUyLb0?start=360&end=370", "youtu.be/ts76TqD6eiQ?start=30&end=40", "youtu.be/k36gVPLVPU4?start=50&end=60", "youtu.be/vYoHjD5slzg?start=80&end=90", "youtu.be/yTgBSKCZ1ag?start=240&end=250", "youtu.be/fokECmrANcs?start=310&end=320", "youtu.be/cBJGUfPyGcw?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
+<<<<<<< HEAD
     "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum",["hard","kick"]],
+=======
+    "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum"]
+>>>>>>> 722a6a06a27ae66e83b681013e722d483170a3af
   },
   {
     "id": "/m/011k_j",
@@ -3519,7 +3530,7 @@
     "positive_examples": ["youtu.be/JRyhdsQwFXM?start=110&end=120", "_youtu.be/-PJrbyYLtS4?start=330&end=340", "youtu.be/dOU3KOnQM2Q?start=200&end=210", "youtu.be/48HQ_eeoygY?start=10&end=20", "youtu.be/HfaFm2c4a78?start=40&end=50", "youtu.be/aqAvJgN6GOE?start=220&end=230", "youtu.be/aN-oXqXdsVM?start=100&end=110", "youtu.be/cpFdPrI-8EQ?start=120&end=130", "youtu.be/U-WqWv0pXwI?start=20&end=30", "youtu.be/urfP_4xhJCE?start=90&end=100"],
     "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
     "restrictions": [],
-    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"],
+    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze", "tornado"],
     "comments_XF": "Precision problem. Got wind instrument for example"
   },
   {
@@ -3781,7 +3792,7 @@
     "positive_examples": ["youtu.be/tMPg88c5ciQ?start=160&end=170", "youtu.be/-znLAiE_r_w?start=30&end=40", "youtu.be/2R2qwpgb0Dw?start=30&end=40", "youtu.be/ko91_sThwdo?start=290&end=300", "youtu.be/u8rFWqmbx18?start=240&end=250", "youtu.be/g6o47ksKlpQ?start=70&end=80", "youtu.be/gKKzQNZiymI?start=130&end=140", "youtu.be/f1yc8bkg0sc?start=10&end=20", "youtu.be/B1vvkDwpgLQ?start=30&end=40"],
     "child_ids": ["/m/0k4j", "/m/07r04", "/m/01bjv", "/m/03j1ly", "/m/04_sv", "/m/0btp2"],
     "restrictions": [],
-    "fs_tags": [["motor", "road"], ["motor", "transport"], ["motor", "vehicle"], ["engine", "transport"]]
+    "fs_tags": [["motor", "road"], ["motor", "transport"], ["motor", "vehicle"], ["engine", "transport"], "auto"]
   },
   {
     "id": "/m/0k4j",
@@ -3801,7 +3812,7 @@
     "positive_examples": ["youtu.be/tlyFVJ7P-po?start=23&end=33", "youtu.be/_waM2-2QnK8?start=30&end=40", "youtu.be/-aYumc8KoXg?start=60&end=70"],
     "child_ids": ["/m/07qv_d5"],
     "restrictions": [],
-    "fs_tags": [["horn","vehicle"], ["horn","car"], ["horn","transport"], ["honk","transport"], ["honk","vehicle"], ["honk","car"], ["horn", "automobile"], ["honk", "automobile"]]
+    "fs_tags": [["horn","vehicle"], ["horn","car"], ["horn","transport"], ["honk","transport"], ["honk","vehicle"], ["honk","car"], ["horn", "automobile"], ["honk", "automobile"], "car-horn"]
   },
   {
     "id": "/m/07qv_d5",
@@ -4121,7 +4132,7 @@
     "positive_examples": ["youtu.be/Gv7ZFYKFmqg?start=130&end=140", "youtu.be/8voZhq4ZUdw?start=60&end=70", "youtu.be/Ie2KkAvU1zU?start=130&end=140", "youtu.be/8vIButnIMp4?start=30&end=40", "youtu.be/ghcZErZzTPI?start=10&end=20", "youtu.be/t6-3INu2258?start=90&end=100", "youtu.be/j9N_Q9EXFP0?start=23&end=33", "youtu.be/XGammZXc2Eo?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["airplane", "review"]
+    "fs_tags": ["airplane", "aviation"]
   },
   {
     "id": "/t/dd00061",
@@ -4131,7 +4142,7 @@
     "positive_examples": ["youtu.be/Dv-Ey9Na0C8?start=4&end=14"],
     "child_ids": ["/m/0199g", "/m/06_fw"],
     "restrictions": [],
-    "fs_tags": ["review"]
+    "fs_tags": []
   },
   {
     "id": "/m/0199g",
@@ -4151,7 +4162,8 @@
     "positive_examples": ["youtu.be/ja4EA1MiDs8?start=130&end=140", "youtu.be/4mLv61JADOQ?start=40&end=50", "youtu.be/kwQQSiYG1lk?start=70&end=80", "youtu.be/eKFbKpSfddE?start=25&end=35", "youtu.be/7awbfTNKjWc?start=30&end=40", "youtu.be/IGBRNQ9-9r0?start=250&end=260", "youtu.be/APYR7TeoGCQ?start=30&end=40", "youtu.be/yRzTXFjC-Hw?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["skateboard", "skate-board"]
+    "fs_tags": ["skateboard", "skate-board", "skate"],
+    "omit_fs_tags": ["loop", "ice"]
   },
   {
     "id": "/m/02mk9",
@@ -4271,7 +4283,8 @@
     "positive_examples": [],
     "child_ids": ["/m/02dgv", "/m/0642b4", "/m/0fqfqc", "/m/04brg2", "/m/023pjk", "/m/07pn_8q", "/m/0dxrf", "/m/0fx9l", "/m/02pjr4", "/g/11b630rrvh", "/m/02jz0l", "/m/0130jx", "/m/03dnzn", "/m/03wvsk", "/m/01jt3m", "/m/012xff", "/m/0d31p", "/m/01s0vc", "/m/0zmy2j9", "/m/03v3yw", "/m/0242l", "/m/05mxj0q", "/m/01lsmm", "/m/02g901", "/m/05rj2", "/m/0316dw", "/m/081rb"],
     "restrictions": ["blacklist"],
-    "fs_tags": ["domestic", "home", "house"]
+    "fs_tags": ["domestic", "home", "house"],
+    "omit_fs_tags": ["music","loop","electronic","techno","dance","drum","electro","trance","club","synth","rave","beat","acid","bpm","synthesized","kick","minimal"]
   },
   {
     "id": "/m/02dgv",
@@ -4281,7 +4294,7 @@
     "positive_examples": ["youtu.be/yM25TgQQ6Ug?start=30&end=40", "youtu.be/XPZnacpWtGI?start=100&end=110", "youtu.be/OcDE75D-O9k?start=230&end=240", "youtu.be/HMp3VHakVKw?start=30&end=40", "youtu.be/kKhnHNY2eqs?start=18&end=28", "youtu.be/8nPjSFqIIoo?start=200&end=210", "youtu.be/nzPQjQppcjc?start=30&end=40"],
     "child_ids": ["/m/03wwcy", "/m/02y_763", "/m/07rjzl8", "/m/07r4wb8", "/m/07qcpgn", "/m/07q6cd_"],
     "restrictions": [],
-    "fs_tags": ["door"]
+    "fs_tags": ["door", "closing-door"]
   },
   {
     "id": "/m/03wwcy",
@@ -4341,7 +4354,9 @@
     "positive_examples": ["youtu.be/DOG1JX-hIC8?start=30&end=40", "youtu.be/EcMb6OIRnWQ?start=30&end=40", "youtu.be/-WwGFIPH6us?start=30&end=40", "youtu.be/lII65O5C_H0?start=400&end=410", "youtu.be/ch4_bbDOKMc?start=30&end=40", "youtu.be/CbeZxCPsS2w?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["tap","tapping","review",["tap", "container"],["tap", "can"],["tap", "door"],["tap", "surface"]]
+    "fs_tags": ["tap","tapping","review"],
+    "omit_fs_tags": ["water","drip","sink","faucet","drop","bathroom","drain","bath","dripping","liquid"],
+    "comments_EF": ["difficult to narrow down. will probably be noisy"]
   },
   {
     "id": "/m/07q6cd_",
@@ -4351,7 +4366,7 @@
     "positive_examples": ["youtu.be/sS9j4nxxw4c?start=30&end=40", "youtu.be/4YPpyKEKZzc?start=350&end=360", "youtu.be/z_iUAQCVLwo?start=130&end=140", "youtu.be/l9kNnBvzQyE?start=170&end=180", "youtu.be/7v51jrS0aWw?start=80&end=90", "youtu.be/VKhsmuzuwSA?start=460&end=470", "youtu.be/-2XJTklj-Y0?start=30&end=40", "youtu.be/0K8CacUc7bc?start=260&end=270", "youtu.be/UD0pisqyLKA?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["squeak", "door"],"review"]
+    "fs_tags": [["squeak", "door"]]
   },
   {
     "id": "/m/0642b4",
@@ -4401,7 +4416,8 @@
     "positive_examples": ["youtu.be/_BETXRVC4bs?start=30&end=40", "youtu.be/AGjDiJ4mfYY?start=25&end=35", "youtu.be/EtvVawYx2pc?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["chopping", "review",["cutting","kitchen"],["cutting","food"],["cutting","vegetables"],["slice","vegetables"],["slice","food"],["slice","kitchen"]]
+    "fs_tags": ["chopping", "review",["cutting","kitchen"],["cutting","food"],["cutting","vegetables"],["slice","vegetables"],["slice","food"],["slice","kitchen"]],
+    "omit_fs_tags": ["wood","jungle","music","bathroom","sampler","speech","loop","vocals","singing","chainsaw","cosntruction","acoustic"]
   },
   {
     "id": "/m/0dxrf",
@@ -4471,7 +4487,8 @@
     "positive_examples": ["youtu.be/J3YxLTjCXt8?start=60&end=70", "youtu.be/9uSqapjvYrg?start=420&end=430", "youtu.be/NrqUBYJB1_w?start=100&end=110", "youtu.be/i8TgI5kv5AE?start=240&end=250"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["Bathtub","bath","shower","drain","tub","review"]
+    "fs_tags": ["Bathtub","bath","shower","drain","tub","review"],
+    "omit_fs_tags": ["vomit","rain","storm","swimming","fridge","cutlery","curtains","spaceship","cellophane"]
   },
   {
     "id": "/m/03wvsk",
@@ -4521,7 +4538,8 @@
     "positive_examples": ["youtu.be/zPyYpAWVarc?start=150&end=160", "youtu.be/zmIwBvOXJXQ?start=130&end=140", "youtu.be/CgtYVinJPa8?start=290&end=300", "youtu.be/Qyolp0Qf9Nc?start=140&end=150", "youtu.be/cP-OvBQ5RmA?start=30&end=40", "youtu.be/QVZKgL4EORQ?start=220&end=230", "youtu.be/7HXiTVCIiQM?start=180&end=190"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["vacuum","review","hoover"]
+    "fs_tags": ["vacuum","review","hoover"],
+    "omit_fs_tags": ["music","beat","bottle","improvised"]
   },
   {
     "id": "/m/01s0vc",
@@ -4641,7 +4659,8 @@
     "positive_examples": ["youtu.be/JO3nmsEXrro?start=340&end=350", "youtu.be/Y8uYhcPssuE?start=80&end=90", "youtu.be/74Vqth_HvqU?start=130&end=140", "youtu.be/HIfhUyU9W20?start=80&end=90", "youtu.be/drtbr0LpLDI?start=22&end=32", "youtu.be/-YKVzemh9RQ?start=30&end=40", "youtu.be/eD-ANIqSWzU?start=90&end=100"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["Writing","write","drawing","review"]
+    "fs_tags": ["Writing","write","drawing","review"],
+    "omit_fs_tags": ["sword","fight","battle","button","laptop","keyboard","knife"]
   },
   {
     "id": "/m/07pp_mv",
@@ -4961,7 +4980,8 @@
     "positive_examples": ["youtu.be/6EvqESUDuh4?start=150&end=160", "youtu.be/--hYWyUh_BY?start=30&end=40", "youtu.be/GJhuBSoQeRg?start=170&end=180", "youtu.be/gnytgNTz4Tw?start=460&end=470", "youtu.be/YpjgUzOBWSM?start=420&end=430", "youtu.be/WpeT6stfbac?start=40&end=50", "youtu.be/itFDsYrpdQ4?start=80&end=90", "youtu.be/5I8lmN8rwDM?start=540&end=550", "youtu.be/bE2hGIuk3nE?start=20&end=30"],
     "child_ids": ["/m/03l9g", "/m/03p19w", "/m/01b82r", "/m/02p01q", "/m/023vsd", "/m/0_ksk"],
     "restrictions": [],
-    "fs_tags": ["Tools","review"]
+    "fs_tags": ["Tools","review"],
+    "omit_fs_tags": ["loop"]
 
   },
   {
@@ -5002,7 +5022,8 @@
     "positive_examples": ["youtu.be/WvLRozv0VO8?start=480&end=490", "youtu.be/xobSVmWsS3M?start=230&end=240", "youtu.be/bmlAZ217IeQ?start=390&end=400", "youtu.be/QsuVk4wgxVA?start=210&end=220", "youtu.be/1lkHxuNt0ys?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["filing","rasp","filing-cabinet","review"]
+    "fs_tags": ["filing","rasp","filing-cabinet","review"],
+    "omit_fs_tags": ["glitch","computer","digital","audacity","crematory","fruityloops","death","open"]
   },
   {
     "id": "/m/023vsd",
@@ -5012,7 +5033,9 @@
     "positive_examples": ["youtu.be/5f2ygkdBhXQ?start=180&end=190", "youtu.be/gq3mrdhrUco?start=370&end=380", "youtu.be/6KPXNKlaAo8?start=60&end=70", "youtu.be/6SjftAv04VM?start=440&end=450", "youtu.be/l4raHxFuVIU?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["Sanding","sander","sandpaper","review"]
+    "fs_tags": ["Sanding","sander","sandpaper","review"],
+    "omit_fs_tags": ["walking","footstep","beach","footsteps","water","sea","ocean","surf","coast","shore","seaside","splash","waves","music","singing","gravel","birds"],
+    "comments_EF": ["difficult to narrow down. will probably be noisy"]
   },
   {
     "id": "/m/0_ksk",
@@ -5022,7 +5045,8 @@
     "positive_examples": ["youtu.be/xcqLleK10js?start=50&end=60", "youtu.be/awcVolHHBHA?start=100&end=110", "youtu.be/AVst_gI8r0Y?start=130&end=140", "youtu.be/c7WBUf2Rslg?start=300&end=310", "youtu.be/iXJ6cCkogvA?start=130&end=140", "youtu.be/w7Ar6TrvBiE?start=460&end=470", "youtu.be/ggP0GzUehZ8?start=100&end=110", "youtu.be/pPbaKEYpP-4?start=60&end=70", "youtu.be/oQA78VCxa2U?start=60&end=70"],
     "child_ids": ["/m/01d380"],
     "restrictions": [],
-    "fs_tags": [["Power","tool"]]
+    "fs_tags": [["Power","tool"]],
+    "comments_EF": ["difficult to expand. few results. consider adding industrial, machine, motor, engine"]
   },
   {
     "id": "/m/01d380",
@@ -5052,7 +5076,8 @@
     "positive_examples": ["youtu.be/--PG66A3lo4?start=80&end=90", "youtu.be/PKEhOxE-Ovs?start=130&end=140", "youtu.be/c9030y4sJo0?start=140&end=150", "youtu.be/6slrju_ar9U?start=290&end=300", "youtu.be/K1cnDXbkPu0?start=170&end=180", "youtu.be/AjIQf3HK_Vc?start=130&end=140", "youtu.be/klCJfirqUF8?start=30&end=40", "youtu.be/Ma65O2T_hN0?start=10&end=20", "youtu.be/-Ho5tDtuah0?start=50&end=60"],
     "child_ids": ["/m/04zjc", "/m/02z32qm", "/m/0_1c", "/m/073cg4"],
     "restrictions": [],
-    "fs_tags": ["gunshot", ["gun","shot"], "firearm", "gunfire", ["gun", "fire"], ["gun", "shoot"], ["pistol", "fire"], ["pistol", "shot"], "gun-shot", "review"]
+    "fs_tags": ["gunshot", ["gun","shot"], "firearm", "gunfire", ["gun", "fire"], ["gun", "shoot"], ["pistol", "fire"], ["pistol", "shot"], "gun-shot", "shotgun", "handgun", "review"],
+    "comments_XF": "where are the sounds of reloading guns??"
   },
   {
     "id": "/m/04zjc",
@@ -5162,7 +5187,9 @@
     "positive_examples": ["youtu.be/6uw4VuJaiyU?start=200&end=210", "youtu.be/0xiCiydk7Z8?start=50&end=60", "youtu.be/ZiWvhIbB7JU?start=110&end=120", "youtu.be/Hy2zg9K4iWw?start=230&end=240", "youtu.be/Dc7Uago6dTo?start=120&end=130", "youtu.be/DPpeWsDmMqM?start=430&end=440"],
     "child_ids": ["/m/07pczhz", "/m/07pl1bw", "/m/07qs1cx", "/m/07pc8l3"],
     "restrictions": [],
-    "fs_tags": ["wood","wooden","review"]
+    "fs_tags": ["wood","wooden","review"],
+    "omit_fs_tags": ["water","birds","loop","footsteps","beat"],
+    "comments_EF": ["difficult to narrow down. will probably be noisy"]
   },
   {
     "id": "/m/07pczhz",
@@ -6049,7 +6076,7 @@
     "positive_examples": ["youtu.be/TWnrcjA6VTk?start=60&end=70"],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["harmonic"]
+    "fs_tags": ["harmonic", "harmonic-sound", "shepard-tone"]
   },
   {
     "id": "/m/0hdsk",
@@ -6059,7 +6086,7 @@
     "positive_examples": ["youtu.be/-kE7IL6pnKU?start=20&end=30"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["chirp"]
+    "fs_tags": ["chirp", "shepard-tone"]
   },
   {
     "id": "/m/0c1dj",
@@ -6169,7 +6196,7 @@
     "positive_examples": ["youtu.be/BzVGMdWM27I?start=400&end=410", "youtu.be/n878F0QbyYk?start=90&end=100", "youtu.be/Buf__Z-1cfQ?start=120&end=130", "youtu.be/fdR79DRDZKA?start=30&end=40", "youtu.be/H7V96qPFZ3g?start=40&end=50", "youtu.be/rhtw3CBDw3I?start=10&end=20", "youtu.be/LmsnecVb_GU?start=330&end=340"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["urban", "city"]
+    "fs_tags": ["urban", "city", "street-sound"]
   },
   {
     "id": "/t/dd00129",
