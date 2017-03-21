@@ -2174,7 +2174,7 @@
     "restrictions": ["blacklist"],
     "fs_tags": ["cornet","review"],
     "comments_JP": "Possibly merge with Bugle. Very noisy mapping. Remove?",
-    "less_priority2user": ["BalancedEnergy10"],
+    "less_priority2user": ["BalancedEnergy10"]
   },
   {
     "id": "/m/0y64j",
