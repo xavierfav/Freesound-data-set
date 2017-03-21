@@ -4,7 +4,8 @@ from nltk.stem.porter import PorterStemmer
 import copy
 import webbrowser
 import random
-
+import matplotlib.pyplot as plt
+import numpy as np
 
 # stem and lower case of fs tags in Audio Set Ontology:
 def preproc_ontology(ontology):
@@ -159,6 +160,16 @@ def plot_histogram_nb_of_labels_sounds(basket):
         hist_labels.append(len(s.aso_labels))
     plt.hist(hist_labels, bins=np.arange(np.array(hist_labels).min(), np.array(hist_labels).max()))
     plt.title('Histogram number of ASO labels in Freesound sounds')
+    plt.xlabel("Value")
+    plt.ylabel("Frequency")
+    plt.show()
+    
+def plot_histogram_length_sounds(basket):
+    hist_len = []
+    for s in basket.sounds:
+        hist_len.append(s.duration)
+    plt.hist(hist_len, bins=np.arange(np.array(hist_len).min(), np.array(hist_len).max()), cumulative=True, normed=1.)
+    plt.title('Histogram length sounds')
     plt.xlabel("Value")
     plt.ylabel("Frequency")
     plt.show()
