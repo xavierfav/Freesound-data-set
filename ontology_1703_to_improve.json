@@ -47,7 +47,7 @@
     "positive_examples": ["youtu.be/4l05nCOnIRg?start=30&end=40", "youtu.be/5zyOhZsvIzI?start=30&end=40", "youtu.be/q0wv9AOl4r0?start=100&end=110", "youtu.be/AyPqm-tm2y4?start=30&end=40", "youtu.be/1xXqIpjxYG4?start=30&end=40", "youtu.be/xYPZJkfiyjk?start=90&end=100", "youtu.be/46lVxNflfDw?start=30&end=40", "youtu.be/8OpLsWMn6P0?start=30&end=40", "youtu.be/WLi5_z61zCE?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"], "female-voice"]
+    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"], "female-voice", "speech-female"]
   },
   {
     "id": "/m/0ytgt",
@@ -57,7 +57,7 @@
     "positive_examples": ["youtu.be/iPIGoScYduI?start=210&end=220", "youtu.be/DiJgMH7vg1E?start=30&end=40", "youtu.be/yy0LZBmZRvE?start=60&end=70", "youtu.be/arz0xujSWdY?start=230&end=240", "youtu.be/-oC3FVOx62g?start=210&end=220", "youtu.be/5-R8zaohZrU?start=10&end=20", "youtu.be/OXJ77G_TqDc?start=40&end=50", "youtu.be/koW60o-aLjI?start=470&end=480", "youtu.be/uBVLhywbCQk?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["child", "speak"], ["child", "speech"], ["child","talk"], ["kid", "speak"], ["kid", "speech"], ["kid","talk"]]
+    "fs_tags": [["child", "speak"], ["child", "speech"], ["child","talk"], ["kid", "speak"], ["kid", "speech"], ["kid","talk"], ["boy", "speak"], ["boy", "speech"], ["boy","talk"]]
   },
   {
     "id": "/m/01h8n0",
@@ -1644,7 +1644,7 @@
     "positive_examples": ["youtu.be/p4Wapz6rZWc?start=120&end=130", "youtu.be/f1yunD_7XFI?start=50&end=60", "youtu.be/3YtCNw7vY3A?start=10&end=20", "youtu.be/08uDXandwEQ?start=60&end=70", "youtu.be/9bQeCu-hYfE?start=40&end=50", "youtu.be/8tV2X-AvdY8?start=50&end=60", "youtu.be/XFQzDpqzkT4?start=80&end=90"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["bass", "guitar"],"bass","review"],
+    "fs_tags": [["bass", "guitar"],"bass", "bass-guitar", "review"],
     "omit_fs_tags": ["drum"],
     "comments_JP": "Noisy class."
 
@@ -1657,7 +1657,7 @@
     "positive_examples": ["youtu.be/0_MLIPfb84s?start=30&end=40", "youtu.be/-37uZp3L3vw?start=30&end=40", "youtu.be/zeAO1j2LStk?start=10&end=20", "youtu.be/-SOoc9Rr39Y?start=12&end=22", "youtu.be/-DPoX0GdToU?start=130&end=140", "youtu.be/GDfQPFcG74k?start=150&end=160", "youtu.be/4gZkMShMpmc?start=30&end=40", "youtu.be/OSSa7XnAxkk?start=460&end=470", "youtu.be/mPEQ9bBWUYE?start=210&end=220", "youtu.be/ygonIq0Qatk?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["acoustic", "guitar", "nylon"],["acoustic-guitar"],["acoustic", "guitar"],["acoustic-guitar","nylon"],"spanish-guitar"]
+    "fs_tags": [["acoustic", "guitar", "nylon"],["acoustic-guitar"],["acoustic", "guitar"],["acoustic-guitar","nylon"],"spanish-guitar", "nylon-string"]
   },
   {
     "id": "/m/06w87",
@@ -1767,7 +1767,7 @@
     "positive_examples": ["youtu.be/skeFawZe__U?start=30&end=40", "youtu.be/m484xjK104Y?start=20&end=30", "youtu.be/ExBXCryXOak?start=80&end=90", "youtu.be/-DDiBs4JIxc?start=140&end=150", "youtu.be/-YATTKBtmRA?start=190&end=200"],
     "child_ids": ["/m/025cbm", "/m/0bxl5"],
     "restrictions": [],
-    "fs_tags": [["electric","piano"],["Epiano"]]
+    "fs_tags": [["electric","piano"], "Epiano", "electric-piano"]
   },
   {
     "id": "/m/025cbm",
@@ -1797,7 +1797,7 @@
     "positive_examples": ["youtu.be/ddoz52PLnnM?start=480&end=490", "youtu.be/-JXGBn-QDFY?start=60&end=70", "youtu.be/BBfp97N31ag?start=30&end=40", "youtu.be/tkPPIT_n4NQ?start=60&end=70", "youtu.be/XW2nILE5__g?start=80&end=90", "youtu.be/Kvpav8cFKhM?start=100&end=110", "youtu.be/VGwNAk50fcQ?start=50&end=60"],
     "child_ids": ["/m/03xq_f", "/m/03gvt"],
     "restrictions": [],
-    "fs_tags": ["organ","review"],
+    "fs_tags": ["organ", "church-organ", "review"],
     "omit_fs_tags": ["organic"],
     "comments_JP": "Noisy class."
   },
@@ -1873,7 +1873,7 @@
     "positive_examples": ["youtu.be/cEvgKicGrNs?start=30&end=40", "youtu.be/OK5Ev_1OcbU?start=220&end=230", "youtu.be/LszgixYT18E?start=30&end=40", "youtu.be/3yMo8i-ws7o?start=30&end=40", "youtu.be/dxPcrVYlaX8?start=30&end=40", "youtu.be/HFVIKa0XcPg?start=30&end=40", "youtu.be/x22NHqwKSNE?start=90&end=100"],
     "child_ids": ["/m/02hnl", "/m/026t6", "/m/01qbl", "/m/0239kh", "/m/01sm1g", "/m/07brj", "/m/05r5wn", "/m/0mbct", "/m/016622", "/m/0j45pbj"],
     "restrictions": [],
-    "fs_tags": ["percussion"]
+    "fs_tags": ["percussion", "indian-percussion"]
   },
   {
     "id": "/m/02hnl",
@@ -1883,7 +1883,7 @@
     "positive_examples": ["youtu.be/-VqHJfjcNl8?start=70&end=80", "youtu.be/-kgUDrfLbKw?start=10&end=20", "youtu.be/a7N-Oa4NKKI?start=30&end=40", "youtu.be/BuHnSV6592c?start=30&end=40", "youtu.be/klUmhkMVtN8?start=70&end=80", "youtu.be/hcjHzFKgXSE?start=30&end=40", "youtu.be/xaHjFAy54dU?start=40&end=50", "youtu.be/p9Rh85FgFYk?start=90&end=100", "youtu.be/lhH4TTaAQvU?start=150&end=160"],
     "child_ids": ["/m/0cfdd"],
     "restrictions": [],
-    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"drumloop","review"],
+    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"drumloop","drumkit", "drum-kit", "acoustic-drum-kit","drum-loop", "review"],
     "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
@@ -1894,7 +1894,7 @@
     "positive_examples": ["youtu.be/OEpMpYMjO9Y?start=30&end=40", "youtu.be/UmoQDRfLpiI?start=30&end=40", "youtu.be/0ZwxHoPdHqI?start=20&end=30", "youtu.be/aONVSrSlbYM?start=70&end=80", "youtu.be/EzALQdZ5RnI?start=30&end=40", "youtu.be/_jdcbOFrg4Q?start=360&end=370", "youtu.be/sfiDHExt6rI?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["review",["drum","machine"]],
+    "fs_tags": ["review",["drum","machine"], "drum-machine"],
     "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
@@ -1905,7 +1905,7 @@
     "positive_examples": ["youtu.be/65uPPy5e8oI?start=30&end=40", "youtu.be/GZ-jXUN0Hpg?start=70&end=80", "youtu.be/P1f09xVBNTc?start=150&end=160", "youtu.be/lYALJ6L251c?start=320&end=330", "youtu.be/EyopPrqUxcU?start=180&end=190", "youtu.be/6WdMSnWhppk?start=280&end=290", "youtu.be/2ZEkawx_eL8?start=120&end=130", "youtu.be/7E4uaC3YkHM?start=60&end=70", "youtu.be/aJpy-R7ZFb8?start=30&end=40"],
     "child_ids": ["/m/06rvn", "/m/0bm02", "/m/011k_j", "/m/01p970"],
     "restrictions": [],
-    "fs_tags": ["drum","darbuka","review"]
+    "fs_tags": ["drum","darbuka","conga","review"]
   },
   {
     "id": "/m/06rvn",
@@ -2259,7 +2259,7 @@
     "positive_examples": ["youtu.be/P8Ep-MUeZpE?start=30&end=40", "youtu.be/4vKah6NGacI?start=40&end=50", "youtu.be/xEJKVm-XlTI?start=140&end=150", "youtu.be/ko0_jYVXOjw?start=10&end=20", "youtu.be/Mjf34K-cGf0?start=50&end=60", "youtu.be/DVWoxLvpHH4?start=190&end=200", "youtu.be/dfUZdxXl_kU?start=570&end=580"],
     "child_ids": ["/m/0l14j_", "/m/06ncr", "/m/01wy6", "/m/05kms", "/m/01c3q"],
     "restrictions": [],
-    "fs_tags": [["wind", "instrument"],"wind-instrument"]
+    "fs_tags": [["wind", "instrument"],"wind-instrument", "ocarina"]
   },
   {
     "id": "/m/0l14j_",
@@ -2280,7 +2280,7 @@
     "positive_examples": ["youtu.be/wq5wg0L-KF4?start=50&end=60", "youtu.be/jZ-guxYSD2E?start=320&end=330", "youtu.be/5h40xBO4cSM?start=45&end=55", "youtu.be/VBLMzXqcjeA?start=160&end=170", "youtu.be/VDUb4wHGDBE?start=40&end=50", "youtu.be/EtQeywjkRqI?start=60&end=70"],
     "child_ids": ["/m/02pprs", "/m/03t22m"],
     "restrictions": [],
-    "fs_tags": ["saxophone"]
+    "fs_tags": ["saxophone", "sax"]
   },
   {
     "id": "/m/02pprs",
@@ -2343,7 +2343,8 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["harp"],
-    "omit_fs_tags": ["mouth","jew"]
+    "omit_fs_tags": ["mouth","jew" ],
+    "comments_JP": "missing jews harp"
   },
   {
     "id": "/m/03qjg",
@@ -2363,7 +2364,7 @@
     "positive_examples": ["youtu.be/WXCy_B98FoI?start=210&end=220", "youtu.be/_NUdDndH7kw?start=140&end=150", "youtu.be/MNAPqNAJLRk?start=30&end=40", "youtu.be/1UmPZEeakuQ?start=110&end=120", "youtu.be/JzgMUjrm4HQ?start=100&end=110", "youtu.be/i5LHakiuDAM?start=131&end=141", "youtu.be/KNJCUmcwLYY?start=50&end=60"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags":["accordion"]
+    "fs_tags":["accordion", "accordeon"]
   },
   {
     "id": "/m/0192l",
@@ -2373,7 +2374,7 @@
     "positive_examples": ["youtu.be/vFpiDoOZc8Y?start=30&end=40", "youtu.be/GKbldfNmkZ8?start=120&end=130", "youtu.be/s6K8qalzgI8?start=30&end=40", "youtu.be/uUoEB3DBSjo?start=30&end=40", "youtu.be/eFzPYy6IWq4?start=100&end=110", "youtu.be/xyvS_KsEJC0?start=60&end=70", "youtu.be/oGeklgrvf2g?start=180&end=190"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": "bagpipe"
+    "fs_tags": ["bagpipe"]
   },
   {
     "id": "/m/02bxd",
@@ -3197,7 +3198,7 @@
     "positive_examples": [],
     "child_ids": [],
     "restrictions": ["blacklist"],
-    "fs_tags": ["harmony","review"],
+    "fs_tags": ["harmony","arpeggio", "review"],
     "comments_JP": "It is hard to map this concept. Also difficult to search at FS."
   },
   {
@@ -4134,7 +4135,8 @@
     "positive_examples": ["youtu.be/Gv7ZFYKFmqg?start=130&end=140", "youtu.be/8voZhq4ZUdw?start=60&end=70", "youtu.be/Ie2KkAvU1zU?start=130&end=140", "youtu.be/8vIButnIMp4?start=30&end=40", "youtu.be/ghcZErZzTPI?start=10&end=20", "youtu.be/t6-3INu2258?start=90&end=100", "youtu.be/j9N_Q9EXFP0?start=23&end=33", "youtu.be/XGammZXc2Eo?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["airplane", "aviation"]
+    "fs_tags": ["airplane", "aviation"],
+    "comments_JP": "May be good to add airport category in the ASO"
   },
   {
     "id": "/t/dd00061",
