@@ -51,7 +51,7 @@ def auto_label(basket, ontology):
             if is_from_category:
                 sound.aso_labels.append(category["name"])
                 sound.aso_ids.append(category["id"])
-    return basket_stem
+    return basket
 
 def calculate_occurrences_aso_categories(basket, ontology):
     """
@@ -170,9 +170,9 @@ def get_list_FS_tags_in_ASO(ontology):
     tags = []
     for t in pre_tags:
         if isinstance(t, unicode):
-            tag.append(t)
+            tags.append(t)
         elif isinstance(t, list):
-            tag += t
+            tags += t
     tags = list(set(tags))
     return tags
 
