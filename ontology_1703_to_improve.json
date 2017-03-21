@@ -1650,7 +1650,7 @@
     "positive_examples": ["youtu.be/0_MLIPfb84s?start=30&end=40", "youtu.be/-37uZp3L3vw?start=30&end=40", "youtu.be/zeAO1j2LStk?start=10&end=20", "youtu.be/-SOoc9Rr39Y?start=12&end=22", "youtu.be/-DPoX0GdToU?start=130&end=140", "youtu.be/GDfQPFcG74k?start=150&end=160", "youtu.be/4gZkMShMpmc?start=30&end=40", "youtu.be/OSSa7XnAxkk?start=460&end=470", "youtu.be/mPEQ9bBWUYE?start=210&end=220", "youtu.be/ygonIq0Qatk?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["acoustic", "guitar", "nylon"],["acoustic-guitar"],["acoustic", "guitar"],["acoustic-guitar","nylon"]]
+    "fs_tags": [["acoustic", "guitar", "nylon"],["acoustic-guitar"],["acoustic", "guitar"],["acoustic-guitar","nylon"],"spanish-guitar"]
   },
   {
     "id": "/m/06w87",
@@ -1845,7 +1845,7 @@
     "child_ids": [],
     "restrictions": ["blacklist"],
     "fs_tags": ["mellotron","review"],
-    "comments_JP": "Very difficult to find a song which is generated with the Mellotron."
+    "comments_JP": "Very difficult to find a song which is generated with the Mellotron. Remove."
 
   },
   {
@@ -1876,7 +1876,7 @@
     "positive_examples": ["youtu.be/-VqHJfjcNl8?start=70&end=80", "youtu.be/-kgUDrfLbKw?start=10&end=20", "youtu.be/a7N-Oa4NKKI?start=30&end=40", "youtu.be/BuHnSV6592c?start=30&end=40", "youtu.be/klUmhkMVtN8?start=70&end=80", "youtu.be/hcjHzFKgXSE?start=30&end=40", "youtu.be/xaHjFAy54dU?start=40&end=50", "youtu.be/p9Rh85FgFYk?start=90&end=100", "youtu.be/lhH4TTaAQvU?start=150&end=160"],
     "child_ids": ["/m/0cfdd"],
     "restrictions": [],
-    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"review"],
+    "fs_tags": [["drum", "kit", "snare", "kick", "cymbal", "loop"],["drum", "kit", "loop"],"drumloop","review"],
     "comments_JP": "Many drum kits are drum machines. Remove this distinction by far?"
   },
   {
@@ -1898,7 +1898,7 @@
     "positive_examples": ["youtu.be/65uPPy5e8oI?start=30&end=40", "youtu.be/GZ-jXUN0Hpg?start=70&end=80", "youtu.be/P1f09xVBNTc?start=150&end=160", "youtu.be/lYALJ6L251c?start=320&end=330", "youtu.be/EyopPrqUxcU?start=180&end=190", "youtu.be/6WdMSnWhppk?start=280&end=290", "youtu.be/2ZEkawx_eL8?start=120&end=130", "youtu.be/7E4uaC3YkHM?start=60&end=70", "youtu.be/aJpy-R7ZFb8?start=30&end=40"],
     "child_ids": ["/m/06rvn", "/m/0bm02", "/m/011k_j", "/m/01p970"],
     "restrictions": [],
-    "fs_tags": ["drum","review"]
+    "fs_tags": ["drum","darbuka","review"]
   },
   {
     "id": "/m/06rvn",
@@ -1938,7 +1938,7 @@
     "positive_examples": ["youtu.be/umIND3KZyqs?start=70&end=80", "youtu.be/h1L06porcL0?start=220&end=230", "youtu.be/khRBhDUyLb0?start=360&end=370", "youtu.be/ts76TqD6eiQ?start=30&end=40", "youtu.be/k36gVPLVPU4?start=50&end=60", "youtu.be/vYoHjD5slzg?start=80&end=90", "youtu.be/yTgBSKCZ1ag?start=240&end=250", "youtu.be/fokECmrANcs?start=310&end=320", "youtu.be/cBJGUfPyGcw?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum"],
+    "fs_tags": [["kick", "drum"],"kickdrum","kick-drum","bass-drum","bassdrum",["hard","kick"]],
   },
   {
     "id": "/m/011k_j",
@@ -2020,7 +2020,7 @@
     "positive_examples": ["youtu.be/ZJtY7zzYROI?start=10&end=20", "youtu.be/L7VmcEuksqs?start=120&end=130", "youtu.be/FAhfuP_xh5Y?start=450&end=460", "youtu.be/kNMqGt7SNMo?start=10&end=20", "youtu.be/Z05m7IQ3-b0?start=110&end=120"],
     "child_ids": ["/m/0xzly"],
     "restrictions": [],
-    "fs_tags": [["rattle", "percussion"],"review"],
+    "fs_tags": [["rattle", "percussion"],"shaker","review"],
     "comments_JP": "Confusing with kids rattle."
   },
   {
@@ -2104,7 +2104,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": [["steel","drum"],"review"],
-    "comments_JP": "No clear examples."
+    "comments_JP": "No clear examples. Remove!!! this is a very bad class. NO SOUNDS!"
   },
   {
     "id": "/m/05pd6",
@@ -2166,7 +2166,8 @@
     "child_ids": [],
     "restrictions": ["blacklist"],
     "fs_tags": ["cornet","review"],
-    "comments_JP": "Possibly merge with Bugle. Very noisy mapping. Remove?"
+    "comments_JP": "Possibly merge with Bugle. Very noisy mapping. Remove?",
+    "less_priority2user": ["BalancedEnergy10"],
   },
   {
     "id": "/m/0y64j",
@@ -2251,7 +2252,7 @@
     "positive_examples": ["youtu.be/P8Ep-MUeZpE?start=30&end=40", "youtu.be/4vKah6NGacI?start=40&end=50", "youtu.be/xEJKVm-XlTI?start=140&end=150", "youtu.be/ko0_jYVXOjw?start=10&end=20", "youtu.be/Mjf34K-cGf0?start=50&end=60", "youtu.be/DVWoxLvpHH4?start=190&end=200", "youtu.be/dfUZdxXl_kU?start=570&end=580"],
     "child_ids": ["/m/0l14j_", "/m/06ncr", "/m/01wy6", "/m/05kms", "/m/01c3q"],
     "restrictions": [],
-    "fs_tags": [["wind", "instrument"]]
+    "fs_tags": [["wind", "instrument"],"wind-instrument"]
   },
   {
     "id": "/m/0l14j_",
@@ -2406,7 +2407,7 @@
     "positive_examples": ["youtu.be/Y2MwHholr3c?start=340&end=350", "youtu.be/Q3FWUtPD08o?start=240&end=250", "youtu.be/jGIWR_k1Yt4?start=400&end=410", "youtu.be/ToQqkcyH21U?start=30&end=40", "youtu.be/t3Ufg50eARI?start=290&end=300"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["singing", "bowl"],"singing-bowl"]
+    "fs_tags": [["singing", "bowl"],"singing-bowl","tibetan"]
   },
   {
     "id": "/m/05229",
@@ -2449,7 +2450,7 @@
     "child_ids": ["/m/064t9", "/m/0glt670", "/m/06by7", "/m/06j6l", "/m/0gywn", "/m/06cqb", "/m/01lyv", "/m/02x8m", "/m/02w4v", "/m/06j64v", "/m/03_d0", "/m/026z9", "/m/0ggq0m", "/m/02lkt", "/m/0g293", "/m/0155w", "/m/05fw6t", "/m/02v2lh", "/m/0y4f8", "/m/0164x2", "/m/02mscn", "/m/028sqc", "/m/06rqw", "/m/02p0sh1", "/m/05rwpb"],
     "restrictions": ["abstract"],
     "fs_tags": [],
-    "comments_JP": "27/145 have the review tag"
+    "comments_JP": "27/145 have the review tag. Overall, genre is a very broad thing that in freesound is illdefined. In most cases we get isolated examples, or parts of the thing because freesound is that way"
   },
   {
     "id": "/m/064t9",
@@ -2469,7 +2470,8 @@
     "positive_examples": [],
     "child_ids": ["/m/04j_h4", "/m/0n8zsc8", "/m/02cz_7"],
     "restrictions": [],
-    "fs_tags": ["hip-hop","hiphop","review"]
+    "fs_tags": ["hip-hop","hiphop","review"],
+    "comments_JP": "very broad class, many hits or isolated sounds that are under the umbrella of hip hop"
   },
   {
     "id": "/m/04j_h4",
@@ -2749,7 +2751,7 @@
     "positive_examples": [],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["techno"]
+    "fs_tags": ["techno","psytrance"]
   },
   {
     "id": "/m/07s72n",
