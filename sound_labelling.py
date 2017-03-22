@@ -27,7 +27,7 @@ def preproc_ontology(ontology):
 def auto_label(basket, ontology):
     """
     Add attributes aso_labels and aso_ids in basket sounds
-    Arguments:  - basket object of Freesound collection (stem)
+    Arguments:  - basket instance of Freesound collection (stem)
                 - ontology from ASO json file (list of dict)
     """
     Bar = manager.ProgressBar(len(basket), 30, 'Linking...')
@@ -57,7 +57,7 @@ def auto_label(basket, ontology):
 def calculate_occurrences_aso_categories(basket, ontology):
     """
     Returns a dict {"<ASO_id>": [nb_occcurrences, [fs_id, ...]], ...}
-    Arguments:  - basket object of Freesound collection
+    Arguments:  - basket instance of Freesound collection
                 - ontology from ASO json file (list of dict)
     """
     ontology_by_id = {o['id']:o for o in ontology}
@@ -88,7 +88,7 @@ def sorted_occurrences_labels(occurrences, basket):
     """
     Print the number of sounds in each category of the ASO 
     Arguments:  - occurrences from calculate_occurrences_aso_categories()
-                - basket object of Freesound collection
+                - basket instance of Freesound collection
     """
     aso_oc = []
     for k in occurrences.keys():
@@ -145,7 +145,7 @@ def create_html_random_sounds_for_category(aso_category_occurrences, category_id
 def create_json_Fred(basket, name):
     """
     Create the json containing the data needed by Fred
-    Arguments:  - a basket object (allready labeled...)
+    Arguments:  - a basket instance (allready labeled...)
                 - name of the file
     
     """
@@ -191,7 +191,7 @@ def get_aso_class_fs_sound_id_dict(ontology, basket):
     """
     Returns a dict {"<aso_class>": [<fs_ids>, ...]}
     Arguments:  - ontology from ASO json file (list of dict)
-                - basket object of Freesound collection
+                - basket instance of Freesound collection
     """
     aso_class_fs_id_dict = {o['id']:[] for o in ontology}
     for sound in basket.sounds:
@@ -203,7 +203,7 @@ def get_aso_class_fs_sound_dict(ontology, basket):
     """
     Returns a dict {"<aso_class>": [<fs_sound_object>, ...]}
     Arguments:  - ontology from ASO json file (list of dict)
-                - basket object of Freesound collection
+                - basket instance of Freesound collection
     """
     aso_class_fs_sound_dict = {o['id']:[] for o in ontology}
     for sound in basket.sounds:
@@ -247,13 +247,14 @@ def show_parents(aso_id, parents_dict):
     for i in parents_dict[aso_id]:
         print ontology_by_id[i]['name']
 
-def populate_aso_class(ontology, dict_parents, basket):
+def populate_aso_class(ontology, basket):
     """
     Add parent ASO classes to Freesound sounds in the basket
     Arguments:  - ontology from ASO json file (list of dict)
-                - the parent_dict returned by get_parents_dict()
-                - basket object of Freesound collection
+                - basket instance of Freesound collection
+    TODO: ALTER THE BASKET INSTEAD OF COPYING A NEW ONE (memory issue)
     """
+    dict_parents = get_parents_dict(ontology)
     ontology_by_id = {o['id']:o for o in ontology}
     new_basket = copy.deepcopy(basket)
     for idx, sound in enumerate(basket.sounds):
@@ -262,6 +263,26 @@ def populate_aso_class(ontology, dict_parents, basket):
         new_basket.sounds[idx].aso_ids = list(set(new_basket.sounds[idx].aso_ids))
         new_basket.sounds[idx].aso_labels = [ontology_by_id[a]['name'] for a in new_basket.sounds[idx].aso_ids]
     return new_basket
+
+def unpopulate_aso_class(ontology, basket):
+    """
+    Remove parents ASO classes to Freesound sounds in the basket
+    Let only the lower ASO classes for each sound
+    Arguments:  - ontology from ASO json file (list of dict)
+                - basket object of Freesound collection
+    """
+    dict_parents = get_parents_dict(ontology)
+    ontology_by_id = {o['id']:o for o in ontology}
+    for sound in basket.sounds:
+        # get all parents for all aso_id of the sound
+        parents_of_sound_labels = []
+        for aso_id in sound.aso_ids:
+            parents_of_sound_labels += dict_parents[aso_id]
+        parents_of_sound_labels = set(parents_of_sound_labels)
+        # filter out aso_ids and aso_labels
+        sound.aso_ids = [aso_id for aso_id in sound.aso_ids if aso_id not in parents_of_sound_labels]
+        sound.aso_labels = [ontology_by_id[a]['name'] for a in sound.aso_ids]
+        
 
 def return_list_baskets_each_aso_category(basket, ontology):
     """
