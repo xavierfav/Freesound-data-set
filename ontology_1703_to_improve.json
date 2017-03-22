@@ -607,7 +607,7 @@
     "positive_examples": ["youtu.be/Dl_-9HuKqD0?start=220&end=230", "youtu.be/ulYCw2ZEiz4?start=50&end=60", "youtu.be/0qes0wPqdEs?start=30&end=40", "youtu.be/XYm5hJfJaFo?start=80&end=90", "youtu.be/DBRvVR2KHeg?start=230&end=240", "youtu.be/V851WPfpbwA?start=230&end=240", "youtu.be/Ix5uPjC1gHI?start=70&end=80", "youtu.be/2Z4THg6VA1A?start=10&end=20"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["footstep", "walk", "feet"]
+    "fs_tags": ["footstep", "walk", "feet","steps"]
   },
   {
     "id": "/m/0160x5",
@@ -1299,7 +1299,7 @@
     "child_ids": [],
     "restrictions": [],
     "fs_tags": ["roar",["roar","animal"],["roar","dragon"],["roar","vocalization"]],
-    "omit_fs_tags": ["monster","horror","zombie","creature"]
+    "omit_fs_tags": ["monster","zombie","creature"]
   },
   {
     "id": "/m/015p6",
@@ -1986,7 +1986,7 @@
     "positive_examples": ["youtu.be/Jo-Rlw1dl0Y?start=70&end=80", "youtu.be/jEgdYuCQPtk?start=30&end=40", "youtu.be/4LPBTlzBfgU?start=230&end=240", "youtu.be/AVwL9t-Hhlw?start=30&end=40", "youtu.be/-A743FXw0VE?start=140&end=150"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["hi-hat", "review"],
+    "fs_tags": ["hi-hat", "review","hihat"],
     "omit_fs_tags": ["snare"]
   },
   {
@@ -3528,7 +3528,7 @@
     "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
     "restrictions": [],
     "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze", "tornado"],
-    "omit_fs_tags": ["instrument", "instrument"]
+    "omit_fs_tags": ["instruments", "instrument"]
   },
   {
     "id": "/m/07q8f3b",
@@ -4187,7 +4187,8 @@
     "positive_examples": ["youtu.be/i69icWu7vgM?start=120&end=130", "youtu.be/_yFwVTg-V-M?start=10&end=20", "youtu.be/Bt-h7IczpuM?start=40&end=50", "youtu.be/5xiXwDn7eJ8?start=80&end=90", "youtu.be/HI7BKGzGerc?start=190&end=200", "youtu.be/SaUTCeOPdUQ?start=50&end=60", "youtu.be/Lzec-fG2xwI?start=520&end=530", "youtu.be/ki9Mnrelw5s?start=360&end=370"],
     "child_ids": ["/m/08j51y", "/m/01yg9g", "/m/01j4z9"],
     "restrictions": [],
-    "fs_tags": [["light", "engine"], "review"]
+    "fs_tags": [["light", "engine"], "review",["washing","machine"],"washing-machine"],
+    "comments_EF": "dont know where to put washing-machine"
   },
   {
     "id": "/m/08j51y",
@@ -4370,7 +4371,7 @@
     "positive_examples": ["youtu.be/sS9j4nxxw4c?start=30&end=40", "youtu.be/4YPpyKEKZzc?start=350&end=360", "youtu.be/z_iUAQCVLwo?start=130&end=140", "youtu.be/l9kNnBvzQyE?start=170&end=180", "youtu.be/7v51jrS0aWw?start=80&end=90", "youtu.be/VKhsmuzuwSA?start=460&end=470", "youtu.be/-2XJTklj-Y0?start=30&end=40", "youtu.be/0K8CacUc7bc?start=260&end=270", "youtu.be/UD0pisqyLKA?start=40&end=50"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": [["squeak", "door"]]
+    "fs_tags": ["squeak","squeaky"]
   },
   {
     "id": "/m/0642b4",
@@ -4481,7 +4482,7 @@
     "positive_examples": ["youtu.be/p4HKDsrHt80?start=310&end=320", "youtu.be/O4_OKqnPKU8?start=1&end=11", "youtu.be/IZpgE9_0SKw?start=70&end=80", "youtu.be/8kffb_v6MG0?start=90&end=100", "youtu.be/csNTcYADSIQ?start=90&end=100", "youtu.be/27NlyHgiaPw?start=120&end=130"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["sink","drain"]
+    "fs_tags": ["sink","drain",["washing","hands"],["washing","dish"]]
   },
   {
     "id": "/m/03dnzn",
@@ -4964,7 +4965,7 @@
     "positive_examples": ["youtu.be/sH33P94VpZQ?start=50&end=60", "youtu.be/QdGg7SIlTj8?start=350&end=360", "youtu.be/eF7BVZza7qg?start=390&end=400", "youtu.be/bq8-CK-dXfY?start=40&end=50", "youtu.be/djy4CXMXZls?start=310&end=320", "youtu.be/mYmn4kAwLG8?start=300&end=310", "youtu.be/a4eISIE97EU?start=260&end=270", "youtu.be/APJEtvVrv1Q?start=30&end=40", "youtu.be/vQwg9vG_7E0?start=40&end=50"],
     "child_ids": ["/m/07bjf"],
     "restrictions": [],
-    "fs_tags": ["camera", "photography"]
+    "fs_tags": ["camera", "photography",["switch","camera"]]
   },
   {
     "id": "/m/07bjf",
@@ -6191,7 +6192,7 @@
     "positive_examples": ["youtu.be/d5PnDZ0LMDw?start=510&end=520", "youtu.be/Qtm98j24sQU?start=160&end=170", "youtu.be/GAXY3-A4EU0?start=10&end=20", "youtu.be/6kBgDyL1IPM?start=30&end=40"],
     "child_ids": [],
     "restrictions": [],
-    "fs_tags": ["store", "public-place", "public-space", "restaurant", "terminus", "mall"]
+    "fs_tags": ["store", "public-place", "public-space", "restaurant", "terminus", "mall", "market"]
   },
   {
     "id": "/t/dd00128",

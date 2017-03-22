@@ -1,0 +1,72 @@
+(u'horror', 795) deleted from omit for roar
+
+
+(u'steps', 114) added to footspteps
+
+
+(u'washing', 75)
+dish added to sink
+hands added to sink
+
+(u'switch', 641)
+["switch","camera"]
+
+(u'hihat', 128)
+
+
+(u'market', 103)
+public space
+
+
+(u'squeaky', 97) added to squeak, stemmer is weird
+
+
+(u'washing-machine', 31), added to light engine
+
+
+
+
+-------------
+pasando:
+
+(u'soundscape', 632) an algo de acoustic env?
+hay 8k in FS, this 600 must be crap
+
+
+(u'bathroom', 180)
+(u'toilet', 103)
+
+
+(u'ambience', 669) maybe it is anything
+(u'ambiance', 190)
+
+
+(u'airport', 233) maybe noisy 
+(u'sword', 233) lot of DRAW does not fit.
+
+
+
+(u'aluminum', 147)
+(u'bag', 147)
+(u'balloon', 145)
+(u'mechanical', 137)
+
+(u'drink', 98)
+
+
+(u'aerosol', 97)
+
+(u'sweep', 96)
+(u'shake', 95)
+
+(u'household', 94)
+
+(u'machines', 83)
+
+(u'homekeyboard', 94)
+
+
+
+----------------no esta en onto:
+
+(u'tin', 82), no hay open tin
