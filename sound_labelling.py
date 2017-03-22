@@ -353,7 +353,7 @@ if __name__ == '__main__':
     
     # Population
     parents_dict = get_parents_dict(ontology)
-    b_pupulated = populate_aso_class(ontology, parents_dict, b) 
+    b_pupulated = populate_aso_class(ontology, b) 
     
     # prints
     aso_category_occurrences = calculate_occurrences_aso_categories(b_pupulated, ontology)
