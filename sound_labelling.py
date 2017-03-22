@@ -313,16 +313,28 @@ def display_tags_list_baskets(list_baskets):
 
 
 if __name__ == '__main__':
+    # Create Client instance (holds function to load Basket object)
     c = manager.Client(False)
+    # Load Basket instance containing all Freesound collection (metadata needed for this work)
     b = c.load_basket_pickle('freesound_db_160317.pkl')
+    
+    # Load the ontology file (annotated)
     ontology = json.load(open('ontology_1703_to_improve.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
+    
+    # Preprocessing (lower case, stem)
     b.tags_lower()
     b.text_preprocessing() # stem and lower case for tags in freesound basket
     ontology_stem = preproc_ontology(ontology)
+    
+    # Auto labelling
     b = auto_label(b, ontology_stem)
+    
+    # Population
     parents_dict = get_parents_dict(ontology)
     b_pupulated = populate_aso_class(ontology, parents_dict, b) 
+    
+    # prints
     aso_category_occurrences = calculate_occurrences_aso_categories(b_pupulated, ontology)
     sorted_occurrences_labels(aso_category_occurrences, b_pupulated)
     
