@@ -1,0 +1,202 @@
+[  
+  {
+    "id": "/m/059j3w",
+    "name": "Natural sounds",
+    "description": "Sounds produced by natural sources in their normal soundscape, excluding animal and human sounds.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Natural_sounds",
+    "positive_examples": [],
+    "child_ids": ["/m/03m9d0z", "/m/0jb2l", "/m/0838f", "/m/02_41"],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["nature"]
+  },
+  {
+    "id": "/m/03m9d0z",
+    "name": "Wind",
+    "description": "Sounds caused by the large-scale flow of gases, especially the air flowing over the surface of the Earth. Long-duration winds have various names associated with their average strength, such as breeze, gale, storm, and hurricane.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Wind",
+    "positive_examples": ["youtu.be/JRyhdsQwFXM?start=110&end=120", "youtu.be/-PJrbyYLtS4?start=330&end=340", "youtu.be/dOU3KOnQM2Q?start=200&end=210", "youtu.be/48HQ_eeoygY?start=10&end=20", "youtu.be/HfaFm2c4a78?start=40&end=50", "youtu.be/aqAvJgN6GOE?start=220&end=230", "youtu.be/aN-oXqXdsVM?start=100&end=110", "youtu.be/cpFdPrI-8EQ?start=120&end=130", "youtu.be/U-WqWv0pXwI?start=20&end=30", "youtu.be/urfP_4xhJCE?start=90&end=100"],
+    "child_ids": ["/m/07q8f3b", "/m/09t49", "/t/dd00092"],
+    "restrictions": [],
+    "fs_tags": ["wind", "storm", "gale", "hurricane", "breeze"]
+  },
+  {
+    "id": "/m/07q8f3b",
+    "name": "Howl (wind)",
+    "description": "A loud sustained noise caused by wind, resembling the cry of a hound.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=howl",
+    "positive_examples": ["youtu.be/FhEJYUlNEqM?start=260&end=270", "youtu.be/JfzqqDmIwhY?start=30&end=40", "youtu.be/MRnpKEhDQNE?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["wind", "howl"]]
+  },
+  {
+    "id": "/m/09t49",
+    "name": "Rustling leaves",
+    "description": "The sound of dried leaves rubbing against one another in respondse to being moved by the wind or another cause.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Leaf",
+    "positive_examples": ["youtu.be/18aaA2efGng?start=370&end=380", "youtu.be/0Hxth3DK480?start=140&end=150"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["rustle", "leaves"], ["crumple", "leaves"],  ["crinkle", "leaves"], ["crumple", "leaves"]]
+  },
+  {
+    "id": "/t/dd00092",
+    "name": "Wind noise (microphone)",
+    "description": "The noise produced when a strong air current passes over a microphone, causing large amplitude local turbulence, normally recorded as mechanical clipping as the microphone element exceeds its limits of linearity.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/LvfGG-k7ZO8?start=250&end=260", "youtu.be/IfvejNeLtno?start=30&end=40", "youtu.be/CTmRRq187y4?start=30&end=40", "youtu.be/GGQDjbHCq-E?start=260&end=270", "youtu.be/VtdAZlFNuTw?start=150&end=160", "youtu.be/10JMr_3UN0g?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags" : [["air", "microphone"], ["noise", "microphone"]]
+  },
+  {
+    "id": "/m/0jb2l",
+    "name": "Thunderstorm",
+    "description": "The sound of a storm characterized by the presence of lightning and its acoustic effect on the Earth's atmosphere, known as thunder.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Thunderstorm",
+    "positive_examples": ["youtu.be/9gpdoYeFjoU?start=110&end=120", "youtu.be/zQptvcZ6Q64?start=30&end=40", "youtu.be/IADbYuioZ9s?start=190&end=200", "youtu.be/RllsaWFnyz0?start=10&end=20", "youtu.be/iqy2_Ofk2TQ?start=100&end=110", "youtu.be/AI1OweEW8C0?start=50&end=60", "youtu.be/9TKSDR1HANg?start=280&end=290", "youtu.be/ThUAAmLjUKM?start=20&end=30"],
+    "child_ids": ["/m/0ngt1"],
+    "restrictions": [],
+    "fs_tags": ["thunderstorm", ["thunder", "storm"]]
+  },
+  {
+    "id": "/m/0ngt1",
+    "name": "Thunder",
+    "description": "The sound caused by lightning. Depending on the distance and nature of the lightning, thunder can range from a sharp, loud crack to a long, low rumble.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Thunder",
+    "positive_examples": ["youtu.be/3y2aZEs1F5s?start=80&end=90", "youtu.be/S38pF1kVLYI?start=310&end=320", "youtu.be/cg1A8R7B7B8?start=30&end=40", "youtu.be/k4ggjvnuzbI?start=150&end=160", "youtu.be/Mmml5YKQYIY?start=400&end=410", "youtu.be/NN6kHRAbGeA?start=390&end=400", "youtu.be/JY9VX8KnreU?start=110&end=120", "youtu.be/1lMN9N4DBOc?start=200&end=210", "youtu.be/Jh-upSoOqTc?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["thunder", "lightning"]
+  },
+  {
+    "id": "/m/0838f",
+    "name": "Water",
+    "description": "Sounds caused by motion of liquid water.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Properties_of_water",
+    "positive_examples": ["youtu.be/UDEyewB7-Hg?start=60&end=70", "youtu.be/GOJiiisgi-Q?start=30&end=40", "youtu.be/s0O-mPb6yHE?start=30&end=40", "youtu.be/IZe1BGDPzA8?start=30&end=40", "youtu.be/jy6ZJRjl1No?start=70&end=80", "youtu.be/F0gZgJRxJhA?start=100&end=110", "youtu.be/btD25mb9BRE?start=50&end=60", "youtu.be/U2-7bxSMCzA?start=30&end=40", "youtu.be/Gw0gwDD8cts?start=20&end=30"],
+    "child_ids": ["/m/06mb1", "/m/0j6m2", "/m/0j2kx", "/m/05kq4", "/m/06wzb", "/m/07swgks"],
+    "restrictions": [],
+    "fs_tags": ["water"]
+  },
+  {
+    "id": "/m/06mb1",
+    "name": "Rain",
+    "description": "The sound of droplets of liquid water that have condensed from atmospheric water vapor and then fallen under gravity.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Rain",
+    "positive_examples": ["youtu.be/5Ehgo2dKD3c?start=260&end=270", "youtu.be/aDViuftS7Wk?start=210&end=220", "youtu.be/nULDV0qOSDw?start=30&end=40", "youtu.be/wyXpYD4E-Lo?start=50&end=60", "youtu.be/QL-GkJ0BP0w?start=90&end=100", "youtu.be/uH3j2cZCzvk?start=80&end=90", "youtu.be/ZriuDmppWfw?start=140&end=150"],
+    "child_ids": ["/m/07r10fb", "/t/dd00038"],
+    "restrictions": [],
+    "fs_tags": ["rain"]
+  },
+  {
+    "id": "/m/07r10fb",
+    "name": "Raindrop",
+    "description": "A sound clearly attributable to a single drop of rain.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=raindrop",
+    "positive_examples": ["youtu.be/AOYnd6OzO2U?start=30&end=40", "youtu.be/V_J1Zx1PbFU?start=30&end=40", "youtu.be/doi3DiqyMl0?start=6&end=16", "youtu.be/JFWiNHljGFI?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["raindrop", "droplets", "drop", "blub"]
+  },
+  {
+    "id": "/t/dd00038",
+    "name": "Rain on surface",
+    "description": "Steady sound of many rain drops striking a surface such as a roof or window.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/1r0Y4VFXrmE?start=30&end=40", "youtu.be/1C7lFCTvd6U?start=30&end=40", "youtu.be/0j9XJr31TA4?start=24&end=34"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["rain", "roof"], ["drop", "window"], ["rain","window"], ["drop", "roof"]]
+  },
+  {
+    "id": "/m/0j6m2",
+    "name": "Stream",
+    "description": "Sounds of a body of water with a current, confined within a bed and banks.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Stream",
+    "positive_examples": ["youtu.be/5Hh3nZGtzaI?start=30&end=40", "youtu.be/r_qcJwjFuM4?start=100&end=110", "youtu.be/rUr2EL0sp7s?start=20&end=30", "youtu.be/12PDR1SiMoY?start=30&end=40", "youtu.be/P2kW_zbZEyc?start=210&end=220", "youtu.be/2YjgcnIKUmc?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["stream", "river", "beck"]
+  },
+  {
+    "id": "/m/0j2kx",
+    "name": "Waterfall",
+    "description": "The sound of water flowing over a vertical drop or a series of drops in the course of a stream or river.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Waterfall",
+    "positive_examples": ["youtu.be/P2kW_zbZEyc?start=210&end=220", "youtu.be/0WQ5Xejk0cs?start=30&end=40", "youtu.be/FrHCQ5x2pNQ?start=20&end=30", "youtu.be/D-oU-1zhS-U?start=30&end=40", "youtu.be/E4duB2A-ces?start=50&end=60", "youtu.be/XbigWWtnGL4?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["waterfall"]
+  },
+  {
+    "id": "/m/05kq4",
+    "name": "Ocean",
+    "description": "Sounds of the body of saline water that composes much of Earth's surface.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Ocean",
+    "positive_examples": ["youtu.be/b1iahVw7phI?start=240&end=250", "youtu.be/bspTVc-6whI?start=70&end=80", "youtu.be/DVqUkCoFwgk?start=530&end=540", "youtu.be/Hi1HVjOqJa8?start=120&end=130", "youtu.be/Y6ft09j8rwI?start=370&end=380", "youtu.be/lQBqdnyzFH8?start=10&end=20", "youtu.be/2lEGN0fx9t4?start=10&end=20"],
+    "child_ids": ["/m/034srq"],
+    "restrictions": [],
+    "fs_tags": ["ocean", "sea", "lake", "river"]
+  },
+  {
+    "id": "/m/034srq",
+    "name": "Waves, surf",
+    "description": "Sounds caused by the surface waves that occur on the free surface of oceans, seas, lakes, rivers, etc., resulting from the wind blowing over the surface.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Wind_wave",
+    "positive_examples": ["youtu.be/F1acJgs48ug?start=420&end=430", "youtu.be/ciShfkeGGPs?start=140&end=150", "youtu.be/ZVveYlQuMAw?start=30&end=40", "youtu.be/3DhQmxwJ5f0?start=530&end=540", "youtu.be/acCLHAVHOO4?start=80&end=90"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["wave"]
+  },
+  {
+    "id": "/m/06wzb",
+    "name": "Steam",
+    "description": "Sounds caused by  water in the gas phase, which is formed when water boils.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Steam",
+    "positive_examples": ["youtu.be/AoQcAv9swE4?start=220&end=230", "youtu.be/q73cABJraqg?start=60&end=70", "youtu.be/qgASsbk7Jo0?start=50&end=60", "youtu.be/AEGHk8z6Sbc?start=40&end=50", "youtu.be/UyC5UsOHaN8?start=270&end=280", "youtu.be/QKkSUUsM7kw?start=90&end=100"],
+    "child_ids": ["/m/07rjwbb"],
+    "restrictions": [],
+    "fs_tags": ["steam"]
+  },
+  {
+    "id": "/m/07swgks",
+    "name": "Gurgling",
+    "description": "The bubbling sound of water flowing through a narrow constriction, such as from a bottle with a narrow neck.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=gurgling",
+    "positive_examples": ["youtu.be/ueGrX54zEs4?start=30&end=40", "youtu.be/PlPg7pFN-c0?start=30&end=40", "youtu.be/bN-pEae5Ojk?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["gurgle", "glug"]
+  },
+  {
+    "id": "/m/02_41",
+    "name": "Fire",
+    "description": "Sounds resulting from  the rapid oxidation of a material in the exothermic chemical process of combustion, releasing heat, light, and various reaction products.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Fire",
+    "positive_examples": ["youtu.be/rRA29fWQ-yo?start=40&end=50", "youtu.be/ncTBfKkL98M?start=10&end=20", "youtu.be/xGzpK8xOJj8?start=220&end=230", "youtu.be/FkW00xIxnMM?start=160&end=170", "youtu.be/JocAxXHMaVw?start=40&end=50"],
+    "child_ids": ["/m/07pzfmf", "/m/0fjy1"],
+    "restrictions": [],
+    "fs_tags": ["fire", "flame", "burn"]
+  },
+  {
+    "id": "/m/07pzfmf",
+    "name": "Crackle",
+    "description": "An irregular sequence of sharp sounds, as from sudden vaporization of liquids trapped in a burning solid, or from a collection of snapping noises.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=crackle",
+    "positive_examples": ["youtu.be/yD8-rFGIX1Y?start=80&end=90", "youtu.be/bbQgr9juJHU?start=200&end=210", "youtu.be/MNQlSUhlaoU?start=130&end=140", "youtu.be/o2ll07zNfvo?start=20&end=30", "youtu.be/eDRs0CPfUT8?start=350&end=360", "youtu.be/J1gpa4iJ-ds?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["crackle"]
+  },
+  {
+    "id": "/m/0fjy1",
+    "name": "Wildfire",
+    "description": "Sounds of an uncontrolled fire in an area of combustible vegetation that occurs in the countryside.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Wildfire",
+    "positive_examples": ["youtu.be/7N-rIXXcb-Q?start=170&end=180", "youtu.be/gM1DIbory6A?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["wildfire"]
+  }
+]

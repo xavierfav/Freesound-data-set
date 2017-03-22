@@ -1,0 +1,832 @@
+[
+  {
+    "id": "/m/0dgw9r",
+    "name": "Human sounds",
+    "description": "Sounds produced by the human body through the actions of the individual.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/09l8g", "/m/01w250", "/m/09hlz4", "/m/0bpl036", "/m/0160x5", "/m/0k65p", "/m/01jg02", "/m/04xp5v", "/t/dd00012"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["human"]
+  },
+  {
+    "id": "/m/09l8g",
+    "name": "Human voice",
+    "description": "The human voice consists of sound made by a human being using the vocal folds for talking, singing, laughing, crying, screaming, etc. The human voice is specifically a part of human sound production in which the vocal folds are the primary sound source.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Human_voice",
+    "positive_examples": [],
+    "child_ids": ["/m/09x0r", "/m/07p6fty", "/m/03qc9zr", "/m/02rtxlg", "/m/01j3sz", "/m/0463cq4", "/m/07qw_06", "/m/07plz5l", "/m/015lz1", "/m/02fxyj", "/m/07s2xch", "/m/07r4k75", "/m/01j423"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["voice"]
+  },
+  {
+    "id": "/m/09x0r",
+    "name": "Speech",
+    "description": "Speech is the vocalized form of human communication, created out of the phonetic combination of a limited set of vowel and consonant speech sound units.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Speech",
+    "positive_examples": ["youtu.be/8uI9H5jGRV8?start=30&end=40", "youtu.be/cz8QIJHjZh4?start=30&end=40", "youtu.be/91FIbeKyIhw?start=30&end=40", "youtu.be/V3HdocEv8gw?start=220&end=230", "youtu.be/a8igK2oWlVY?start=30&end=40", "youtu.be/2hvTtM7VdJg?start=30&end=40", "youtu.be/S7ytQItOrkk?start=30&end=40", "youtu.be/Zyl2Q3GepPA?start=30&end=40", "youtu.be/CU1qRm_Bcps?start=30&end=40"],
+    "child_ids": ["/m/05zppz", "/m/02zsn", "/m/0ytgt", "/m/01h8n0", "/m/02qldy", "/m/0261r1", "/m/0brhx"],
+    "restrictions": [],
+    "fs_tags": ["speech", "talk", "speak"]
+  },
+  {
+    "id": "/m/05zppz",
+    "name": "Male speech, man speaking",
+    "description": "Speech uttered by an adult male human.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/6niRPYpLOpQ?start=30&end=40", "youtu.be/fPgUDHwQOmM?start=320&end=330", "youtu.be/g3YNJ3ESIW0?start=30&end=40", "youtu.be/Dys9DJoFnGA?start=30&end=40", "youtu.be/3PESOesDniw?start=30&end=40", "youtu.be/E8RfeFAzHK4?start=30&end=40", "youtu.be/A_WSbkJozPs?start=90&end=100", "youtu.be/-yZuFZRojYA?start=30&end=40", "youtu.be/ECOK21oFttk?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["male", "speak"], ["male", "speech"], ["male","talk"], ["man", "speak"], ["man", "speech"], ["man","talk"]]
+  },
+  {
+    "id": "/m/02zsn",
+    "name": "Female speech, woman speaking",
+    "description": "Speech uttered by an adult female human.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/4l05nCOnIRg?start=30&end=40", "youtu.be/5zyOhZsvIzI?start=30&end=40", "youtu.be/q0wv9AOl4r0?start=100&end=110", "youtu.be/AyPqm-tm2y4?start=30&end=40", "youtu.be/1xXqIpjxYG4?start=30&end=40", "youtu.be/xYPZJkfiyjk?start=90&end=100", "youtu.be/46lVxNflfDw?start=30&end=40", "youtu.be/8OpLsWMn6P0?start=30&end=40", "youtu.be/WLi5_z61zCE?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["female", "speak"], ["female", "speech"], ["female","talk"], ["woman", "speak"], ["woman", "speech"], ["woman","talk"]]
+  },
+  {
+    "id": "/m/0ytgt",
+    "name": "Child speech, kid speaking",
+    "description": "Speech uttered by a human child, i.e. a human whose voice does not yet resemble that of an adult.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/iPIGoScYduI?start=210&end=220", "youtu.be/DiJgMH7vg1E?start=30&end=40", "youtu.be/yy0LZBmZRvE?start=60&end=70", "youtu.be/arz0xujSWdY?start=230&end=240", "youtu.be/-oC3FVOx62g?start=210&end=220", "youtu.be/5-R8zaohZrU?start=10&end=20", "youtu.be/OXJ77G_TqDc?start=40&end=50", "youtu.be/koW60o-aLjI?start=470&end=480", "youtu.be/uBVLhywbCQk?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["child", "speak"], ["child", "speech"], ["child","talk"], ["kid", "speak"], ["kid", "speech"], ["kid","talk"]]
+  },
+  {
+    "id": "/m/01h8n0",
+    "name": "Conversation",
+    "description": "Interactive, spontaneous spoken communication between two or more people.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Conversation",
+    "positive_examples": ["youtu.be/4FQxw_49xAk?start=30&end=40", "youtu.be/0WcG16XxghA?start=30&end=40", "youtu.be/RHfaNoYg8vs?start=170&end=180", "youtu.be/twGajApu-7g?start=560&end=570", "youtu.be/A0Lpt0VWYCA?start=50&end=60", "youtu.be/ermWzXxDjOQ?start=110&end=120", "youtu.be/sEF1KNfvY90?start=230&end=240", "youtu.be/DhlPa8lUosM?start=300&end=310"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["conversation", ["people","talk"], ["people","speak"]]
+  },
+  {
+    "id": "/m/02qldy",
+    "name": "Narration, monologue",
+    "description": "Speech by a single human aimed at an audience (either present or assumed, as in a video blog).",
+    "citation_uri": "http://en.wikipedia.org/wiki/Narration",
+    "positive_examples": ["youtu.be/8maPz8qrmnM?start=30&end=40", "youtu.be/8vmb60ydHtY?start=30&end=40", "youtu.be/fL52Quhhomc?start=30&end=40", "youtu.be/6tXGhWY1I8I?start=30&end=40", "youtu.be/FwRo7yXVnL0?start=30&end=40", "youtu.be/TKPjvQtnELU?start=360&end=370", "youtu.be/Cf6AAX-r6wk?start=30&end=40", "youtu.be/EmLsodfGoes?start=30&end=40", "youtu.be/20lm7Ow9RSY?start=30&end=40", "youtu.be/25K0bryItv4?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["monologue", "narration"]
+  },
+  {
+    "id": "/m/0261r1",
+    "name": "Babbling",
+    "description": "Speech-like sounds uttered by a human that lack the deeper structure and meaning of conventional speech. Babbling is a stage in a child's development of language.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Babbling",
+    "positive_examples": ["youtu.be/ZR48r_8OhUI?start=50&end=60", "youtu.be/2ZxE0uMIfa0?start=10&end=20", "youtu.be/vFbu0dH7f-U?start=10&end=20", "youtu.be/soXBLBCaClA?start=90&end=100", "youtu.be/ICajcUYAan8?start=410&end=420", "youtu.be/lluzItlOMlQ?start=10&end=20", "youtu.be/EyCpVw_Xn60?start=130&end=140"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["babble"]
+  },
+  {
+    "id": "/m/0brhx",
+    "name": "Speech synthesizer",
+    "description": "Artificially-produced human speech.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Speech_synthesis",
+    "positive_examples": ["youtu.be/Y1ywO5WfUqE?start=90&end=100", "youtu.be/-2Krnsj-edU?start=40&end=50", "youtu.be/0npIcSXb1Bc?start=13&end=23", "youtu.be/0wVUdVYmZ5A?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["synthesized","voice"], ["synthesized","speech"], ["synthesized","talk"], ["synthesized","speak"]]
+  },
+  {
+    "id": "/m/07p6fty",
+    "name": "Shout",
+    "description": "Talk in a loud voice to deliberately command attention or overcome interfering sounds. Does not have the stronger emotional connotations of Yell or Scream.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=shout",
+    "positive_examples": ["youtu.be/-aY64NxBVas?start=480&end=490", "youtu.be/mPr3kCL5y10?start=210&end=220", "youtu.be/5YB13i75Nr4?start=60&end=70", "youtu.be/X04FOAQFn5I?start=130&end=140"],
+    "child_ids": ["/m/07q4ntr", "/m/07rwj3x", "/m/07sr1lc", "/m/04gy_2", "/t/dd00135"],
+    "restrictions": [],
+    "fs_tags": [["talk","loud"],["voice","loud"],["speak","loud"], ["voice", "shout"], ["talk","shout"],["speak","shout"]]
+  },
+  {
+    "id": "/m/07q4ntr",
+    "name": "Bellow",
+    "description": "A very loud utterance by a person that seems more animal than human.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=bellow",
+    "positive_examples": ["youtu.be/EquXTta7QU0?start=230&end=240", "youtu.be/gLl7DnPIZd4?start=20&end=30", "youtu.be/bCqNjZRWogs?start=30&end=40", "youtu.be/EzIa5SQC7R0?start=30&end=40", "youtu.be/rGbppkm9MYs?start=90&end=100"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["bellow", "review"]
+  },
+  {
+    "id": "/m/07rwj3x",
+    "name": "Whoop",
+    "description": "A loud hooting cry of exultation or excitement.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=whoop",
+    "positive_examples": ["youtu.be/TKwuq-O67VE?start=9&end=19", "youtu.be/yfwQgGVZtqI?start=30&end=40", "youtu.be/2Z0FSALnSmM?start=30&end=40", "youtu.be/TDJ746q3sAU?start=170&end=180", "youtu.be/pB4Bh36b1Ss?start=30&end=40", "youtu.be/4Gw8jFlJyLI?start=50&end=60", "youtu.be/7yGHDT7r2u8?start=1&end=11", "youtu.be/5yD_YeSuTzQ?start=150&end=160", "youtu.be/NPkO63FcFXM?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["review"]
+  },
+  {
+    "id": "/m/07sr1lc",
+    "name": "Yell",
+    "description": "Utter or declare in a very loud voice that seems excessive or involuntary, or that is deliberately startling in order to command attention, as distinct from the pragmatically raised voice of Shout.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=yell",
+    "positive_examples": ["youtu.be/YMeuw-x86KU?start=30&end=40", "youtu.be/NMn-9tvzQZA?start=30&end=40", "youtu.be/AperXKEnTJ4?start=30&end=40", "youtu.be/pXawVUjQLok?start=30&end=40", "youtu.be/vOEF-FzwSlM?start=100&end=110"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["yell"]
+  },
+  {
+    "id": "/m/04gy_2",
+    "name": "Battle cry",
+    "description": "A yell or chant taken up in battle, usually by members of the same combatant group, aiming at arousing aggression on one's own side and intimidating the enemy.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Battle_cry",
+    "positive_examples": ["youtu.be/iEfkkyrecGA?start=210&end=220", "youtu.be/8-xVEzStUkg?start=10&end=20", "youtu.be/aNhVWZI5DXY?start=130&end=140", "youtu.be/4Gz_dmk3v_A?start=30&end=40", "youtu.be/RATOmpfWqUo?start=180&end=190", "youtu.be/DRQPYwom_mY?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["battlecry", "battle-cry", ["battle", "cry"]]
+  },
+  {
+    "id": "/t/dd00135",
+    "name": "Children shouting",
+    "description": "The boisterous vocalizations of a group of children, for instance in a playground.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/W4AptCGYj5w?start=30&end=40", "youtu.be/w4VqralR-6E?start=10&end=20", "youtu.be/vsgHNEEOKxk?start=150&end=160", "youtu.be/7koyNkRHO8U?start=20&end=30", "youtu.be/Q8NC8aHonOU?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["child", "shout"]]
+  },
+  {
+    "id": "/m/03qc9zr",
+    "name": "Screaming",
+    "description": "A sharp, high-pitched human vocalization; often an instinctive action indicating fear, pain, surprise, joy, anger, etc. Verbal content is absent or overwhelmed, unlike Shout and Yell.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Screaming",
+    "positive_examples": ["youtu.be/ZHrf_y9q96Q?start=20&end=30", "youtu.be/GqTExeZqXzw?start=20&end=30", "youtu.be/vgpAqgBIpdM?start=220&end=230", "youtu.be/GUsI_2tYVYM?start=29&end=39", "youtu.be/52waxTykuLc?start=30&end=40", "youtu.be/auC_LgwFF8g?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["scream"]
+  },
+  {
+    "id": "/m/02rtxlg",
+    "name": "Whispering",
+    "description": "Unvoiced speech, usually intended to be quieter to avoid causing disturbance or being overheard.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Whispering",
+    "positive_examples": ["youtu.be/Tr6NMYItPJk?start=490&end=500", "youtu.be/wTjxa7yFyXQ?start=90&end=100", "youtu.be/a3xzicvE4Yk?start=270&end=280", "youtu.be/wAFz-WuuJ4o?start=210&end=220", "youtu.be/-26vNAAFWH0?start=350&end=360", "youtu.be/7S_iHrdfrvQ?start=30&end=40", "youtu.be/cus68zSHXDA?start=90&end=100", "youtu.be/CVGwF_-HXdo?start=540&end=550"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["whisper"]
+  },
+  {
+    "id": "/m/01j3sz",
+    "name": "Laughter",
+    "description": "The sound of rhythmical contractions of the diaphragm in response to stimuli such as tickling, or from humorous stories or thoughts.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Laughter",
+    "positive_examples": ["youtu.be/37hqUFpvl6A?start=40&end=50", "youtu.be/sjAKBnCgKt8?start=220&end=230", "youtu.be/ULTB6y2aj8I?start=40&end=50", "youtu.be/c0V_HAul7rI?start=30&end=40", "youtu.be/SwZ0V8bc2QY?start=350&end=360", "youtu.be/aXS2iHSQE6g?start=10&end=20", "youtu.be/O1snVHXG2j4?start=390&end=400", "youtu.be/4e-qMxrus0A?start=80&end=90", "youtu.be/rPV1mbwWms0?start=60&end=70"],
+    "child_ids": ["/t/dd00001", "/m/07r660_", "/m/07s04w4", "/m/07sq110", "/m/07rgt08"],
+    "restrictions": [],
+    "fs_tags": ["laught", "laugh"]
+  },
+  {
+    "id": "/t/dd00001",
+    "name": "Baby laughter",
+    "description": "Laughter that is produced by a baby or infant.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/2ZqInEYQDOM?start=30&end=40", "youtu.be/BRtGk2YmdJ0?start=20&end=30", "youtu.be/T89y6lwH1Zg?start=30&end=40", "youtu.be/lwb96iGdhZs?start=210&end=220", "youtu.be/m2OBZqJ8qgI?start=90&end=100", "youtu.be/kykRU_67e94?start=20&end=30", "youtu.be/RLiHf1zIuXY?start=50&end=60", "youtu.be/3dh5bfCN4Hs?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["baby", "laugh"], ["baby", "laught"], ["infant", "laugh"], ["infant", "laught"]]
+  },
+  {
+    "id": "/m/07r660_",
+    "name": "Giggle",
+    "description": "A foolish or nervous laugh.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=giggle",
+    "positive_examples": ["youtu.be/XviVGrbiUmE?start=240&end=250", "youtu.be/UW7ioxBkBvc?start=410&end=420", "youtu.be/RDAnjeHmW5o?start=30&end=40", "youtu.be/fvg6SM8hnwM?start=30&end=40", "youtu.be/Ts-Y1-FHnUo?start=30&end=40", "youtu.be/K4sqsDcUfGM?start=30&end=40", "youtu.be/8DTw8Udr4rA?start=80&end=90"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["giggle"]
+  },
+  {
+    "id": "/m/07s04w4",
+    "name": "Snicker",
+    "description": "A disrespectful laugh.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=snicker",
+    "positive_examples": ["youtu.be/0Xsny5M-hyE?start=140&end=150", "youtu.be/2sDFQiVB67I?start=80&end=90", "youtu.be/PgiVYe0HbNg?start=290&end=300", "youtu.be/ZMwa1h1Aa8I?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["snicker"]
+  },
+  {
+    "id": "/m/07sq110",
+    "name": "Belly laugh",
+    "description": "Very loud and abrupt laughter that encompasses much of the body.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=belly%20laugh",
+    "positive_examples": ["youtu.be/x2guhF8m53o?start=90&end=100", "youtu.be/og_nfmnT-xA?start=180&end=190", "youtu.be/NUNcvnesc2I?start=310&end=320", "youtu.be/sWXpzTZWNAI?start=30&end=40", "youtu.be/I-XNolOQ1JQ?start=330&end=340", "youtu.be/h_zv_bxqtAM?start=440&end=450"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["belly-laugh", ["belly","laugh"], "review"]
+  },
+  {
+    "id": "/m/07rgt08",
+    "name": "Chuckle, chortle",
+    "description": "Laugh quietly or with restraint.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=chuckle",
+    "positive_examples": ["youtu.be/C9WWt3dS1I8?start=50&end=60", "youtu.be/-iq2dAKozlc?start=50&end=60", "youtu.be/B_6FPEmhH70?start=40&end=50", "youtu.be/_zkfG4uVqA4?start=110&end=120", "youtu.be/XeKzuoN62QM?start=40&end=50", "youtu.be/3Ri8_DHI4fQ?start=30&end=40", "youtu.be/0WOwZJ9G2N8?start=110&end=120"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["chuckle", "chortle"]
+  },
+  {
+    "id": "/m/0463cq4",
+    "name": "Crying, sobbing",
+    "description": "Sound associated with the shedding of tears in response to an emotional state, arising from slow but erratic inhalation, occasional instances of breath holding and muscular tremor.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Crying",
+    "positive_examples": ["youtu.be/RM6ekNDE2wc?start=15&end=25", "youtu.be/8Y2VGN-QsEs?start=10&end=20", "youtu.be/kEuZE_uu1rs?start=10&end=20", "youtu.be/5Fnc7yYDDvM?start=10&end=20", "youtu.be/rYyKWyIfVpU?start=10&end=20", "youtu.be/5KgGTZEsMsQ?start=10&end=20", "youtu.be/x9vxPUVx40Y?start=30&end=40", "youtu.be/fpWdNeGCKqc?start=40&end=50", "youtu.be/SfG3IkOprQc?start=60&end=70"],
+    "child_ids": ["/t/dd00002", "/m/07qz6j3"],
+    "restrictions": [],
+    "fs_tags": ["cry", "sobbing"]
+  },
+  {
+    "id": "/t/dd00002",
+    "name": "Baby cry, infant cry",
+    "description": "The sound of a young child crying or bawling.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/6T2jEKesKXY?start=30&end=40", "youtu.be/-mvGA8duqKM?start=29&end=39", "youtu.be/qc8n-R16jqI?start=30&end=40", "youtu.be/YFK6RwUBpHg?start=10&end=20", "youtu.be/VbtgXizyof4?start=30&end=40", "youtu.be/R6-KBbwNo1Q?start=30&end=40", "youtu.be/CmXA759VLZo?start=7&end=17", "youtu.be/qK4ag_CDBq4?start=30&end=40", "youtu.be/d-1zfgzgBgc?start=14&end=24"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["baby", "cry"], ["infant", "cry"], ["young","child","cry"], ["young","kid","cry"]]
+  },
+  {
+    "id": "/m/07qz6j3",
+    "name": "Whimper",
+    "description": "A plaintive, whining vocalization with some abrupt changes in loudness.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=whimper",
+    "positive_examples": ["youtu.be/Paa2p-PWR_A?start=110&end=120", "youtu.be/ym17PNCgwbQ?start=11&end=21", "youtu.be/ZucQqoFyibg?start=80&end=90", "youtu.be/DLKDQyjlmMc?start=30&end=40", "youtu.be/bEah4B4VQwg?start=30&end=40", "youtu.be/NLoDz8kI6hA?start=22&end=32", "youtu.be/YCvOvWQjUuw?start=50&end=60", "youtu.be/dFNG62WLBMk?start=70&end=80"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["whimper", "human"], "review"]
+  },
+  {
+    "id": "/m/07qw_06",
+    "name": "Wail, moan",
+    "description": "A weak or soft emotional vocalization, possibly indicating pain, sadness, or pleasure.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=wail",
+    "positive_examples": ["youtu.be/kLElQSpQEdI?start=110&end=120", "youtu.be/1SH36SQZxG4?start=510&end=520", "youtu.be/sArGQfiV2Ro?start=400&end=410", "youtu.be/7nZcwE5VxgM?start=470&end=480", "youtu.be/uiPxvdr6S8c?start=60&end=70", "youtu.be/VCOQOjLdIj0?start=510&end=520"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["wail","voice"], ["moan","voice"], ["wail","woman"], ["moan","woman"],["wail","man"], ["moan","man"], ["wail","human"], ["moan","human"]]
+  },
+  {
+    "id": "/m/07plz5l",
+    "name": "Sigh",
+    "description": "An utterance made by exhaling audibly.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=sigh",
+    "positive_examples": ["youtu.be/XOphuM8ZUhM?start=560&end=570", "youtu.be/giY25pWyJxM?start=140&end=150"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["sigh"]
+  },
+  {
+    "id": "/m/015lz1",
+    "name": "Singing",
+    "description": "Musical sounds produced with the human voice, including sustained tonality, rhythm, and a variety of other vocal techniques.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Singing",
+    "positive_examples": ["youtu.be/tYsnQUR-Ovg?start=210&end=220", "youtu.be/qo2MBnTtMrs?start=30&end=40", "youtu.be/XgPZjCl7Mog?start=110&end=120", "youtu.be/nJwUDaURmEU?start=160&end=170", "youtu.be/0ejZ-FIdeOE?start=80&end=90", "youtu.be/CzoJ3saJ4pw?start=70&end=80", "youtu.be/-62ed8TfM9E?start=100&end=110", "youtu.be/GpMPvnxkibA?start=190&end=200", "youtu.be/ZgxmMjcGBIk?start=30&end=40"],
+    "child_ids": ["/m/0l14jd", "/m/01swy6", "/m/02bk07", "/t/dd00003", "/t/dd00004", "/t/dd00005", "/t/dd00006", "/m/06bxc"],
+    "restrictions": [],
+    "fs_tags": ["sing"]
+  },
+  {
+    "id": "/m/0l14jd",
+    "name": "Choir",
+    "description": "A musical ensemble of singers.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Choir",
+    "positive_examples": ["youtu.be/BwSECmEnch0?start=30&end=40", "youtu.be/7KBnHYkfr88?start=280&end=290", "youtu.be/T1fzAEVrunY?start=40&end=50", "youtu.be/jvEf_n4skHM?start=210&end=220", "youtu.be/Kb8aE3C4aSw?start=370&end=380", "youtu.be/dZiS2K2eqhs?start=30&end=40", "youtu.be/OdhXgzLFed0?start=130&end=140", "youtu.be/Gx7yso0V26E?start=300&end=310", "youtu.be/94zsWCi4C6g?start=190&end=200"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["choir"]
+  },
+  {
+    "id": "/m/01swy6",
+    "name": "Yodeling",
+    "description": "A form of singing that involves repeated and rapid changes of pitch between the low-pitch chest register and the high-pitch head register or falsetto.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Yodeling",
+    "positive_examples": ["youtu.be/2eSbUlbLTKw?start=70&end=80", "youtu.be/DTzl8RG1oqA?start=70&end=80", "youtu.be/h3qfNR2JJdI?start=50&end=60"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["yodel"]
+  },
+  {
+    "id": "/m/02bk07",
+    "name": "Chant",
+    "description": "The rhythmic speaking or singing of words or sounds, often primarily on one or two main pitches called reciting tones.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Chant",
+    "positive_examples": [],
+    "child_ids": ["/m/01c194"],
+    "restrictions": [],
+    "fs_tags": ["chant"]
+  },
+  {
+    "id": "/m/01c194",
+    "name": "Mantra",
+    "description": "A melodic sacred utterance believed to have spiritual powers.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Mantra",
+    "positive_examples": [],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["mantra"]
+  },
+  {
+    "id": "/t/dd00003",
+    "name": "Male singing",
+    "description": "Singing produced by an adult human male.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/3MyiiJVkmZc?start=30&end=40", "youtu.be/Cxe11hqO8xM?start=40&end=50", "youtu.be/zwU8MqFhtLo?start=180&end=190", "youtu.be/7QYUijb6wEg?start=30&end=40", "youtu.be/5mvUQdbVvIs?start=30&end=40", "youtu.be/1Ct9cLEumKQ?start=30&end=40", "youtu.be/-KN8aM8jlRo?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["male", "sing"], ["man","sing"]]
+  },
+  {
+    "id": "/t/dd00004",
+    "name": "Female singing",
+    "description": "Singing produced by an adult human female.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/6Mp3JkuGIiI?start=30&end=40", "youtu.be/w9a0J7_9zN8?start=30&end=40", "youtu.be/-7xRJ-Osv1E?start=30&end=40", "youtu.be/G0wvmTxaLl4?start=30&end=40", "youtu.be/5j9weh6E9Yc?start=30&end=40", "youtu.be/-Y77HcFQZRo?start=30&end=40", "youtu.be/4MLHuuh6Al0?start=30&end=40", "youtu.be/6_YVfDV_GSA?start=6&end=16", "youtu.be/0ow_OtEBvRM?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["female", "sing"], ["woman","sing"]]
+  },
+  {
+    "id": "/t/dd00005",
+    "name": "Child singing",
+    "description": "Singing produced by a young human whose voice has not yet reached its adult state.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/0aqR4zaYEn4?start=30&end=40", "youtu.be/RmaUdIhQhsI?start=60&end=70", "youtu.be/5pIdH6p3kuo?start=30&end=40", "youtu.be/hnJhbClGpNI?start=90&end=100", "youtu.be/4d9EfAmGVFs?start=30&end=40", "youtu.be/77ojcYuZn7A?start=30&end=40", "youtu.be/B8wfW-vq_Pk?start=60&end=70", "youtu.be/-UFvq4-iS-Y?start=560&end=570", "youtu.be/265WZznzbko?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["child", "sing"], ["kid","sing"], ["young", "human", "sing"]]
+  },
+  {
+    "id": "/t/dd00006",
+    "name": "Synthetic singing",
+    "description": "Singing-like sounds produced by artificial means, such as an electronic synthesizer.  Does not include pre-recorded sounds that originate in a human voice.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/d6-bQMCz7j0?start=30&end=40", "youtu.be/-NC5li0b4eY?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["synthesize", "sing"], ["artificial", "sing"]]
+  },
+  {
+    "id": "/m/06bxc",
+    "name": "Rapping",
+    "description": "The sound of \"spoken or chanted rhyming lyrics\", serving the role of a vocal line in music but with normal speech intonation instead of a melodic line.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Rapping",
+    "positive_examples": ["youtu.be/o0UkYQyz7Go?start=10&end=20", "youtu.be/TlAoG8vYhZc?start=110&end=120", "youtu.be/x7RGnBNjxUc?start=40&end=50", "youtu.be/oqkwwyS91MU?start=100&end=110", "youtu.be/vUgzSosGFl0?start=100&end=110", "youtu.be/n75IvFxTnPc?start=500&end=510", "youtu.be/rQZOndx4yQk?start=220&end=230", "youtu.be/UABPePYISsQ?start=30&end=40", "youtu.be/gAX5Kae75y0?start=30&end=40", "youtu.be/IDhovk37whw?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["rap"]
+  },
+  {
+    "id": "/m/02fxyj",
+    "name": "Humming",
+    "description": "A wordless tone produced by forcing the sound to emerge from the nose, often with a melody.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Humming",
+    "positive_examples": ["youtu.be/rDybDMElvEQ?start=30&end=40", "youtu.be/fDk8UFZFPqQ?start=30&end=40", "youtu.be/KRb26VscbJ8?start=120&end=130"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["hum", "voice"], "review"]
+  },
+  {
+    "id": "/m/07s2xch",
+    "name": "Groan",
+    "description": "An utterance expressing pain or disapproval. Specifically refers to humans.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=groan",
+    "positive_examples": ["youtu.be/UfJczyLcB40?start=170&end=180", "youtu.be/NrD9vrfyBLc?start=40&end=50", "youtu.be/AjQpqRcpG4E?start=30&end=40", "youtu.be/OHIIpJzP8_8?start=20&end=30", "youtu.be/Dp0FeEXOdgM?start=260&end=270", "youtu.be/vL1goz4n82k?start=140&end=150", "youtu.be/DkK4GuqTzHw?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["groan","human"], ["groan","woman"], ["groan","man"]]
+  },
+  {
+    "id": "/m/07r4k75",
+    "name": "Grunt",
+    "description": "A short low gruff noise, resembling the sound made by animals such as pigs. Specifically refers to humans.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=grunt",
+    "positive_examples": ["youtu.be/qt6ffKY0Vhs?start=160&end=170", "youtu.be/IUcXh9Zz0cQ?start=20&end=30"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["grunt","human"], ["grunt","woman"], ["grunt","man"]]
+  },
+  {
+    "id": "/m/01j423",
+    "name": "Yawn",
+    "description": "The sound of a reflex consisting of the simultaneous inhalation of air and the stretching of the eardrums, followed by an exhalation of breath, commonly associated with tiredness. Specifically refers to humans.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Yawn",
+    "positive_examples": ["youtu.be/nKdPjkVUbzc?start=90&end=100", "youtu.be/yMmc3uMa5xY?start=30&end=40", "youtu.be/C6Dh2wI6yss?start=70&end=80", "youtu.be/m5UQZ-zHd6I?start=13&end=23"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["yawn","human"], ["yawn","woman"], ["yawn","man"]]
+  },
+  {
+    "id": "/m/01w250",
+    "name": "Whistling",
+    "description": "High-pitched tone produced by blowing or sucking air through a small opening between the lips. Used to draw attention, as a personal tic, and to reproduce a melody.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Whistling",
+    "positive_examples": ["youtu.be/MJJv-SQVbQY?start=140&end=150", "youtu.be/snXiUKVgEVI?start=30&end=40", "youtu.be/7lqma04srnA?start=380&end=390", "youtu.be/78F0DHyl8BU?start=30&end=40", "youtu.be/_UahfxFAx0g?start=10&end=20", "youtu.be/EJr6MusXp-o?start=26&end=36", "youtu.be/zhTVzULeZQU?start=12&end=22"],
+    "child_ids": ["/m/079vc8"],
+    "restrictions": [],
+    "fs_tags": [["whistling", "human"], ["whistling", "man"], ["whistling", "woman"]]
+  },
+  {
+    "id": "/m/079vc8",
+    "name": "Wolf-whistling",
+    "description": "A two-toned whistle commonly made to show high interest or approval of something or someone (typically sexual).",
+    "citation_uri": "http://en.wikipedia.org/wiki/Wolf-whistling",
+    "positive_examples": ["youtu.be/wE527Sqn0E8?start=12&end=22", "youtu.be/YykyGidfpfw?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["wolf-whistling", ["wolf", "whistling"]]
+  },
+  {
+    "id": "/m/09hlz4",
+    "name": "Respiratory sounds",
+    "description": "Sounds generated by the movement of air through the respiratory system (nose, mouth, trachea, and lungs).",
+    "citation_uri": "http://en.wikipedia.org/wiki/Respiratory_sounds",
+    "positive_examples": [],
+    "child_ids": ["/m/0lyf6", "/m/01b_21", "/m/01hsr_", "/m/07ppn3j"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["respiration"]
+  },
+  {
+    "id": "/m/0lyf6",
+    "name": "Breathing",
+    "description": "Air being moved in and out of the lungs in order to sustain life.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Breathing",
+    "positive_examples": ["youtu.be/hd2yDnpnkUU?start=30&end=40", "youtu.be/1PFsaGB6rIw?start=220&end=230", "youtu.be/ncyIS2o9m74?start=30&end=40", "youtu.be/fBLIOyO67Ro?start=90&end=100", "youtu.be/YhSBpiBlIec?start=10&end=20", "youtu.be/e1urSpgRg7M?start=40&end=50", "youtu.be/XUPDODziWEw?start=80&end=90"],
+    "child_ids": ["/m/07mzm6", "/m/01d3sd", "/m/07s0dtb", "/m/07pyy8b", "/m/07q0yl5"],
+    "restrictions": [],
+    "fs_tags": ["breath"]
+  },
+  {
+    "id": "/m/07mzm6",
+    "name": "Wheeze",
+    "description": "A continuous, coarse, whistling sound produced by obstruction of the respiratory airways during breathing.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Wheeze",
+    "positive_examples": ["youtu.be/NPVIL-WOOM4?start=30&end=40", "youtu.be/IvfCYhQXLd0?start=3&end=13", "youtu.be/6J9XeiKqzw0?start=18&end=28", "youtu.be/SVz7X1gqlcw?start=50&end=60"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["wheeze"]
+  },
+  {
+    "id": "/m/01d3sd",
+    "name": "Snoring",
+    "description": "The sound resulting from obstructed respiratory airways during breathing while sleeping.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Snoring",
+    "positive_examples": ["youtu.be/mn824q6UoMg?start=140&end=150", "youtu.be/TiJ-Szo9yHQ?start=20&end=30", "youtu.be/oFiA12sNPyo?start=20&end=30", "youtu.be/c5DPrfjcnsw?start=100&end=110", "youtu.be/9LoDdANZIwg?start=50&end=60", "youtu.be/qWLuleckhOc?start=110&end=120", "youtu.be/3553HVNfiP8?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["snore"]
+  },
+  {
+    "id": "/m/07s0dtb",
+    "name": "Gasp",
+    "description": "A short labored intake of breath with the mouth open. Often indicates shock or surprise.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=gasp",
+    "positive_examples": ["youtu.be/4bU0HWzCXMc?start=170&end=180", "youtu.be/soVRoIbewMM?start=50&end=60", "youtu.be/EvkxkkJp-v8?start=190&end=200"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["gasp"]
+  },
+  {
+    "id": "/m/07pyy8b",
+    "name": "Pant",
+    "description": "Fast and noisy breathing, often associated with physical exertion.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=pant",
+    "positive_examples": ["youtu.be/LCB8rW5cvWk?start=30&end=40", "youtu.be/rgOSgFy0S3Q?start=350&end=360", "youtu.be/gOB0nM0PRTc?start=30&end=40", "youtu.be/e90rd071P-E?start=20&end=30", "youtu.be/jRcrVp2LZTo?start=50&end=60", "youtu.be/Kn-WVGzPVZg?start=20&end=30", "youtu.be/JWP10M-t0jo?start=110&end=120", "youtu.be/yOO9UmPZfns?start=460&end=470"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["pant"]
+  },
+  {
+    "id": "/m/07q0yl5",
+    "name": "Snort",
+    "description": "The sound of a single, hard exhalation through the nose.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=snort",
+    "positive_examples": ["youtu.be/2PXcJCAVf38?start=50&end=60", "youtu.be/AJIRlmjloBo?start=300&end=310", "youtu.be/3xvs8X-u8NA?start=140&end=150", "youtu.be/fSilzq77oTE?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["snort"]
+  },
+  {
+    "id": "/m/01b_21",
+    "name": "Cough",
+    "description": "A sudden and often repetitively occurring reflex which consists of an inhalation, a forced exhalation against a closed glottis, and a violent release of air following opening of the glottis.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Cough",
+    "positive_examples": ["youtu.be/c-yI09r8D5w?start=70&end=80", "youtu.be/NIzPRH3ko6s?start=50&end=60", "youtu.be/cLBKVLHFABc?start=40&end=50", "youtu.be/WkaNCu_1l68?start=10&end=20", "youtu.be/vA_AIILl76w?start=20&end=30"],
+    "child_ids": ["/m/0dl9sf8"],
+    "restrictions": [],
+    "fs_tags": ["cough"]
+  },
+  {
+    "id": "/m/0dl9sf8",
+    "name": "Throat clearing",
+    "description": "Forced exhalation through a partially-closed glottis to disrupt built-up mucus, or used as a social signal to draw attention to one's presence.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/xAj1xof1FeU?start=510&end=520", "youtu.be/D40HPmkVjEU?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["throat","clear"], ["throat","clean"]]
+  },
+  {
+    "id": "/m/01hsr_",
+    "name": "Sneeze",
+    "description": "A convulsive expulsion of air from the lungs through the nose and mouth, usually caused by foreign particles irritating the nasal mucous.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Sneeze",
+    "positive_examples": ["youtu.be/8714J5_siEY?start=40&end=50", "youtu.be/SG3MrCBKskE?start=70&end=80", "youtu.be/gyF_tG0M9cM?start=10&end=20", "youtu.be/qDXFW2kemrE?start=250&end=260", "youtu.be/StJLcW5FKoI?start=20&end=30", "youtu.be/HMmbLN0NoYo?start=130&end=140"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["sneeze"]
+  },
+  {
+    "id": "/m/07ppn3j",
+    "name": "Sniff",
+    "description": "Inhale audibly through the nose.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=sniff",
+    "positive_examples": ["youtu.be/BDrbBzzJ3hg?start=210&end=220", "youtu.be/MH33LSP9CiI?start=120&end=130", "youtu.be/-xyTvA1F16M?start=590&end=600"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["sniff"]
+  },
+  {
+    "id": "/m/0bpl036",
+    "name": "Human locomotion",
+    "description": "Sounds resulting from human body actions involved in changing location.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/06h7j", "/m/07qv_x_", "/m/07pbtc8"],
+    "restrictions": ["abstract"],
+    "fs_tags": [["human","locomotion"], ["man","locomotion"], ["woman","locomotion"], ["body","locomotion"], ["body","move"], "review"]
+  },
+  {
+    "id": "/m/06h7j",
+    "name": "Run",
+    "description": "Move fast by using one's feet.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Running",
+    "positive_examples": ["youtu.be/F4Rqp8W59rY?start=30&end=40", "youtu.be/Q_29jnpYobY?start=30&end=40", "youtu.be/5uXUyEf8bzY?start=30&end=40", "youtu.be/9TDFjw6eF5M?start=30&end=40", "youtu.be/3cjFmZe9muo?start=300&end=310", "youtu.be/_rABcqr2InE?start=250&end=260"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["run"]
+  },
+  {
+    "id": "/m/07qv_x_",
+    "name": "Shuffle",
+    "description": "Walk while dragging the feet, often indicating impaired mobility.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=shuffle",
+    "positive_examples": ["youtu.be/SJRNlFrlL6I?start=1&end=11", "youtu.be/u-xy9MsPuAI?start=7&end=17"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["shuffle","walk"]]
+  },
+  {
+    "id": "/m/07pbtc8",
+    "name": "Walk, footsteps",
+    "description": "The sound of feet or shoes contacting the ground in conventional human locomotion.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=walk",
+    "positive_examples": ["youtu.be/Dl_-9HuKqD0?start=220&end=230", "youtu.be/ulYCw2ZEiz4?start=50&end=60", "youtu.be/0qes0wPqdEs?start=30&end=40", "youtu.be/XYm5hJfJaFo?start=80&end=90", "youtu.be/DBRvVR2KHeg?start=230&end=240", "youtu.be/V851WPfpbwA?start=230&end=240", "youtu.be/Ix5uPjC1gHI?start=70&end=80", "youtu.be/2Z4THg6VA1A?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["footstep", "walk"]
+  },
+  {
+    "id": "/m/0160x5",
+    "name": "Digestive",
+    "description": "Sounds associated with the human function of eating and processing nutrition (food).",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/03cczk", "/m/07pdhp0", "/m/0939n_", "/m/01g90h", "/m/03q5_w", "/m/02p3nc", "/m/02_nn"],
+    "restrictions": ["abstract"],
+    "fs_tags": ["digestive"]
+  },
+  {
+    "id": "/m/03cczk",
+    "name": "Chewing, mastication",
+    "description": "Food being crushed and ground by teeth.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Mastication",
+    "positive_examples": ["youtu.be/EBnrA85wsc4?start=530&end=540", "youtu.be/EkCIh67xI_w?start=30&end=40", "youtu.be/fCQMflXjGU8?start=460&end=470", "youtu.be/A7MnWIjUVw8?start=40&end=50", "youtu.be/q2m5ChTEe4k?start=450&end=460", "youtu.be/mE092i7zPqY?start=19&end=29", "youtu.be/G3it26Z8E8U?start=30&end=40", "youtu.be/5xAEW3g6en8?start=100&end=110", "youtu.be/9lKmiUIJfGc?start=280&end=290"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["chewing", "mastication"]
+  },
+  {
+    "id": "/m/07pdhp0",
+    "name": "Biting",
+    "description": "Gripping or chewing off with the teeth and jaws.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=biting",
+    "positive_examples": ["youtu.be/3CkwNL_UGoA?start=30&end=40", "youtu.be/WoA9_cYAlfc?start=240&end=250", "youtu.be/XMGG2w26ea4?start=30&end=40", "youtu.be/PRsBCvps7D0?start=30&end=40", "youtu.be/BH4UwESvYw8?start=160&end=170", "youtu.be/X8ulg-9etoU?start=80&end=90"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["bit"]
+  },
+  {
+    "id": "/m/0939n_",
+    "name": "Gargling",
+    "description": "Air from the lungs bubbling through a liquid in the mouth.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Gargling",
+    "positive_examples": ["youtu.be/Dz8filbrC98?start=60&end=70", "youtu.be/e8saB9V1UXo?start=70&end=80", "youtu.be/SVSjNao4ZFQ?start=80&end=90", "youtu.be/Rk6O2IWjwFg?start=520&end=530", "youtu.be/ACNcxeQ-Rns?start=20&end=30", "youtu.be/bQR7moK_WZg?start=30&end=40", "youtu.be/QS--7Slaacc?start=30&end=40", "youtu.be/AbNB97ANUDA?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["gargle"]
+  },
+  {
+    "id": "/m/01g90h",
+    "name": "Stomach rumble",
+    "description": "A rumbling, growling or gurgling noise produced by movement of the contents of the gastro-intestinal tract.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Stomach_rumble",
+    "positive_examples": ["youtu.be/Gq9nl91baGg?start=110&end=120", "youtu.be/kCXc7_Xie2s?start=12&end=22", "youtu.be/Fk8-06ipZYo?start=400&end=410", "youtu.be/2_Z3pMnrWKY?start=400&end=410"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["stomach","rumble"], ["stomach","growling"], ["stomach","gurgling"],["stomach","noise"]]
+  },
+  {
+    "id": "/m/03q5_w",
+    "name": "Burping, eructation",
+    "description": "The release of gas from the digestive tract through the mouth.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Burping",
+    "positive_examples": ["youtu.be/IsnR6Ck3j44?start=160&end=170", "youtu.be/8xMdlr7YTr4?start=70&end=80", "youtu.be/uhOh3x9I6bw?start=20&end=30", "youtu.be/cQAiS0dk8Zc?start=130&end=140", "youtu.be/1WI9921OeRc?start=570&end=580", "youtu.be/N_ggss-wQmQ?start=40&end=50", "youtu.be/Xo6WBR_cFXQ?start=80&end=90", "youtu.be/X9oZGgZij0c?start=220&end=230", "youtu.be/IP-zbN5rVNs?start=50&end=60"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["burp", "eructation"]
+  },
+  {
+    "id": "/m/02p3nc",
+    "name": "Hiccup",
+    "description": "A strong, involuntary contraction of the diaphragm that may repeat several times per minute.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Hiccup",
+    "positive_examples": ["youtu.be/m8yH5TLD1oQ?start=190&end=200", "youtu.be/g1mJnZVGQkk?start=30&end=40", "youtu.be/JQ2XH_Ci_tk?start=80&end=90", "youtu.be/7gdSJ30FfNU?start=460&end=470", "youtu.be/VMdN2OuP6fk?start=90&end=100"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["hiccup"]
+  },
+  {
+    "id": "/m/02_nn",
+    "name": "Fart",
+    "description": "The release of gasses produced by digestion through the anus; flatulence.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Fart",
+    "positive_examples": ["youtu.be/xOkFu3ahJAs?start=50&end=60", "youtu.be/O9kJ6tBGGR0?start=70&end=80", "youtu.be/DKnViWndkPc?start=10&end=20", "youtu.be/qtLaibhO5hI?start=30&end=40", "youtu.be/ZMi9XHLZzSk?start=20&end=30", "youtu.be/Le9QaCTQFQ4?start=150&end=160"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["fart", "flatulence"]
+  },
+  {
+    "id": "/m/0k65p",
+    "name": "Hands",
+    "description": "Sounds originating primarily from the hands and fingers of humans.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/tHASgPEwR_4?start=60&end=70", "youtu.be/s9ODY2HdI7g?start=30&end=40", "youtu.be/qPsooNWBc90?start=40&end=50", "youtu.be/S-n7Rkg32tE?start=230&end=240", "youtu.be/nGmhfmCVnnc?start=30&end=40", "youtu.be/O9z0AAuWG20?start=420&end=430", "youtu.be/PU-4TfhBjrA?start=60&end=70", "youtu.be/cJAm1VXhvGA?start=150&end=160", "youtu.be/KSOxq1eovtw?start=30&end=40"],
+    "child_ids": ["/m/025_jnm", "/m/0l15bq"],
+    "restrictions": [],
+    "fs_tags": ["hands"]
+  },
+  {
+    "id": "/m/025_jnm",
+    "name": "Finger snapping",
+    "description": "A snapping or clicking sound usually caused by building tension between the thumb and another finger and then moving the other finger forcefully downward to hits the palm at high speed.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Finger_snapping",
+    "positive_examples": ["youtu.be/Q6hIvsdfCF8?start=10&end=20", "youtu.be/p42W37beu88?start=90&end=100", "youtu.be/vxrM-HU9ITQ?start=30&end=40", "youtu.be/UPJl7MtJwhw?start=30&end=40", "youtu.be/p6VIZQAV5PQ?start=30&end=40", "youtu.be/lmSmwPsWvII?start=83&end=93", "youtu.be/JwWoO-dafDc?start=190&end=200", "youtu.be/_e7dRfvWLPo?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["finger-snaping", ["finger", "snapping"], "fingersnap"]
+  },
+  {
+    "id": "/m/0l15bq",
+    "name": "Clapping",
+    "description": "A percussive sound made by a human striking together the palms of their two hands, often quickly and repeatedly to express appreciation or approval. This category is to be used for distinct claps by a single person; for a group of people clapping together, use Applause.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Clapping",
+    "positive_examples": ["youtu.be/ATHjFAM3ehk?start=80&end=90", "youtu.be/TCI_qydc554?start=20&end=30", "youtu.be/8byxt0IjVcQ?start=30&end=40", "youtu.be/0aSF6X4-Ksg?start=50&end=60", "youtu.be/-FRGpQEpEWM?start=30&end=40", "youtu.be/ikdaGO5jUYU?start=80&end=90", "youtu.be/3qEb6Y-D7Mw?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["clap"]
+  },
+  {
+    "id": "/m/01jg02",
+    "name": "Heart sounds, heartbeat",
+    "description": "Noises generated by the beating heart and the resultant flow of blood through it.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Heart_sounds",
+    "positive_examples": ["youtu.be/40YB3ROwAbE?start=30&end=40", "youtu.be/g9IEEN6Zm8E?start=100&end=110", "youtu.be/T9I8C9l3fR0?start=30&end=40", "youtu.be/nFjBft9nEhs?start=30&end=40", "youtu.be/PkgYuDzOvnc?start=30&end=40", "youtu.be/sbcqHphoMDA?start=100&end=110"],
+    "child_ids": ["/m/01jg1z"],
+    "restrictions": [],
+    "fs_tags": ["heart", "heartbeat"]
+  },
+  {
+    "id": "/m/01jg1z",
+    "name": "Heart murmur",
+    "description": "Heart sounds produced by abnormal blood flow across one of the heart valves, typically detected by a stethoscope.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Heart_murmur",
+    "positive_examples": ["youtu.be/tpvMXSfxGOg?start=30&end=40", "youtu.be/m_QTr-0Y_Ek?start=110&end=120"],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": [["heart", "murmur"]]
+  },
+  {
+    "id": "/m/04xp5v",
+    "name": "Otoacoustic emission",
+    "description": "A sound generated within the inner ear, generally understood to result from positive feedback in the highly-sensitive ear mechanism.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Otoacoustic_emission",
+    "positive_examples": [],
+    "child_ids": ["/m/0pv6y"],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["review"]
+  },
+  {
+    "id": "/m/0pv6y",
+    "name": "Tinnitus, ringing in the ears",
+    "description": "A sound perceived when no external sound is present, often described as ringing, usually related to short-term trauma or longer-lasting damage to the ear.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Tinnitus",
+    "positive_examples": ["youtu.be/4XBH8x2mcZk?start=60&end=70", "youtu.be/8WFmDgu2Z9Y?start=10&end=20", "youtu.be/ZEHdCaVwtvs?start=270&end=280", "youtu.be/eCWPT9pS7so?start=40&end=50", "youtu.be/OE5fIoveLoM?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": ["blacklist"],
+    "fs_tags": ["tinnitus"]
+  },
+  {
+    "id": "/t/dd00012",
+    "name": "Human group actions",
+    "description": "Sounds produced by groups of humans rather than individuals.",
+    "citation_uri": "",
+    "positive_examples": [],
+    "child_ids": ["/m/0l15bq", "/m/053hz1", "/m/028ght", "/m/07rkbfh", "/m/03qtwd", "/m/07qfr4h", "/m/04v5dt", "/t/dd00013", "/t/dd00135"],
+    "restrictions": ["abstract"],
+    "fs_tags": [["human","group"], "review"]
+  },
+  {
+    "id": "/m/053hz1",
+    "name": "Cheering",
+    "description": "Encouraging, stimulating, or exciting vocalizations indicating approval or welcoming persons, announcements, etc.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Cheering",
+    "positive_examples": ["youtu.be/YtItqbSzKBs?start=190&end=200", "youtu.be/7yntRBheP3M?start=30&end=40", "youtu.be/rJ20qPKtLnU?start=70&end=80", "youtu.be/HxPdX8caIaM?start=10&end=20", "youtu.be/Sdl9uYLySyU?start=30&end=40", "youtu.be/OqpuMxjAYTs?start=180&end=190", "youtu.be/oxBsRnUc_6U?start=250&end=260", "youtu.be/4ul8uXkumZM?start=40&end=50"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["cheering", "encouraging"]
+  },
+  {
+    "id": "/m/028ght",
+    "name": "Applause",
+    "description": "Group expression of approval by the collective act of clapping by a group.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Applause",
+    "positive_examples": ["youtu.be/lAD74Ey6bL4?start=510&end=520", "youtu.be/7WSH77zPigA?start=30&end=40", "youtu.be/kqzL3xznfiU?start=350&end=360", "youtu.be/0-ygGIzPk6Y?start=30&end=40", "youtu.be/Uzj6a_Btyqs?start=450&end=460", "youtu.be/e1gdVg7DcV4?start=360&end=370", "youtu.be/Rb2L0PmwcvA?start=420&end=430", "youtu.be/ep3rfNAyXGs?start=40&end=50", "youtu.be/rpoTKm-QB7Y?start=15&end=25"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["applause"]
+  },
+  {
+    "id": "/m/07rkbfh",
+    "name": "Chatter",
+    "description": "The combined sound of casual speech by many people in individual simultaneous conversations.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=chatter",
+    "positive_examples": ["youtu.be/ViYMLK4dujU?start=200&end=210", "youtu.be/XXsfmD0Bss0?start=400&end=410", "youtu.be/NyEcj25jlSY?start=40&end=50", "youtu.be/Fvbyp4w6EaM?start=220&end=230", "youtu.be/3YCmyruGOK8?start=140&end=150", "youtu.be/VmPeBqOwI-Y?start=140&end=150"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["chatter", "review"]
+  },
+  {
+    "id": "/m/03qtwd",
+    "name": "Crowd",
+    "description": "The sound of a large group of people gathered together.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Crowd",
+    "positive_examples": ["youtu.be/kUKWkSKQEJY?start=310&end=320", "youtu.be/V5PKN1kIPh8?start=120&end=130", "youtu.be/y_betJ7lbvs?start=190&end=200", "youtu.be/xGPtos-dfDU?start=360&end=370", "youtu.be/qlsptFT16nA?start=350&end=360", "youtu.be/yNkD_yqgUk0?start=30&end=40"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["crowd"]
+  },
+  {
+    "id": "/m/07qfr4h",
+    "name": "Hubbub, speech noise, speech babble",
+    "description": "Loud, disordered, unintelligible speech noise from many sources.",
+    "citation_uri": "http://wordnetweb.princeton.edu/perl/webwn?s=hubbub",
+    "positive_examples": ["youtu.be/7kw_my9mSSY?start=30&end=40", "youtu.be/9heeSXrNtXY?start=60&end=70", "youtu.be/_frFEY2PG-8?start=140&end=150", "youtu.be/WIKHKccnhCg?start=190&end=200", "youtu.be/DTmnaeDISTY?start=20&end=30", "youtu.be/4Csr25pn41Q?start=30&end=40", "youtu.be/c8CsTpDQlaE?start=280&end=290", "youtu.be/ca5yYSLOcpY?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": ["hubbub", ["speech","noise"], ["speech", "babble"], "review"]
+  },
+  {
+    "id": "/m/04v5dt",
+    "name": "Booing",
+    "description": "Vocal display of displeasure for someone or something, generally an entertainer, by loudly yelling \"boo!\" or making other noises of disparagement.",
+    "citation_uri": "http://en.wikipedia.org/wiki/Booing",
+    "positive_examples": ["youtu.be/-Cz0muXWdeU?start=310&end=320", "youtu.be/X6xMdMyx4Q8?start=190&end=200", "youtu.be/07ckQxmU9KM?start=23&end=33"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["booing", "voice"], ["booing", "vocal"]]
+  },
+  {
+    "id": "/t/dd00013",
+    "name": "Children playing",
+    "description": "The sound of children at play, including any of vocalization or the sounds of their activities.",
+    "citation_uri": "",
+    "positive_examples": ["youtu.be/oxj5zL56UNQ?start=400&end=410", "youtu.be/MkLjgMq-XWo?start=20&end=30", "youtu.be/ZUu13n3vyT8?start=290&end=300", "youtu.be/H867X9MA2x4?start=130&end=140", "youtu.be/SjkBir6CfV8?start=20&end=30", "youtu.be/sQDMqzfpd-Q?start=10&end=20"],
+    "child_ids": [],
+    "restrictions": [],
+    "fs_tags": [["children","play"], ["kid","play"], ["children","activity"], ["kid","activity"]]
+  }
+]
