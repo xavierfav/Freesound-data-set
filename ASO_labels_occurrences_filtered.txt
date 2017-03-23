@@ -1,0 +1,637 @@
+Audio Set labels number of occurrences:
+
+Ontology                                                                                                 268509
+Music > Musical concepts > Musical note                                                                  59472
+Music > Musical instrument > Keyboard (musical) > Synthesizer                                            52884
+Music > Musical instrument > Percussion > Drum                                                           21094
+Music > Musical concepts > Loop                                                                          18730
+Source-ambiguous sounds > Other sourceless > Sound effect                                                17968
+Channel, environment and background > Sound reproduction > Recording > Field recording                   17903
+Channel, environment and background > Noise                                                              12788
+Source-ambiguous sounds > Other sourceless > Bass (frequency range)                                      11260
+Music > Musical instrument > Bass (instrument role)                                                      11142
+Music > Musical instrument > Plucked string instrument > Guitar > Bass guitar                            8769
+Human sounds > Human voice                                                                               8766
+Music > Musical concepts > Beat                                                                          8687
+Source-ambiguous sounds > Generic impact sounds                                                          7766
+Music > Musical instrument > Percussion > Drum > Snare drum                                              7695
+Music > Musical instrument > Percussion                                                                  6819
+Channel, environment and background > Noise > Background noise > Static                                  5740
+Music > Music genre > Christian music                                                                    5189
+Music > Musical concepts > Drone                                                                         4853
+Natural sounds > Water                                                                                   4787
+Music > Music genre > Electronic music > Electro                                                         4680
+Source-ambiguous sounds > Onomatopoeia > Clicking                                                        4652
+Channel, environment and background > Acoustic environment > Outside, rural or natural                   4634
+Music > Music genre > Electronic music > Techno                                                          4524
+Human sounds > Human locomotion > Walk, footsteps                                                        4472
+Sounds of things > Wood                                                                                  4359
+Channel, environment and background > Sound reproduction > Recording                                     4281
+Music > Musical instrument > Percussion > Drum > Bass drum                                               4151
+Music > Musical instrument > Percussion > Cymbal > Crash cymbal                                          4091
+Music > Musical instrument > Keyboard (musical) > Piano                                                  4090
+Channel, environment and background > Noise > Background noise > Distortion                              4024
+Music > Musical instrument > Bowed string instrument > String section                                    3381
+Natural sounds > Wind                                                                                    3378
+Channel, environment and background > Acoustic environment > Reverberation                               3238
+Sounds of things > Engine                                                                                3199
+Music > Musical instrument > Percussion > Drum kit                                                       3137
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Beep, bleep                                        3126
+Sounds of things > Miscellaneous sources > Sound equipment > Effects unit                                3117
+Music > Musical instrument > Plucked string instrument > Guitar                                          2996
+Natural sounds                                                                                           2955
+Human sounds > Human voice > Speech > Female speech, woman speaking                                      2884
+Music > Musical concepts > Chord                                                                         2798
+Animal > Wild animals > Bird                                                                             2778
+Sounds of things > Vehicle > Motor vehicle (road) > Car                                                  2665
+Sounds of things > Domestic sounds, home sounds > Dishes, pots, and pans                                 2648
+Music > Musical instrument > Bell                                                                        2571
+Channel, environment and background > Acoustic environment > Outside, urban or manmade                   2570
+Source-ambiguous sounds > Generic impact sounds > Bang                                                   2547
+Natural sounds > Water > Rain > Raindrop                                                                 2547
+Channel, environment and background > Noise > Background noise                                           2529
+Sounds of things > Domestic sounds, home sounds > Door > Slam                                            2436
+Source-ambiguous sounds > Other sourceless > Ringing (of resonator)                                      2432
+Music > Musical instrument > Wind instrument, woodwind instrument > Saxophone                            2292
+Music > Musical instrument > Plucked string instrument > Guitar > Acoustic guitar                        2289
+Sounds of things > Vehicle > Rail transport > Train                                                      2241
+Sounds of things > Domestic sounds, home sounds > Door > Squeak                                          2235
+Channel, environment and background > Sound reproduction > Radio                                         2234
+Sounds of things > Glass                                                                                 2195
+Music > Musical instrument > Bowed string instrument > Violin, fiddle                                    2143
+Human sounds > Human voice > Speech                                                                      2122
+Music > Music role > Soundtrack music                                                                    2121
+Music > Music genre > Electronic music > Dubstep                                                         2082
+Natural sounds > Water > Ocean > Waves, surf                                                             1926
+Music > Musical instrument > Wind instrument, woodwind instrument > Clarinet                             1915
+Channel, environment and background > Acoustic environment > Echo                                        1890
+Sounds of things > Domestic sounds, home sounds > Door > Sliding door                                    1853
+Source-ambiguous sounds > Generic impact sounds > Smash, crash                                           1835
+Human sounds > Hands > Clapping                                                                          1819
+Source-ambiguous sounds > Onomatopoeia > Plop                                                            1810
+Human sounds > Human voice > Speech > Male speech, man speaking                                          1781
+Human sounds > Human voice > Screaming                                                                   1757
+Music > Musical instrument > Brass instrument > Trumpet                                                  1741
+Sounds of things > Domestic sounds, home sounds > Kettle whistle                                         1734
+Music > Musical instrument > Wind instrument, woodwind instrument > Flute                                1720
+Source-ambiguous sounds > Generic impact sounds > Breaking                                               1685
+Music > Musical instrument > Percussion > Cymbal > Hi-hat                                                1595
+Natural sounds > Fire                                                                                    1586
+Human sounds > Human group actions > Crowd                                                               1580
+Natural sounds > Water > Rain                                                                            1547
+Human sounds > Respiratory sounds > Breathing                                                            1544
+Source-ambiguous sounds > Deformable shell > Crushing                                                    1513
+Music > Musical instrument > Bowed string instrument > Cello                                             1468
+Sounds of things > Miscellaneous sources > Arrow > Whoosh, swoosh, swish                                 1464
+Sounds of things > Domestic sounds, home sounds > Cutlery, silverware                                    1451
+Source-ambiguous sounds > Other sourceless > Infrasound                                                  1442
+Natural sounds > Water > Ocean                                                                           1414
+Animal > Wild animals > Insect > Fly, housefly > Buzz                                                    1384
+Source-ambiguous sounds > Onomatopoeia > Creak                                                           1361
+Music > Musical concepts > Harmony                                                                       1333
+Natural sounds > Water > Stream                                                                          1323
+Source-ambiguous sounds > Surface contact > Scrape                                                       1313
+Music > Musical instrument > Scratching (performance technique)                                          1304
+Music > Music genre > Hip hop music                                                                      1303
+Music > Musical instrument > Plucked string instrument > Guitar > Electric guitar                        1303
+Sounds of things > Explosion > Gunshot, gunfire                                                          1293
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Clang                                              1281
+Natural sounds > Thunderstorm > Thunder                                                                  1246
+Animal > Wild animals > Snake > Rattle                                                                   1228
+Music > Musical instrument                                                                               1221
+Source-ambiguous sounds > Onomatopoeia > Rumble                                                          1215
+Sounds of things > Wood > Crack                                                                          1209
+Human sounds > Human voice > Laughter                                                                    1185
+Sounds of things > Vehicle > Rail transport > Subway, metro, underground                                 1182
+Human sounds > Human locomotion > Run                                                                    1178
+Sounds of things > Domestic sounds, home sounds > Coin (dropping)                                        1168
+Music > Musical concepts > Song                                                                          1140
+Animal > Domestic animals, pets > Dog > Growling                                                         1139
+Sounds of things > Domestic sounds, home sounds > Door                                                   1133
+Sounds of things > Wood > Snap                                                                           1132
+Music > Music role > Dance music                                                                         1121
+Music > Music genre > Electronic music > House music                                                     1120
+Sounds of things > Domestic sounds, home sounds > Door > Doorbell                                        1116
+Sounds of things > Liquid > Splash, splatter                                                             1108
+Source-ambiguous sounds > Onomatopoeia > Crunch                                                          1105
+Music > Music genre > Jazz                                                                               1088
+Source-ambiguous sounds > Onomatopoeia > Hum                                                             1085
+Music > Musical instrument > Brass instrument                                                            1081
+Music > Musical instrument > Bell > Chime                                                                1075
+Sounds of things > Domestic sounds, home sounds                                                          1061
+Music > Musical instrument > Keyboard (musical) > Organ                                                  1049
+Sounds of things > Domestic sounds, home sounds > Door > Tap                                             1049
+Sounds of things > Liquid > Drip                                                                         1036
+Source-ambiguous sounds > Onomatopoeia > Jingle, tinkle                                                  1031
+Sounds of things > Domestic sounds, home sounds > Sink (filling or washing)                              1009
+Music > Music genre > Funk                                                                               999
+Animal > Domestic animals, pets > Cat > Hiss                                                             989
+Sounds of things > Domestic sounds, home sounds > Bathtub (filling or washing)                           986
+Sounds of things > Tools > Sawing                                                                        978
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Ding                                               963
+Natural sounds > Fire > Crackle                                                                          962
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Ping                                               961
+Sounds of things > Explosion                                                                             953
+Music > Musical concepts > Melody                                                                        952
+Sounds of things > Mechanisms                                                                            950
+Channel, environment and background > Sound reproduction > Gramophone record                             943
+Human sounds                                                                                             920
+Animal > Wild animals > Insect > Cricket                                                                 920
+Animal > Wild animals > Bird > Bird vocalization, bird call, bird song                                   918
+Music > Music genre > Hip hop music > Beatboxing                                                         916
+Animal > Domestic animals, pets > Dog > Bark                                                             910
+Human sounds > Digestive > Fart                                                                          898
+Sounds of things > Alarm > Telephone                                                                     889
+Source-ambiguous sounds > Surface contact > Scratch                                                      881
+Sounds of things > Mechanisms > Clock > Tick                                                             869
+Source-ambiguous sounds > Deformable shell > Tearing                                                     866
+Music > Music genre > Vocal music > A capella                                                            859
+Human sounds > Hands                                                                                     842
+Source-ambiguous sounds > Surface contact > Roll                                                         799
+Channel, environment and background > Acoustic environment > Inside, public space                        791
+Music > Music genre > Electronic music > Electronic dance music                                          783
+Channel, environment and background > Noise > White noise                                                760
+Source-ambiguous sounds > Other sourceless > Pulse                                                       756
+Animal                                                                                                   745
+Music > Musical concepts > Beat > Drum beat                                                              743
+Human sounds > Human voice > Shout > Yell                                                                725
+Sounds of things > Tools > Hammer                                                                        715
+Source-ambiguous sounds > Onomatopoeia > Rustle                                                          714
+Music > Musical instrument > Keyboard (musical)                                                          704
+Human sounds > Human voice > Whispering                                                                  698
+Music > Musical concepts > Bassline                                                                      697
+Sounds of things > Miscellaneous sources > Arrow > Thump, thud                                           696
+Sounds of things > Glass > Shatter                                                                       686
+Source-ambiguous sounds > Generic impact sounds > Slap, smack                                            685
+Sounds of things > Domestic sounds, home sounds > Water tap, faucet                                      684
+Source-ambiguous sounds > Surface contact > Rub                                                          683
+Sounds of things > Liquid                                                                                683
+Human sounds > Human group actions > Applause                                                            662
+Animal > Domestic animals, pets > Dog > Howl                                                             653
+Sounds of things > Tools                                                                                 646
+Human sounds > Human group actions > Cheering                                                            626
+Sounds of things > Explosion > Fireworks                                                                 626
+Sounds of things > Domestic sounds, home sounds > Frying (food)                                          623
+Human sounds > Digestive > Chewing, mastication                                                          622
+Human sounds > Human voice > Speech > Conversation                                                       611
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Screech                                            611
+Sounds of things > Vehicle > Motor vehicle (road) > Traffic noise, roadway noise                         606
+Source-ambiguous sounds > Generic impact sounds > Bouncing                                               603
+Music > Musical instrument > Bowed string instrument > Double bass                                       602
+Channel, environment and background > Noise > Vibration                                                  598
+Source-ambiguous sounds > Other sourceless > Sine wave > Chirp tone                                      591
+Sounds of things > Glass > Chink, clink                                                                  588
+Sounds of things > Alarm                                                                                 584
+Music > Musical instrument > Percussion > Drum kit > Drum machine                                        571
+Sounds of things > Vehicle > Aircraft > Fixed-wing aircraft, airplane                                    569
+Sounds of things > Vehicle > Boat, Water vehicle > Ship                                                  564
+Human sounds > Human voice > Singing > Rapping                                                           547
+Natural sounds > Water > Gurgling                                                                        544
+Sounds of things > Engine > Accelerating, revving, vroom                                                 541
+Human sounds > Human voice > Singing                                                                     539
+Music > Musical instrument > Orchestra                                                                   530
+Sounds of things > Vehicle > Motor vehicle (road) > Bus                                                  527
+Music > Musical instrument > Percussion > Gong                                                           519
+Sounds of things > Alarm > Telephone > Telephone bell ringing                                            516
+Source-ambiguous sounds > Other sourceless > Sine wave > Harmonic                                        515
+Music > Musical instrument > Percussion > Rattle (instrument)                                            513
+Animal > Wild animals > Insect                                                                           513
+Sounds of things > Domestic sounds, home sounds > Writing                                                505
+Sounds of things > Domestic sounds, home sounds > Zipper (clothing)                                      500
+Sounds of things > Mechanisms > Camera                                                                   500
+Sounds of things > Mechanisms > Clock                                                                    494
+Source-ambiguous sounds > Surface contact > Grind                                                        488
+Sounds of things > Domestic sounds, home sounds > Toilet flush                                           485
+Animal > Domestic animals, pets > Dog                                                                    460
+Channel, environment and background > Sound reproduction > Television                                    459
+Music > Music genre > Blues                                                                              452
+Sounds of things > Explosion > Boom                                                                      450
+Channel, environment and background > Acoustic environment > Inside, large room or hall                  450
+Sounds of things > Alarm > Telephone > Ringtone                                                          444
+Sounds of things > Domestic sounds, home sounds > Door > Knock                                           442
+Sounds of things > Vehicle > Motor vehicle (road) > Truck                                                414
+Music > Musical instrument > Percussion > Mallet percussion > Marimba, xylophone                         413
+Source-ambiguous sounds > Deformable shell > Crumpling, crinkling                                        406
+Music > Musical instrument > Harp                                                                        404
+Animal > Wild animals > Bird > Bird vocalization, bird call, bird song > Chirp, tweet                    404
+Human sounds > Digestive > Burping, eructation                                                           400
+Animal > Domestic animals, pets > Cat > Meow                                                             396
+Animal > Wild animals > Frog                                                                             395
+Music > Music genre > Electronic music                                                                   395
+Sounds of things > Vehicle > Motor vehicle (road) > Motorcycle                                           393
+Human sounds > Human voice > Crying, sobbing                                                             384
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Race car, auto racing                          383
+Sounds of things > Vehicle > Aircraft > Helicopter                                                       376
+Music > Music genre > Electronic music > Drum and bass                                                   367
+Music > Musical instrument > Bell > Church bell                                                          365
+Human sounds > Respiratory sounds > Cough                                                                360
+Source-ambiguous sounds > Onomatopoeia > Clatter                                                         356
+Music > Musical instrument > Keyboard (musical) > Synthesizer > Sampler                                  355
+Music > Musical instrument > Wind instrument, woodwind instrument > Oboe                                 349
+Music > Musical instrument > Percussion > Tambourine                                                     345
+Music > Music role > Background music                                                                    342
+Animal > Livestock, farm animals, working animals > Cattle, bovinae > Cowbell                            339
+Source-ambiguous sounds > Onomatopoeia > Boing                                                           333
+Sounds of things > Tools > Power tool > Drill                                                            331
+Sounds of things > Domestic sounds, home sounds > Keys jangling                                          330
+Sounds of things > Engine > Engine starting                                                              329
+Human sounds > Human voice > Singing > Choir                                                             329
+Channel, environment and background > Sound reproduction > Compact disc                                  325
+Music > Music genre > Rock music > Punk rock                                                             324
+Human sounds > Human group actions > Chatter                                                             323
+Human sounds > Human voice > Speech > Child speech, kid speaking                                         320
+Sounds of things > Mechanisms > Clock > Tick-tock                                                        311
+Source-ambiguous sounds > Generic impact sounds > Whip                                                   310
+Sounds of things > Liquid > Pour > Trickle, dribble                                                      305
+Sounds of things > Domestic sounds, home sounds > Cupboard open or close                                 303
+Human sounds > Heart sounds, heartbeat                                                                   303
+Sounds of things > Wood > Splinter                                                                       300
+Sounds of things > Domestic sounds, home sounds > Microwave oven                                         300
+Sounds of things > Vehicle > Non-motorized land vehicle > Bicycle                                        300
+Music > Music genre > Music of Africa                                                                    300
+Natural sounds > Water > Waterfall                                                                       299
+Music > Musical instrument > Plucked string instrument > Guitar > Strum                                  295
+Sounds of things > Liquid > Boiling                                                                      292
+Human sounds > Human voice > Laughter > Giggle                                                           288
+Sounds of things > Mechanisms > Mechanical fan                                                           285
+Music > Musical instrument > Harmonica                                                                   281
+Sounds of things > Vehicle > Boat, Water vehicle                                                         279
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Squeal                                             277
+Sounds of things > Mechanisms > Printer                                                                  275
+Animal > Wild animals > Roaring cats (lions, tigers) > Roar                                              274
+Sounds of things > Domestic sounds, home sounds > Drawer open or close                                   273
+Channel, environment and background > Sound reproduction > Loudspeaker                                   270
+Source-ambiguous sounds > Other sourceless > Sine wave                                                   267
+Animal > Wild animals > Bird > Crow                                                                      266
+Sounds of things > Vehicle                                                                               264
+Music > Musical instrument > Percussion > Mallet percussion > Steelpan                                   259
+Sounds of things > Domestic sounds, home sounds > Typing > Computer keyboard                             259
+Animal > Livestock, farm animals, working animals > Horse                                                256
+Animal > Wild animals > Insect > Fly, housefly                                                           255
+Human sounds > Human voice > Singing > Chant                                                             253
+Music > Musical instrument > Bell > Chime > Wind chime                                                   250
+Sounds of things > Vehicle > Non-motorized land vehicle > Skateboard                                     248
+Music > Musical instrument > Wind instrument, woodwind instrument > Saxophone > Alto saxophone           243
+Human sounds > Human group actions > Hubbub, speech noise, speech babble                                 241
+Music > Musical instrument > Wind instrument, woodwind instrument > Bassoon                              241
+Human sounds > Human voice > Singing > Female singing                                                    236
+Animal > Domestic animals, pets > Cat                                                                    236
+Human sounds > Hands > Finger snapping                                                                   232
+Sounds of things > Engine > Light engine (high frequency)                                                231
+Music > Music genre > Electronic music > Ambient music > Drone music                                     230
+Animal > Domestic animals, pets > Cat > Purr                                                             228
+Music > Musical instrument > Percussion > Drum > Tabla                                                   228
+Sounds of things > Domestic sounds, home sounds > Typing                                                 224
+Source-ambiguous sounds > Onomatopoeia > Fizz                                                            220
+Animal > Wild animals > Bird > Gull, seagull                                                             217
+Sounds of things > Alarm > Siren                                                                         217
+Source-ambiguous sounds > Onomatopoeia > Sizzle                                                          213
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by                                 212
+Sounds of things > Domestic sounds, home sounds > Chopping (food)                                        211
+Human sounds > Respiratory sounds > Breathing > Gasp                                                     209
+Human sounds > Respiratory sounds > Breathing > Snoring                                                  207
+Sounds of things > Alarm > Telephone > Telephone dialing, DTMF                                           204
+Music > Musical instrument > Bowed string instrument > Violin, fiddle > Pizzicato                        204
+Source-ambiguous sounds > Onomatopoeia > Brief tone > Twang                                              202
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Vehicle horn, car horn, honking                201
+Sounds of things > Domestic sounds, home sounds > Scissors                                               200
+Animal > Livestock, farm animals, working animals > Fowl > Chicken, rooster > Crowing, cock-a-doodle-doo 198
+Sounds of things > Mechanisms > Gears                                                                    197
+Channel, environment and background > Noise > Background noise > Mains hum                               196
+Sounds of things > Alarm > Telephone > Cellphone buzz, vibrating alert                                   195
+Sounds of things > Explosion > Gunshot, gunfire > Machine gun                                            195
+Human sounds > Human voice > Speech > Babbling                                                           195
+Sounds of things > Domestic sounds, home sounds > Vacuum cleaner                                         192
+Source-ambiguous sounds > Generic impact sounds > Flap                                                   189
+Music > Musical instrument > Singing bowl                                                                184
+Human sounds > Human voice > Shout                                                                       183
+Music > Music genre > Hip hop music > Trap music                                                         182
+Music > Musical instrument > Percussion > Mallet percussion > Glockenspiel                               182
+Sounds of things > Miscellaneous sources > Arrow > Thump, thud > Clunk                                   181
+Music > Music genre > Electronic music > Noise music                                                     181
+Source-ambiguous sounds > Onomatopoeia > Whir                                                            180
+Animal > Wild animals > Bird > Bird flight, flapping wings                                               180
+Source-ambiguous sounds > Onomatopoeia > Clicking > Clickety-clack                                       179
+Music > Music mood > Scary music                                                                         179
+Sounds of things > Engine > Idling                                                                       176
+Human sounds > Human voice > Sigh                                                                        172
+Sounds of things > Domestic sounds, home sounds > Door > Doorbell > Ding-dong                            168
+Animal > Livestock, farm animals, working animals > Fowl > Chicken, rooster                              168
+Animal > Livestock, farm animals, working animals > Fowl > Duck                                          166
+Source-ambiguous sounds > Silence                                                                        166
+Human sounds > Human voice > Singing > Male singing                                                      165
+Human sounds > Respiratory sounds > Sneeze                                                               164
+Sounds of things > Liquid > Fill (with liquid)                                                           162
+Sounds of things > Vehicle > Aircraft                                                                    162
+Music > Musical instrument > Musical ensemble                                                            160
+Animal > Wild animals > Insect > Bee, wasp, etc.                                                         156
+Sounds of things > Domestic sounds, home sounds > Typing > Typewriter                                    155
+Human sounds > Human voice > Speech > Speech synthesizer                                                 154
+Sounds of things > Tools > Sanding                                                                       153
+Music > Musical instrument > Bell > Bicycle bell                                                         153
+Sounds of things > Specific impact sounds > Basketball bounce                                            152
+Music > Musical instrument > Bell > Jingle bell                                                          151
+Sounds of things > Domestic sounds, home sounds > Packing tape, duct tape                                150
+Music > Musical instrument > Accordion                                                                   147
+Sounds of things > Vehicle > Motor vehicle (road)                                                        147
+Music > Musical instrument > Wind instrument, woodwind instrument > Saxophone > Soprano saxophone        146
+Human sounds > Human voice > Crying, sobbing > Baby cry, infant cry                                      145
+Sounds of things > Alarm > Alarm clock                                                                   145
+Music > Musical instrument > Keyboard (musical) > Piano > Electric piano                                 145
+Music > Musical instrument > Didgeridoo                                                                  145
+Music > Music role > Jingle (music)                                                                      143
+Sounds of things > Vehicle > Motor vehicle (road) > Emergency vehicle > Police car (siren)               141
+Music > Musical instrument > Theremin                                                                    137
+Human sounds > Human group actions > Children playing                                                    135
+Music > Music genre > Music of Latin America                                                             135
+Sounds of things > Miscellaneous sources > Sound equipment > Guitar amplifier                            134
+Natural sounds > Water > Rain > Rain on surface                                                          133
+Channel, environment and background > Sound reproduction                                                 131
+Music > Musical instrument > Percussion > Drum > Timpani                                                 131
+Music > Music role > Video game music                                                                    131
+Sounds of things > Alarm > Telephone > Dial tone                                                         128
+Sounds of things > Tools > Filing (rasp)                                                                 127
+Sounds of things > Tools > Jackhammer                                                                    126
+Sounds of things > Explosion > Fireworks > Firecracker                                                   126
+Sounds of things > Miscellaneous sources > Sonar                                                         119
+Sounds of things > Mechanisms > Ratchet, pawl                                                            119
+Animal > Wild animals > Frog > Croak                                                                     119
+Channel, environment and background > Acoustic environment                                               115
+Music > Musical instrument > Plucked string instrument > Guitar > Steel guitar, slide guitar             115
+Source-ambiguous sounds > Deformable shell                                                               115
+Animal > Wild animals > Bird > Pigeon, dove                                                              115
+Sounds of things > Mechanisms > Air conditioning                                                         115
+Animal > Livestock, farm animals, working animals > Horse > Clip-clop                                    114
+Sounds of things > Engine > Medium engine (mid frequency)                                                112
+Channel, environment and background > Sound reproduction > MP3                                           109
+Music > Musical instrument > Keyboard (musical) > Piano > Electric piano > Rhodes piano                  108
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Skidding                                       106
+Sounds of things > Mechanisms > Cash register                                                            106
+Human sounds > Human voice > Wail, moan                                                                  105
+Human sounds > Human voice > Laughter > Chuckle, chortle                                                 105
+Music > Musical instrument > Plucked string instrument > Ukulele                                         104
+Music > Music genre > Electronic music > Ambient music                                                   102
+Animal > Wild animals > Rodents, rats, mice > Chipmunk                                                   99
+Music > Musical instrument > Keyboard (musical) > Harpsichord                                            96
+Animal > Livestock, farm animals, working animals > Cattle, bovinae                                      95
+Music > Music genre > New-age music                                                                      95
+Music > Musical instrument > Brass instrument > Trombone                                                 94
+Sounds of things > Alarm > Buzzer                                                                        92
+Human sounds > Respiratory sounds > Sniff                                                                92
+Music > Music genre > Music of Latin America > Flamenco                                                  90
+Animal > Livestock, farm animals, working animals > Fowl > Goose                                         90
+Sounds of things > Vehicle > Aircraft > Aircraft engine > Jet engine                                     90
+Natural sounds > Wind > Howl (wind)                                                                      87
+Sounds of things > Domestic sounds, home sounds > Velcro, hook and loop fastener                         87
+Animal > Wild animals > Bird > Owl                                                                       86
+Music > Music genre > Electronic music > Trance music                                                    84
+Sounds of things > Vehicle > Rail transport > Train > Train whistle                                      84
+Sounds of things > Vehicle > Motor vehicle (road) > Emergency vehicle > Ambulance (siren)                84
+Animal > Livestock, farm animals, working animals > Pig                                                  83
+Sounds of things > Miscellaneous sources > Arrow                                                         82
+Source-ambiguous sounds > Onomatopoeia > Puff                                                            81
+Music > Music genre > Rock music > Grunge                                                                81
+Sounds of things > Wood > Chop                                                                           80
+Music > Music role > Theme music                                                                         78
+Animal > Livestock, farm animals, working animals > Fowl > Duck > Quack                                  78
+Sounds of things > Engine > Light engine (high frequency) > Lawn mower                                   78
+Animal > Wild animals > Roaring cats (lions, tigers)                                                     77
+Music > Music genre > Classical music                                                                    77
+Source-ambiguous sounds > Generic impact sounds > Whack, thwack                                          77
+Music > Musical instrument > Percussion > Drum > Snare drum > Drum roll                                  75
+Sounds of things > Alarm > Fire alarm                                                                    74
+Natural sounds > Wind > Rustling leaves                                                                  74
+Human sounds > Human voice > Shout > Children shouting                                                   73
+Animal > Livestock, farm animals, working animals > Sheep                                                73
+Human sounds > Human voice > Laughter > Baby laughter                                                    71
+Music > Musical instrument > Bowed string instrument                                                     71
+Music > Music mood > Happy music                                                                         71
+Animal > Wild animals > Rodents, rats, mice                                                              70
+Animal > Livestock, farm animals, working animals > Cattle, bovinae > Moo                                70
+Sounds of things > Vehicle > Rail transport > Train > Train horn                                         69
+Music > Music mood > Sad music                                                                           69
+Music > Music genre > Music of Asia                                                                      69
+Animal > Livestock, farm animals, working animals > Goat > Bleat                                         69
+Music > Musical instrument > Percussion > Mallet percussion > Vibraphone                                 68
+Sounds of things > Domestic sounds, home sounds > Toothbrush                                             66
+Sounds of things > Miscellaneous sources > Arrow > Thump, thud > Thunk                                   65
+Animal > Livestock, farm animals, working animals > Pig > Oink                                           65
+Channel, environment and background > Noise > Background noise > Tape hiss                               63
+Sounds of things > Vehicle > Motor vehicle (road) > Truck > Air brake                                    63
+Sounds of things > Domestic sounds, home sounds > Hair dryer                                             63
+Sounds of things > Domestic sounds, home sounds > Blender                                                62
+Channel, environment and background > Noise > Pink noise                                                 61
+Human sounds > Human voice > Singing > Child singing                                                     60
+Sounds of things > Liquid > Splash, splatter > Slosh                                                     60
+Human sounds > Digestive > Gargling                                                                      60
+Human sounds > Digestive > Stomach rumble                                                                60
+Animal > Wild animals > Insect > Mosquito                                                                59
+Sounds of things > Engine > Light engine (high frequency) > Chainsaw                                     58
+Sounds of things > Explosion > Burst, pop                                                                58
+Music > Musical instrument > Brass instrument > French horn                                              58
+Music > Music genre > Vocal music                                                                        57
+Music > Music mood > Funny music                                                                         56
+Music > Musical instrument > Percussion > Tubular bells                                                  54
+Music > Musical instrument > Wind instrument, woodwind instrument                                        53
+Animal > Livestock, farm animals, working animals > Fowl > Chicken, rooster > Cluck                      52
+Music > Music genre > Hip hop music > Grime music                                                        52
+Animal > Livestock, farm animals, working animals > Goat                                                 52
+Sounds of things > Explosion > Gunshot, gunfire > Artillery fire                                         51
+Human sounds > Human voice > Grunt                                                                       51
+Music > Music genre > Middle Eastern music                                                               51
+Music > Music genre > Disco                                                                              50
+Sounds of things > Domestic sounds, home sounds > Electric shaver, electric razor                        49
+Music > Music genre > Music for children                                                                 49
+Natural sounds > Thunderstorm                                                                            49
+Animal > Wild animals > Whale vocalization                                                               48
+Human sounds > Human voice > Yawn                                                                        48
+Music > Musical instrument > Percussion > Mallet percussion                                              48
+Sounds of things > Domestic sounds, home sounds > Shuffling cards                                        47
+Music > Musical instrument > Percussion > Rattle (instrument) > Maraca                                   47
+Music > Musical instrument > Plucked string instrument > Sitar                                           47
+Human sounds > Respiratory sounds > Cough > Throat clearing                                              47
+Human sounds > Human voice > Singing > Synthetic singing                                                 46
+Music > Music genre > Pop music                                                                          45
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Car alarm                                      45
+Natural sounds > Wind > Wind noise (microphone)                                                          43
+Sounds of things > Mechanisms > Sewing machine                                                           43
+Sounds of things > Alarm > Whistle > Steam whistle                                                       43
+Music > Musical instrument > Keyboard (musical) > Organ > Electronic organ                               42
+Sounds of things > Vehicle > Aircraft > Aircraft engine                                                  41
+Music > Music genre > Classical music > Opera                                                            41
+Animal > Wild animals > Bird > Owl > Hoot                                                                40
+Channel, environment and background > Sound reproduction > Headphones                                    39
+Music > Music genre > Rhythm and blues                                                                   39
+Sounds of things > Vehicle > Rail transport > Railroad car, train wagon                                  39
+Animal > Wild animals > Bird > Pigeon, dove > Coo                                                        39
+Music > Musical instrument > Plucked string instrument > Zither                                          39
+Music > Music genre > Reggae > Dub                                                                       39
+Sounds of things > Liquid > Stir                                                                         39
+Human sounds > Human voice > Singing > Chant > Mantra                                                    38
+Music > Musical instrument > Plucked string instrument > Mandolin                                        38
+Sounds of things > Vehicle > Motor vehicle (road) > Truck > Air horn, truck horn                         37
+Sounds of things > Alarm > Foghorn                                                                       37
+Animal > Domestic animals, pets                                                                          37
+Music > Music genre > Rock music > Heavy metal                                                           37
+Music > Music genre > Soul music                                                                         37
+Sounds of things > Vehicle > Motor vehicle (road) > Emergency vehicle > Fire engine, fire truck (siren)  36
+Human sounds > Human voice > Groan                                                                       36
+Animal > Livestock, farm animals, working animals > Horse > Neigh, whinny                                36
+Animal > Wild animals > Rodents, rats, mice > Mouse                                                      36
+Animal > Wild animals > Canidae, dogs, wolves                                                            34
+Music > Musical instrument > Percussion > Wood block                                                     34
+Human sounds > Human voice > Humming                                                                     33
+Sounds of things > Liquid > Squish                                                                       33
+Music > Musical instrument > Plucked string instrument > Banjo                                           33
+Human sounds > Whistling                                                                                 32
+Human sounds > Digestive > Biting                                                                        32
+Music > Music genre > Folk music                                                                         32
+Music > Music genre > Country > Bluegrass                                                                31
+Sounds of things > Liquid > Pour > Gush                                                                  31
+Sounds of things > Vehicle > Boat, Water vehicle > Sailboat, sailing ship                                31
+Channel, environment and background > Noise > Cacophony                                                  31
+Source-ambiguous sounds > Onomatopoeia > Zing                                                            30
+Human sounds > Otoacoustic emission > Tinnitus, ringing in the ears                                      29
+Sounds of things > Tools > Power tool                                                                    29
+Human sounds > Digestive > Hiccup                                                                        29
+Channel, environment and background > Noise > Throbbing                                                  29
+Animal > Livestock, farm animals, working animals > Donkey, ass                                          28
+Human sounds > Human voice > Speech > Narration, monologue                                               28
+Human sounds > Respiratory sounds > Breathing > Wheeze                                                   28
+Animal > Livestock, farm animals, working animals > Fowl > Goose > Honk                                  28
+Animal > Wild animals > Bird > Crow > Caw                                                                27
+Animal > Livestock, farm animals, working animals > Fowl > Turkey                                        27
+Channel, environment and background > Acoustic environment > Inside, small room                          27
+Animal > Wild animals > Bird > Bird vocalization, bird call, bird song > Squawk                          27
+Music > Musical instrument > Bagpipes                                                                    27
+Sounds of things > Domestic sounds, home sounds > Toothbrush > Electric toothbrush                       27
+Sounds of things > Miscellaneous sources > Sound equipment > Effects unit > Chorus effect                27
+Sounds of things > Vehicle > Aircraft > Aircraft engine > Propeller, airscrew                            26
+Music > Musical instrument > Keyboard (musical) > Synthesizer > Mellotron                                25
+Music > Music genre > Music of Latin America > Salsa music                                               25
+Human sounds > Human voice > Shout > Bellow                                                              24
+Sounds of things > Alarm > Siren > Civil defense siren                                                   22
+Music > Musical instrument > Plucked string instrument                                                   22
+Music > Music genre > Country                                                                            21
+Sounds of things > Mechanisms > Pulleys                                                                  21
+Music > Music genre > Traditional music                                                                  21
+Music > Musical instrument > Percussion > Drum > Snare drum > Rimshot                                    21
+Animal > Livestock, farm animals, working animals                                                        21
+Animal > Domestic animals, pets > Dog > Yip                                                              21
+Human sounds > Respiratory sounds > Breathing > Snort                                                    21
+Animal > Wild animals > Rodents, rats, mice > Patter                                                     21
+Music > Musical instrument > Plucked string instrument > Guitar > Tapping (guitar technique)             20
+Human sounds > Respiratory sounds > Breathing > Pant                                                     20
+Sounds of things > Engine > Heavy engine (low frequency)                                                 20
+Music > Music role > Lullaby                                                                             20
+Sounds of things > Engine > Light engine (high frequency) > Dental drill, dentist's drill                20
+Music > Music genre > Rock music > Psychedelic rock                                                      19
+Source-ambiguous sounds > Onomatopoeia > Brief tone                                                      19
+Music > Music genre > Music of Asia > Carnatic music                                                     19
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Vehicle horn, car horn, honking > Toot         18
+Sounds of things > Explosion > Gunshot, gunfire > Cap gun                                                18
+Source-ambiguous sounds > Onomatopoeia > Blare                                                           18
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Power windows, electric windows                18
+Music > Musical instrument > Bell > Change ringing (campanology)                                         16
+Music > Music genre > Music of Asia > Music of Bollywood                                                 16
+Sounds of things > Alarm > Telephone > Busy signal                                                       16
+Sounds of things > Vehicle > Motor vehicle (road) > Truck > Ice cream truck, ice cream van               15
+Sounds of things > Explosion > Gunshot, gunfire > Fusillade                                              15
+Animal > Domestic animals, pets > Dog > Whimper (dog)                                                    15
+Sounds of things > Vehicle > Boat, Water vehicle > Motorboat, speedboat                                  15
+Sounds of things > Liquid > Spray                                                                        15
+Animal > Livestock, farm animals, working animals > Horse > Snort (horse)                                13
+Music > Musical instrument > Keyboard (musical) > Organ > Hammond organ                                  13
+Human sounds > Human voice > Shout > Battle cry                                                          12
+Animal > Livestock, farm animals, working animals > Fowl > Turkey > Gobble                               12
+Music > Music role > Christmas music                                                                     12
+Music > Musical instrument > Brass instrument > Bugle                                                    12
+Sounds of things > Vehicle > Motor vehicle (road) > Car > Tire squeal                                    12
+Animal > Wild animals > Snake                                                                            11
+Sounds of things > Vehicle > Boat, Water vehicle > Rowboat, canoe, kayak                                 11
+Human sounds > Human locomotion > Shuffle                                                                11
+Human sounds > Whistling > Wolf-whistling                                                                11
+Sounds of things > Vehicle > Motor vehicle (road) > Emergency vehicle                                    10
+Music > Music genre > Music of Latin America > Cumbia                                                    10
+Music > Musical instrument > Brass instrument > Cornet                                                   9
+Sounds of things > Vehicle > Motor vehicle (road) > Truck > Reversing beeps                              9
+Music > Music genre > Rock music                                                                         8
+Human sounds > Human group actions > Booing                                                              8
+Sounds of things > Alarm > Smoke detector, smoke alarm                                                   8
+Sounds of things > Vehicle > Rail transport                                                              8
+Human sounds > Human voice > Singing > Yodeling                                                          8
+Music > Music genre > Country > Swing music                                                              7
+Human sounds > Human group actions                                                                       7
+Human sounds > Human voice > Laughter > Snicker                                                          7
+Animal > Wild animals                                                                                    7
+Sounds of things > Explosion > Eruption                                                                  6
+Animal > Livestock, farm animals, working animals > Horse > Nicker                                       6
+Music > Musical instrument > Bell > Tuning fork                                                          6
+Music > Music genre > Rock music > Progressive rock                                                      6
+Human sounds > Human voice > Shout > Whoop                                                               5
+Sounds of things > Liquid > Pump (liquid)                                                                5
+Animal > Livestock, farm animals, working animals > Fowl                                                 4
+Sounds of things > Miscellaneous sources > Duck call (hunting tool)                                      4
+Music > Music genre > Christian music > Gospel music                                                     4
+Channel, environment and background > Noise > Background noise > Environmental noise                     4
+Music > Music mood > Exciting music                                                                      4
+Sounds of things > Explosion > Boom > Sonic boom                                                         3
+Sounds of things > Mechanisms > Camera > Single-lens reflex camera                                       3
+Human sounds > Respiratory sounds                                                                        3
+Music > Music genre > Music of Latin America > Soca music                                                3
+Sounds of things > Vehicle > Rail transport > Train wheels squealing                                     3
+Music > Music role > Wedding music                                                                       3
+Source-ambiguous sounds > Onomatopoeia                                                                   2
+Music > Music genre > Ska                                                                                2
+Music > Music role > Birthday music                                                                      2
+Music > Music genre > Music of Latin America > Funk carioca                                              2
+Sounds of things > Miscellaneous sources > Sound equipment > Electronic tuner                            2
+Human sounds > Human voice > Crying, sobbing > Whimper                                                   2
+Music > Music mood > Tender music                                                                        1
+Human sounds > Human locomotion                                                                          1
+Natural sounds > Fire > Wildfire                                                                         1
+Music > Musical instrument > Shofar                                                                      1
+Music > Music genre > Rock music > Rock and roll                                                         1
+Sounds of things > Engine > Engine knocking                                                              1
+Human sounds > Heart sounds, heartbeat > Heart murmur                                                    1
+Music > Musical instrument > Keyboard (musical) > Piano > Electric piano > Clavinet                      1
+Music > Musical instrument > Percussion > Cymbal                                                         0
+Music > Music genre > Independent music                                                                  0
+Source-ambiguous sounds                                                                                  0
+Human sounds > Otoacoustic emission                                                                      0
+Sounds of things > Miscellaneous sources > Sound equipment                                               0
+Music > Music genre                                                                                      0
+Music > Music genre > Electronic music > UK garage                                                       0
+Sounds of things                                                                                         0
+Music > Music genre > Electronic music > Electronica                                                     0
+Sounds of things > Specific impact sounds                                                                0
+Music > Music mood                                                                                       0
+Music > Music mood > Angry music                                                                         0
+Animal > Domestic animals, pets > Cat > Caterwaul                                                        0
+Sounds of things > Miscellaneous sources > Sound equipment > Microphone                                  0
+Channel, environment and background > Noise > Background noise > Sidetone                                0
+Animal > Livestock, farm animals, working animals > Cattle, bovinae > Yak                                0
+Sounds of things > Miscellaneous sources                                                                 0
+Source-ambiguous sounds > Surface contact                                                                0
+Sounds of things > Miscellaneous sources > Arrow > Wobble                                                0
+Music > Music genre > Electronic music > Drum and bass > Oldschool jungle                                0
+Music > Music role                                                                                       0
+Music > Musical concepts                                                                                 0
+Animal > Domestic animals, pets > Dog > Bow-wow                                                          0
+Animal > Domestic animals, pets > Dog > Bay                                                              0
+Sounds of things > Liquid > Pour                                                                         0
+Animal > Domestic animals, pets > Cat > Cat communication                                                0
+Sounds of things > Vehicle > Non-motorized land vehicle                                                  0
+Music > Music genre > Reggae                                                                             0
+Sounds of things > Alarm > Whistle                                                                       0
+Human sounds > Digestive                                                                                 0
+Human sounds > Human voice > Laughter > Belly laugh                                                      0
+Music > Music genre > Music of Africa > Kwaito                                                           0
+Music > Music genre > Music of Latin America > Kuduro                                                    0
+Music                                                                                                    0
+Natural sounds > Water > Steam                                                                           0
+Source-ambiguous sounds > Other sourceless                                                               0
+Channel, environment and background                                                                      0
+Music > Music genre > Music of Africa > Afrobeat                                                         0
+
+

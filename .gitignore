@@ -3,7 +3,7 @@ api_key.py
 *.pyc
 venv/
 baskets/
-basket_pickle/
+baskets_pickle/
 previews/
 analysis_stats/
 analysis/
