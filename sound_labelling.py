@@ -154,7 +154,7 @@ def create_json_Fred(basket, name):
     b_dict = {}
     for s in basket.sounds:
         b_dict[s.id] = {'name':s.name, 'tags':s.tags, 'aso_ids':s.aso_ids, 'license':s.license, 'username':s.username, 'description':s.description, 'previews':s.previews.preview_hq_ogg, 'duration':s.duration}
-    json.dump(b_dict, open(name+'+.json','w'))
+    json.dump(b_dict, open(name+'.json','w'))
 
 def plot_histogram_nb_of_labels_sounds(basket):
     hist_labels = []
@@ -357,6 +357,19 @@ def display_tags_list_baskets(list_baskets):
     for i in range(len(list_baskets)):
             print_basket(list_baskets, normalized_tags_occurrences, i, 20)
 
+def filter_duration(basket, thresh):
+    id_to_remove = []
+    for idx, s in enumerate(basket.sounds):
+    if s.duration > thresh:
+        id_to_remove.append(idx)
+    basket.remove(id_to_remove)
+
+def filter_no_label(basket):
+    id_to_remove = []
+    for idx,s in enumerate(basket.sounds):
+    if len(s.aso_ids)<1:
+        id_to_remove.append(idx)
+    basket.remove(id_to_remove)
 
 if __name__ == '__main__':
     # Create Client instance (holds function to load Basket object)
@@ -365,7 +378,7 @@ if __name__ == '__main__':
     b = c.load_basket_pickle('freesound_db_160317.pkl')
     
     # Load the ontology file (annotated)
-    ontology = json.load(open('ontology_1703_to_improve.json','rb'))
+    ontology = json.load(open('ontology_final_FS_abstract.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     
     # Preprocessing (lower case, stem)
@@ -384,3 +397,7 @@ if __name__ == '__main__':
     aso_category_occurrences = calculate_occurrences_aso_categories(b_pupulated, ontology)
     sorted_occurrences_labels(aso_category_occurrences, b_pupulated)
     
+    # FS_sounds_ASO.jon:
+    # filter_duration(b, 90.)
+    # filter_no_label(b)
+    # create_json_Fred(b, 'FS_sounds_ASO')
