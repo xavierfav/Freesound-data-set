@@ -8666,7 +8666,7 @@
       "youtu.be/2Uir5X9ZgyM?start=30&end=40",
       "youtu.be/adjWwiHzQAg?start=430&end=440"
     ],
-    "positive_examples_FS": ['232439','254129'],
+    "positive_examples_FS": [232439,254129],
     "id": "/m/019jd",
     "name": "Boat, Water vehicle"
   },
@@ -8691,7 +8691,7 @@
       "youtu.be/YcuMAHW6qBQ?start=130&end=140",
       "youtu.be/CyljecUybZw?start=30&end=40"
     ],
-    "positive_examples_FS": ['325297','360631'],
+    "positive_examples_FS": [325297,360631],
     "id": "/m/0hsrw",
     "name": "Sailboat, sailing ship"
   },
