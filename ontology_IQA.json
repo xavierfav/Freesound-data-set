@@ -9864,7 +9864,7 @@
       "youtu.be/EoPk7WTZ_GY?start=470&end=480",
       "youtu.be/ZLJMgS5ysaQ?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [49481,253643],
     "id": "/m/09ct_",
     "name": "Helicopter"
   },
