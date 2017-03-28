@@ -9887,7 +9887,7 @@
       "youtu.be/j9N_Q9EXFP0?start=23&end=33",
       "youtu.be/XGammZXc2Eo?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [366706,170477],
     "comments_JP": "May be good to add airport category in the ASO",
     "id": "/m/0cmf2",
     "name": "Fixed-wing aircraft, airplane"
