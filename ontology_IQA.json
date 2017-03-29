@@ -9170,7 +9170,7 @@
       "youtu.be/Iu5uS7s-7ic?start=240&end=250",
       "youtu.be/fyYoxBvG29A?start=210&end=220"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [109523,130016],
     "id": "/m/07r04",
     "name": "Truck"
   },
