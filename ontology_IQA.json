@@ -4373,7 +4373,7 @@
       "youtu.be/mPEQ9bBWUYE?start=210&end=220",
       "youtu.be/ygonIq0Qatk?start=40&end=50"
     ],
-    "positive_examples_FS": [148695, 120980],
+    "positive_examples_FS": [],
     "id": "/m/042v_gx",
     "name": "Acoustic guitar"
   },
@@ -4568,7 +4568,7 @@
       "youtu.be/1wYs3gtvFRk?start=340&end=350",
       "youtu.be/msC0nzoxin4?start=120&end=130"
     ],
-    "positive_examples_FS": [186942, 89651],
+    "positive_examples_FS": [],
     "id": "/m/05148p4",
     "name": "Keyboard (musical)"
   },
@@ -7112,7 +7112,7 @@
       "acapella"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [251840, 263612],
+    "positive_examples_FS": [],
     "id": "/m/0z9c",
     "name": "A capella"
   },
@@ -9050,7 +9050,7 @@
       "youtu.be/22olCB3wQaA?start=40&end=50",
       "youtu.be/3GHVkqqQZ_k?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [76804],
     "id": "/m/07rknqz",
     "name": "Skidding"
   },
@@ -9096,7 +9096,7 @@
       "youtu.be/2FyalYzSF6g?start=17&end=27",
       "youtu.be/31iv4K9G_4E?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [68660,1926],
     "id": "/t/dd00134",
     "name": "Car passing by"
   },
@@ -11360,7 +11360,7 @@
       "youtu.be/AL-dutJvx0s?start=30&end=40",
       "youtu.be/8GHLfJ6y6zA?start=570&end=580"
     ],
-    "positive_examples_FS": [185613, 380135],
+    "positive_examples_FS": [],
     "id": "/m/01m2v",
     "name": "Computer keyboard"
   },
