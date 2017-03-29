@@ -18,7 +18,7 @@
       "human"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [221150, 328635],
+    "positive_examples_FS": [],
     "id": "/m/0dgw9r",
     "name": "Human sounds"
   },
@@ -46,7 +46,7 @@
       "human-voice"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [239162, 360851],
+    "positive_examples_FS": [],
     "id": "/m/09l8g",
     "name": "Human voice"
   },
@@ -79,7 +79,7 @@
       "youtu.be/Zyl2Q3GepPA?start=30&end=40",
       "youtu.be/CU1qRm_Bcps?start=30&end=40"
     ],
-    "positive_examples_FS": [97371, 97351],
+    "positive_examples_FS": [],
     "id": "/m/09x0r",
     "name": "Speech"
   },
@@ -126,7 +126,7 @@
       "youtu.be/-yZuFZRojYA?start=30&end=40",
       "youtu.be/ECOK21oFttk?start=30&end=40"
     ],
-    "positive_examples_FS": [32243, 127243],
+    "positive_examples_FS": [],
     "id": "/m/05zppz",
     "name": "Male speech, man speaking"
   },
@@ -174,7 +174,7 @@
       "youtu.be/8OpLsWMn6P0?start=30&end=40",
       "youtu.be/WLi5_z61zCE?start=30&end=40"
     ],
-    "positive_examples_FS": [107730, 106468],
+    "positive_examples_FS": [],
     "id": "/m/02zsn",
     "name": "Female speech, woman speaking"
   },
@@ -232,7 +232,7 @@
       "youtu.be/koW60o-aLjI?start=470&end=480",
       "youtu.be/uBVLhywbCQk?start=30&end=40"
     ],
-    "positive_examples_FS": [18287, 77410],
+    "positive_examples_FS": [],
     "id": "/m/0ytgt",
     "name": "Child speech, kid speaking"
   },
@@ -263,7 +263,7 @@
       "youtu.be/sEF1KNfvY90?start=230&end=240",
       "youtu.be/DhlPa8lUosM?start=300&end=310"
     ],
-    "positive_examples_FS": [239094],
+    "positive_examples_FS": [],
     "id": "/m/01h8n0",
     "name": "Conversation"
   },
@@ -288,7 +288,7 @@
       "youtu.be/20lm7Ow9RSY?start=30&end=40",
       "youtu.be/25K0bryItv4?start=30&end=40"
     ],
-    "positive_examples_FS": [318595, 194311, 163150],
+    "positive_examples_FS": [],
     "id": "/m/02qldy",
     "name": "Narration, monologue"
   },
@@ -320,7 +320,7 @@
       "youtu.be/lluzItlOMlQ?start=10&end=20",
       "youtu.be/EyCpVw_Xn60?start=130&end=140"
     ],
-    "positive_examples_FS": [18285],
+    "positive_examples_FS": [],
     "id": "/m/0261r1",
     "name": "Babbling"
   },
@@ -460,7 +460,7 @@
       "youtu.be/5yD_YeSuTzQ?start=150&end=160",
       "youtu.be/NPkO63FcFXM?start=30&end=40"
     ],
-    "positive_examples_FS": [99966],
+    "positive_examples_FS": [],
     "id": "/m/07rwj3x",
     "name": "Whoop"
   },
@@ -504,7 +504,7 @@
       "youtu.be/RATOmpfWqUo?start=180&end=190",
       "youtu.be/DRQPYwom_mY?start=40&end=50"
     ],
-    "positive_examples_FS": [323081, 334915],
+    "positive_examples_FS": [],
     "id": "/m/04gy_2",
     "name": "Battle cry"
   },
@@ -532,7 +532,7 @@
       "youtu.be/7koyNkRHO8U?start=20&end=30",
       "youtu.be/Q8NC8aHonOU?start=70&end=80"
     ],
-    "positive_examples_FS": [315834, 338348],
+    "positive_examples_FS": [],
     "id": "/t/dd00135",
     "name": "Children shouting"
   },
@@ -552,7 +552,7 @@
       "youtu.be/52waxTykuLc?start=30&end=40",
       "youtu.be/auC_LgwFF8g?start=30&end=40"
     ],
-    "positive_examples_FS": [104032, 353294],
+    "positive_examples_FS": [],
     "id": "/m/03qc9zr",
     "name": "Screaming"
   },
@@ -574,7 +574,7 @@
       "youtu.be/cus68zSHXDA?start=90&end=100",
       "youtu.be/CVGwF_-HXdo?start=540&end=550"
     ],
-    "positive_examples_FS": [104720, 193809],
+    "positive_examples_FS": [],
     "id": "/m/02rtxlg",
     "name": "Whispering"
   },
@@ -604,7 +604,7 @@
       "youtu.be/4e-qMxrus0A?start=80&end=90",
       "youtu.be/rPV1mbwWms0?start=60&end=70"
     ],
-    "positive_examples_FS": [343868, 132748],
+    "positive_examples_FS": [],
     "id": "/m/01j3sz",
     "name": "Laughter"
   },
@@ -641,7 +641,7 @@
       "youtu.be/RLiHf1zIuXY?start=50&end=60",
       "youtu.be/3dh5bfCN4Hs?start=10&end=20"
     ],
-    "positive_examples_FS": [110392, 111161],
+    "positive_examples_FS": [],
     "id": "/t/dd00001",
     "name": "Baby laughter"
   },
@@ -666,7 +666,7 @@
       "youtu.be/K4sqsDcUfGM?start=30&end=40",
       "youtu.be/8DTw8Udr4rA?start=80&end=90"
     ],
-    "positive_examples_FS": [345022],
+    "positive_examples_FS": [],
     "id": "/m/07r660_",
     "name": "Giggle"
   },
@@ -730,7 +730,7 @@
       "youtu.be/3Ri8_DHI4fQ?start=30&end=40",
       "youtu.be/0WOwZJ9G2N8?start=110&end=120"
     ],
-    "positive_examples_FS": [333271, 180296],
+    "positive_examples_FS": [],
     "id": "/m/07rgt08",
     "name": "Chuckle, chortle"
   },
@@ -757,7 +757,7 @@
       "youtu.be/fpWdNeGCKqc?start=40&end=50",
       "youtu.be/SfG3IkOprQc?start=60&end=70"
     ],
-    "positive_examples_FS": [113364, 259607],
+    "positive_examples_FS": [],
     "id": "/m/0463cq4",
     "name": "Crying, sobbing"
   },
@@ -797,7 +797,7 @@
       "youtu.be/qK4ag_CDBq4?start=30&end=40",
       "youtu.be/d-1zfgzgBgc?start=14&end=24"
     ],
-    "positive_examples_FS": [60997, 61262],
+    "positive_examples_FS": [],
     "id": "/t/dd00002",
     "name": "Baby cry, infant cry"
   },
@@ -873,7 +873,7 @@
       "youtu.be/uiPxvdr6S8c?start=60&end=70",
       "youtu.be/VCOQOjLdIj0?start=510&end=520"
     ],
-    "positive_examples_FS": [166124, 196723],
+    "positive_examples_FS": [],
     "id": "/m/07qw_06",
     "name": "Wail, moan"
   },
@@ -889,7 +889,7 @@
       "youtu.be/XOphuM8ZUhM?start=560&end=570",
       "youtu.be/giY25pWyJxM?start=140&end=150"
     ],
-    "positive_examples_FS": [146769, 45810],
+    "positive_examples_FS": [],
     "id": "/m/07plz5l",
     "name": "Sigh"
   },
@@ -921,7 +921,7 @@
       "youtu.be/GpMPvnxkibA?start=190&end=200",
       "youtu.be/ZgxmMjcGBIk?start=30&end=40"
     ],
-    "positive_examples_FS": [211967],
+    "positive_examples_FS": [],
     "id": "/m/015lz1",
     "name": "Singing"
   },
@@ -944,7 +944,11 @@
       "youtu.be/Gx7yso0V26E?start=300&end=310",
       "youtu.be/94zsWCi4C6g?start=190&end=200"
     ],
+<<<<<<< HEAD
     "positive_examples_FS": [89287, 90354],
+=======
+    "positive_examples_FS": [89287, 185532],
+>>>>>>> f501ef3129d5ae4c3a2ee396724d87b3baf93d9f
     "id": "/m/0l14jd",
     "name": "Choir"
   },
@@ -4373,7 +4377,7 @@
       "youtu.be/mPEQ9bBWUYE?start=210&end=220",
       "youtu.be/ygonIq0Qatk?start=40&end=50"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [148695, 120980],
     "id": "/m/042v_gx",
     "name": "Acoustic guitar"
   },
@@ -4568,7 +4572,7 @@
       "youtu.be/1wYs3gtvFRk?start=340&end=350",
       "youtu.be/msC0nzoxin4?start=120&end=130"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [186942, 89651],
     "id": "/m/05148p4",
     "name": "Keyboard (musical)"
   },
@@ -4858,7 +4862,7 @@
       "youtu.be/HFVIKa0XcPg?start=30&end=40",
       "youtu.be/x22NHqwKSNE?start=90&end=100"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [318581, 24810],
     "id": "/m/0l14md",
     "name": "Percussion"
   },
@@ -5449,7 +5453,7 @@
       "youtu.be/_LI3WVnOjPI?start=310&end=320",
       "youtu.be/57bXQfZlbzY?start=240&end=250"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [47382, 106257],
     "id": "/m/05pd6",
     "name": "Orchestra"
   },
@@ -5956,7 +5960,7 @@
       "youtu.be/ybpj_cvRPII?start=30&end=40",
       "youtu.be/edPpQ4A1TY4?start=50&end=60"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [31467, 273598],
     "id": "/m/03qjg",
     "name": "Harmonica"
   },
@@ -7112,7 +7116,7 @@
       "acapella"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [251840, 263612],
     "id": "/m/0z9c",
     "name": "A capella"
   },
@@ -7879,7 +7883,7 @@
       "youtu.be/u3doJa_O5p8?start=30&end=40",
       "youtu.be/AlSWSI50R7U?start=60&end=70"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [371267, 66952],
     "id": "/m/0395lw",
     "name": "Bell"
   },
@@ -8898,7 +8902,7 @@
       "youtu.be/_waM2-2QnK8?start=30&end=40",
       "youtu.be/-aYumc8KoXg?start=60&end=70"
     ],
-    "positive_examples_FS": [73168,175844],
+    "positive_examples_FS": [],
     "id": "/m/0912c9",
     "name": "Vehicle horn, car horn, honking"
   },
@@ -8957,7 +8961,7 @@
       "youtu.be/4A1Ar1TIXIY?start=30&end=40",
       "youtu.be/0ct9AETvIdE?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [150981,103795],
     "id": "/m/02mfyn",
     "name": "Car alarm"
   },
@@ -9050,7 +9054,7 @@
       "youtu.be/22olCB3wQaA?start=40&end=50",
       "youtu.be/3GHVkqqQZ_k?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [76804],
     "id": "/m/07rknqz",
     "name": "Skidding"
   },
@@ -9096,7 +9100,7 @@
       "youtu.be/2FyalYzSF6g?start=17&end=27",
       "youtu.be/31iv4K9G_4E?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [68660,1926],
     "id": "/t/dd00134",
     "name": "Car passing by"
   },
@@ -9140,7 +9144,7 @@
       "youtu.be/bq9EO2TQx8w?start=20&end=30",
       "youtu.be/H6HLCq8o3KE?start=230&end=240"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [14832,76120],
     "id": "/m/0ltv",
     "name": "Race car, auto racing"
   },
@@ -9170,7 +9174,7 @@
       "youtu.be/Iu5uS7s-7ic?start=240&end=250",
       "youtu.be/fyYoxBvG29A?start=210&end=220"
     ],
-    "positive_examples_FS": [109523,130016],
+    "positive_examples_FS": [],
     "id": "/m/07r04",
     "name": "Truck"
   },
@@ -10500,7 +10504,7 @@
       "youtu.be/ZQ0OfMZRPGM?start=10&end=20",
       "youtu.be/TIjqdHhg6n0?start=220&end=230"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [182033, 209221],
     "id": "/m/07r4wb8",
     "name": "Knock"
   },
@@ -10537,7 +10541,7 @@
       "youtu.be/ch4_bbDOKMc?start=30&end=40",
       "youtu.be/CbeZxCPsS2w?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [14073, 98850],
     "id": "/m/07qcpgn",
     "name": "Tap"
   },
@@ -11360,7 +11364,7 @@
       "youtu.be/AL-dutJvx0s?start=30&end=40",
       "youtu.be/8GHLfJ6y6zA?start=570&end=580"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [185613, 380135],
     "id": "/m/01m2v",
     "name": "Computer keyboard"
   },
@@ -13818,7 +13822,7 @@
       "youtu.be/Oe6sYXWAM7E?start=90&end=100",
       "youtu.be/rhG_ie69Nwc?start=300&end=310"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [340566, 322498],
     "id": "/m/07pws3f",
     "name": "Bang"
   },
@@ -13844,7 +13848,7 @@
       "youtu.be/ls_QsNFNDbg?start=10&end=20",
       "youtu.be/v-Al9LqV9Mo?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [180790, 31338],
     "id": "/m/07ryjzk",
     "name": "Slap, smack"
   },
@@ -13868,7 +13872,7 @@
       "youtu.be/zruJV_pq4z0?start=270&end=280",
       "youtu.be/e-lOchEQ1i0?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [114683, 114684],
     "id": "/m/07rdhzs",
     "name": "Whack, thwack"
   },
@@ -13893,7 +13897,7 @@
       "youtu.be/c0nVFint5bk?start=160&end=170",
       "youtu.be/5lLMWk_-fQw?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [93162, 128268],
     "id": "/m/07pjjrj",
     "name": "Smash, crash"
   },
@@ -13922,7 +13926,7 @@
       "youtu.be/FeaKHpQ4UhE?start=90&end=100",
       "youtu.be/wyv4blKX3No?start=390&end=400"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [85557, 199906],
     "id": "/m/07pc8lb",
     "name": "Breaking"
   },
@@ -13950,7 +13954,7 @@
       "youtu.be/QErefA2Ms4c?start=390&end=400",
       "youtu.be/tHcW8l5ifLQ?start=10&end=20"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [36984],
     "id": "/m/07pqn27",
     "name": "Bouncing"
   },
