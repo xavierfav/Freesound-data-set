@@ -9540,7 +9540,7 @@
       "youtu.be/hQIu0GkaFZM?start=330&end=340",
       "youtu.be/x8r1bqLPm88?start=270&end=280"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [321567,117518],
     "id": "/m/06d_3",
     "name": "Rail transport"
   },
@@ -9562,7 +9562,7 @@
       "youtu.be/-TIHs3wuY9E?start=160&end=170",
       "youtu.be/q1na9CH3Ufw?start=320&end=330"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [193739,71342],
     "id": "/m/07jdr",
     "name": "Train"
   },
