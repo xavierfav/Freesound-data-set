@@ -9841,7 +9841,7 @@
       "youtu.be/CuF4tcbKVpM?start=120&end=130",
       "youtu.be/rXNzfRo9BXU?start=140&end=150"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [361434,33370],
     "id": "/m/02l6bg",
     "name": "Propeller, airscrew"
   },
