@@ -5999,7 +5999,7 @@
       "youtu.be/xyvS_KsEJC0?start=60&end=70",
       "youtu.be/oGeklgrvf2g?start=180&end=190"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [43794, 142022],
     "id": "/m/0192l",
     "name": "Bagpipes"
   },
@@ -6022,7 +6022,7 @@
       "youtu.be/6AnnPCJJ8dM?start=80&end=90",
       "youtu.be/NHz8UGzTMAY?start=120&end=130"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [376589, 275279],
     "id": "/m/02bxd",
     "name": "Didgeridoo"
   },
@@ -6041,7 +6041,7 @@
       "youtu.be/x6f0yu_JzsE?start=40&end=50",
       "youtu.be/pq9irpvQhMk?start=4&end=14"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [223368],
     "id": "/m/0l14l2",
     "name": "Shofar"
   },
@@ -6060,7 +6060,7 @@
       "youtu.be/8bakI0ITCqQ?start=580&end=590",
       "youtu.be/5DUdq5JPUsQ?start=50&end=60"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [119014, 119007],
     "comments_JP": "Very noisy mapping.",
     "id": "/m/07kc_",
     "name": "Theremin"
@@ -6085,7 +6085,7 @@
       "youtu.be/ToQqkcyH21U?start=30&end=40",
       "youtu.be/t3Ufg50eARI?start=290&end=300"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [133679, 240934],
     "id": "/m/0l14t7",
     "name": "Singing bowl"
   },
@@ -6101,7 +6101,7 @@
       "review"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [124135, 196384],
     "comments_JP": "Too broad definition. Almost every sound could fit here.",
     "id": "/m/05229",
     "name": "Musical ensemble"
@@ -6141,7 +6141,7 @@
       "youtu.be/SI7uLBg7HIk?start=230&end=240",
       "youtu.be/xU1dkNbkRkU?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [212692, 124395],
     "id": "/m/01hgjl",
     "name": "Scratching (performance technique)"
   },
