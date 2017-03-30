@@ -12250,7 +12250,7 @@
       "youtu.be/5I8lmN8rwDM?start=540&end=550",
       "youtu.be/bE2hGIuk3nE?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [328753, 328768],
     "id": "/m/07k1x",
     "name": "Tools"
   },
@@ -12272,7 +12272,7 @@
       "youtu.be/QnKuwMUYhIo?start=120&end=130",
       "youtu.be/oy_ZYPJ_i4U?start=130&end=140"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [154465, 182821],
     "id": "/m/03l9g",
     "name": "Hammer"
   },
@@ -12294,7 +12294,7 @@
       "youtu.be/4qWfY_x6hpA?start=20&end=30",
       "youtu.be/2_MZIyjeHkg?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [188823, 34050],
     "id": "/m/03p19w",
     "name": "Jackhammer"
   },
@@ -12323,7 +12323,7 @@
       "youtu.be/tHaynxVvo0k?start=30&end=40",
       "youtu.be/KkO1_TZkPmA?start=70&end=80"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [22717, 179901],
     "id": "/m/01b82r",
     "name": "Sawing"
   },
@@ -12355,7 +12355,7 @@
       "youtu.be/QsuVk4wgxVA?start=210&end=220",
       "youtu.be/1lkHxuNt0ys?start=40&end=50"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [39535, 39536],
     "id": "/m/02p01q",
     "name": "Filing (rasp)"
   },
@@ -12399,7 +12399,7 @@
       "youtu.be/6SjftAv04VM?start=440&end=450",
       "youtu.be/l4raHxFuVIU?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [52268, 115346],
     "id": "/m/023vsd",
     "name": "Sanding"
   },
@@ -12430,7 +12430,7 @@
       "youtu.be/pPbaKEYpP-4?start=60&end=70",
       "youtu.be/oQA78VCxa2U?start=60&end=70"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [160702, 212396],
     "id": "/m/0_ksk",
     "name": "Power tool"
   },
@@ -12453,7 +12453,7 @@
       "youtu.be/MDWok2Z9eK8?start=100&end=110",
       "youtu.be/-XoJN3kzimY?start=90&end=100"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [354106, 89099],
     "id": "/m/01d380",
     "name": "Drill"
   },
@@ -12820,7 +12820,7 @@
       "youtu.be/Dc7Uago6dTo?start=120&end=130",
       "youtu.be/DPpeWsDmMqM?start=430&end=440"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [250836],
     "id": "/m/083vt",
     "name": "Wood"
   },
@@ -12860,7 +12860,7 @@
       "youtu.be/GSNkf-1GPSQ?start=30&end=40",
       "youtu.be/RswPwZBfRi4?start=80&end=90"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [220951, 320377],
     "id": "/m/07pczhz",
     "name": "Chop"
   },
@@ -12881,7 +12881,7 @@
       "youtu.be/2zKFMrXOIIM?start=30&end=40",
       "youtu.be/1vTcgIFYqS0?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [352198],
     "id": "/m/07pl1bw",
     "name": "Splinter"
   },
@@ -12900,7 +12900,7 @@
       "youtu.be/3bGqkpfyk6k?start=230&end=240",
       "youtu.be/oRINjxOZKt8?start=150&end=160"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [352181],
     "id": "/m/07qs1cx",
     "name": "Crack"
   },
@@ -12920,7 +12920,7 @@
       "youtu.be/FCkRdsB6a-U?start=0&end=9",
       "youtu.be/GxtlETpVSYU?start=8&end=18"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [360799],
     "id": "/m/07pc8l3",
     "name": "Snap"
   },
@@ -12947,7 +12947,7 @@
       "youtu.be/qlnoKIMMWm4?start=110&end=120",
       "youtu.be/LT5wHi8Atmg?start=70&end=80"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [267290, 190995],
     "id": "/m/039jq",
     "name": "Glass"
   },
@@ -12969,7 +12969,7 @@
       "youtu.be/8-qDda-c6yo?start=30&end=40",
       "youtu.be/8efvnCaFuzQ?start=17&end=27"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [159006],
     "id": "/m/07q7njn",
     "name": "Chink, clink"
   },
@@ -13015,7 +13015,7 @@
       "youtu.be/_O0n0l_tL1Q?start=150&end=160",
       "youtu.be/1d4ASeSEXVI?start=220&end=230"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [321139, 213156],
     "id": "/m/07rn7sz",
     "name": "Shatter"
   },
@@ -13385,7 +13385,7 @@
       "youtu.be/rbN9akpEJh4?start=40&end=50",
       "youtu.be/f47LeLK_ucU?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [68398, 6165],
     "id": "/m/0790c",
     "name": "Sonar"
   },
@@ -13430,7 +13430,7 @@
       "youtu.be/KP74BeNnPjU?start=60&end=70",
       "youtu.be/FfMwEVBCmaQ?start=360&end=370"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [126464, 322222],
     "id": "/m/0dl83",
     "name": "Arrow"
   },
@@ -13599,7 +13599,7 @@
       "review"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [240700, 57651],
     "id": "/m/0hg7b",
     "name": "Microphone"
   },
@@ -13644,7 +13644,7 @@
       ]
     ],
     "positive_examples": [],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [144983, 181540],
     "id": "/m/01vfsf",
     "name": "Guitar amplifier"
   },
@@ -13683,7 +13683,7 @@
       "youtu.be/GsAUcq1V2HY?start=30&end=40",
       "youtu.be/UMkFu4MsDjc?start=160&end=170"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [214921, 319465],
     "id": "/m/02rr_",
     "name": "Effects unit"
   },
@@ -13707,7 +13707,7 @@
       "youtu.be/XXzpCKOVswg?start=200&end=210",
       "youtu.be/vKNGqQ3GRB8?start=90&end=100"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [126445, 11106],
     "id": "/m/07m2kt",
     "name": "Chorus effect"
   },
@@ -13749,7 +13749,7 @@
       "youtu.be/ZGYGusrK84E?start=220&end=230",
       "youtu.be/GUSqE3a1P3I?start=100&end=110"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [207965, 377331],
     "id": "/m/018w8",
     "name": "Basketball bounce"
   },
