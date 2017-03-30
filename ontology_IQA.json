@@ -11738,7 +11738,7 @@
     "citation_uri": "http://en.wikipedia.org/wiki/Buzzer",
     "restrictions": [],
     "description": "Sounds of a mechanical, electromechanical, or piezoelectric signaling device that emits a steady, highly-audible tone with a spectrum extending to high frequencies.",
-    "child_ids": [],
+    "child_ids": [21871, 54047, 216090],
     "fs_tags": [
       "buzzer"
     ],
