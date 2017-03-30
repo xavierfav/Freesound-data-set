@@ -9644,7 +9644,7 @@
       "youtu.be/bYdlZOsrf60?start=450&end=460",
       "youtu.be/eONg_DTdnYQ?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [191334,193732],
     "id": "/m/01g50p",
     "name": "Railroad car, train wagon"
   },
@@ -9689,7 +9689,7 @@
       "youtu.be/XzfyPcaAEcE?start=420&end=430",
       "youtu.be/FF-FeQjcHo8?start=100&end=110"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [242974,136577],
     "id": "/m/0195fx",
     "name": "Subway, metro, underground"
   },
