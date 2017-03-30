@@ -11805,7 +11805,7 @@
       "youtu.be/AdW3WsQy7QY?start=170&end=180",
       "youtu.be/4xcSq8UjPCI?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [124734, 316847],
     "id": "/m/0c3f7m",
     "name": "Fire alarm"
   },
