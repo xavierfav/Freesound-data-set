@@ -11427,7 +11427,7 @@
       "youtu.be/M82tO6erP8Y?start=160&end=170",
       "youtu.be/ygXK90AVXFY?start=50&end=60"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [210363, 336896],
     "id": "/m/07pp_mv",
     "name": "Alarm"
   },
@@ -11459,7 +11459,7 @@
       "youtu.be/CaARlo0W-WI?start=5&end=15",
       "youtu.be/sWxcqTcEWPo?start=330&end=340"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [371369, 330601],
     "id": "/m/07cx4",
     "name": "Telephone"
   },
@@ -11495,7 +11495,7 @@
       "youtu.be/UJ8vpkVsY34?start=30&end=40",
       "youtu.be/v-C5UHWHDw4?start=11&end=21"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [158416],
     "id": "/m/07pp8cl",
     "name": "Telephone bell ringing"
   },
@@ -11517,7 +11517,7 @@
       "youtu.be/JC70GNb_dmo?start=180&end=190",
       "youtu.be/sFok1rcnU6U?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [382070, 43872],
     "id": "/m/01hnzm",
     "name": "Ringtone"
   },
@@ -11563,7 +11563,7 @@
     "positive_examples": [
       "youtu.be/bipdap5oNJY?start=270&end=280"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [326730, 242173],
     "id": "/m/01sb50",
     "name": "Cellphone buzz, vibrating alert"
   },
@@ -11598,7 +11598,7 @@
       "youtu.be/xHYs_58hXfg?start=60&end=70",
       "youtu.be/HherPtX1e5c?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [17405, 192451],
     "id": "/m/02c8p",
     "name": "Telephone dialing, DTMF"
   },
