@@ -9,3 +9,5 @@ analysis_stats/
 analysis/
 *.html
 html/
+.idea/
+.DS_Store
