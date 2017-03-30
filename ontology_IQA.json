@@ -9506,7 +9506,7 @@
       "youtu.be/PIsYNyv77F4?start=570&end=580",
       "youtu.be/5ptjqWWz8W0?start=160&end=170"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [332379,329995],
     "id": "/m/0btp2",
     "name": "Traffic noise, roadway noise"
   },
@@ -9540,7 +9540,7 @@
       "youtu.be/hQIu0GkaFZM?start=330&end=340",
       "youtu.be/x8r1bqLPm88?start=270&end=280"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [321567,117518],
     "id": "/m/06d_3",
     "name": "Rail transport"
   },
@@ -9562,7 +9562,7 @@
       "youtu.be/-TIHs3wuY9E?start=160&end=170",
       "youtu.be/q1na9CH3Ufw?start=320&end=330"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [193739,71342],
     "id": "/m/07jdr",
     "name": "Train"
   },
@@ -9644,7 +9644,7 @@
       "youtu.be/bYdlZOsrf60?start=450&end=460",
       "youtu.be/eONg_DTdnYQ?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [191334,193732],
     "id": "/m/01g50p",
     "name": "Railroad car, train wagon"
   },
@@ -9689,7 +9689,7 @@
       "youtu.be/XzfyPcaAEcE?start=420&end=430",
       "youtu.be/FF-FeQjcHo8?start=100&end=110"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [242974,136577],
     "id": "/m/0195fx",
     "name": "Subway, metro, underground"
   },
@@ -9927,7 +9927,7 @@
       "youtu.be/8nfOPcwObls?start=70&end=80",
       "youtu.be/6SFinhyJaCs?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [156433,267905],
     "id": "/m/0199g",
     "name": "Bicycle"
   },
@@ -9955,7 +9955,7 @@
       "youtu.be/APYR7TeoGCQ?start=30&end=40",
       "youtu.be/yRzTXFjC-Hw?start=50&end=60"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [256813,154855],
     "id": "/m/06_fw",
     "name": "Skateboard"
   },
