@@ -10026,7 +10026,7 @@
       "youtu.be/Lzec-fG2xwI?start=520&end=530",
       "youtu.be/ki9Mnrelw5s?start=360&end=370"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [87252, 70157],
     "id": "/t/dd00065",
     "name": "Light engine (high frequency)"
   },
