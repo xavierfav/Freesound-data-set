@@ -5999,7 +5999,7 @@
       "youtu.be/xyvS_KsEJC0?start=60&end=70",
       "youtu.be/oGeklgrvf2g?start=180&end=190"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [43794, 142022],
     "id": "/m/0192l",
     "name": "Bagpipes"
   },
@@ -6022,7 +6022,7 @@
       "youtu.be/6AnnPCJJ8dM?start=80&end=90",
       "youtu.be/NHz8UGzTMAY?start=120&end=130"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [376589, 275279],
     "id": "/m/02bxd",
     "name": "Didgeridoo"
   },
@@ -6041,7 +6041,7 @@
       "youtu.be/x6f0yu_JzsE?start=40&end=50",
       "youtu.be/pq9irpvQhMk?start=4&end=14"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [223368],
     "id": "/m/0l14l2",
     "name": "Shofar"
   },
@@ -6060,7 +6060,7 @@
       "youtu.be/8bakI0ITCqQ?start=580&end=590",
       "youtu.be/5DUdq5JPUsQ?start=50&end=60"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [119014, 119007],
     "comments_JP": "Very noisy mapping.",
     "id": "/m/07kc_",
     "name": "Theremin"
@@ -6085,7 +6085,7 @@
       "youtu.be/ToQqkcyH21U?start=30&end=40",
       "youtu.be/t3Ufg50eARI?start=290&end=300"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [133679, 240934],
     "id": "/m/0l14t7",
     "name": "Singing bowl"
   },
@@ -6101,7 +6101,7 @@
       "review"
     ],
     "positive_examples": [],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [124135, 196384],
     "comments_JP": "Too broad definition. Almost every sound could fit here.",
     "id": "/m/05229",
     "name": "Musical ensemble"
@@ -6141,7 +6141,7 @@
       "youtu.be/SI7uLBg7HIk?start=230&end=240",
       "youtu.be/xU1dkNbkRkU?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [212692, 124395],
     "id": "/m/01hgjl",
     "name": "Scratching (performance technique)"
   },
@@ -9222,7 +9222,7 @@
       "youtu.be/4iPQgalitDs?start=250&end=260",
       "youtu.be/58zUgdsdM0w?start=40&end=50"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [110692],
     "id": "/m/05x_td",
     "name": "Air horn, truck horn"
   },
@@ -9314,7 +9314,7 @@
       "youtu.be/NG3AQzmVgnE?start=14&end=24",
       "youtu.be/Tcdrj-kHoUc?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [144964,165602],
     "id": "/m/01bjv",
     "name": "Bus"
   },
@@ -9353,7 +9353,7 @@
       "youtu.be/ywRo3KB5AuM?start=10&end=20",
       "youtu.be/jg9TpmmZ5Ws?start=18&end=28"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [256469,340318],
     "id": "/m/03j1ly",
     "name": "Emergency vehicle"
   },
@@ -9380,7 +9380,7 @@
       "youtu.be/TBhbEn20dLs?start=120&end=130",
       "youtu.be/k9u987RcH64?start=2&end=12"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [102871,90014],
     "id": "/m/04qvtq",
     "name": "Police car (siren)"
   },
@@ -9412,7 +9412,7 @@
       "youtu.be/PTOF-fb9S5k?start=10&end=20",
       "youtu.be/3M3FsgEyWW8?start=290&end=300"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [71711,89683],
     "id": "/m/012n7d",
     "name": "Ambulance (siren)"
   },
@@ -9446,7 +9446,7 @@
       "youtu.be/qXAxJ0liwAE?start=70&end=80",
       "youtu.be/OP4mg83ynII?start=320&end=330"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [315758,121814],
     "id": "/m/012ndj",
     "name": "Fire engine, fire truck (siren)"
   },
@@ -9469,7 +9469,7 @@
       "youtu.be/dd8ExHtH4qM?start=390&end=400",
       "youtu.be/FtHpeHIK3s0?start=40&end=50"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [187592,353980],
     "id": "/m/04_sv",
     "name": "Motorcycle"
   },
@@ -9586,7 +9586,7 @@
       "youtu.be/sCrfI81URlw?start=20&end=30",
       "youtu.be/30n4GYsBucU?start=40&end=50"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [254513],
     "id": "/m/04zmvq",
     "name": "Train whistle"
   },
@@ -9612,7 +9612,7 @@
       "youtu.be/_O5NaJziPSo?start=490&end=500",
       "youtu.be/_flJpCGAs5Y?start=220&end=230"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [248229,126568],
     "id": "/m/0284vy3",
     "name": "Train horn"
   },
@@ -9841,7 +9841,7 @@
       "youtu.be/CuF4tcbKVpM?start=120&end=130",
       "youtu.be/rXNzfRo9BXU?start=140&end=150"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [361434,33370],
     "id": "/m/02l6bg",
     "name": "Propeller, airscrew"
   },
