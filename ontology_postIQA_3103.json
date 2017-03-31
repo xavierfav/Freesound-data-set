@@ -1258,6 +1258,9 @@
         "woman"
       ]
     ],
+    "omit_fs_tags": [
+      "wolf"
+    ],    
     "positive_examples": [
       "youtu.be/MJJv-SQVbQY?start=140&end=150",
       "youtu.be/snXiUKVgEVI?start=30&end=40",
@@ -2425,6 +2428,10 @@
       "howl",
       "howling"
     ],
+    "omit_fs_tags": [
+      "wind",
+      "cat"
+    ],
     "positive_examples": [
       "youtu.be/i0j8eJ97eBg?start=20&end=30",
       "youtu.be/ZhgQ8G03Zjw?start=10&end=20",
@@ -2462,6 +2469,14 @@
     "fs_tags": [
       "growling",
       "growl"
+    ],
+    "omit_fs_tags": [
+      "zombie",
+      "monster",
+      "horror",
+      "loop", 
+      "rhythm",
+      "dubstep"
     ],
     "positive_examples": [
       "youtu.be/awGgmjI0oaI?start=19&end=29",
@@ -2585,6 +2600,9 @@
       "miaow",
       "miaou"
     ],
+    "omit_fs_tags": [
+      "speech"
+    ],
     "positive_examples": [
       "youtu.be/b3dYlDbU_78?start=30&end=40",
       "youtu.be/wDbhmulc2Lk?start=30&end=40",
@@ -2609,6 +2627,10 @@
       "hiss",
       "hissing",
       "steam"
+    ],
+    "omit_fs_tags": [
+      "beat",
+      "dance"
     ],
     "positive_examples": [
       "youtu.be/7fuyNj3y8z8?start=30&end=40",
@@ -2921,6 +2943,9 @@
       "pig",
       "piglet"
     ],
+    "omit_fs_tags": [
+      "music"
+    ],     
     "positive_examples": [
       "youtu.be/nV9B3G4L51c?start=80&end=90",
       "youtu.be/DX2WJrS04rU?start=270&end=280",
@@ -3198,7 +3223,9 @@
       "mosque",
       "prayer",
       "muslim",
-      "turkish-makam"
+      "turkish-makam",
+      "anatolia",
+      "izmir"
     ],
     "positive_examples": [
       "youtu.be/g13AFjJIpMU?start=19&end=29",
@@ -3918,6 +3945,10 @@
     "fs_tags": [
       "mosquito"
     ],
+    "omit_fs_tags": [
+      "reaktor",
+      "multisample",
+    ],    
     "positive_examples": [
       "youtu.be/OIkpYphVHVI?start=30&end=40",
       "youtu.be/crtrt0HbAtg?start=30&end=40",
@@ -3975,6 +4006,9 @@
       "buzzing",
       "review"
     ],
+    "omit_fs_tags": [
+      "wind"
+    ],     
     "positive_examples": [
       "youtu.be/hOqnxZQerhw?start=30&end=40",
       "youtu.be/PEiKSjl0x0M?start=3&end=13",
@@ -4949,6 +4983,10 @@
       "conga",
       "review"
     ],
+    "omit_fs_tags": [
+      "cymbal",
+      "hat"
+    ],    
     "positive_examples": [
       "youtu.be/65uPPy5e8oI?start=30&end=40",
       "youtu.be/GZ-jXUN0Hpg?start=70&end=80",
@@ -5105,7 +5143,9 @@
       "tabla"
     ],
     "omit_fs_tags": [
-      "flanged"
+      "flanged",
+      "machine",
+      "electronic"
     ],
     "positive_examples": [
       "youtu.be/WXUfeWxCKlI?start=250&end=260",
@@ -7927,6 +7967,10 @@
         "bell"
       ],
       [
+        "sleigh",
+        "bell"
+      ],
+      [
         "christmas",
         "bell"
       ],
@@ -8527,6 +8571,9 @@
       "flame",
       "burn"
     ],
+    "omit_fs_tags": [
+      "gun"
+    ],    
     "positive_examples": [
       "youtu.be/rRA29fWQ-yo?start=40&end=50",
       "youtu.be/ncTBfKkL98M?start=10&end=20",
@@ -10492,6 +10539,9 @@
         "door"
       ]
     ],
+    "omit_fs_tags": [
+      "dark"
+    ],    
     "positive_examples": [
       "youtu.be/bWppskIvs40?start=30&end=40",
       "youtu.be/qhR8NGj4QJU?start=10&end=20",
@@ -10527,7 +10577,10 @@
       "drain",
       "bath",
       "dripping",
-      "liquid"
+      "liquid",
+      "keyboard",
+      "fingers",
+      "bell"
     ],
     "positive_examples": [
       "youtu.be/DOG1JX-hIC8?start=30&end=40",
@@ -10550,6 +10603,9 @@
       "squeak",
       "squeaky"
     ],
+    "omit_fs_tags": [
+      "chord"
+    ],    
     "positive_examples": [
       "youtu.be/sS9j4nxxw4c?start=30&end=40",
       "youtu.be/4YPpyKEKZzc?start=350&end=360",
@@ -12314,6 +12370,9 @@
       "woodcutter",
       "handsaw"
     ],
+    "omit_fs_tags": [
+      "synth"
+    ],    
     "positive_examples": [
       "youtu.be/2cA6U33DhmU?start=21&end=31",
       "youtu.be/IIrxuKxXgbI?start=50&end=60",
@@ -12876,6 +12935,9 @@
         "wood"
       ]
     ],
+    "omit_fs_tags": [
+      "loop"
+    ],    
     "positive_examples": [
       "youtu.be/KXhwErBuMgY?start=30&end=40",
       "youtu.be/2zKFMrXOIIM?start=30&end=40",
@@ -12912,7 +12974,7 @@
     "fs_tags": [
       "Snap",
       "Snaping"
-    ],
+    ],       
     "positive_examples": [
       "youtu.be/NuMmJD2JrBI?start=30&end=40",
       "youtu.be/aJP8tmE_77E?start=3&end=13",
@@ -13529,6 +13591,9 @@
       "clunk",
       "review"
     ],
+    "omit_fs_tags": [
+      "tray"
+    ],    
     "positive_examples": [
       "youtu.be/x-dLBbkPEKA?start=26&end=36",
       "youtu.be/fdD2UwvJdC4?start=20&end=30",
@@ -13833,7 +13898,9 @@
     ],
     "omit_fs_tags": [
       "bass",
-      "kick"
+      "kick",
+      "rain",
+      "wind"
     ],
     "positive_examples": [
       "youtu.be/-gfaj2Evqus?start=290&end=300",
@@ -13884,6 +13951,10 @@
     "omit_fs_tags": [
       "cymbal",
       "cymbals"
+      "horn",
+      "drum",
+      "music",
+      "friction"
     ],
     "positive_examples": [
       "youtu.be/-3MV6T3u9Ig?start=30&end=40",
@@ -13912,7 +13983,10 @@
       "engine",
       "motor",
       "core",
-      "loops"
+      "loops",
+      "breakbeat",
+      "news",
+      "dubstep"
     ],
     "positive_examples": [
       "youtu.be/frZUEXzWE5Q?start=30&end=40",
@@ -13939,7 +14013,8 @@
       "electronic",
       "rave",
       "trance",
-      "house"
+      "house",
+      "bpm"
     ],
     "positive_examples": [
       "youtu.be/Tk2v1UaTgmk?start=40&end=50",
@@ -13983,7 +14058,8 @@
     ],
     "omit_fs_tags": [
       "bird",
-      "birds"
+      "birds",
+      "swoosh"
     ],
     "positive_examples": [
       "youtu.be/-1MpcvB9PAI?start=30&end=40",
@@ -14026,7 +14102,8 @@
       "dj",
       "hip-hop",
       "rap",
-      "loop"
+      "loop",
+      "insect"
     ],
     "positive_examples": [
       "youtu.be/tgHySwhil9s?start=50&end=60",
@@ -14093,7 +14170,9 @@
       "drum",
       "percussion",
       "snare",
-      "drums"
+      "drums",
+      "melody",
+      "guitar"
     ],
     "positive_examples": [
       "youtu.be/2TE4hAMo9EE?start=4&end=14",
@@ -14115,7 +14194,9 @@
       "grind"
     ],
     "omit_fs_tags": [
-      "loop"
+      "loop",
+      "breakcore",
+      "offensive"
     ],
     "positive_examples": [
       "youtu.be/6jborgl8I1c?start=30&end=40",
@@ -14159,7 +14240,8 @@
       "crunch"
     ],
     "omit_fs_tags": [
-      "footstep"
+      "footstep",
+      "guitar"
     ],
     "positive_examples": [
       "youtu.be/-LRl10YdS-U?start=30&end=40",
@@ -14201,6 +14283,9 @@
       "tear",
       "rip"
     ],
+    "omit_fs_tags": [
+      "slice"
+    ],    
     "positive_examples": [
       "youtu.be/OVt4xBfulms?start=40&end=50",
       "youtu.be/BIluBHK8DO0?start=70&end=80",
@@ -14375,6 +14460,9 @@
     "fs_tags": [
       "twang"
     ],
+    "omit_fs_tags": [
+      "music"
+    ],    
     "positive_examples": [
       "youtu.be/eqox9z6yadA?start=0&end=2",
       "youtu.be/xlO2Wy86Jys?start=30&end=40"
@@ -14495,8 +14583,11 @@
     "description": "The sound of many small bubbles bursting, most often caused by fat vaporizing as it is heated.",
     "child_ids": [],
     "fs_tags": [
-      "sizzle"
+      "soda"
     ],
+    "omit_fs_tags": [
+      "music"
+    ],        
     "positive_examples": [
       "youtu.be/1HGzcj92CEE?start=210&end=220",
       "youtu.be/AqrSHCCehgY?start=30&end=40",
@@ -14617,6 +14708,10 @@
       "jingle",
       "tinkle"
     ],
+    "omit_fs_tags": [
+      "bell",
+      "chime"
+    ],    
     "positive_examples": [
       "youtu.be/EW3ZkpsGNBA?start=10&end=20",
       "youtu.be/q7oAC59AP9c?start=1&end=11",
@@ -14668,6 +14763,10 @@
     "fs_tags": [
       "hum"
     ],
+    "omit_fs_tags": [
+      "human",
+      "melody"
+    ],     
     "positive_examples": [
       "youtu.be/WxxeWEBoVys?start=30&end=40",
       "youtu.be/cDVmKSYc4HY?start=240&end=250",
@@ -14832,6 +14931,10 @@
       "chirp",
       "shepard-tone"
     ],
+    "omit_fs_tags": [
+      "bird",
+      "insect"
+    ],     
     "positive_examples": [
       "youtu.be/-kE7IL6pnKU?start=20&end=30"
     ],
