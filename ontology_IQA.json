@@ -1892,7 +1892,7 @@
       "youtu.be/7gdSJ30FfNU?start=460&end=470",
       "youtu.be/VMdN2OuP6fk?start=90&end=100"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [338196, 344040],
     "id": "/m/02p3nc",
     "name": "Hiccup"
   },
@@ -5686,7 +5686,7 @@
       "youtu.be/6cVpV4lX3wE?start=30&end=40",
       "youtu.be/8Wsmo4nUcUE?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [56034, 373907],
     "id": "/m/0d8_n",
     "name": "Pizzicato"
   },
@@ -8049,7 +8049,7 @@
       "youtu.be/2xzSvnP5LHU?start=10&end=20",
       "youtu.be/LhXxwS30-es?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [44160, 44156],
     "id": "/m/026fgl",
     "name": "Wind chime"
   },
@@ -8815,7 +8815,7 @@
       "youtu.be/f1yc8bkg0sc?start=10&end=20",
       "youtu.be/B1vvkDwpgLQ?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [324980, 188006],
     "id": "/m/012f08",
     "name": "Motor vehicle (road)"
   },
@@ -8930,7 +8930,7 @@
       "youtu.be/Mcuclfu6kcg?start=100&end=110",
       "youtu.be/EYsAX8CaJ-4?start=20&end=30"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [271110, 27881],
     "id": "/m/07qv_d5",
     "name": "Toot"
   },
@@ -9013,7 +9013,7 @@
       "youtu.be/PKDeI8PzYxk?start=30&end=40",
       "youtu.be/ta2vGgYNBgg?start=10&end=20"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [50893, 353596],
     "id": "/m/04gxbd",
     "name": "Power windows, electric windows"
   },
@@ -10050,7 +10050,7 @@
       "youtu.be/Z5I3qUNg8Xg?start=280&end=290",
       "youtu.be/52sTvbwi7Mg?start=130&end=140"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [248235, 35720],
     "id": "/m/08j51y",
     "name": "Dental drill, dentist's drill"
   },
@@ -10075,7 +10075,7 @@
       "youtu.be/16d3D1AWFu8?start=20&end=30",
       "youtu.be/UM5xPbgiDbs?start=60&end=70"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [118727, 346943],
     "id": "/m/01yg9g",
     "name": "Lawn mower"
   },
@@ -10098,7 +10098,7 @@
       "youtu.be/iWOlAJb2ogg?start=30&end=40",
       "youtu.be/CDm5VBH6nL4?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [65997, 157610],
     "id": "/m/01j4z9",
     "name": "Chainsaw"
   },
@@ -11620,7 +11620,7 @@
       "youtu.be/j7whx_ntCog?start=180&end=190",
       "youtu.be/YTBCmc70I20?start=270&end=280"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [178823],
     "id": "/m/015jpf",
     "name": "Dial tone"
   },
@@ -11644,7 +11644,7 @@
       "youtu.be/NiHk39QzgVc?start=90&end=100",
       "youtu.be/iT9zHI02zDo?start=160&end=170"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [249509, 178821],
     "id": "/m/01z47d",
     "name": "Busy signal"
   },
@@ -11730,7 +11730,7 @@
       "youtu.be/Kc2-IHeqq0o?start=30&end=40",
       "youtu.be/8A30tAwXdzM?start=30&end=40"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [52875],
     "id": "/m/0dgbq",
     "name": "Civil defense siren"
   },
@@ -11874,7 +11874,7 @@
       "youtu.be/VSVhZ2aDjro?start=30&end=40",
       "youtu.be/2FkfQgDiW_o?start=369&end=379"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [74474, 56645],
     "id": "/m/06hck5",
     "name": "Steam whistle"
   },
@@ -12002,7 +12002,7 @@
       "youtu.be/4ftDFi4684Y?start=30&end=40",
       "youtu.be/y5cRJZB83ZA?start=4&end=14"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [16651, 191327],
     "id": "/m/07qjznl",
     "name": "Tick-tock"
   },
@@ -12641,7 +12641,7 @@
       "youtu.be/s14pZzKGsdE?start=30&end=40",
       "youtu.be/FTPLIbmvoSs?start=140&end=150"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [46063, 46063],
     "id": "/m/073cg4",
     "name": "Cap gun"
   },
@@ -13275,7 +13275,7 @@
       "youtu.be/6sYf3-kmw0k?start=30&end=40",
       "youtu.be/nsEhTV5-e2s?start=27&end=37"
     ],
-    "positive_examples_FS": [],
+    "positive_examples_FS": [327804, 328424],
     "id": "/m/07qlf79",
     "name": "Spray"
   },
