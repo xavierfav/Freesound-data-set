@@ -3947,7 +3947,7 @@
     ],
     "omit_fs_tags": [
       "reaktor",
-      "multisample",
+      "multisample"
     ],    
     "positive_examples": [
       "youtu.be/OIkpYphVHVI?start=30&end=40",
@@ -13950,7 +13950,7 @@
     ],
     "omit_fs_tags": [
       "cymbal",
-      "cymbals"
+      "cymbals",
       "horn",
       "drum",
       "music",
