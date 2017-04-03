@@ -356,20 +356,20 @@ def display_tags_list_baskets(list_baskets):
     print '\n ASO categories tags occurrences (normalized):'
     for i in range(len(list_baskets)):
             print_basket(list_baskets, normalized_tags_occurrences, i, 20)
-
-def filter_duration(basket, thresh):
-    id_to_remove = []
-    for idx, s in enumerate(basket.sounds):
-    if s.duration > thresh:
-        id_to_remove.append(idx)
-    basket.remove(id_to_remove)
-
-def filter_no_label(basket):
-    id_to_remove = []
-    for idx,s in enumerate(basket.sounds):
-    if len(s.aso_ids)<1:
-        id_to_remove.append(idx)
-    basket.remove(id_to_remove)
+#
+#def filter_duration(basket, thresh):
+#    id_to_remove = []
+#    for idx, s in enumerate(basket.sounds):
+#    if s.duration > thresh:
+#        id_to_remove.append(idx)
+#    basket.remove(id_to_remove)
+#
+#def filter_no_label(basket):
+#    id_to_remove = []
+#    for idx,s in enumerate(basket.sounds):
+#    if len(s.aso_ids)<1:
+#        id_to_remove.append(idx)
+#    basket.remove(id_to_remove)
 
 if __name__ == '__main__':
     # Create Client instance (holds function to load Basket object)
@@ -378,7 +378,8 @@ if __name__ == '__main__':
     b = c.load_basket_pickle('freesound_db_160317.pkl')
     
     # Load the ontology file (annotated)
-    ontology = json.load(open('ontology_final_FS_abstract.json','rb'))
+    #ontology = json.load(open('ontology_final_FS_abstract.json','rb'))
+    ontology = json.load(open('ontology_postIQA_3103.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     
     # Preprocessing (lower case, stem)
