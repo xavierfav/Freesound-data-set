@@ -40,3 +40,17 @@ run script: (needs a bit of memory for loading all Freesound metadata, close you
 
 >>> run sound_labelling.py
 
+_______________________________________
+
+
+PLOT STATS:
+
+The script_plot.py contains the code for reproducing the basic plots and prints.
+The data is in the 'votes_TT_all.pkl' file structured like that:
+[(<id>, <name>, <#PP>, <#PNP>, <#U>, <#NP>, <#Votes>, <#Annotations>, <#Votes left to 72>), ...]
+
+The different Prints and Plots:
+- Print of the votes for each node (Name, #PP, #PNP, #U, #NP, #Total Votes, #Annotations, #Votes to 72)
+- Plot of Present and Non Present 
+- Plot of Unsure
+- Print # Unsure per group category 

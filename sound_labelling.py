@@ -102,7 +102,7 @@ def sorted_occurrences_labels(occurrences, basket):
     print 'Audio Set labels number of occurrences:\n'
     for i in aso_oc:
         print str(i[0]).ljust(105) + str(i[1])
-        
+             
 def create_html_random_sounds_for_category(aso_category_occurrences, category_id, nb_sounds=10):
     """
     Create a html with Freesound sound embeds
@@ -215,6 +215,7 @@ def get_aso_class_fs_sound_dict(ontology, basket):
    
 def get_parents(aso_id, ontology):
     parents = []
+    ontology_by_id = {o['id']:o for o in ontology}
     # 1st pass for direct parents
     for o in ontology:
         for id_child in o["child_ids"]:
@@ -236,6 +237,30 @@ def get_all_parents(aso_id, ontology):
                 for path in paths(node['id'], [node['name']] + cur):
                     yield path
     return paths(aso_id)
+
+def get_children(aso_id, ontology):
+    ontology_by_id = {o['id']:o for o in ontology}
+    return [ontology_by_id[i] for i in ontology_by_id[aso_id]["child_ids"]]
+
+def get_all_children(aso_id, ontology):
+    ontology_by_id = {o['id']:o for o in ontology}
+    def paths(node_id, cur=list()):
+        children = get_children(node_id, ontology)
+        if not children:
+            yield cur
+        else:
+            for node in children:
+                for path in paths(node['id'], [node['id']] + cur):
+                    yield path
+    return paths(aso_id)
+
+def return_children(aso_id, ontology):
+    children = []
+    for i in get_all_children(aso_id, ontology):
+        children += i
+    return list(set(children))
+
+    
     
 def get_parents_dict(ontology):
     """
