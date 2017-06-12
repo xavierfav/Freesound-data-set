@@ -9,6 +9,7 @@ import numpy as np
 
 # stem and lower case of fs tags in Audio Set Ontology:
 def preproc_ontology(ontology):
+    # stem only the fs_tags (not the omit one)
     stemmer = PorterStemmer()
     ontology_stem = copy.deepcopy(ontology)
     for idx, category in enumerate(ontology):
@@ -32,22 +33,25 @@ def auto_label(basket, ontology):
     """
     Bar = manager.ProgressBar(len(basket), 30, 'Linking...')
     Bar.update(0)
-    for idx, sound in enumerate(basket.sounds):
+    for idx, sound in enumerate(basket.sounds): # for all sound in the basket object
         Bar.update(idx+1)
         sound.aso_labels = []
         sound.aso_ids = []
         for category in ontology:
-            is_from_category = False
+            # for each category,
+            is_from_category = False # init bolean
+            # check if the sound has a category tag
             for t in category["fs_tags"]:
-                if isinstance(t, unicode):
+                if isinstance(t, unicode): # in case of unique values ("or" rule)
                     if t in sound.tags_stem:
                         is_from_category = True
-                elif isinstance(t, list):
+                elif isinstance(t, list): # in case of list ("and" rule)
                     if set(t).issubset(set(sound.tags_stem)):
                         is_from_category = True
+            # check if the sound has an omit category tag
             if 'omit_fs_tags' in category.keys():
                 for t in category['omit_fs_tags']:
-                    if t in sound.tags:
+                    if t in sound.tags: # here no stem for omit tag
                         is_from_category = False
             if is_from_category:
                 sound.aso_labels.append(category["name"])
@@ -381,20 +385,20 @@ def display_tags_list_baskets(list_baskets):
     print '\n ASO categories tags occurrences (normalized):'
     for i in range(len(list_baskets)):
             print_basket(list_baskets, normalized_tags_occurrences, i, 20)
-#
-#def filter_duration(basket, thresh):
-#    id_to_remove = []
-#    for idx, s in enumerate(basket.sounds):
-#    if s.duration > thresh:
-#        id_to_remove.append(idx)
-#    basket.remove(id_to_remove)
-#
-#def filter_no_label(basket):
-#    id_to_remove = []
-#    for idx,s in enumerate(basket.sounds):
-#    if len(s.aso_ids)<1:
-#        id_to_remove.append(idx)
-#    basket.remove(id_to_remove)
+
+def filter_duration(basket, thresh):
+    id_to_remove = []
+    for idx, s in enumerate(basket.sounds):
+        if s.duration > thresh:
+            id_to_remove.append(idx)
+    basket.remove(id_to_remove)
+
+def filter_no_label(basket):
+    id_to_remove = []
+    for idx,s in enumerate(basket.sounds):
+        if len(s.aso_ids)<1:
+            id_to_remove.append(idx)
+    basket.remove(id_to_remove)
 
 if __name__ == '__main__':
     # Create Client instance (holds function to load Basket object)
@@ -409,7 +413,7 @@ if __name__ == '__main__':
     
     # Preprocessing (lower case, stem)
     b.tags_lower()
-    b.text_preprocessing() # stem and lower case for tags in freesound basket
+    b.text_preprocessing() # stem and lower case for tags in freesound basket (in "tag_stem" attribute)
     ontology_stem = preproc_ontology(ontology)
     
     # Auto labelling
