@@ -1,5 +1,6 @@
 import json
 import webbrowser
+import argparse
 
 def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
     """
@@ -25,7 +26,7 @@ def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
         <body>
     """
     for idx in sounds[:nb_sounds]:
-        message += str(idx) + embed_blocks[0] + str(idx) + embed_blocks[1]
+        message += str(idx) + embed_blocks[0] + str(idx) + embed_blocks[1] + "<br/>"
     message += """
         </body>
     </html>
@@ -40,8 +41,22 @@ def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
     
 
 if __name__ == '__main__':
+    """
+    How to proceed:
+    from the terminal in the Freesound-data-set folder, type:
+    python script_examples_for_fsd.py
+    
+    You will be asked for the category you want to deal with. Enter the id of the category.
+    
+    An html page will be generated and oppened with the examples candidates.
+    
+    The page will present a sound in each line with the freesound embed to be able to listen to it.
+    If the sound sounds like a good example, add the id in the ontology json file: ontology_preCrowd.json
+    
+    """
     ex_candidates = json.load(open('examples_fsd.json','rb'))
     ontology = json.load(open('ontology_preCrowd.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     aso_id = raw_input('Enter the id of the category you want to deal with (without quotes): ')
     create_html_with_examples(ex_candidates, aso_id)
+    
