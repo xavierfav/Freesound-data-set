@@ -43,16 +43,17 @@ def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
 if __name__ == '__main__':
     """
     How to proceed:
+    Open the google sheet "https://docs.google.com/spreadsheets/d/16-qIxhZLPrCmMR0oNaYFGOKNwT9JgTvwHgfYcQF0ltc/edit#gid=0"
+    
     from the terminal in the Freesound-data-set folder, type:
-    python script_examples_for_fsd.py
+    >>> python script_examples_for_fsd.py
     
     You will be asked for the category you want to deal with. Enter the id of the category.
     
     An html page will be generated and oppened with the examples candidates.
     
     The page will present a sound in each line with the freesound embed to be able to listen to it.
-    If the sound sounds like a good example, add the id in the ontology json file: ontology_preCrowd.json
-    
+    If the sound sounds like a good example, add the google sheet in the correponding row.
     """
     ex_candidates = json.load(open('examples_fsd.json','rb'))
     ontology = json.load(open('ontology_preCrowd.json','rb'))
