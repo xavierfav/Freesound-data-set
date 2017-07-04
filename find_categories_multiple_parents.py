@@ -1,6 +1,10 @@
 import json
 import numpy as np
 
+""" 
+Script to read ontology.json and find those categories which have more than one parent.
+The standard categories have only one parent. However, more than 30 categories have several parents.
+"""
 
 with open('ontology.json') as data_file:
 	data = json.load(data_file)
@@ -8,26 +12,28 @@ with open('ontology.json') as data_file:
 categories_with_several_parents_id = []
 categories_with_several_parents_name = []
 
+
+
 for i in np.arange(len(data)):
 	print i
 	target_id = data[i]['id'] #grab every category
 
 	# reset counter
 	count=0
-
+	
+    # for every category id, search in field ['child_ids'] of ALL categories of the ontology
 	for k in np.arange(len(data)):
 		if target_id in data[k]['child_ids']:
-			print target_id + ', with name ' +  data[i]['name']  + ' is a child'
 			count+=1
-			print (count)
+			print 'category ' + target_id + ', with name ' +  data[i]['name']  + ' is a child; number of times it is a child = ' + str(count)
 
 
 
 	if count>1:
-		print '----------a standard category can be ONLY one child of ONE parent, or none if it is at top level'
+		print '----------a standard category can be child only ONCE (of one parent), or none, if category is at top level'
 		categories_with_several_parents_id.append(target_id)
 		categories_with_several_parents_name.append(data[i]['name'])
-		print (target_id)
+		print data[i]['name'],target_id
 		print ('------------')
 		print()
 
