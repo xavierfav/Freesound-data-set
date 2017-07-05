@@ -43,7 +43,7 @@ def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
 if __name__ == '__main__':
     """
     How to proceed:
-    Open the google sheet "https://docs.google.com/spreadsheets/d/16-qIxhZLPrCmMR0oNaYFGOKNwT9JgTvwHgfYcQF0ltc/edit#gid=0"
+    Open the google sheet "https://docs.google.com/a/upf.edu/spreadsheets/d/16-qIxhZLPrCmMR0oNaYFGOKNwT9JgTvwHgfYcQF0ltc/edit?usp=sharing"
     
     from the terminal in the Freesound-data-set folder, type:
     >>> python script_examples_for_fsd.py
