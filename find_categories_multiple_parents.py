@@ -4,6 +4,7 @@ import numpy as np
 """ 
 Script to read ontology.json and find those categories which have more than one parent.
 The standard categories have only one parent. However, more than 30 categories have several parents.
+They are printed together with their direct parents.
 """
 
 with open('ontology/ontology.json') as data_file:
