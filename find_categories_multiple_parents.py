@@ -4,42 +4,45 @@ import numpy as np
 """ 
 Script to read ontology.json and find those categories which have more than one parent.
 The standard categories have only one parent. However, more than 30 categories have several parents.
+They are printed together with their direct parents.
 """
 
-with open('ontology.json') as data_file:
+with open('ontology/ontology.json') as data_file:
 	data = json.load(data_file)
 
 categories_with_several_parents_id = []
 categories_with_several_parents_name = []
-
+parents_list = []
 
 
 for i in np.arange(len(data)):
 	print i
 	target_id = data[i]['id'] #grab every category
 
-	# reset counter
+	# reset counter and parent list
 	count=0
+	parent_list_tmp = []
 	
-    # for every category id, search in field ['child_ids'] of ALL categories of the ontology
+	# for every category id, search in field ['child_ids'] of ALL categories of the ontology
 	for k in np.arange(len(data)):
 		if target_id in data[k]['child_ids']:
 			count+=1
-			print 'category ' + target_id + ', with name ' +  data[i]['name']  + ' is a child; number of times it is a child = ' + str(count)
+			print 'category ' + target_id + ', with name ' +  data[i]['name']  + ' is a child of ' + data[k]['name'] + '; count = ' + str(count)
+			parent_list_tmp.append(data[k]['name'])
 
-
-
+	#only if there are 2 or more parents
 	if count>1:
-		print '----------a standard category can be child only ONCE (of one parent), or none, if category is at top level'
+		print '\n----------a standard category can be child only ONCE (of one parent), or none, if category is at top level'
 		categories_with_several_parents_id.append(target_id)
 		categories_with_several_parents_name.append(data[i]['name'])
-		print data[i]['name'],target_id
+		parents_list.append(parent_list_tmp)
+		# print data[i]['name'],target_id
 		print ('------------')
 		print()
 
 print '\n--list all cats with more than one parent: \n'
 for idx,name in enumerate(categories_with_several_parents_name):
-	print idx,name
+	print idx,name,parents_list[idx]
 
 
 # --list all cats with more than one parent
