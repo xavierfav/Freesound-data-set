@@ -36,11 +36,15 @@ ontology = json.load(open('ontology_preCrowd.json','rb'))
 ontology_by_id = {o['id']:o for o in ontology}
 categories = []
 for idx, key in enumerate(ontology_by_id.keys()):
-    l = [o for o in get_all_parents(key, ontology)][0] + [ontology_by_id[key]["name"]]
-    categories.append((' > '.join(l), key))
-    
+    if not 'omittedTT' in ontology_by_id[key]['restrictions']:
+        paths = [o for o in get_all_parents(key, ontology)]
+        l = paths[0] + [ontology_by_id[key]["name"]]
+        if len(paths) < 2:
+            categories.append((' > '.join(l), key))       
+        else:
+            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', key))       
+        
 categories = sorted(categories, key=lambda a: a[0])
-    
 
 for idx, obj in enumerate(categories):
     worksheet.write(idx, 0, obj[0])
