@@ -55,7 +55,8 @@ if __name__ == '__main__':
     The page will present a sound in each line with the freesound embed to be able to listen to it.
     If the sound sounds like a good example, add the google sheet in the correponding row.
     """
-    ex_candidates = json.load(open('examples_fsd.json','rb'))
+    # ex_candidates = json.load(open('examples_fsd.json','rb'))
+    ex_candidates = json.load(open('examples_fsd_duration_grouped.json','rb'))
     ontology = json.load(open('ontology_preCrowd.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     aso_id = raw_input('Enter the id of the category you want to deal with (without quotes): ')
