@@ -37,7 +37,7 @@ def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
     f.write(message)
     f.close()
     # Open it im the browser
-    webbrowser.open_new_tab('category_'+ str(ontology_by_id[aso_id]['name']) +'.html')
+    webbrowser.open('category_'+ str(ontology_by_id[aso_id]['name']) +'.html')
     
 
 if __name__ == '__main__':
