@@ -2,7 +2,7 @@ import json
 import webbrowser
 import argparse
 
-def create_html_with_examples(ex_candidates, aso_id, nb_sounds=20):
+def create_html_with_examples(ex_candidates, aso_id, nb_sounds=30):
     """
     Create a html page with FS sound embeds
     Arguments   - ex_candidates:    dict from the file examples_fsd.json
