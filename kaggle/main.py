@@ -268,3 +268,33 @@ a=9
 # outcome of constraint Hard1: rejecting durations less than 5 or greater than 20s
 # from 268261 to 94700 sounds mapped from Freesound to the ASO, saved in variable data_duration_from5to20
 # so there is 95k MAPPED sounds that meet this duration requirement (talking about clips here, not annotations)
+
+
+
+
+################# XF ######################
+#
+# PP and PNP for sounds duration <= 20 and durantion >= 5
+result_5_20 = {o['id']:set() for o in data_onto}
+for v in data_votes:
+    if data_duration[str(v['freesound_sound_id'])]['duration']<=20 and data_duration[str(v['freesound_sound_id'])]['duration']>=5:
+        if v['value']>0.4:
+            result_5_20[v['node_id']].add(v['freesound_sound_id'])
+print 'Number of categories with more than 50 sounds of duration [5;20]: ' + str(len([o for o in result if len(result_5_20[o])>=50]))
+
+# PP and PNP for sounds duration <= 20
+result_20 = {o['id']:set() for o in data_onto}
+for v in data_votes:
+    if data_duration[str(v['freesound_sound_id'])]['duration']<=20:
+        if v['value']>0.4:
+            result_20[v['node_id']].add(v['freesound_sound_id'])
+print 'Number of categories with more than 50 sounds of duration <=20: ' + str(len([o for o in result if len(result_20[o])>50]))
+
+
+# PP and PNP for sounds duration <= 30
+result_30 = {o['id']:set() for o in data_onto}
+for v in data_votes:
+    if data_duration[str(v['freesound_sound_id'])]['duration']<=30:
+        if v['value']>0.4:
+            result_30[v['node_id']].add(v['freesound_sound_id'])
+print 'Number of categories with more than 50 sounds of duration <=30: ' + str(len([o for o in result if len(result_30[o])>50]))
