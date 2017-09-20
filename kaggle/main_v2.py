@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import copy
-
+import xlsxwriter
 import matplotlib.pyplot as plt
 
 
@@ -326,7 +326,7 @@ def get_all_parents(aso_id, ontology):
 
 def sorted_occurrences_labels(result, ontology, min_samples):
     """
-    Print the number of sounds in each category of the ASO 
+    Create the worksheet with the number of sounds in each category of the ASO 
     Arguments:  - result from previous stage, e.g. result_leaves
                 - ontology from json file
                 - minimum samples in a categor, e.g. MIN_INSTANCES
@@ -344,14 +344,23 @@ def sorted_occurrences_labels(result, ontology, min_samples):
                 names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']]) + ' (MULTIPLE PARENTS)'
             else:
                 names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']])
-            category_occurrences.append((names, nb_sample))
+            category_occurrences.append((names, node_id, nb_sample))
     category_occurrences = sorted(category_occurrences, key=lambda oc: oc[0])
-    category_occurrences.append(('Total number of labels', total_sounds))
+    category_occurrences.append(('Total number of labels', '', total_sounds))
     category_occurrences.reverse()
-    print '\n'
-    print 'Audio Set categories with their number of audio samples:\n'
-    for i in category_occurrences:
-        print str(i[0]).ljust(105) + str(i[1])
+    
+    workbook = xlsxwriter.Workbook('list_categories_dataset_draft.xlsx')
+    worksheet = workbook.add_worksheet('list categories')
+    
+    for idx, obj in enumerate(category_occurrences):
+        worksheet.write(idx, 0, obj[0])
+        worksheet.write(idx, 1, obj[1])
+        worksheet.write(idx, 2, obj[2])
+#    print '\n'
+#    print 'Audio Set categories with their number of audio samples:\n'
+#    for i in category_occurrences:
+#        print str(i[0]).ljust(105) + str(i[1])
+
 
 ### SCRIPT ###
 sorted_occurrences_labels(result_leaves, data_onto, MIN_INSTANCES)
