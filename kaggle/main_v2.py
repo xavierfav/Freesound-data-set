@@ -365,8 +365,23 @@ def sorted_occurrences_labels(result, ontology, min_samples):
 ### SCRIPT ###
 sorted_occurrences_labels(result_leaves, data_onto, MIN_INSTANCES)
 
-
 # --------------------------------------------------------------- #
+
+# ------------------------ EXTRACT SOUNDS ----------------------- #
+result_final = {node_id:result_leaves[node_id] for node_id in result_leaves 
+                if len(result_leaves[node_id])>=40}
+sounds_with_labels = {sound_id:[] for sound_id in all_ids}
+for node_id in r:
+    for s in result_final[node_id]:
+        sounds_with_labels[s].append(node_id)
+
+# how many sounds with multiple labels
+print 'Total amount of sounds with more than one label: {0} samples'.format(
+    len([1 for sound_id in sounds_with_labels if 
+         len(sounds_with_labels[sound_id])>1]))
+
+
+
 
 # ---------------------NOT NOW
 
