@@ -272,22 +272,92 @@ print 'Number of leaf categories with more than ' + str(MIN_INSTANCES) + ' sound
 
 # name, size
 
-total_amount=0
-# total amount of sounds, over result_leaves
+
+# total amount of labels, over result_leaves
+total_amount = 0
 for key, value in result_leaves.iteritems():
     if len(value) >= MIN_INSTANCES:     #candidate categories have more than MIN_INSTANCES samples
         total_amount += len(value)
+        
+print 'Total amount of labels in leaf categories with more than ' + str(MIN_INSTANCES) + ' samples of duration [' + str(MINLEN) + ':' +\
+      str(MAXLEN) + '] (s): ' + str(total_amount) + ' labels'
+
+    
+# total amount of sounds, over result_leaves
+all_ids = []
+for key, value in result_leaves.iteritems():
+    if len(value) >= MIN_INSTANCES:     #candidate categories have more than MIN_INSTANCES samples
+        all_ids += value
+all_ids = set(all_ids)
+
+print 'Total amount of sounds in leaf categories with more than ' + str(MIN_INSTANCES) + ' samples of duration [' + str(MINLEN) + ':' +\
+      str(MAXLEN) + '] (s): ' + str(len(all_ids)) + ' samples'
 
 
-print 'Total amount of samples in leaf categories with more than ' + str(MIN_INSTANCES) + ' samples of duration [' + str(MINLEN) + ':' +\
-      str(MAXLEN) + '] (s): ' + str(total_amount) + 'samples'
+    
+
+# --------------------- PRINT ALL CATEGORIES --------------------- #
+
+### UTILS FUNCTIONS ###
+def get_parents(aso_id, ontology):
+    parents = []
+    ontology_by_id = {o['id']:o for o in ontology}
+    # 1st pass for direct parents
+    for o in ontology:
+        for id_child in o["child_ids"]:
+            if id_child == aso_id:
+                parents.append(o['id'])
+    return [ontology_by_id[parent] for parent in parents]
+        
+def get_all_parents(aso_id, ontology): 
+    """ 
+    Recursive method to get the parents chain for an aso category
+    """
+    ontology_by_id = {o['id']:o for o in ontology}
+    def paths(node_id, cur=list()):
+        parents = get_parents(node_id, ontology)
+        if not parents:
+            yield cur
+        else:
+            for node in parents:
+                for path in paths(node['id'], [node['name']] + cur):
+                    yield path
+    return paths(aso_id)
+
+def sorted_occurrences_labels(result, ontology, min_samples):
+    """
+    Print the number of sounds in each category of the ASO 
+    Arguments:  - result from previous stage, e.g. result_leaves
+                - ontology from json file
+                - minimum samples in a categor, e.g. MIN_INSTANCES
+    """
+    ontology_by_id = {o['id']:o for o in ontology}
+    category_occurrences = []
+    total_sounds = 0
+    for node_id in result.keys():
+        nb_sample = len(result[node_id])
+        if nb_sample >= min_samples:
+            total_sounds += nb_sample
+            # get the names of parents (if several path, take one only and add (MULTIPLE PARENTS))
+            all_parents = list(get_all_parents(node_id, ontology))
+            if len(all_parents) > 1:
+                names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']]) + ' (MULTIPLE PARENTS)'
+            else:
+                names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']])
+            category_occurrences.append((names, nb_sample))
+    category_occurrences = sorted(category_occurrences, key=lambda oc: oc[0])
+    category_occurrences.append(('Total number of labels', total_sounds))
+    category_occurrences.reverse()
+    print '\n'
+    print 'Audio Set categories with their number of audio samples:\n'
+    for i in category_occurrences:
+        print str(i[0]).ljust(105) + str(i[1])
+
+### SCRIPT ###
+sorted_occurrences_labels(result_leaves, data_onto, MIN_INSTANCES)
 
 
-a=9
-
-
-
-
+# --------------------------------------------------------------- #
 
 # ---------------------NOT NOW
 
