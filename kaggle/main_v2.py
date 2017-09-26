@@ -4,7 +4,7 @@ import numpy as np
 import copy
 import xlsxwriter
 import matplotlib.pyplot as plt
-
+import os
 
 
 
@@ -244,7 +244,7 @@ with open('Sept2017/ontology.json') as data_file:
 ################# XF ######################
 #
 # define constants
-MINLEN = 1.0
+MINLEN = 0.0
 # MAXLEN = 20.0
 MAXLEN = 30.0
 # MIN_INSTANCES = 50
@@ -371,7 +371,7 @@ sorted_occurrences_labels(result_leaves, data_onto, MIN_INSTANCES)
 result_final = {node_id:result_leaves[node_id] for node_id in result_leaves 
                 if len(result_leaves[node_id])>=40}
 sounds_with_labels = {sound_id:[] for sound_id in all_ids}
-for node_id in r:
+for node_id in result_final:
     for s in result_final[node_id]:
         sounds_with_labels[s].append(node_id)
 
@@ -380,8 +380,41 @@ print 'Total amount of sounds with more than one label: {0} samples'.format(
     len([1 for sound_id in sounds_with_labels if 
          len(sounds_with_labels[sound_id])>1]))
 
+# --------------------------------------------------------------- #
+
+# ------------------------ CREATE FILE ---------------------------#
+
+# LICENSE FILE
+os.chdir('..')
+import manager
+c = manager.Client(False)
+b = c.load_basket_pickle('freesound_db_160317.pkl')
+id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+sound_ids = sounds_with_labels.keys()
+sound_ids.sort()
+license_file = open('kaggle/licenses.txt', 'w')
+
+license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+license_file.write("<file name> of ID <soundid> by <username> [<license>]\n\n")
+for sound_id in sound_ids:
+    sound = b.sounds[id_to_idx[sound_id]]
+    name = sound.name.encode('utf-8').replace('\r', '')
+    license_file.write("{0} of ID {1} by {2} [CC-{3}]\n"
+                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+license_file.close()
 
 
+# DATASET FILE
+os.chdir('kaggle/')
+json.dump({node_id:list(result_final[node_id]) for node_id in result_final}, open('dataset.json', 'w'), indent=4)
+
+# ALL IDS (FOR FRED)
+json.dump(sound_ids, open('all_ids.json', 'w'))
+
+
+# --------------------------------------------------------------- #
 
 # ---------------------NOT NOW
 
