@@ -416,8 +416,67 @@ json.dump(sound_ids, open('all_ids.json', 'w'))
 #                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
 #license_file.close()
 
+# --------------------------------------------------------------- #
 
+# ----------------------- SPLIT DEV EVAL -------------------------#
 
+# STRUCTURE DATA, SPLIT SINGLE/MULTIPLE LABELED SOUNDS
+sounds_single = {s:sounds_with_labels[s] for s in sounds_with_labels if len(sounds_with_labels[s])==1}
+sounds_multiple = {s:sounds_with_labels[s] for s in sounds_with_labels if len(sounds_with_labels[s])>1}
+
+data_single = {r:[] for r in result_final}
+for s in sounds_single:
+    data_single[sounds_single[s][0]].append(s)
+    
+data_multiple = {r:[] for r in result_final}
+for s in sounds_multiple:
+    for i in sounds_multiple[s]: 
+        data_multiple[i].append(s)
+
+# ORDER BY DURATION
+# >>> cd ..
+# uncomment, copy the folowing script, and re-comment:
+#c = manager.Client(False)
+#b = c.load_basket_pickle('freesound_db_160317.pkl')
+#id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+#data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
+#data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
+
+# SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 3:2 BASED ON DURATION
+#rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
+#data_single_dev = {r:[] for r in data_single_dur}
+#data_single_eval = {r:[] for r in data_single_dur}
+#for r in data_single_dur:
+#    for idx, s in enumerate(data_single_dur[r]):
+#        if rule32[idx%5] == 'dev':
+#            data_single_dev[r].append(s[0])
+#        elif rule32[idx%5] == 'eval':
+#            data_single_eval[r].append(s[0])
+#
+## RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 3:2
+#data_dev = data_single_dev
+#data_eval = data_single_eval
+#for idx, s in enumerate(sounds_multiple):
+#    if rule32[idx%5] == 'dev':
+#        for node_id in sounds_multiple[s]:
+#            data_dev[node_id].append(s)
+#    elif rule32[idx%5] == 'eval':
+#        for node_id in sounds_multiple[s]:
+#            data_eval[node_id].append(s)
+#
+## EXPORT DATASET
+#ontology_by_id = {o['id']:o for o in data_onto}
+#dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
+#                'audioset_id': node_id,
+#                'sound_ids': data_dev[node_id],
+#               } for node_id in data_dev]
+#dataset_eval = [{'name': ontology_by_id[node_id]['name'], 
+#                'audioset_id': node_id,
+#                'sound_ids': data_eval[node_id],
+#               } for node_id in data_eval]
+#
+#json.dump(dataset_dev, open('dataset_dev.json', 'w'), indent=4)
+#json.dump(dataset_eval, open('dataset_eval.json', 'w'), indent=4)
 
 # --------------------------------------------------------------- #
 
