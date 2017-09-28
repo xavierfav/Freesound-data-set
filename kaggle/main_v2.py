@@ -370,7 +370,7 @@ sorted_occurrences_labels(result_leaves, data_onto, MIN_INSTANCES)
 
 # ------------------------ EXTRACT SOUNDS ----------------------- #
 result_final = {node_id:result_leaves[node_id] for node_id in result_leaves 
-                if len(result_leaves[node_id])>=40}
+                if len(result_leaves[node_id])>=MIN_INSTANCES}
 sounds_with_labels = {sound_id:[] for sound_id in all_ids}
 for node_id in result_final:
     for s in result_final[node_id]:
