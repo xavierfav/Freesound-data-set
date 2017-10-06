@@ -536,10 +536,8 @@ json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
 
 # ---------------------- SPLIT LICENSE FILES -------------------- #
 # LICENSE FILE
-# HOW TO - From console in kaggle/ (WARNING, DEMENDS A LOT OF MEMORY):
+# HOW TO - From console in / folder (WARNING, DEMENDS A LOT OF MEMORY):
 # >>> ipython
-# >>> run main_v2.py
-# >>> cd ..
 # uncomment, copy the folowing script, and re-comment:
 
 #dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
