@@ -534,6 +534,57 @@ json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
 
 # --------------------------------------------------------------- #
 
+# ---------------------- SPLIT LICENSE FILES -------------------- #
+# LICENSE FILE
+# HOW TO - From console in kaggle/ (WARNING, DEMENDS A LOT OF MEMORY):
+# >>> ipython
+# >>> run main_v2.py
+# >>> cd ..
+# uncomment, copy the folowing script, and re-comment:
+
+#dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
+#dataset_eval = json.load(open('kaggle/dataset_eval.json', 'rb'))
+#sound_ids_dev = set()
+#sound_ids_eval = set()
+#for category in dataset_dev:
+#    sound_ids_dev.update(category['sound_ids'])
+#for category in dataset_eval:
+#    sound_ids_eval.update(category['sound_ids'])
+#sound_ids_dev = list(sound_ids_dev)  
+#sound_ids_eval = list(sound_ids_eval)
+#sound_ids_dev.sort()
+#sound_ids_eval.sort()
+#
+#import manager
+#c = manager.Client(False)
+#b = c.load_basket_pickle('freesound_db_160317.pkl')
+#id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+#license_file = open('kaggle/licenses_dev.txt', 'w')
+#license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+#license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+#license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+#license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+#for sound_id in sound_ids_dev:
+#    sound = b.sounds[id_to_idx[sound_id]]
+#    name = sound.name.encode('utf-8').replace('\r', '')
+#    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+#                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+#license_file.close()
+#
+#license_file = open('kaggle/licenses_eval.txt', 'w')
+#license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+#license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+#license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+#license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+#for sound_id in sound_ids_eval:
+#    sound = b.sounds[id_to_idx[sound_id]]
+#    name = sound.name.encode('utf-8').replace('\r', '')
+#    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+#                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+#license_file.close()
+#
+
+
 # -------------------------- CREATE CSV ------------------------- #
 dataset_dev = json.load(open('dataset_dev.json', 'rb'))
 dataset_eval = json.load(open('dataset_eval.json', 'rb'))

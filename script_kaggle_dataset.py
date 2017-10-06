@@ -7,22 +7,36 @@ import os
 import sys
 
 
+FOLDER_KAGGLE = 'kaggle2/'
+
+#### DEFINE CONSTRAIN HERE ###
+MINLEN = 0.0 # duration
+MAXLEN = 30.0 
+MIN_INSTANCES = 40 # instance of sound per category
+
+
 # this the result of the mapping from FS sounds to ASO
-with open('kaggle/Sept2017/FS_sounds_ASO_postIQA.json') as data_file:
-    data_duration = json.load(data_file)
+try:
+    with open(FOLDER_KAGGLE + 'json/FS_sounds_ASO_postIQA.json') as data_file:
+        data_duration = json.load(data_file)
+except:
+    raise Exception('CHOOSE A MAPPING FILE AND ADD IT TO ' + FOLDER_KAGGLE +'json/ FOLDER (THE FILE INCLUDE DURATION INFORMATION NEEDED)')
 
 # load json with votes, to select only PP and PNP
-with open('kaggle/Sept2017/votes_sounds_annotations.json') as data_file:
+try:
+    with open(FOLDER_KAGGLE + 'json/votes_sounds_annotations.json') as data_file:
         data_votes = json.load(data_file)
-
+except:
+    raise Exception('ADD THE FILE CONTAINING THE VOTES (list of dict "value", "freesound_sound_id", "node_id") AND ADD IT TO THE FOLDER ' + FOLDER_KAGGLE +'json/')
+    
+try:
 # load json with ontology, to map aso_ids to understandable category names
-with open('kaggle/Sept2017/ontology.json') as data_file:
+    with open(FOLDER_KAGGLE + 'json/ontology.json') as data_file:
          data_onto = json.load(data_file)
+except:
+    raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_KAGGLE +'json/')
 
-MINLEN = 0.0
-MAXLEN = 30.0
-MIN_INSTANCES = 40
-
+    
 # PP and PNP for sounds duration <= 20 and durantion >= 5
 result = {o['id']:set() for o in data_onto}
 # dict with all ASO_ids, every value initialized as an empty set
@@ -125,7 +139,7 @@ def sorted_occurrences_labels(result, ontology, min_samples):
     category_occurrences.append(('Total number of labels', '', total_sounds))
     category_occurrences.reverse()
     
-    workbook = xlsxwriter.Workbook('list_categories_dataset_draft.xlsx')
+    workbook = xlsxwriter.Workbook(FOLDER_KAGGLE + 'list_categories_dataset_draft.xlsx')
     worksheet = workbook.add_worksheet('list categories')
     
     for idx, obj in enumerate(category_occurrences):
@@ -164,10 +178,10 @@ print 'Total amount of sounds with more than one label: {0} samples'.format(
 # DATASET FILE (Category based)
 sound_ids = sounds_with_labels.keys()
 sound_ids.sort()
-json.dump({node_id:list(result_final[node_id]) for node_id in result_final}, open('kaggle/dataset.json', 'w'), indent=4)
+json.dump({node_id:list(result_final[node_id]) for node_id in result_final}, open(FOLDER_KAGGLE + 'dataset.json', 'w'), indent=4)
 
 # ALL IDS (FOR FRED)
-json.dump(sound_ids, open('kaggle/all_ids.json', 'w'))
+json.dump(sound_ids, open(FOLDER_KAGGLE + 'all_ids.json', 'w'))
 
 # LICENSE FILE
 # (WARNING, DEMENDS A LOT OF MEMORY):
@@ -177,7 +191,7 @@ c = manager.Client(False)
 b = c.load_basket_pickle('freesound_db_160317.pkl')
 id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
 
-license_file = open('kaggle/licenses.txt', 'w')
+license_file = open(FOLDER_KAGGLE + 'licenses.txt', 'w')
 license_file.write("This dataset uses the following sounds from Freesound:\n\n")
 license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
 license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
@@ -215,7 +229,7 @@ for s in sounds_multiple:
 data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
 data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
 
- SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 3:2 BASED ON DURATION
+# SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 3:2 BASED ON DURATION
 rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
 data_single_dev = {r:[] for r in data_single_dur}
 data_single_eval = {r:[] for r in data_single_dur}
@@ -269,23 +283,24 @@ for cat in dataset_eval:
     cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
     cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
     
-json.dump(dataset_dev, open('kaggle/dataset_dev.json', 'w'), indent=4)
-json.dump(dataset_eval, open('kaggle/dataset_eval.json', 'w'), indent=4)
+json.dump(dataset_dev, open(FOLDER_KAGGLE + 'dataset_dev.json', 'w'), indent=4)
+json.dump(dataset_eval, open(FOLDER_KAGGLE + 'dataset_eval.json', 'w'), indent=4)
 
 
 # PRINT INFO
 #for cat in dataset_dev:
 #    print cat['name'].ljust(40) + str(round(cat['total_duration'],2)).ljust(9) + str(cat['nb_PP']).ljust(10) + str(cat['nb_PNP'])
 print '\n\n'
-for idx in range(len(dataset_dev)):
+print 'CATEGORY dev // eval'.ljust(40) + 'DURATION'.ljust(16) + ' // ' + 'PP'.ljust(10) + ' // ' + 'PNP'.ljust(10) + ' // ' + 'USERS'
+for idx in range(-1, len(dataset_dev)):
     print dataset_dev[idx]['name'].ljust(40) + str(round(dataset_dev[idx]['total_duration'],2)).ljust(8) + ' ' +str(round(dataset_eval[idx]['total_duration'],2)).ljust(8) + ' // ' +  str(dataset_dev[idx]['nb_PP']).ljust(5) +' ' + str(dataset_eval[idx]['nb_PP']).ljust(5) + ' // ' + str(dataset_dev[idx]['nb_PNP']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_PNP']).ljust(5) + ' // ' +  str(dataset_dev[idx]['nb_users']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_users'])
 
 # --------------------------------------------------------------- #
 
 # -------------------- REMOVE SOME CATEGORIES ------------------- #
 
-dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
-dataset_eval = json.load(open('kaggle/dataset_eval.json', 'rb'))
+dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
 
 # Music > Music mood > Scary music
 # Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by
@@ -294,16 +309,64 @@ category_id_to_remove = set(['/t/dd00134', '/t/dd00037'])
 dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
 dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
 
-json.dump(dataset_dev_filter, open('kaggle/dataset_dev.json', 'w'))
-json.dump(dataset_eval_filter, open('kaggle/dataset_eval.json', 'w'))
+json.dump(dataset_dev_filter, open(FOLDER_KAGGLE + 'dataset_dev.json', 'w'))
+json.dump(dataset_eval_filter, open(FOLDER_KAGGLE + 'dataset_eval.json', 'w'))
+
+# --------------------------------------------------------------- #
+
+# ---------------------- SPLIT LICENSE FILES -------------------- #
+
+dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
+sound_ids_dev = set()
+sound_ids_eval = set()
+for category in dataset_dev:
+    sound_ids_dev.update(category['sound_ids'])
+for category in dataset_eval:
+    sound_ids_eval.update(category['sound_ids'])
+sound_ids_dev = list(sound_ids_dev)  
+sound_ids_eval = list(sound_ids_eval)
+sound_ids_dev.sort()
+sound_ids_eval.sort()
+
+#import manager
+#c = manager.Client(False)
+#b = c.load_basket_pickle('freesound_db_160317.pkl')
+#id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+license_file = open(FOLDER_KAGGLE + 'licenses_dev.txt', 'w')
+license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+for sound_id in sound_ids_dev:
+    sound = b.sounds[id_to_idx[sound_id]]
+    name = sound.name.encode('utf-8').replace('\r', '')
+    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+license_file.close()
+
+license_file = open(FOLDER_KAGGLE + 'licenses_eval.txt', 'w')
+license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+for sound_id in sound_ids_eval:
+    sound = b.sounds[id_to_idx[sound_id]]
+    name = sound.name.encode('utf-8').replace('\r', '')
+    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+license_file.close()
 
 # --------------------------------------------------------------- #
 
 # -------------------------- CREATE CSV ------------------------- #
-dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
-dataset_eval = json.load(open('kaggle/dataset_eval.json', 'rb'))
+dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
 
-merge = json.load(open('kaggle/merge_categories.json', 'rb'))
+try:
+    merge = json.load(open(FOLDER_KAGGLE + 'merge_categories.json', 'rb'))
+except:
+    raise Exception('CREATE THE FILE "merge_categories.json" for Task2')
 node_id_parent = {}
 for d in merge:
     for dd in merge[d]:
@@ -313,7 +376,7 @@ for d in merge:
 #ontology_by_id = {o['id']:o for o in ontology}
 
 import csv
-with open('kaggle/dataset_dev.csv', 'wb') as f:
+with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
     writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
     for d in dataset_dev:
         for sound_id in d['sound_ids']:
@@ -322,7 +385,7 @@ with open('kaggle/dataset_dev.csv', 'wb') as f:
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
 
-with open('kaggle/dataset_eval.csv', 'wb') as f:
+with open(FOLDER_KAGGLE + 'dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
