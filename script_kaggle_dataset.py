@@ -324,7 +324,7 @@ dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
 
 # Music > Music mood > Scary music
 # Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by ...
-category_id_to_remove = set(['/t/dd00134', '/m/0c1dj', '/m/01vfsf', '/m/05jcn', '/m/09dsr', '/m/01gp74', '/m/05xp3j', '/m/021wwz', '/m/03r5q_', '/t/dd00037', '/m/0174nj'])
+category_id_to_remove = set(['/m/0ltv', '/m/0c1dj', '/m/01vfsf', '/m/05jcn', '/m/09dsr', '/m/01gp74', '/m/05xp3j', '/m/021wwz', '/m/03r5q_', '/t/dd00037', '/m/0174nj'])
 
 dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
 dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
