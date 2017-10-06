@@ -1,0 +1,135 @@
+Bicycle bell                            481.66   69   1    36
+Vibraphone                              359.68   33   2    9
+Bass drum                               194.18   51   15   42
+Pizzicato                               158.53   100  0    4
+Burping, eructation                     59.24    30   1    27
+Sneeze                                  169.54   37   1    33
+Fill (with liquid)                      345.48   31   1    25
+Oink                                    170.11   29   0    10
+Male speech, man speaking               189.99   33   4    21
+Clatter                                 133.19   21   5    14
+French horn                             224.78   26   2    3
+Lawn mower                              337.88   24   1    15
+Trumpet                                 363.55   49   1    7
+Computer keyboard                       396.54   33   4    34
+Tearing                                 295.81   34   1    31
+Tambourine                              139.53   41   9    19
+Glockenspiel                            178.32   35   0    11
+Drum beat                               774.62   25   39   3
+Bark                                    474.86   61   8    31
+Drum roll                               152.06   24   4    15
+Tick                                    261.4    43   9    35
+Coin (dropping)                         145.23   19   17   29
+Crash cymbal                            135.39   26   2    15
+Meow                                    191.65   28   3    28
+Sniff                                   222.52   33   5    26
+Double bass                             215.09   70   0    5
+Wail, moan                              260.68   30   3    19
+Electric guitar                         236.22   28   1    17
+Growling                                433.18   30   12   35
+Writing                                 554.54   56   0    40
+Rattle                                  174.17   24   1    21
+Crushing                                243.74   27   0    24
+Melody                                  366.86   3    23   8
+Marimba, xylophone                      93.26    28   3    12
+Keys jangling                           243.6    21   8    26
+Applause                                378.54   28   1    22
+Harpsichord                             539.0    46   4    6
+Scary music                             697.8    20   17   7
+Knock                                   223.66   39   3    31
+Cowbell                                 128.49   38   1    12
+Car passing by                          578.21   38   0    23
+Stomach rumble                          169.18   34   0    10
+Whispering                              290.32   45   0    23
+Didgeridoo                              361.29   39   1    10
+Drum machine                            351.1    56   4    30
+Flute                                   1076.84  129  3    27
+Squeak                                  311.48   39   6    38
+Blender                                 347.36   27   1    21
+Bassoon                                 430.2    116  0    10
+Cheering                                325.06   25   4    21
+Printer                                 271.31   25   0    17
+Microwave oven                          245.76   24   2    24
+Crumpling, crinkling                    190.58   29   0    22
+Theremin                                304.84   21   11   10
+Harmonica                               381.78   51   2    16
+Shatter                                 194.76   46   2    32
+Echo                                    1202.39  87   59   80
+Breaking                                152.7    29   0    26
+Bouncing                                116.74   24   0    19
+Giggle                                  181.4    29   1    19
+Oboe                                    306.23   85   1    4
+Cupboard open or close                  109.18   28   3    12
+Telephone dialing, DTMF                 262.08   19   3    17
+Velcro, hook and loop fastener          302.96   42   4    35
+Hair dryer                              367.07   25   1    23
+Cello                                   670.3    111  2    13
+Musical note                            243.51   18   15   6
+Singing bowl                            389.1    17   9    15
+Finger snapping                         200.17   77   0    40
+Clarinet                                755.67   116  0    6
+Strum                                   262.49   41   2    11
+Jingle (music)                          353.79   15   12   10
+Fizz                                    440.38   23   13   29
+Child speech, kid speaking              155.47   34   3    15
+Accordion                               335.24   36   6    12
+Purr                                    292.75   23   0    23
+Rhodes piano                            793.14   43   7    8
+Ding-dong                               347.87   40   4    20
+Yell                                    433.39   78   0    51
+Burst, pop                              57.4     23   0    8
+Sound effect                            199.63   29   2    24
+Plop                                    96.72    24   6    26
+Orchestra                               1270.85  77   14   36
+Bassline                                280.25   27   4    22
+Scratching (performance technique)      77.96    21   5    18
+Fart                                    88.17    34   0    20
+Walk, footsteps                         367.87   23   2    22
+Pulse                                   241.88   18   12   20
+Crackle                                 299.59   23   5    27
+Zipper (clothing)                       215.35   25   3    27
+Tabla                                   122.58   41   3    12
+Slap, smack                             115.99   28   0    24
+Ding                                    201.96   28   0    19
+Clunk                                   203.89   23   7    19
+Soprano saxophone                       821.62   85   0    3
+Waves, surf                             458.5    28   3    25
+Medium engine (mid frequency)           145.56   17   8    1
+Timpani                                 318.01   24   5    11
+Whoosh, swoosh, swish                   221.03   38   10   34
+Acoustic guitar                         553.53   56   6    18
+Gramophone record                       170.78   25   0    16
+Female speech, woman speaking           221.33   43   3    15
+Chord                                   254.94   26   8    19
+Basketball bounce                       110.35   13   11   12
+Clapping                                140.54   31   4    29
+Hi-hat                                  92.24    49   1    21
+Ratchet, pawl                           261.98   31   0    15
+Jet engine                              392.8    23   2    11
+Typewriter                              168.35   26   3    18
+Wind chime                              514.7    35   1    25
+Howl                                    135.67   23   3    6
+Babbling                                129.21   29   1    7
+Church bell                             389.81   24   2    20
+Reverberation                           334.64   31   9    34
+Drawer open or close                    381.0    52   7    45
+Packing tape, duct tape                 232.4    24   7    27
+Dial tone                               305.07   53   4    27
+Skateboard                              177.43   22   2    13
+Guitar amplifier                        339.43   30   0    13
+Vibration                               145.39   20   5    16
+Machine gun                             181.2    24   2    20
+Alto saxophone                          354.1    81   3    6
+Drip                                    214.78   21   6    20
+Scissors                                336.1    23   6    27
+Tap                                     205.17   41   1    28
+Gong                                    262.9    32   1    18
+Female singing                          372.73   29   14   23
+Baby cry, infant cry                    371.31   34   1    21
+Male singing                            404.39   35   13   18
+Baby laughter                           188.51   26   0    18
+Bus                                     780.66   56   6    25
+Ukulele                                 129.16   35   1    12
+Cash register                           164.84   23   4    17
+Speech synthesizer                      211.12   36   0    10
+Race car, auto racing                   349.61   22   1    13

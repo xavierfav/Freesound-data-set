@@ -262,6 +262,14 @@ for v in data_votes:
         # apply PRESENCE filter
         if v['value']>0.4:
             result[v['node_id']].add(v['freesound_sound_id'])
+            
+# process for removing duplicates with Present and non present votes:
+for v in data_votes:
+    if v['value']<0.1:
+        if v['freesound_sound_id'] in result[v['node_id']]:
+#            print v['freesound_sound_id'], v['node_id'], v['value']
+            result[v['node_id']].remove(v['freesound_sound_id'])
+
 print 'Number of categories with more than ' + str(MIN_INSTANCES) + ' sounds of duration [' + str(MINLEN) + ':' +\
       str(MAXLEN) + ']: ' + str(len([o for o in result if len(result[o]) >= MIN_INSTANCES]))
 
@@ -391,7 +399,7 @@ sound_ids.sort()
 json.dump({node_id:list(result_final[node_id]) for node_id in result_final}, open('dataset.json', 'w'), indent=4)
 
 # ALL IDS (FOR FRED)
-json.dump(sound_ids, open('all_ids.json', 'w'))
+#json.dump(sound_ids, open('all_ids.json', 'w'))
 
 # LICENSE FILE
 # HOW TO - From console in kaggle/ (WARNING, DEMENDS A LOT OF MEMORY):
@@ -475,10 +483,94 @@ for s in sounds_multiple:
 #                'sound_ids': data_eval[node_id],
 #               } for node_id in data_eval]
 #
+
+## GET SOME STATS
+#ids_vote = {v['freesound_sound_id']:{} for v in data_votes if v['freesound_sound_id'] in all_ids}
+#for v in data_votes:
+#    if v['freesound_sound_id'] in all_ids:
+#        ids_vote[v['freesound_sound_id']][v['node_id']] = v
+#
+#for cat in dataset_dev:
+#    cat['nb_sounds'] = len(cat['sound_ids'])
+#    cat['total_duration'] = sum([b.sounds[id_to_idx[id]].duration for id in cat['sound_ids']])
+#    cat['nb_users'] = len(set([b.sounds[id_to_idx[id]].username for id in cat['sound_ids']]))
+#    cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
+#    cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
+#    
+#for cat in dataset_eval:
+#    cat['nb_sounds'] = len(cat['sound_ids'])
+#    cat['total_duration'] = sum([b.sounds[id_to_idx[id]].duration for id in cat['sound_ids']])
+#    cat['nb_users'] = len(set([b.sounds[id_to_idx[id]].username for id in cat['sound_ids']]))
+#    cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
+#    cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
+#    
 #json.dump(dataset_dev, open('dataset_dev.json', 'w'), indent=4)
 #json.dump(dataset_eval, open('dataset_eval.json', 'w'), indent=4)
 
+## PRINT INFO
+#for cat in dataset_dev:
+#    print cat['name'].ljust(40) + str(round(cat['total_duration'],2)).ljust(9) + str(cat['nb_PP']).ljust(10) + str(cat['nb_PNP'])
+
+#for idx in range(len(dataset_dev)):
+#    print dataset_dev[idx]['name'].ljust(40) + str(round(dataset_dev[idx]['total_duration'],2)).ljust(8) + ' ' +str(round(dataset_eval[idx]['total_duration'],2)).ljust(8) + ' // ' +  str(dataset_dev[idx]['nb_PP']).ljust(5) +' ' + str(dataset_eval[idx]['nb_PP']).ljust(5) + ' // ' + str(dataset_dev[idx]['nb_PNP']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_PNP']).ljust(5) + ' // ' +  str(dataset_dev[idx]['nb_users']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_users'])
+
+
 # --------------------------------------------------------------- #
+
+# -------------------- REMOVE SOME CATEGORIES ------------------- #
+
+dataset_dev = json.load(open('dataset_dev.json', 'rb'))
+dataset_eval = json.load(open('dataset_eval.json', 'rb'))
+
+# Music > Music mood > Scary music
+# Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by
+category_id_to_remove = set(['/t/dd00134', '/t/dd00037'])
+
+dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
+dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
+
+json.dump(dataset_dev_filter, open('dataset_dev.json', 'w'))
+json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
+
+# --------------------------------------------------------------- #
+
+# -------------------------- CREATE CSV ------------------------- #
+dataset_dev = json.load(open('dataset_dev.json', 'rb'))
+dataset_eval = json.load(open('dataset_eval.json', 'rb'))
+
+merge = json.load(open('merge_categories.json', 'rb'))
+node_id_parent = {}
+for d in merge:
+    for dd in merge[d]:
+        node_id_parent[dd] = d
+        
+ontology = json.load(open('../ontology/ontology.json', 'rb'))
+ontology_by_id = {o['id']:o for o in ontology}
+
+import csv
+with open('dataset_dev.csv', 'wb') as f:
+    writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
+    for d in dataset_dev:
+        for sound_id in d['sound_ids']:
+            try:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+            except:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+
+with open('dataset_eval.csv', 'wb') as f:
+    writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
+    for d in dataset_eval:
+        for sound_id in d['sound_ids']:
+            try:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+            except:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+
+                
+# --------------------------------------------------------------- #
+
+
+
 
 # ---------------------NOT NOW
 
