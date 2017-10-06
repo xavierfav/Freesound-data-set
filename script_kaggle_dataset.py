@@ -407,14 +407,18 @@ for d in merge:
         
 #ontology = json.load(open('ontology/ontology.json', 'rb'))
 #ontology_by_id = {o['id']:o for o in ontology}
+sounds_A = [] # sounds for dataset A
+sounds_B = [] # sounds for dataset B
 
 import csv
 with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
     writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
     for d in dataset_dev:
         for sound_id in d['sound_ids']:
+            sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
             try:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+                sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
 
@@ -422,10 +426,16 @@ with open(FOLDER_KAGGLE + 'dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
+            sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
             try:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+                sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+
+print 'Total duration of the dataset A: {0} secondes'.format(sum([s[1] for s in list(set(sounds_A))]))
+print 'Total duration of the dataset B: {0} secondes'.format(sum([s[1] for s in list(set(sounds_B))]))
+print 'Total of classes in dataset B: {0}'.format(len(merge))
 
                 
 # --------------------------------------------------------------- #
