@@ -8,15 +8,15 @@ import sys
 
 
 # this the result of the mapping from FS sounds to ASO
-with open('Sept2017/FS_sounds_ASO_postIQA.json') as data_file:
+with open('kaggle/Sept2017/FS_sounds_ASO_postIQA.json') as data_file:
     data_duration = json.load(data_file)
 
 # load json with votes, to select only PP and PNP
-with open('Sept2017/votes_sounds_annotations.json') as data_file:
+with open('kaggle/Sept2017/votes_sounds_annotations.json') as data_file:
         data_votes = json.load(data_file)
 
 # load json with ontology, to map aso_ids to understandable category names
-with open('Sept2017/ontology.json') as data_file:
+with open('kaggle/Sept2017/ontology.json') as data_file:
          data_onto = json.load(data_file)
 
 MINLEN = 0.0
@@ -164,33 +164,30 @@ print 'Total amount of sounds with more than one label: {0} samples'.format(
 # DATASET FILE (Category based)
 sound_ids = sounds_with_labels.keys()
 sound_ids.sort()
-json.dump({node_id:list(result_final[node_id]) for node_id in result_final}, open('dataset.json', 'w'), indent=4)
+json.dump({node_id:list(result_final[node_id]) for node_id in result_final}, open('kaggle/dataset.json', 'w'), indent=4)
 
 # ALL IDS (FOR FRED)
-json.dump(sound_ids, open('all_ids.json', 'w'))
+json.dump(sound_ids, open('kaggle/all_ids.json', 'w'))
 
 # LICENSE FILE
-# HOW TO - From console in kaggle/ (WARNING, DEMENDS A LOT OF MEMORY):
-# >>> ipython
-# >>> run main_v2.py
-# >>> cd ..
-# uncomment, copy the folowing script, and re-comment:
+# (WARNING, DEMENDS A LOT OF MEMORY):
 
-#import manager
-#c = manager.Client(False)
-#b = c.load_basket_pickle('freesound_db_160317.pkl')
-#id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
-#license_file = open('kaggle/licenses.txt', 'w')
-#license_file.write("This dataset uses the following sounds from Freesound:\n\n")
-#license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
-#license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
-#license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
-#for sound_id in sound_ids:
-#    sound = b.sounds[id_to_idx[sound_id]]
-#    name = sound.name.encode('utf-8').replace('\r', '')
-#    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
-#                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
-#license_file.close()
+import manager
+c = manager.Client(False)
+b = c.load_basket_pickle('freesound_db_160317.pkl')
+id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+
+license_file = open('kaggle/licenses.txt', 'w')
+license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+for sound_id in sound_ids:
+    sound = b.sounds[id_to_idx[sound_id]]
+    name = sound.name.encode('utf-8').replace('\r', '')
+    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+license_file.close()
 
 # --------------------------------------------------------------- #
 
@@ -210,86 +207,85 @@ for s in sounds_multiple:
         data_multiple[i].append(s)
 
 # ORDER BY DURATION
-# >>> cd ..
-# uncomment, copy the folowing script, and re-comment:
+
 #c = manager.Client(False)
 #b = c.load_basket_pickle('freesound_db_160317.pkl')
 #id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
-#data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
-#data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
 
-# SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 3:2 BASED ON DURATION
-#rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
-#data_single_dev = {r:[] for r in data_single_dur}
-#data_single_eval = {r:[] for r in data_single_dur}
-#for r in data_single_dur:
-#    for idx, s in enumerate(data_single_dur[r]):
-#        if rule32[idx%5] == 'dev':
-#            data_single_dev[r].append(s[0])
-#        elif rule32[idx%5] == 'eval':
-#            data_single_eval[r].append(s[0])
-#
-## RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 3:2
-#data_dev = data_single_dev
-#data_eval = data_single_eval
-#for idx, s in enumerate(sounds_multiple):
-#    if rule32[idx%5] == 'dev':
-#        for node_id in sounds_multiple[s]:
-#            data_dev[node_id].append(s)
-#    elif rule32[idx%5] == 'eval':
-#        for node_id in sounds_multiple[s]:
-#            data_eval[node_id].append(s)
-#
-## EXPORT DATASET
-#ontology_by_id = {o['id']:o for o in data_onto}
-#dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
-#                'audioset_id': node_id,
-#                'sound_ids': data_dev[node_id],
-#               } for node_id in data_dev]
-#dataset_eval = [{'name': ontology_by_id[node_id]['name'], 
-#                'audioset_id': node_id,
-#                'sound_ids': data_eval[node_id],
-#               } for node_id in data_eval]
-#
+data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
+data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
 
-## GET SOME STATS
-#ids_vote = {v['freesound_sound_id']:{} for v in data_votes if v['freesound_sound_id'] in all_ids}
-#for v in data_votes:
-#    if v['freesound_sound_id'] in all_ids:
-#        ids_vote[v['freesound_sound_id']][v['node_id']] = v
-#
-#for cat in dataset_dev:
-#    cat['nb_sounds'] = len(cat['sound_ids'])
-#    cat['total_duration'] = sum([b.sounds[id_to_idx[id]].duration for id in cat['sound_ids']])
-#    cat['nb_users'] = len(set([b.sounds[id_to_idx[id]].username for id in cat['sound_ids']]))
-#    cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
-#    cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
-#    
-#for cat in dataset_eval:
-#    cat['nb_sounds'] = len(cat['sound_ids'])
-#    cat['total_duration'] = sum([b.sounds[id_to_idx[id]].duration for id in cat['sound_ids']])
-#    cat['nb_users'] = len(set([b.sounds[id_to_idx[id]].username for id in cat['sound_ids']]))
-#    cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
-#    cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
-#    
-#json.dump(dataset_dev, open('dataset_dev.json', 'w'), indent=4)
-#json.dump(dataset_eval, open('dataset_eval.json', 'w'), indent=4)
+ SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 3:2 BASED ON DURATION
+rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
+data_single_dev = {r:[] for r in data_single_dur}
+data_single_eval = {r:[] for r in data_single_dur}
+for r in data_single_dur:
+    for idx, s in enumerate(data_single_dur[r]):
+        if rule32[idx%5] == 'dev':
+            data_single_dev[r].append(s[0])
+        elif rule32[idx%5] == 'eval':
+            data_single_eval[r].append(s[0])
+
+# RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 3:2
+data_dev = data_single_dev
+data_eval = data_single_eval
+for idx, s in enumerate(sounds_multiple):
+    if rule32[idx%5] == 'dev':
+        for node_id in sounds_multiple[s]:
+            data_dev[node_id].append(s)
+    elif rule32[idx%5] == 'eval':
+        for node_id in sounds_multiple[s]:
+            data_eval[node_id].append(s)
+
+# EXPORT DATASET
+ontology_by_id = {o['id']:o for o in data_onto}
+dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_dev[node_id],
+               } for node_id in data_dev]
+dataset_eval = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_eval[node_id],
+               } for node_id in data_eval]
 
 
-## PRINT INFO
+# GET SOME STATS
+ids_vote = {v['freesound_sound_id']:{} for v in data_votes if v['freesound_sound_id'] in all_ids}
+for v in data_votes:
+    if v['freesound_sound_id'] in all_ids:
+        ids_vote[v['freesound_sound_id']][v['node_id']] = v
+
+for cat in dataset_dev:
+    cat['nb_sounds'] = len(cat['sound_ids'])
+    cat['total_duration'] = sum([b.sounds[id_to_idx[id]].duration for id in cat['sound_ids']])
+    cat['nb_users'] = len(set([b.sounds[id_to_idx[id]].username for id in cat['sound_ids']]))
+    cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
+    cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
+    
+for cat in dataset_eval:
+    cat['nb_sounds'] = len(cat['sound_ids'])
+    cat['total_duration'] = sum([b.sounds[id_to_idx[id]].duration for id in cat['sound_ids']])
+    cat['nb_users'] = len(set([b.sounds[id_to_idx[id]].username for id in cat['sound_ids']]))
+    cat['nb_PP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==1.0])
+    cat['nb_PNP'] = len([id for id in cat['sound_ids'] if cat['audioset_id'] in ids_vote[id].keys() if ids_vote[id][cat['audioset_id']]['value']==0.5])
+    
+json.dump(dataset_dev, open('kaggle/dataset_dev.json', 'w'), indent=4)
+json.dump(dataset_eval, open('kaggle/dataset_eval.json', 'w'), indent=4)
+
+
+# PRINT INFO
 #for cat in dataset_dev:
 #    print cat['name'].ljust(40) + str(round(cat['total_duration'],2)).ljust(9) + str(cat['nb_PP']).ljust(10) + str(cat['nb_PNP'])
-
-#for idx in range(len(dataset_dev)):
-#    print dataset_dev[idx]['name'].ljust(40) + str(round(dataset_dev[idx]['total_duration'],2)).ljust(8) + ' ' +str(round(dataset_eval[idx]['total_duration'],2)).ljust(8) + ' // ' +  str(dataset_dev[idx]['nb_PP']).ljust(5) +' ' + str(dataset_eval[idx]['nb_PP']).ljust(5) + ' // ' + str(dataset_dev[idx]['nb_PNP']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_PNP']).ljust(5) + ' // ' +  str(dataset_dev[idx]['nb_users']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_users'])
-
+print '\n\n'
+for idx in range(len(dataset_dev)):
+    print dataset_dev[idx]['name'].ljust(40) + str(round(dataset_dev[idx]['total_duration'],2)).ljust(8) + ' ' +str(round(dataset_eval[idx]['total_duration'],2)).ljust(8) + ' // ' +  str(dataset_dev[idx]['nb_PP']).ljust(5) +' ' + str(dataset_eval[idx]['nb_PP']).ljust(5) + ' // ' + str(dataset_dev[idx]['nb_PNP']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_PNP']).ljust(5) + ' // ' +  str(dataset_dev[idx]['nb_users']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_users'])
 
 # --------------------------------------------------------------- #
 
 # -------------------- REMOVE SOME CATEGORIES ------------------- #
 
-dataset_dev = json.load(open('dataset_dev.json', 'rb'))
-dataset_eval = json.load(open('dataset_eval.json', 'rb'))
+dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
+dataset_eval = json.load(open('kaggle/dataset_eval.json', 'rb'))
 
 # Music > Music mood > Scary music
 # Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by
@@ -298,26 +294,26 @@ category_id_to_remove = set(['/t/dd00134', '/t/dd00037'])
 dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
 dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
 
-json.dump(dataset_dev_filter, open('dataset_dev.json', 'w'))
-json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
+json.dump(dataset_dev_filter, open('kaggle/dataset_dev.json', 'w'))
+json.dump(dataset_eval_filter, open('kaggle/dataset_eval.json', 'w'))
 
 # --------------------------------------------------------------- #
 
 # -------------------------- CREATE CSV ------------------------- #
-dataset_dev = json.load(open('dataset_dev.json', 'rb'))
-dataset_eval = json.load(open('dataset_eval.json', 'rb'))
+dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
+dataset_eval = json.load(open('kaggle/dataset_eval.json', 'rb'))
 
-merge = json.load(open('merge_categories.json', 'rb'))
+merge = json.load(open('kaggle/merge_categories.json', 'rb'))
 node_id_parent = {}
 for d in merge:
     for dd in merge[d]:
         node_id_parent[dd] = d
         
-ontology = json.load(open('../ontology/ontology.json', 'rb'))
-ontology_by_id = {o['id']:o for o in ontology}
+#ontology = json.load(open('ontology/ontology.json', 'rb'))
+#ontology_by_id = {o['id']:o for o in ontology}
 
 import csv
-with open('dataset_dev.csv', 'wb') as f:
+with open('kaggle/dataset_dev.csv', 'wb') as f:
     writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
     for d in dataset_dev:
         for sound_id in d['sound_ids']:
@@ -326,7 +322,7 @@ with open('dataset_dev.csv', 'wb') as f:
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
 
-with open('dataset_eval.csv', 'wb') as f:
+with open('kaggle/dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
