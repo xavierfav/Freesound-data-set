@@ -524,13 +524,14 @@ dataset_eval = json.load(open('dataset_eval.json', 'rb'))
 
 # Music > Music mood > Scary music
 # Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by
-category_id_to_remove = set(['/t/dd00134', '/t/dd00037'])
+#...
+category_id_to_remove = set(['/t/dd00134', '/t/dd00037', '/m/0c1dj', '/m/01vfsf', '/m/05jcn', '/m/09dsr', '/m/01gp74', '/m/05xp3j', '/m/021wwz', '/m/03r5q_', '/t/dd00037', '/m/0174nj'])
 
 dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
 dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
 
-json.dump(dataset_dev_filter, open('dataset_dev.json', 'w'))
-json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
+json.dump(dataset_dev_filter, open('dataset_dev_filter.json', 'w'))
+json.dump(dataset_eval_filter, open('dataset_eval_filter.json', 'w'))
 
 # --------------------------------------------------------------- #
 
@@ -540,8 +541,8 @@ json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
 # >>> ipython
 # uncomment, copy the folowing script, and re-comment:
 
-#dataset_dev = json.load(open('kaggle/dataset_dev.json', 'rb'))
-#dataset_eval = json.load(open('kaggle/dataset_eval.json', 'rb'))
+#dataset_dev = json.load(open('kaggle/dataset_dev_filter.json', 'rb'))
+#dataset_eval = json.load(open('kaggle/dataset_eval_filter.json', 'rb'))
 #sound_ids_dev = set()
 #sound_ids_eval = set()
 #for category in dataset_dev:
@@ -584,8 +585,8 @@ json.dump(dataset_eval_filter, open('dataset_eval.json', 'w'))
 
 
 # -------------------------- CREATE CSV ------------------------- #
-dataset_dev = json.load(open('dataset_dev.json', 'rb'))
-dataset_eval = json.load(open('dataset_eval.json', 'rb'))
+dataset_dev = json.load(open('dataset_dev_filter.json', 'rb'))
+dataset_eval = json.load(open('dataset_eval_filter.json', 'rb'))
 
 merge = json.load(open('merge_categories.json', 'rb'))
 node_id_parent = {}

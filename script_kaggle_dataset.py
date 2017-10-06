@@ -171,6 +171,8 @@ print 'Total amount of sounds with more than one label: {0} samples'.format(
     len([1 for sound_id in sounds_with_labels if 
          len(sounds_with_labels[sound_id])>1]))
 
+print 'Total Number of sounds: {}'.format(len(sounds_with_labels))
+
 # --------------------------------------------------------------- #
 
 # ------------------------ CREATE FILES --------------------------#
@@ -206,6 +208,7 @@ license_file.close()
 # --------------------------------------------------------------- #
 
 # ----------------------- SPLIT DEV EVAL -------------------------#
+print '\n SPLIT \n'
 
 # STRUCTURE DATA, SPLIT SINGLE/MULTIPLE LABELED SOUNDS
 sounds_single = {s:sounds_with_labels[s] for s in sounds_with_labels if len(sounds_with_labels[s])==1}
@@ -214,11 +217,15 @@ sounds_multiple = {s:sounds_with_labels[s] for s in sounds_with_labels if len(so
 data_single = {r:[] for r in result_final}
 for s in sounds_single:
     data_single[sounds_single[s][0]].append(s)
+
+print 'Number of single labeled sounds: {0}'.format(len(sounds_single))
     
 data_multiple = {r:[] for r in result_final}
 for s in sounds_multiple:
     for i in sounds_multiple[s]: 
         data_multiple[i].append(s)
+
+print 'Number of multi-labeled sounds: {0}'.format(len(sounds_multiple))
 
 # ORDER BY DURATION
 
@@ -229,25 +236,26 @@ for s in sounds_multiple:
 data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
 data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
 
-# SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 3:2 BASED ON DURATION
+# SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 7:3 BASED ON DURATION
 rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
+rule73 = ['dev', 'eval', 'dev', 'dev', 'eval', 'dev', 'dev', 'eval', 'dev', 'dev']
 data_single_dev = {r:[] for r in data_single_dur}
 data_single_eval = {r:[] for r in data_single_dur}
 for r in data_single_dur:
     for idx, s in enumerate(data_single_dur[r]):
-        if rule32[idx%5] == 'dev':
+        if rule73[idx%len(rule73)] == 'dev':
             data_single_dev[r].append(s[0])
-        elif rule32[idx%5] == 'eval':
+        elif rule73[idx%len(rule73)] == 'eval':
             data_single_eval[r].append(s[0])
-
-# RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 3:2
+            
+# RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 7:3
 data_dev = data_single_dev
 data_eval = data_single_eval
 for idx, s in enumerate(sounds_multiple):
-    if rule32[idx%5] == 'dev':
+    if rule73[idx%len(rule73)] == 'dev':
         for node_id in sounds_multiple[s]:
             data_dev[node_id].append(s)
-    elif rule32[idx%5] == 'eval':
+    elif rule73[idx%len(rule73)] == 'eval':
         for node_id in sounds_multiple[s]:
             data_eval[node_id].append(s)
 
@@ -292,32 +300,57 @@ json.dump(dataset_eval, open(FOLDER_KAGGLE + 'dataset_eval.json', 'w'), indent=4
 #    print cat['name'].ljust(40) + str(round(cat['total_duration'],2)).ljust(9) + str(cat['nb_PP']).ljust(10) + str(cat['nb_PNP'])
 print '\n\n'
 print 'CATEGORY dev // eval'.ljust(40) + 'DURATION'.ljust(16) + ' // ' + 'PP'.ljust(10) + ' // ' + 'PNP'.ljust(10) + ' // ' + 'USERS'
-for idx in range(-1, len(dataset_dev)):
+for idx in range(len(dataset_dev)):
     print dataset_dev[idx]['name'].ljust(40) + str(round(dataset_dev[idx]['total_duration'],2)).ljust(8) + ' ' +str(round(dataset_eval[idx]['total_duration'],2)).ljust(8) + ' // ' +  str(dataset_dev[idx]['nb_PP']).ljust(5) +' ' + str(dataset_eval[idx]['nb_PP']).ljust(5) + ' // ' + str(dataset_dev[idx]['nb_PNP']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_PNP']).ljust(5) + ' // ' +  str(dataset_dev[idx]['nb_users']).ljust(5) + ' ' + str(dataset_eval[idx]['nb_users'])
 
+# SANITY CHECK
+for d in dataset_dev:
+    if d['nb_sounds'] != d['nb_PP'] + d['nb_PNP']:
+        print '\n PROBLEM IN DATASET DEV SPLIT!!! Category of ID {0} does not sum its PP and PNP annotations with number of sounds'.format(d['audioset_id'])
+
+for d in dataset_eval:
+    if d['nb_sounds'] != d['nb_PP'] + d['nb_PNP']:
+        print '\n PROBLEM IN DATASET EVAL SPLIT!!! Category of ID {0} does not sum its PP and PNP annotations with number of sounds'.format(d['audioset_id'])
+
+        
 # --------------------------------------------------------------- #
 
 # -------------------- REMOVE SOME CATEGORIES ------------------- #
+
+print '\n FILTER CATEGORIES'
 
 dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
 dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
 
 # Music > Music mood > Scary music
-# Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by
-category_id_to_remove = set(['/t/dd00134', '/t/dd00037'])
+# Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by ...
+category_id_to_remove = set(['/t/dd00134', '/m/0c1dj', '/m/01vfsf', '/m/05jcn', '/m/09dsr', '/m/01gp74', '/m/05xp3j', '/m/021wwz', '/m/03r5q_', '/t/dd00037', '/m/0174nj'])
 
 dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
 dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
 
-json.dump(dataset_dev_filter, open(FOLDER_KAGGLE + 'dataset_dev.json', 'w'))
-json.dump(dataset_eval_filter, open(FOLDER_KAGGLE + 'dataset_eval.json', 'w'))
+nb_labels_left = sum([d['nb_sounds'] for d in dataset_dev_filter] + [d['nb_sounds'] for d in dataset_eval_filter])
+
+print 'Number of categories left: {0}'.format(len(dataset_dev_filter))
+
+print 'Number of labels left: {0}'.format(nb_labels_left)
+
+sounds_left = []
+for idx in range(len(dataset_dev_filter)):
+    sounds_left += dataset_dev_filter[idx]['sound_ids']
+    sounds_left += dataset_eval_filter[idx]['sound_ids']
+    
+print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
+
+json.dump(dataset_dev_filter, open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'w'))
+json.dump(dataset_eval_filter, open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'w'))
 
 # --------------------------------------------------------------- #
 
 # ---------------------- SPLIT LICENSE FILES -------------------- #
 
-dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
-dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
+dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'rb'))
 sound_ids_dev = set()
 sound_ids_eval = set()
 for category in dataset_dev:
@@ -360,8 +393,8 @@ license_file.close()
 # --------------------------------------------------------------- #
 
 # -------------------------- CREATE CSV ------------------------- #
-dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
-dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
+dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'rb'))
 
 try:
     merge = json.load(open(FOLDER_KAGGLE + 'merge_categories.json', 'rb'))
