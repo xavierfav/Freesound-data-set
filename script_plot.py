@@ -6,8 +6,8 @@ import numpy as np
 
 # PRINT VOTES
 #votes_TT = pickle.load(open('votes_TT_all.pkl','rb'))
-votes_TT = pickle.load(open('votes_new2.pkl','rb'))
-nb_access_FS_per_category_dict = json.load(open('nb_access_FS_per_category_dict', 'rb'))
+votes_TT = pickle.load(open('votes/votes_new2.pkl','rb'))
+nb_access_FS_per_category_dict = json.load(open('figures_and_co/nb_access_FS_per_category_dict', 'rb'))
 for i in votes_TT:
     print i[1].ljust(110) + str(i[2]).ljust(10) + str(i[3]).ljust(10)  + str(i[4]).ljust(10)  + str(i[5]).ljust(10) + str(i[6]).ljust(10)+ str(i[7]).ljust(10)# + str(i[8])
 
@@ -55,15 +55,18 @@ plt.xlim(0,398)
 plt.ylim(-300,420)
 
 # fix counts axis positive values
-ax.set_yticklabels([str(int(abs(x))) for x in ax.get_yticks()],fontsize=15)
+ax.set_yticklabels([str(int(abs(x))) for x in ax.get_yticks()],fontsize=20, fontweight="bold")
+ax.set_xticklabels([str(int(x)) for x in ax.get_xticks()], fontsize=19, fontweight="bold")
 
 # add legends
-plt.legend((p1[0], p2[0], p3[0], p4[0]), ('PP', 'PNP', 'NP', 'U'),fontsize=15)
+plt.legend((p1[0], p2[0], p3[0], p4[0]), ('PP', 'PNP', 'NP', 'U'),fontsize=20)
 
 # add titles
-ax.set_xlabel('Categories', fontsize=15)
-ax.set_ylabel('Vote counts', fontsize=15)
+ax.set_xlabel('Categories', fontsize=20, fontweight="bold")
+ax.set_ylabel('Vote counts', fontsize=20, fontweight="bold")
 #plt.title('Super nice plot', fontsize=20)
+
+plt.tight_layout()
 
 # plot
 plt.savefig('votes.pdf', format='pdf')
