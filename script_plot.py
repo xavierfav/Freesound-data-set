@@ -52,21 +52,22 @@ for idx, name in enumerate(lines_names):
 
 # limit axis
 plt.xlim(0,398)
-plt.ylim(-300,420)
+plt.ylim(-250,350)
 
 # fix counts axis positive values
-ax.set_yticklabels([str(int(abs(x))) for x in ax.get_yticks()],fontsize=20, fontweight="bold")
-ax.set_xticklabels([str(int(x)) for x in ax.get_xticks()], fontsize=19, fontweight="bold")
+ax.set_yticklabels([str(int(abs(x))) for x in ax.get_yticks()],fontsize=32, fontweight="bold")
+ax.set_xticklabels([str(int(x)) for x in ax.get_xticks()], fontsize=30, fontweight="bold")
 
 # add legends
-plt.legend((p1[0], p2[0], p3[0], p4[0]), ('PP', 'PNP', 'NP', 'U'),fontsize=20)
+plt.legend((p1[0], p2[0], p3[0], p4[0]), ('PP', 'PNP', 'NP', 'U'),fontsize=30)
 
 # add titles
-ax.set_xlabel('Categories', fontsize=20, fontweight="bold")
-ax.set_ylabel('Vote counts', fontsize=20, fontweight="bold")
+ax.set_xlabel('Categories', fontsize=40, fontweight="bold")
+ax.set_ylabel('Sounds', fontsize=40, fontweight="bold")
 #plt.title('Super nice plot', fontsize=20)
 
-plt.tight_layout()
+
+
 
 # plot
 plt.savefig('votes.pdf', format='pdf')
