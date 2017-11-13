@@ -12,7 +12,7 @@ id_to_tag = {v: k for k,v in tag_to_id.iteritems()}
 tag_cooccurrences = pickle.load(open('tag_cooccurrences.pkl','rb'))
 
 # Audio Set Ontology
-ontology = json.load(open('ontology.json','rb'))
+ontology = json.load(open('ontology/ontology.json','rb'))
 ontology_by_name = {o['name']:o for o in ontology}
 ontology_by_id = {o['id']:o for o in ontology}
 
