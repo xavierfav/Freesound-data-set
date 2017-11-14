@@ -75,15 +75,19 @@ for node_id in all_categories:
     l = paths[0] + [ontology_by_id[node_id]["name"]]
     if node_id in remaining_categories:
         if len(paths) < 2:
-            categories.append((' > '.join(l), node_id, 'ACCEPTED'))       
+            categories.append((' > '.join(l), node_id, 'ACCEPTED', all_categories_with_stats[node_id][0], all_categories_with_stats[node_id][1], all_categories_with_stats[node_id][2]))       
         else:
-            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', node_id, 'ACCEPTED'))
+            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', node_id, 'ACCEPTED', all_categories_with_stats[node_id][0], all_categories_with_stats[node_id][1], all_categories_with_stats[node_id][2]))
      
 categories = sorted(categories, key=lambda a: a[0])
 
 for idx, obj in enumerate(categories):
     worksheet.write(idx, 0, obj[0])
     worksheet.write(idx, 1, obj[1])
+    worksheet.write(idx, 2, obj[2])
+    worksheet.write(idx, 3, obj[3])
+    worksheet.write(idx, 4, obj[4])
+    worksheet.write(idx, 5, obj[5])
 
 worksheet2 = workbook.add_worksheet('list categories ALL')
 categories = []
@@ -92,14 +96,14 @@ for node_id in all_categories:
     l = paths[0] + [ontology_by_id[node_id]["name"]]
     if node_id in remaining_categories:
         if len(paths) < 2:
-            categories.append((' > '.join(l), node_id, 'ACCEPTED'))       
+            categories.append((' > '.join(l), node_id, 'ACCEPTED', all_categories_with_stats[node_id][0], all_categories_with_stats[node_id][1], all_categories_with_stats[node_id][2]))       
         else:
-            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', node_id, 'ACCEPTED'))
+            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', node_id, 'ACCEPTED', all_categories_with_stats[node_id][0], all_categories_with_stats[node_id][1], all_categories_with_stats[node_id][2]))
     else:
         if len(paths) < 2:
-            categories.append((' > '.join(l), node_id, 'REMOVED'))       
+            categories.append((' > '.join(l), node_id, 'REMOVED', all_categories_with_stats[node_id][0], all_categories_with_stats[node_id][1], all_categories_with_stats[node_id][2]))       
         else:
-            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', node_id, 'REMOVED'))
+            categories.append((' > '.join(l) + '  // MULTIPLE PARENTS', node_id, 'REMOVED', all_categories_with_stats[node_id][0], all_categories_with_stats[node_id][1], all_categories_with_stats[node_id][2]))
 
 categories = sorted(categories, key=lambda a: a[0])
 
@@ -107,6 +111,9 @@ for idx, obj in enumerate(categories):
     worksheet2.write(idx, 0, obj[0])
     worksheet2.write(idx, 1, obj[1])
     worksheet2.write(idx, 2, obj[2])
+    worksheet2.write(idx, 3, obj[3])
+    worksheet2.write(idx, 4, obj[4])
+    worksheet2.write(idx, 5, obj[5])
 
 workbook.close()
 
