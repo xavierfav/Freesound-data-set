@@ -408,7 +408,7 @@ if __name__ == '__main__':
     
     # Load the ontology file (annotated)
     #ontology = json.load(open('ontology_final_FS_abstract.json','rb'))
-    ontology = json.load(open('ontology_postIQA_3103.json','rb'))
+    ontology = json.load(open('ontology/ontology_postIQA_3103.json','rb'))
     ontology_by_id = {o['id']:o for o in ontology}
     
     # Preprocessing (lower case, stem)
