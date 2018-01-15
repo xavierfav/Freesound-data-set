@@ -1,5 +1,10 @@
 # Freesound-data-set
 
+
+IMPORTANT FOLDERS:
+- kaggle2/ is the dataset FSD9k split in development/evaluation 70/30 %. This is the final version sent to Kaggle (except that in the format conversion we lost 3 audio clips in the dev set and 3 others in the eval set (6 clips in total, with respect to what the proposal says)
+- kaggle/ is a previous attempt for dataset split, using development/evaluation 60/40 %. We discarded this slipt in favour of kaggle2/ to increase development set size.
+
 ANNOTATION:
 
 Need to add this files in order to use tools.py for annotations:
