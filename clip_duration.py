@@ -38,12 +38,12 @@ except:
 
 #
 #
-# try:
-# # load json with ontology, to map aso_ids to understandable category names
-#     with open(FOLDER_DATA + 'json/ontology.json') as data_file:
-#          data_onto = json.load(data_file)
-# except:
-#     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA +'json/')
+try:
+# load json with ontology, to map aso_ids to understandable category names
+    with open(FOLDER_DATA + 'json/ontology.json') as data_file:
+         data_onto = json.load(data_file)
+except:
+    raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA +'json/')
 
 # all_ids of the sounds that compose the dataset (before any kind of filtering in post-pro) 9281
 # durations are in the range [0:30], and only PP and PNP are considered
@@ -69,6 +69,11 @@ with open(FOLDER_DATA + 'dataset_eval.json') as data_file:
 # durations are in the range [0:30], and only PP and PNP are considered
 with open(FOLDER_DATA + 'dataset_eval_filter.json') as data_file:
     dataset_eval_filter = json.load(data_file)
+
+# correspondence between low level categories and high level categories
+with open(FOLDER_DATA + 'merge_categories.json') as data_file:
+    merge_categories = json.load(data_file)
+
 
 
 # --------------------------------------functions for plotting---------------------------------
@@ -284,8 +289,36 @@ plot_histogram(durations_PNP,bins10,fig_title)
 
 
 
+
+
+
+
+
 # ------------------------------box plots
 
+# ------------------- boxplot number of examples per category in dev / eval
+nb_sounds_per_cat_dev = list()
+nb_sounds_per_cat_eval= list()
+
+for cat in dataset_dev_filter:
+    nb_sounds_per_cat_dev.append(cat['nb_sounds'])
+
+for cat in dataset_eval_filter:
+    nb_sounds_per_cat_eval.append(cat['nb_sounds'])
+
+data = [nb_sounds_per_cat_dev, nb_sounds_per_cat_eval]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.boxplot(data)
+ax.set_xticklabels(['dev', 'eval'])
+plt.ylabel('# of audio clips')
+# plt.title('review input data. make sure it is ok')
+plt.show()
+
+
+
+
+# ------------------- boxplot durations in PP / PNP
 data = [durations_PP, durations_PNP]
 # multiple box plots on one figure
 
@@ -298,17 +331,62 @@ plt.title('review input data. make sure it is ok')
 plt.show()
 
 
+
+
+
+
+# DEV
+# -- # box plot of clip durations for every category for all clips of DEVELOPMENT set after filtering----
+durations_dev_filter_one_cat = list()
+names_all_cats_dev = list()
+durations_all_cats_dev = list()
+
+for cat in dataset_dev_filter:
+    names_all_cats_dev.append(cat['name'])
+    for id in cat['sound_ids']:
+        durations_dev_filter_one_cat.append(data_duration[str(id)]['duration'])
+    durations_all_cats_dev.append(durations_dev_filter_one_cat) #check this is ok, appending lists
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.boxplot(durations_all_cats_dev)
+ax.set_xticklabels(names_all_cats_dev)
+plt.ylabel('seconds')
+plt.title('124 categories--split')
+plt.show()
+
+# convert into a function
+# fig_title = 'all clips from DEV set after filtering: ' + str(len(durations_dev_filter))
+# plot_histogram(durations_dev_filter,bins1,fig_title)
+
+
+
+# ----------------------22 categories
+sound_ids_cat_high_level = list()
+names_all_cats_high_level = list()
+durations_all_cats_high_level_dev = list()
+
+for key, value in merge_categories.iteritems():
+    name_cat_high_level = [cat['name'] for cat in data_onto if cat['id'] == key]
+    names_all_cats_high_level.append(name_cat_high_level)
+    for aso_id in value: #review
+        sound_ids = [cat['sound_ids'] for cat in dataset_dev_filter if cat['audioset_id'] == aso_id]
+        sound_ids_cat_high_level.append(cat['sound_ids'] for cat in dataset_dev_filter if cat['audioset_id'] == aso_id)
+    durations_all_cats_high_level_dev.append(sound_ids_cat_high_level) #check this is ok, appending lists
+
+
+# boxplot
+
+
+
+
+
+# repeat with EVAL
+
+
+
 a=9
 
 
 
-
-
-
-# # GET ANNOTATIONS WITH VOTES 0.5 (PNP) or 1.0 (PP)
-# for v in data_votes:
-#     # apply duration filter
-#     if data_duration[str(v['freesound_sound_id'])]['duration']<=MAXLEN and data_duration[str(v['freesound_sound_id'])]['duration']>=MINLEN:
-#         # apply PRESENCE filter
-#         if v['value']>0.4:
-#             result[v['node_id']].add(v['freesound_sound_id'])
