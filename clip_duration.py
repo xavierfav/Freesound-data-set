@@ -76,9 +76,11 @@ with open(FOLDER_DATA + 'merge_categories.json') as data_file:
 
 
 
+
 # --------------------------------------functions for plotting---------------------------------
 # turn interactive mode on
 plt.ion()
+SPLITFIGS = False
 
 def plot_histogram(x,bins,fig_title,axes):
     # plot histogram given an array x
@@ -120,6 +122,26 @@ def plot_boxplot(data,x_labels,fig_title,y_label):
     # plt.pause(0.001)
 
 
+def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda):
+    ind = np.arange(len(data_bottom))  # the x locations for the groups
+    width = 0.4  # the width of the bars: can also be len(x) sequence
+    axes = [-0.5, len(data_bottom), 0, 170]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    p1 = plt.bar(ind, data_bottom, width)
+    p2 = plt.bar(ind, data_up, width, bottom=data_bottom)
+    plt.xticks(fontsize=8, rotation=45)
+    plt.xticks(ind, x_labels)
+    plt.ylabel(y_label)
+    plt.title(fig_title)
+    # plt.yticks(np.arange(0, 81, 10))
+    plt.legend((p1[0], p2[0]), legenda)
+    plt.axis(axes)
+    ax.yaxis.grid(True)
+    # plt.grid(True)
+    plt.show()
+
 bins1 = [0, 1, 2, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
 axes1 = [0, 30, 0, 1330]
 bins10 = [0, 10, 20, 30]
@@ -143,99 +165,100 @@ fig_title = 'all initial clips: ' + str(len(durations))
 
 plot_histogram(durations,bins1,fig_title,axes1)
 plot_histogram(durations,bins10,fig_title,axes10)
-#
-#
-#
-#
-#
-# # -- histogram of clip durations for all clips of DEVELOPMENT set before filtering---
-# # durations_dev = list()
-# #
-# # for cat in dataset_dev:
-# #     for id in cat['sound_ids']:
-# #         durations_dev.append(data_duration[str(id)]['duration'])
-# #
-# # fig_title = 'all clips from DEV set before filtering: ' + str(len(durations_dev))
-# # plot_histogram(durations_dev,bins1,fig_title)
-# #
-# # plot_histogram(durations_dev,bins10,fig_title)
-#
-# # -- histogram of clip durations for all clips of DEVELOPMENT set after filtering----
-# durations_dev_filter = list()
-#
-# for cat in dataset_dev_filter:
-#     for id in cat['sound_ids']:
-#         durations_dev_filter.append(data_duration[str(id)]['duration'])
-#
-# fig_title = 'all clips from DEV set after filtering: ' + str(len(durations_dev_filter))
-# plot_histogram(durations_dev_filter,bins1,fig_title)
-#
-# plot_histogram(durations_dev_filter,bins10,fig_title)
-#
-#
-#
-#
-#
-#
-# # -- histogram of clip durations for all clips of EVALUATION set before filtering---
-# # durations_eval = list()
-# #
-# # for cat in dataset_eval:
-# #     for id in cat['sound_ids']:
-# #         durations_eval.append(data_duration[str(id)]['duration'])
-# #
-# # fig_title = 'all clips from EVAL set before filtering: ' + str(len(durations_eval))
-# # plot_histogram(durations_eval,bins1,fig_title)
-# # plot_histogram(durations_eval,bins10,fig_title)
-#
-# # -- histogram of clip durations for all clips of EVALUATION set after filtering----
-# durations_eval_filter = list()
-#
-# for cat in dataset_eval_filter:
-#     for id in cat['sound_ids']:
-#         durations_eval_filter.append(data_duration[str(id)]['duration'])
-#
-# fig_title = 'all clips from EVAL set after filtering: ' + str(len(durations_eval_filter))
-# plot_histogram(durations_eval_filter,bins1,fig_title)
-# plot_histogram(durations_eval_filter,bins10,fig_title)
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# # -- histogram of clip durations for all clips validated as PP
-# # NOTE: considering only one vote in each sound. this is not correct, as around 2% of sounds have multiple (2) labels.
-# # In those cases, I only consider the first vote that is found. Since this is 2%, for preliminary results it is ok
-# # durations_PP = list()
-# # start_time = time.time()
-# # for id in all_ids:
-# #     # is this sound voted as PP
-# #     for v in data_votes:
-# #         if id in v.values():
-# #             vote = v['value']
-# #             if vote == 1.0:
-# #                 # get and append clip duration
-# #                 durations_PP.append(data_duration[str(id)]['duration'])
-# #             break
-# #
-# # fig_title = 'all initial 9281 clips -- only PP'
-# # plot_histogram(durations_PP,30,fig_title)
-# #
-# #
-# # elapsed_time = time.time() - start_time
-# # print(elapsed_time)
-#
-#
 
+
+
+
+
+# -- histogram of clip durations for all clips of DEVELOPMENT set before filtering---
+# durations_dev = list()
+#
+# for cat in dataset_dev:
+#     for id in cat['sound_ids']:
+#         durations_dev.append(data_duration[str(id)]['duration'])
+#
+# fig_title = 'all clips from DEV set before filtering: ' + str(len(durations_dev))
+# plot_histogram(durations_dev,bins1,fig_title)
+#
+# plot_histogram(durations_dev,bins10,fig_title)
+
+# -- histogram of clip durations for all clips of DEVELOPMENT set after filtering----
+durations_dev_filter = list()
+
+for cat in dataset_dev_filter:
+    for id in cat['sound_ids']:
+        durations_dev_filter.append(data_duration[str(id)]['duration'])
+
+fig_title = 'all clips from DEV set after filtering: ' + str(len(durations_dev_filter))
+plot_histogram(durations_dev_filter,bins1,fig_title,axes1)
+
+plot_histogram(durations_dev_filter,bins10,fig_title,axes10)
+
+
+
+
+
+
+# -- histogram of clip durations for all clips of EVALUATION set before filtering---
+# durations_eval = list()
+#
+# for cat in dataset_eval:
+#     for id in cat['sound_ids']:
+#         durations_eval.append(data_duration[str(id)]['duration'])
+#
+# fig_title = 'all clips from EVAL set before filtering: ' + str(len(durations_eval))
+# plot_histogram(durations_eval,bins1,fig_title)
+# plot_histogram(durations_eval,bins10,fig_title)
+
+# -- histogram of clip durations for all clips of EVALUATION set after filtering----
+durations_eval_filter = list()
+
+for cat in dataset_eval_filter:
+    for id in cat['sound_ids']:
+        durations_eval_filter.append(data_duration[str(id)]['duration'])
+
+fig_title = 'all clips from EVAL set after filtering: ' + str(len(durations_eval_filter))
+plot_histogram(durations_eval_filter,bins1,fig_title,axes1)
+plot_histogram(durations_eval_filter,bins10,fig_title,axes10)
+
+
+
+
+
+
+
+
+
+
+
+
+# -- histogram of clip durations for all clips validated as PP
+#TOO LONG
+# NOTE: considering only one vote in each sound. this is not correct, as around 2% of sounds have multiple (2) labels.
+# In those cases, I only consider the first vote that is found. Since this is 2%, for preliminary results it is ok
+# durations_PP = list()
+# start_time = time.time()
+# for id in all_ids:
+#     # is this sound voted as PP
+#     for v in data_votes:
+#         if id in v.values():
+#             vote = v['value']
+#             if vote == 1.0:
+#                 # get and append clip duration
+#                 durations_PP.append(data_duration[str(id)]['duration'])
+#             break
+#
+# fig_title = 'all initial 9281 clips -- only PP'
+# plot_histogram(durations_PP,30,fig_title)
 #
 #
+# elapsed_time = time.time() - start_time
+# print(elapsed_time)
+
+
+
+
+
 durations_PP = list()
 # start_time = time.time()
 
@@ -257,8 +280,8 @@ for id in all_ids:
 
 
 fig_title = 'of all initial 9281 clips -- only PP: ' + str(len(durations_PP))
-# plot_histogram(durations_PP,bins1,fig_title,axes1)
-# plot_histogram(durations_PP,bins10,fig_title,axes10)
+plot_histogram(durations_PP,bins1,fig_title,axes1)
+plot_histogram(durations_PP,bins10,fig_title,axes10)
 
 # elapsed_time2 = time.time() - start_time
 # print(elapsed_time2)
@@ -313,24 +336,27 @@ for id in all_ids:
 
 
 fig_title = 'of all initial 9281 clips -- only PNP: ' + str(len(durations_PNP))
-# plot_histogram(durations_PNP,bins1,fig_title,axes1)
-# plot_histogram(durations_PNP,bins10,fig_title,axes10)
-#
-# # elapsed_time2 = time.time() - start_time
-# # print(elapsed_time2)
-#
-# # NOTE_ PP + PNP are more than original files:
-# # they must be the number of labels, but how?
-#
-#
-#
-# # sanity check
-# print 'sounds voted PP + sounds voted PNP should amount :' + str(len(durations))
-# print 'sounds voted PP: ' + str(len(durations_PP))
-# print 'sounds voted PNP: ' + str(len(durations_PNP))
-# print 'sounds voted PP + sounds voted PNP: ' + str(len(durations_PP + durations_PNP))
-#
-#
+plot_histogram(durations_PNP,bins1,fig_title,axes1)
+plot_histogram(durations_PNP,bins10,fig_title,axes10)
+
+# elapsed_time2 = time.time() - start_time
+# print(elapsed_time2)
+
+# NOTE_ PP + PNP are more than original files:
+# they must be the number of labels, but how?
+
+
+
+# sanity check
+print 'sounds voted PP + sounds voted PNP should amount :' + str(len(durations))
+print 'sounds voted PP: ' + str(len(durations_PP))
+print 'sounds voted PNP: ' + str(len(durations_PNP))
+print 'sounds voted PP + sounds voted PNP: ' + str(len(durations_PP + durations_PNP))
+
+
+
+
+
 
 
 """ # ------------------------------box plots
@@ -399,22 +425,22 @@ idx = np.argsort(medians_cat)
 durations_all_cats_dev_sorted = list(durations_all_cats_dev[val] for val in idx)
 names_all_cats_dev_sorted = list(names_all_cats_dev[val] for val in idx)
 
+if SPLITFIGS == True:
+    data = durations_all_cats_dev_sorted[0:40]
+    x_labels = names_all_cats_dev_sorted[0:40]
+    fig_title = 'clip durations for every category DEV set 1/3.'
+    y_label = 'seconds'
+    plot_boxplot(data,x_labels,fig_title,y_label)
 
-data = durations_all_cats_dev_sorted[0:40]
-x_labels = names_all_cats_dev_sorted[0:40]
-fig_title = 'clip durations for every category DEV set 1/3.'
-y_label = 'seconds'
-plot_boxplot(data,x_labels,fig_title,y_label)
+    data = durations_all_cats_dev_sorted[40:80]
+    x_labels = names_all_cats_dev_sorted[40:80]
+    fig_title = 'clip durations for every category DEV set 2/3.'
+    plot_boxplot(data,x_labels,fig_title,y_label)
 
-data = durations_all_cats_dev_sorted[40:80]
-x_labels = names_all_cats_dev_sorted[40:80]
-fig_title = 'clip durations for every category DEV set 2/3.'
-plot_boxplot(data,x_labels,fig_title,y_label)
-
-data = durations_all_cats_dev_sorted[80::]
-x_labels = names_all_cats_dev_sorted[80::]
-fig_title = 'clip durations for every category DEV set 3/3.'
-plot_boxplot(data,x_labels,fig_title,y_label)
+    data = durations_all_cats_dev_sorted[80::]
+    x_labels = names_all_cats_dev_sorted[80::]
+    fig_title = 'clip durations for every category DEV set 3/3.'
+    plot_boxplot(data,x_labels,fig_title,y_label)
 
 data = durations_all_cats_dev_sorted
 x_labels = names_all_cats_dev_sorted
@@ -496,21 +522,22 @@ durations_all_cats_eval_sorted = list(durations_all_cats_eval[val] for val in id
 names_all_cats_eval_sorted = list(names_all_cats_eval[val] for val in idx)
 
 
-data = durations_all_cats_eval_sorted[0:40]
-x_labels = names_all_cats_eval_sorted[0:40]
-fig_title = 'clip durations for every category EVAL set 1/3.'
-y_label = 'seconds'
-plot_boxplot(data,x_labels,fig_title,y_label)
+if SPLITFIGS == True:
+    data = durations_all_cats_eval_sorted[0:40]
+    x_labels = names_all_cats_eval_sorted[0:40]
+    fig_title = 'clip durations for every category EVAL set 1/3.'
+    y_label = 'seconds'
+    plot_boxplot(data,x_labels,fig_title,y_label)
 
-data = durations_all_cats_eval_sorted[40:80]
-x_labels = names_all_cats_eval_sorted[40:80]
-fig_title = 'clip durations for every category EVAL set 2/3.'
-plot_boxplot(data,x_labels,fig_title,y_label)
+    data = durations_all_cats_eval_sorted[40:80]
+    x_labels = names_all_cats_eval_sorted[40:80]
+    fig_title = 'clip durations for every category EVAL set 2/3.'
+    plot_boxplot(data,x_labels,fig_title,y_label)
 
-data = durations_all_cats_eval_sorted[80::]
-x_labels = names_all_cats_eval_sorted[80::]
-fig_title = 'clip durations for every category EVAL set 3/3.'
-plot_boxplot(data,x_labels,fig_title,y_label)
+    data = durations_all_cats_eval_sorted[80::]
+    x_labels = names_all_cats_eval_sorted[80::]
+    fig_title = 'clip durations for every category EVAL set 3/3.'
+    plot_boxplot(data,x_labels,fig_title,y_label)
 
 data = durations_all_cats_eval_sorted
 x_labels = names_all_cats_eval_sorted
@@ -590,59 +617,55 @@ for cat in dataset_dev_filter:
     nb_PNP_per_cat_dev.append(cat['nb_PNP'])
 
 
-    # for id in cat['sound_ids']:
-    #     durations_dev_filter_one_cat.append(data_duration[str(id)]['duration'])
-    # durations_all_cats_dev.append(durations_dev_filter_one_cat)
+data_bottom = nb_PP_per_cat_dev
+data_up = nb_PNP_per_cat_dev
+x_labels = names_all_cats_dev
+y_label = 'votes ie sounds'
+fig_title = 'number of sounds (votes) per category in DEV, split in PP - PNP'
+legenda = ('PP', 'PNP')
 
-
-# plot histogram given an array x
-# plt.figure()
-# n, bins, patches = plt.hist(x, bins=bins, facecolor='blue', alpha=0.75, histtype='bar', ec='black')
-# plt.xlabel('seconds')
-# plt.ylabel('# of sounds')
-# plt.title(fig_title)
-# plt.axis(axes)
-# plt.grid(True)
-# plt.show()
+# plot_barplot(data_bottom,data_up,x_labels,y_label,fig_title,legenda)
 
 
 
-N = len(nb_PP_per_cat_dev)
-ind = np.arange(N)    # the x locations for the groups
-width = 0.35       # the width of the bars: can also be len(x) sequence
 
-plt.figure()
-p1 = plt.bar(ind, nb_PP_per_cat_dev, width)
-p2 = plt.bar(ind, nb_PNP_per_cat_dev, width,bottom=nb_PP_per_cat_dev)
 
-plt.ylabel('votes ie sounds')
-plt.title('number of sounds (votes) per category, split in PP and PNP')
-plt.xticks(ind, names_all_cats_dev)
-# plt.yticks(np.arange(0, 81, 10))
-plt.legend((p1[0], p2[0]), ('PP', 'PNP'))
-plt.grid(True)
-plt.show()
+
+# # ---------sort by number of votes (relates to PP)
+nb_votes_per_cat_dev = [sum(x) for x in zip(nb_PP_per_cat_dev, nb_PNP_per_cat_dev)]
+# sort by ascending order of number of votes (ALL together)
+idx = np.argsort(nb_votes_per_cat_dev)
+
+names_all_cats_dev_sorted = list(names_all_cats_dev[val] for val in idx)
+nb_PP_per_cat_dev_sorted = list(nb_PP_per_cat_dev[val] for val in idx)
+nb_PNP_per_cat_dev_sorted = list(nb_PNP_per_cat_dev[val] for val in idx)
+
+
+data_bottom = nb_PP_per_cat_dev_sorted
+data_up = nb_PNP_per_cat_dev_sorted
+x_labels = names_all_cats_dev_sorted
+y_label = 'votes ie sounds'
+fig_title = 'number of sounds (votes) per category in DEV, split in PP and PNP, sorted'
+legenda = ('PP', 'PNP')
+
+plot_barplot(data_bottom,data_up,x_labels,y_label,fig_title,legenda)
+
 
 
 # split in 3 plots
-# sort by numer of votes (relates to PP) AND another by descending order ofPNP
+# sort by descending order of PNP
 
 
 
+# --same with 22 high-level categories
 
-
-
-
-
-
-
-
-# --same with 22
-
-
+# -- EVAL
 
 
 a=9
 
 
 
+# other
+# - for easier comparison, it would be nice to have a boxplot of durations per category AND a bar plot of votes with the same category order
+# this enables for further comparison
