@@ -59,3 +59,17 @@ The different Prints and Plots:
 - Plot of Present and Non Present 
 - Plot of Unsure
 - Print # Unsure per group category 
+
+_______________________________________
+
+DATA CHARACTERIZATION:
+
+We have plots for analyzing:
+-Distribution (histograms) of clip durations for several subsets (all, dev, eval, PP, PNP)
+-boxplots:
+ -clip duration in PP/PNP
+ -clip duration for every category in dev/eval (for leaves and high-level categories after merging)
+ -number of clips per category in dev/eval
+-barplots:
+ -number of votes (sounds) per category, split into PP and PNP, for dev/eval, with different sortings
+
