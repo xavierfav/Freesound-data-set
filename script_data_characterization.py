@@ -4,6 +4,13 @@ import numpy as np
 import copy
 # import xlsxwriter
 import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.get_backend()
+
+# wm = plt.get_current_fig_manager()
+# wm.window.attributes('-topmost', 1)
+# wm.window.attributes('-topmost', 0)
+
 import os
 import sys
 import time
@@ -92,9 +99,16 @@ def plot_histogram(x,bins,fig_title,axes):
     plt.title(fig_title)
     plt.axis(axes)
     plt.grid(True)
-    plt.show()
     # plt.pause(0.001)
-    # fig says there are 1.4k sounds shorter than 1s, but in the proposal we say many more
+
+    # trials to open figures in the back to avoid interrupting
+    wm = plt.get_current_fig_manager()
+    # wm.window.attributes('-topmost', 1)
+    wm.window.attributes('-topmost', 0)
+    # get_current_fig_manager().window.attributes('-topmost', 0)
+    # fig = gcf()
+    # fig.canvas.manager.window.attributes('-topmost', 0)
+    # plt.show()
 
 
 def plot_boxplot(data,x_labels,fig_title,y_label):
