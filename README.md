@@ -73,3 +73,33 @@ We have plots for analyzing:
 - barplots:
    * number of votes (sounds) per category, split into PP and PNP, for dev/eval, with different sortings
 
+
+_______________________________________
+
+PROPOSAL for Kaggle January 2018:
+
+Consists of 2 subsets:
+- small subset with more reliable annotations
+- large subset with less reliable annotations
+
+Using folder kaggle3/
+Using a dump of the FSD data in *votes_dumped_2018_Jan_22.json* with format:
+```
+{
+    '<node_id>': {
+        'PP': [<list of Freesound ids>],
+        'PNP': [<list of Freesound ids>],
+        'NP': [<list of Freesound ids>],
+        'U': [<list of Freesound ids>],
+        'candidates': [<list of Freesound ids>]
+    }
+    '<node_id>'; {
+        ...        
+    }
+    ...
+}
+```
+
+
+
+
