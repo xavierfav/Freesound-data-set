@@ -12,13 +12,14 @@ FOLDER_DATA = 'kaggle3/'
 
 
 #### DEFINE CONSTRAIN HERE ###
-MINLEN = 0.0 # duration
+MINLEN = 0.3 # duration
 MAXLEN = 30.0
-MIN_INSTANCES = 40 # instance of sound per category
-
-
-
-
+MIN_VOTES_CAT = 30 # minimum number of votes per category to produce a QE.
+# maybe useless cause all have more than 72 votes (paper)
+MIN_HQ = 40 # minimum number of sounds with HQ labels per category
+MIN_LQ = 80 # minimum number of sounds  with LQ labels per category
+MIN_QE = 0.5 # minimum QE to accept the LQ as decent
+MIN_HQ_LQ = 120 # minimum number of sounds between HQ and LQ labels per category
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
 '''------------------------------------------------------------------------------------------'''
@@ -81,8 +82,6 @@ def check_GT(group, fsid, catid, vote_groups, fsids_assigned_cat, data_sounds):
         fsids_assigned_cat.append(fsid)
         assigned = True
     return data_sounds, fsids_assigned_cat, assigned
-
-
 
 
 def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat):
@@ -201,22 +200,23 @@ for catid, vote_groups in data_sounds.iteritems():
     data_sounds[catid]['PNP'] = []
     data_sounds[catid]['NP'] = []
     data_sounds[catid]['U'] = []
-    data_sounds[catid]['QA'] = 0
+    data_sounds[catid]['QE'] = 0
 
 
 # count cases where the mapping from votes to sounds fails
 error_mapping_count_cats = []
 
+""" # from data_votes to data_sounds ******************************************************************************"""
 
-
-# from data_votes to data_sounds
 for catid, vote_groups in data_votes.iteritems():
     # list to keep track of assigned fsids within a category, to achieve disjoint subsets of audio samples
     fsids_assigned_cat = []
     error_mapping_count_cat = 0
     # print catid
     # print ()
-
+    #
+    #
+    #
 
     # check GT in PP
     # check GT in the rest of the groups
@@ -332,9 +332,10 @@ for catid, vote_groups in data_votes.iteritems():
     # store mapping error for every category
     error_mapping_count_cats.append(error_mapping_count_cat)
 
-    # for every category compute QA here number of votes len(PP) + len(PNP) / all
-    if (len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U'])) > 0:
-        data_sounds[catid]['QA'] = (len(vote_groups['PP']) + len(vote_groups['PNP'])) / float(
+    # for every category compute QE here number of votes len(PP) + len(PNP) / all
+    # QE should only be computed if there are more than 20 votes? else not reliable
+    if (len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U'])) >= MIN_VOTES_CAT:
+        data_sounds[catid]['QE'] = (len(vote_groups['PP']) + len(vote_groups['PNP'])) / float(
             len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U']))
     # else:
     #     there is a category with 0 votes... because we have no sounds for it, hence no votes
@@ -380,17 +381,167 @@ if sum(error_mapping_count_cats) > 0:
 
 # TO DO
 # check a few small categories in data_votes and data_sounds for testing
-# QA should be only computed if there are more than 20 votes? else not reliable
+
+
+
+# here we have data_sounds ready to try.
+
+""" # from data_sounds to data_qual_sets****************************************************************************"""
+# let us create HQ and LQ with 2 versions. Then, apply filters step by step.
+
+# create data_qual_sets with keys with catids and empty dicts as values
+data_qual_sets = copy.deepcopy(data_votes)
+for catid, groups in data_qual_sets.iteritems():
+    data_qual_sets[catid].clear()
+
+
+
+for ii in range(2):
+    if ii == 0:
+        # CASE A
+        # HQ = PP
+        # LQ = candidates - PP - NP. IT therefore includes: PNP + U + unvoted sounds
+        # we use PNP as LQ, so HQ is even higher quality and avoid potential problems, eg incomplete labelling in EVAL
+        # but this means we have less samples in HQ, which can reduce the number of categories
+        print 'SCENARIO A: where HQ = PP and LQ = PNP + U + unvoted sounds'
+        print()
+        for catid, sound_groups in data_sounds.iteritems():
+            data_qual_sets[catid]['HQ'] = sound_groups['PP']
+            list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
+            data_qual_sets[catid]['LQ'] = [item for item in list_woPP if item not in sound_groups['NP']]
+            data_qual_sets[catid]['QE'] = sound_groups['QE']
+    else:
+        # CASE B
+        # HQ = PP + PNP
+        # LQ = candidates - PP - PNP - NP. IT therefore includes: U + unvoted sounds
+        # we use PNP as HQ, so HQ has more heterogeneous content.
+        # If there is a file with incomplete labelling in EVAL, it is not good
+        # We can always leave them only for DEV
+        # This means we have more samples in HQ, which can increment the number of categories
+        # Maybe this is less clean but if needed...
+        print 'SCENARIO B: where HQ = PP + PNP and LQ = U + unvoted sounds'
+        print()
+        for catid, sound_groups in data_sounds.iteritems():
+            data_qual_sets[catid]['HQ'] = sound_groups['PP'] + sound_groups['PNP']
+            list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
+            list_woPP_PNP = [item for item in list_woPP if item not in sound_groups['PNP']]
+            data_qual_sets[catid]['LQ'] = [item for item in list_woPP_PNP if item not in sound_groups['NP']]
+            data_qual_sets[catid]['QE'] = sound_groups['QE']
+
+    # sanity check: groups in data_qual_sets should be disjoint
+    if list(set(data_qual_sets[catid]['HQ']) & set(data_qual_sets[catid]['LQ'])):
+        # print('\n something unexpetected happened in the mapping********************* \n')
+        print(catid)
+        sys.exit('data_qual_sets has not disjoint groups')
+
+
+
+    """ # apply strong filters to data_qual_sets***********************************************************************"""
+
+    # Consider only leaf categories: 474 out of the initial 632
+    # data_onto is a list of dictionaries
+    # to retrieve them by id: for every dict o, we create another dict where key = o['id'] and value is o
+    data_onto_by_id = {o['id']:o for o in data_onto}
+
+    # for o in data_qual_sets. o = catid
+    # create a dict of dicts. The latter are key=0, and value the actual value (data_qual_sets[o])
+    data_qual_sets_l = {o: data_qual_sets[o] for o in data_qual_sets if len(data_onto_by_id[o]['child_ids'])<1}
+    print 'Number of leaf categories: ' + str(len(data_qual_sets_l))
+    print()
+
+    # create copy of data_votes
+    data_qual_sets_ld = copy.deepcopy(data_qual_sets_l)
+    for catid, groups in data_qual_sets_ld.iteritems():
+        data_qual_sets_ld[catid]['HQ'] = []
+        data_qual_sets_ld[catid]['LQ'] = []
+
+    # Apply duration filter: Of the 474 categories, keep sounds with durations [MINLEN: MAXLEN]
+    for catid, groups in data_qual_sets_l.iteritems():
+        for fsid in groups['HQ']:
+            if data_duration[str(fsid)]['duration'] <= MAXLEN and data_duration[str(fsid)]['duration'] >= MINLEN:
+                data_qual_sets_ld[catid]['HQ'].append(fsid)
+
+        for fsid in groups['LQ']:
+            if (data_duration[str(fsid)]['duration'] <= MAXLEN) and (data_duration[str(fsid)]['duration'] >= MINLEN):
+                data_qual_sets_ld[catid]['LQ'].append(fsid)
+
+    # the critical filter is the number of sounds with HQ. IT should not be less than MIN_HQ (what we proposed already)
+    # o = catid. create a dict of dicts. the latter are just the dicts that fulfil the condition on MIN_HQ
+    data_qual_sets_ld_HQ = {o: data_qual_sets_ld[o] for o in data_qual_sets_ld if len(data_qual_sets_ld[o]['HQ']) >= MIN_HQ}
+
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and of duration [' + str(MINLEN) + ':' +\
+          str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQ))
+    print()
 
 
 
 
+    """ # apply flexible filters to data_qual_sets***********************************************************************"""
+
+    print 'APPROACH ALFA'
+    # number of sounds with LQ should not be less than MIN_LQ
+    data_qual_sets_ld_HQLQ = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if len(data_qual_sets_ld_HQ[o]['LQ']) >= MIN_LQ}
+
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(MIN_LQ) +\
+          ' sounds with LQ labels, and of duration [' + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQ))
+
+    # to trust the LQ subset, we demand a minimum QE
+    data_qual_sets_ld_HQLQQE = {o: data_qual_sets_ld_HQLQ[o] for o in data_qual_sets_ld_HQLQ if data_qual_sets_ld_HQLQ[o]['QE'] >= MIN_QE}
+
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(MIN_LQ) +\
+          ' sounds with LQ labels with a QE > ' + str(MIN_QE) + ', and of duration ['\
+          + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQQE))
+
+    nb_dev_samples = []
+    # esimate median of data samples
+    for catid, groups in data_qual_sets_ld_HQLQQE.iteritems():
+        nb_dev_samples.append(np.ceil(0.7*len(groups['HQ'])) + len(groups['LQ']))
+
+    print 'Estimated Median of number of DEV samples per category: ' + str(np.median(nb_dev_samples))
 
 
 
 
-# here we have data_sounds ready. let us create HQ and LQ with 2 versions. Then, apply filters step by step.
+    print()
+    print()
+    print 'APPROACH BETA'
+    # CASE BETA
+    # number of sounds amounted between HQ + LQ should not be less than MIN_HQ_LQ
+    data_qual_sets_ld_HQLQb = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
+                              len(data_qual_sets_ld_HQ[o]['LQ']) + len(data_qual_sets_ld_HQ[o]['HQ']) >= MIN_HQ_LQ}
+
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(MIN_HQ_LQ) +\
+          ' sounds between HQ and LQ labels, and of duration [' + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQb))
+
+
+    # to trust the LQ subset, we demand a minimum QE
+    data_qual_sets_ld_HQLQQEb = {o: data_qual_sets_ld_HQLQb[o] for o in data_qual_sets_ld_HQLQb if data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE}
+
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(MIN_HQ_LQ) +\
+          ' sounds between HQ and LQ labels with a QE > ' + str(MIN_QE) + ', and of duration ['\
+          + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQQEb))
+
+    nb_dev_samples = []
+    # esimate median of data samples
+    for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
+        nb_dev_samples.append(np.ceil(0.7*len(groups['HQ'])) + len(groups['LQ']))
+
+    print 'Estimated Median of number of DEV samples per category: ' + str(np.median(nb_dev_samples))
+
+
+    print '======================================================'
+    print '\n\n\n'
+
+
 
 
 
 a=9 #for debugging
+
+
+
+
+
+
+
+# [len(data_qual_sets[l]['HQ']) for l in data_qual_sets.keys() if len(data_qual_sets[l]['HQ'])>40]
