@@ -332,6 +332,46 @@ for catid, vote_groups in data_votes.iteritems():
     # store mapping error for every category
     error_mapping_count_cats.append(error_mapping_count_cat)
 
+    # for every category compute QA here number of votes len(PP) + len(PNP) / all
+    if (len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U'])) > 0:
+        data_sounds[catid]['QA'] = (len(vote_groups['PP']) + len(vote_groups['PNP'])) / float(
+            len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U']))
+    # else:
+    #     there is a category with 0 votes... because we have no sounds for it, hence no votes
+
+    # sanity check: there should be no duplicated fsids within a group of data_sounds
+    if (len(data_sounds[catid]['PP']) != len(set(data_sounds[catid]['PP'])) or
+        len(data_sounds[catid]['PNP']) != len(set(data_sounds[catid]['PNP'])) or
+        len(data_sounds[catid]['NP']) != len(set(data_sounds[catid]['NP'])) or
+        len(data_sounds[catid]['U']) != len(set(data_sounds[catid]['U']))):
+        # print('\n something unexpetected happened in the mapping********************* \n')
+        print(catid)
+        sys.exit('duplicates in data_sounds')
+
+    # sanity check: groups in data_sounds should be disjoint
+    if (list(set(data_sounds[catid]['PP']) & set(data_sounds[catid]['PNP'])) or
+        list(set(data_sounds[catid]['PP']) & set(data_sounds[catid]['NP'])) or
+        list(set(data_sounds[catid]['PP']) & set(data_sounds[catid]['U'])) or
+        list(set(data_sounds[catid]['PNP']) & set(data_sounds[catid]['NP'])) or
+        list(set(data_sounds[catid]['PNP']) & set(data_sounds[catid]['U'])) or
+        list(set(data_sounds[catid]['NP']) & set(data_sounds[catid]['U']))):
+        # print('\n something unexpetected happened in the mapping********************* \n')
+        print(catid)
+        sys.exit('data_sounds has not disjoint groups')
+
+    # sanity check: number of sounds is equal in data_sounds (adding) and data_votes (concatenating groups and set)
+    nb_sounds_data_sounds = (len(data_sounds[catid]['PP']) + len(data_sounds[catid]['PNP']) +\
+                            len(data_sounds[catid]['NP']) + len(data_sounds[catid]['U']))
+    all_votes = data_votes[catid]['PP'] + data_votes[catid]['PNP'] + data_votes[catid]['NP'] + data_votes[catid]['U']
+    nb_sounds_data_votes = len(set(all_votes))
+    if nb_sounds_data_sounds != nb_sounds_data_votes:
+        # print('\n something unexpetected happened in the mapping********************* \n')
+        print(catid)
+        sys.exit('number of sounds is not equal in data_sounds and data_votes')
+
+
+
+
 
 
 if sum(error_mapping_count_cats) > 0:
@@ -339,9 +379,14 @@ if sum(error_mapping_count_cats) > 0:
     print(error_mapping_count_cats)
 
 # TO DO
-# chekc a few small categories in data_votes and data_sounds for testing
-# sanity checks: see hoja, check groups are disjount and number of sounds is equal in data_sounds (adding) and data_votes (concatenating groups and set)
-# for every category compute QA here number of votes len(PP) + len(PNP) / all
+# check a few small categories in data_votes and data_sounds for testing
+# QA should be only computed if there are more than 20 votes? else not reliable
+
+
+
+
+
+
 
 
 # here we have data_sounds ready. let us create HQ and LQ with 2 versions. Then, apply filters step by step.
