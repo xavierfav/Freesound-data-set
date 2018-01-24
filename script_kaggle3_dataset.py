@@ -3,7 +3,7 @@ import json
 import numpy as np
 import copy
 # import xlsxwriter
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import os
 import sys
 import time
@@ -131,7 +131,7 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
         fsids_assigned_cat.append(fsid)
 
 
-    # 1
+    # 1 U and NP
     elif 1.0 not in votes and 0.5 not in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
@@ -190,9 +190,6 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
 # ----------------------------------------------------------------------------------------------------
 
 
-
-
-
 # sanity check:
 # if there is duplicates in the candidates of a category
 
@@ -220,6 +217,10 @@ for catid, vote_groups in data_votes.iteritems():
     # print catid
     # print ()
 
+
+    # check GT in PP
+    # check GT in the rest of the groups
+    # if GT does not exist, take mapping decision without inter-annotator agreement
     for fsid in vote_groups['PP']:
         # print fsid
         # search for GT in this group
@@ -235,7 +236,6 @@ for catid, vote_groups in data_votes.iteritems():
             if not assigned:
                 data_sounds, fsids_assigned_cat, assigned = check_GT('NP', fsid, catid, vote_groups, fsids_assigned_cat, data_sounds)
 
-
         # no GT was found for the annotation (2 votes in the same group).
         # we must take decisions without inter-annotator agreement
 
@@ -243,17 +243,108 @@ for catid, vote_groups in data_votes.iteritems():
             # map the voted sound to a disjoint group  without inter-annotator agreement
             data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
                 fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
-            error_mapping_count_cats.append(error_mapping_count_cat)
+
+
+    # check GT in PNP
+    # check GT in the remaining groups
+    # if GT does not exist, take mapping decision without inter-annotator agreement
+    for fsid in vote_groups['PNP']:
+        # print fsid
+
+        # only if the fsid has not been assigned in previous passes
+        if fsid not in fsids_assigned_cat:
+            # search for GT in this group
+            if vote_groups['PNP'].count(fsid) > 1:
+                if fsid not in fsids_assigned_cat:
+                    data_sounds[catid]['PNP'].append(fsid)
+                    fsids_assigned_cat.append(fsid)
+            else:
+                # search for GT in the remaining groups of votes
+                data_sounds, fsids_assigned_cat, assigned = check_GT('U', fsid, catid, vote_groups, fsids_assigned_cat, data_sounds)
+                if not assigned:
+                    data_sounds, fsids_assigned_cat, assigned = check_GT('NP', fsid, catid, vote_groups, fsids_assigned_cat, data_sounds)
+
+            # no GT was found for the annotation (2 votes in the same group).
+            # we must take decisions without inter-annotator agreement
+
+            if fsid not in fsids_assigned_cat:
+                # map the voted sound to a disjoint group  without inter-annotator agreement
+                data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
+                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
 
 
 
 
-# replicate code por PNP U NP
-# should be almost the same (minor changes...)
-# chekc a few small categories for final result
+
+    # check GT in U
+    # check GT in the remaining groups
+    # if GT does not exist, take mapping decision without inter-annotator agreement
+    for fsid in vote_groups['U']:
+        # print fsid
+
+        # only if the fsid has not been assigned in previous passes
+        if fsid not in fsids_assigned_cat:
+            # search for GT in this group
+            if vote_groups['U'].count(fsid) > 1:
+                if fsid not in fsids_assigned_cat:
+                    data_sounds[catid]['U'].append(fsid)
+                    fsids_assigned_cat.append(fsid)
+            else:
+                # search for GT in the remaining groups of votes
+                data_sounds, fsids_assigned_cat, assigned = check_GT('NP', fsid, catid, vote_groups, fsids_assigned_cat, data_sounds)
+
+            # no GT was found for the annotation (2 votes in the same group).
+            # we must take decisions without inter-annotator agreement
+
+            if fsid not in fsids_assigned_cat:
+                # map the voted sound to a disjoint group  without inter-annotator agreement
+                data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
+                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
+
+
+
+
+    # check GT in NP
+    # check GT in the remaining groups? no need to. already done in previous passes
+    # if GT does not exist, take mapping decision without inter-annotator agreement
+    for fsid in vote_groups['NP']:
+        # print fsid
+
+        # only if the fsid has not been assigned in previous passes
+        if fsid not in fsids_assigned_cat:
+            # search for GT in this group
+            if vote_groups['NP'].count(fsid) > 1:
+                if fsid not in fsids_assigned_cat:
+                    data_sounds[catid]['NP'].append(fsid)
+                    fsids_assigned_cat.append(fsid)
+            # else: no need to. already done in previous passes
+            #     # search for GT in the remaining groups of votes
+            #     data_sounds, fsids_assigned_cat, assigned = check_GT('NP', fsid, catid, vote_groups, fsids_assigned_cat, data_sounds)
+
+            # no GT was found for the annotation (2 votes in the same group).
+            # we must take decisions without inter-annotator agreement
+            else:
+            # if fsid not in fsids_assigned_cat:
+                # map the voted sound to a disjoint group  without inter-annotator agreement
+                data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
+                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
+
+    # store mapping error for every category
+    error_mapping_count_cats.append(error_mapping_count_cat)
+
+
+
+if sum(error_mapping_count_cats) > 0:
+    print 'there are errors in the following number of fsids: ' + str(sum(error_mapping_count_cats))
+    print(error_mapping_count_cats)
+
+# TO DO
+# chekc a few small categories in data_votes and data_sounds for testing
+# sanity checks: see hoja, check groups are disjount and number of sounds is equal in data_sounds (adding) and data_votes (concatenating groups and set)
 # for every category compute QA here number of votes len(PP) + len(PNP) / all
 
 
+# here we have data_sounds ready. let us create HQ and LQ with 2 versions. Then, apply filters step by step.
 
 
 
