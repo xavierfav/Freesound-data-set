@@ -18,7 +18,8 @@ MIN_HQ = 40  # minimum number of sounds with HQ labels per category
 MIN_LQ = 80  # minimum number of sounds  with LQ labels per category
 MIN_QE = 0.5  # minimum QE to accept the LQ as decent
 MIN_HQ_LQ = 120  # minimum number of sounds between HQ and LQ labels per category
-FLAG_PLOT = True
+FLAG_BARPLOT = True
+FLAG_BOXPLOT = False
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
 '''------------------------------------------------------------------------------------------'''
@@ -541,13 +542,14 @@ for ii in range(2):
     # plot
     nb_dev_samples = compute_median(data_qual_sets_l)
     # plots before strong filters: all possible categories
-    if FLAG_PLOT:
+    if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'LEAVES: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
         plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
 
+    if FLAG_BARPLOT:
         # create variable with data for barplotting - function
         var_barplot = create_var_barplot(data_qual_sets_l, data_onto_by_id)
 
@@ -597,13 +599,14 @@ for ii in range(2):
     # plot
     nb_dev_samples = compute_median(data_qual_sets_ld_HQ)
     # plots before strong filters: all possible categories
-    if FLAG_PLOT:
+    if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'LEAVES | DUR | MIN_HQ: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
         plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
 
+    if FLAG_BARPLOT:
         # barplot with number of sounds per category
         # create variable with data for barplotting
         var_barplot = create_var_barplot(data_qual_sets_ld_HQ, data_onto_by_id)
@@ -653,13 +656,14 @@ for ii in range(2):
     # plot
     nb_dev_samples = compute_median(data_qual_sets_ld_HQLQQE)
     # plots before strong filters: all possible categories
-    if FLAG_PLOT:
+    if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'ALFA - LEAVES | DUR | MIN_HQ_LQ_QE: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
         plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
 
+    if FLAG_BARPLOT:
         # barplot with number of sounds per category
         # create variable with data for barplotting
         var_barplot = create_var_barplot(data_qual_sets_ld_HQLQQE, data_onto_by_id)
@@ -711,13 +715,14 @@ for ii in range(2):
     # plot
     nb_dev_samples = compute_median(data_qual_sets_ld_HQLQQEb)
     # plots before strong filters: all possible categories
-    if FLAG_PLOT:
+    if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'BETA - LEAVES | DUR | MIN_HQ_LQ_QE: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
         plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
 
+    if FLAG_BARPLOT:
         # barplot with number of sounds per category
         # create variable with data for barplotting
         var_barplot = create_var_barplot(data_qual_sets_ld_HQLQQEb, data_onto_by_id)
