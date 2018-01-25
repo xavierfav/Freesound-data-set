@@ -684,11 +684,19 @@ for ii in range(2):
     # CASE BETA
     # FILTER 4: MIN_HQ_LQ. number of sounds amounted between HQ + LQ should not be less than MIN_HQ_LQ
     data_qual_sets_ld_HQLQb = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
-                               len(data_qual_sets_ld_HQ[o]['LQ']) + len(data_qual_sets_ld_HQ[o]['HQ']) >= MIN_HQ_LQ}
+                               (len(data_qual_sets_ld_HQ[o]['LQ']) + len(data_qual_sets_ld_HQ[o]['HQ'])) >= MIN_HQ_LQ}
+
+    # sanity
+    for catid, groups in data_qual_sets_ld_HQLQb.iteritems():
+        if (len(groups['LQ']) + len(groups['HQ'])) < MIN_HQ_LQ:
+            print 'error in the category: ' + str(data_onto_by_id[str(catid)]['name'])
+
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
         MIN_HQ_LQ) + \
           ' sounds between HQ and LQ labels, and of duration [' + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(
         len(data_qual_sets_ld_HQLQb))
+
+
 
 
     # FILTER 5: MIN_QE. to trust the LQ subset, we demand a minimum QE
