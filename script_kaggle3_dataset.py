@@ -14,10 +14,13 @@ MINLEN = 0.3  # duration
 MAXLEN = 30.0
 MIN_VOTES_CAT = 30  # minimum number of votes per category to produce a QE.
 # maybe useless cause all have more than 72 votes (paper)
+
 MIN_HQ = 40  # minimum number of sounds with HQ labels per category
-MIN_LQ = 80  # minimum number of sounds  with LQ labels per category
-MIN_QE = 0.5  # minimum QE to accept the LQ as decent
-MIN_HQ_LQ = 120  # minimum number of sounds between HQ and LQ labels per category
+MIN_LQ = 75  # minimum number of sounds  with LQ labels per category
+MIN_HQdev_LQ = 90  # minimum number of sounds between HQ and LQ labels per category
+PERCENTAGE_DEV = 0.7 # split 70 / 30 for DEV / EVAL
+# PERCENTAGE_DEV = 0.625 # split 62.5 / 27.5 for DEV / EVAL
+MIN_QE = 0.7  # minimum QE to accept the LQ as decent
 FLAG_BARPLOT = True
 FLAG_BOXPLOT = False
 
@@ -241,7 +244,7 @@ def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda):
 def compute_median(data):
     nb_samples = []
     for id, group in data.iteritems():
-        nb_samples.append(np.ceil(0.7 * len(group['HQ'])) + len(group['LQ']))
+        nb_samples.append(np.ceil(PERCENTAGE_DEV * len(group['HQ'])) + len(group['LQ']))
     print 'Estimated Median of number of DEV samples per category: ' + str(np.median(nb_samples))
     print()
     return nb_samples
@@ -252,9 +255,9 @@ def create_var_barplot(data_set, data_onto_by_id):
     var_plot = []
     for catid, groups in data_set.iteritems():
         cat_plot = {}
-        cat_plot['nbHQ_tr'] = np.ceil(0.7 * len(groups['HQ']))
+        cat_plot['nbHQ_dev'] = np.ceil(PERCENTAGE_DEV * len(groups['HQ']))
         cat_plot['nbLQ'] = len(groups['LQ'])
-        cat_plot['nbtotal_tr'] = cat_plot['nbHQ_tr'] + cat_plot['nbLQ']
+        cat_plot['nbtotal_tr'] = cat_plot['nbHQ_dev'] + cat_plot['nbLQ']
         cat_plot['name'] = data_onto_by_id[str(catid)]['name']
         var_plot.append(cat_plot)
     return var_plot
@@ -463,7 +466,7 @@ data_qual_sets = copy.deepcopy(data_votes)
 for catid, groups in data_qual_sets.iteritems():
     data_qual_sets[catid].clear()
 
-for ii in range(2):
+for ii in range(1):
     if ii == 0:
         # CASE A
         # HQ = PP
@@ -501,14 +504,14 @@ for ii in range(2):
         print(catid)
         sys.exit('data_qual_sets has not disjoint groups')
 
-    nb_dev_samples = compute_median(data_qual_sets)
+    nb_samples_cats_dev = compute_median(data_qual_sets)
     # plots before strong filters: all possible categories
     # if FLAG_PLOT:
     #     # boxplot number of examples per category in dev
     #     x_labels = 'estimated dev'
     #     fig_title = 'estimated number of clips in categories of DEV set'
     #     y_label = '# of audio clips'
-    #     plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
+    #     plot_boxplot(nb_samples_cats_dev, x_labels, fig_title, y_label)
     #
     #     # create variable with data for barplotting - function
     #     var_barplot = create_var_barplot(data_qual_sets, data_onto_by_id)
@@ -516,14 +519,14 @@ for ii in range(2):
     #     # barplot with number of sounds per category
     #     # sort by ascending number of TRAINING sounds in category (70% HQ + LQ)
     #     idx = np.argsort([var_barplot[tt]['nbtotal_tr'] for tt in range(len(var_barplot))])
-    #     # idx = np.argsort([data_onto_rich[tt]['nbHQ_tr'] for tt in range(len(data_onto_rich))])
+    #     # idx = np.argsort([data_onto_rich[tt]['nbHQ_dev'] for tt in range(len(data_onto_rich))])
     #
     #     data_bottom = list(var_barplot[val]['nbLQ'] for val in idx)
-    #     data_up = list(var_barplot[val]['nbHQ_tr'] for val in idx)
+    #     data_up = list(var_barplot[val]['nbHQ_dev'] for val in idx)
     #     x_labels = list(var_barplot[val]['name'] for val in idx)
     #     y_label = '# of audio clips'
-    #     fig_title = 'number of DEV clips per category, split in HQtr and LQ, sorted by total'
-    #     legenda = ('LQ', 'HQtr')
+    #     fig_title = 'number of DEV clips per category, split in HQdev and LQ, sorted by total'
+    #     legenda = ('LQ', 'HQdev')
     #     plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
     #
 
@@ -533,6 +536,11 @@ for ii in range(2):
 
     # FILTER 1: Consider only leaf categories: 474 out of the initial 632
 
+    # NOTE: we could try to include the parents for which childs are discarded. This means changing things here
+    # do not filter by child. process all of them. Process children first.
+    # Once that is done, include parents only if i) they are eligible and ii) no children of theirs are selected.
+    # how many categories are gained?
+
     # for o in data_qual_sets. o = catid
     # create a dict of dicts. The latter are key=o, and value the actual value (data_qual_sets[o])
     data_qual_sets_l = {o: data_qual_sets[o] for o in data_qual_sets if len(data_onto_by_id[o]['child_ids']) < 1}
@@ -540,14 +548,14 @@ for ii in range(2):
     # print()
 
     # plot
-    nb_dev_samples = compute_median(data_qual_sets_l)
+    nb_samples_cats_dev = compute_median(data_qual_sets_l)
     # plots before strong filters: all possible categories
     if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'LEAVES: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
-        plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
+        plot_boxplot(nb_samples_cats_dev, x_labels, fig_title, y_label)
 
     if FLAG_BARPLOT:
         # create variable with data for barplotting - function
@@ -556,14 +564,14 @@ for ii in range(2):
         # barplot with number of sounds per category
         # sort by ascending number of TRAINING sounds in category (70% HQ + LQ)
         idx = np.argsort([var_barplot[tt]['nbtotal_tr'] for tt in range(len(var_barplot))])
-        # idx = np.argsort([data_onto_rich[tt]['nbHQ_tr'] for tt in range(len(data_onto_rich))])
+        # idx = np.argsort([data_onto_rich[tt]['nbHQ_dev'] for tt in range(len(data_onto_rich))])
 
         data_bottom = list(var_barplot[val]['nbLQ'] for val in idx)
-        data_up = list(var_barplot[val]['nbHQ_tr'] for val in idx)
+        data_up = list(var_barplot[val]['nbHQ_dev'] for val in idx)
         x_labels = list(var_barplot[val]['name'] for val in idx)
         y_label = '# of audio clips'
-        fig_title = 'LEAVES: number of DEV clips per category, split in HQtr and LQ, sorted by total'
-        legenda = ('LQ', 'HQtr')
+        fig_title = 'LEAVES: number of DEV (' + str(PERCENTAGE_DEV*100) +  '%) clips per category, split in HQdev and LQ, sorted by total'
+        legenda = ('LQ', 'HQdev')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
 
@@ -597,14 +605,14 @@ for ii in range(2):
     # print()
 
     # plot
-    nb_dev_samples = compute_median(data_qual_sets_ld_HQ)
+    nb_samples_cats_dev = compute_median(data_qual_sets_ld_HQ)
     # plots before strong filters: all possible categories
     if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'LEAVES | DUR | MIN_HQ: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
-        plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
+        plot_boxplot(nb_samples_cats_dev, x_labels, fig_title, y_label)
 
     if FLAG_BARPLOT:
         # barplot with number of sounds per category
@@ -613,34 +621,35 @@ for ii in range(2):
         # sort by ascending number of TRAINING sounds in category (70% HQ + LQ)
         idx = np.argsort([var_barplot[tt]['nbtotal_tr'] for tt in range(len(var_barplot))])
         data_bottom = list(var_barplot[val]['nbLQ'] for val in idx)
-        data_up = list(var_barplot[val]['nbHQ_tr'] for val in idx)
+        data_up = list(var_barplot[val]['nbHQ_dev'] for val in idx)
         x_labels = list(var_barplot[val]['name'] for val in idx)
         y_label = '# of audio clips'
-        fig_title = 'LEAVES | DUR | MIN_HQ: number of DEV clips per category, split in HQtr and LQ, sorted by total'
-        legenda = ('LQ', 'HQtr')
+        fig_title = 'LEAVES | DUR | MIN_HQ: number of DEV ('\
+                    + str(PERCENTAGE_DEV*100) +  '%) clips per category, split in HQdev and LQ, sorted by total'
+        legenda = ('LQ', 'HQdev')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
-        # barplot again sorted by HQtr
-        idx = np.argsort([var_barplot[tt]['nbHQ_tr'] for tt in range(len(var_barplot))])
+        # barplot again sorted by HQdev
+        idx = np.argsort([var_barplot[tt]['nbHQ_dev'] for tt in range(len(var_barplot))])
         data_up = list(var_barplot[val]['nbLQ'] for val in idx)
-        data_bottom = list(var_barplot[val]['nbHQ_tr'] for val in idx)
+        data_bottom = list(var_barplot[val]['nbHQ_dev'] for val in idx)
         x_labels = list(var_barplot[val]['name'] for val in idx)
         y_label = '# of audio clips'
-        fig_title = 'LEAVES | DUR | MIN_HQ: number of DEV clips per category, split in HQtr and LQ, sorted by HQtr'
-        legenda = ('HQtr', 'LQ')
+        fig_title = 'LEAVES | DUR | MIN_HQ: number of DEV ('\
+                    + str(PERCENTAGE_DEV*100) +  '%) clips per category, split in HQdev and LQ, sorted by HQdev'
+        legenda = ('HQdev', 'LQ')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
 
 
-    """ # apply FLEXIBLE filters to data_qual_sets***********************************************************************"""
+    """ # apply FLEXIBLE filters to data_qual_sets*****************************************************************"""
 
     print 'APPROACH ALFA is more strict: separate threshold on HQ and LQ'
     # FILTER 4: MIN_LQ. number of sounds with LQ should not be less than MIN_LQ
     data_qual_sets_ld_HQLQ = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
                               len(data_qual_sets_ld_HQ[o]['LQ']) >= MIN_LQ}
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_LQ) + \
-          ' sounds with LQ labels, and of duration [' + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(
+        MIN_LQ) + ' sounds with LQ labels, and of duration [' + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(
         len(data_qual_sets_ld_HQLQ))
 
 
@@ -648,20 +657,19 @@ for ii in range(2):
     data_qual_sets_ld_HQLQQE = {o: data_qual_sets_ld_HQLQ[o] for o in data_qual_sets_ld_HQLQ if
                                 data_qual_sets_ld_HQLQ[o]['QE'] >= MIN_QE}
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_LQ) + \
-          ' sounds with LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
+        MIN_LQ) + ' sounds with LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
           + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQQE))
 
 
     # plot
-    nb_dev_samples = compute_median(data_qual_sets_ld_HQLQQE)
+    nb_samples_cats_dev = compute_median(data_qual_sets_ld_HQLQQE)
     # plots before strong filters: all possible categories
     if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
         fig_title = 'ALFA - LEAVES | DUR | MIN_HQ_LQ_QE: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
-        plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
+        plot_boxplot(nb_samples_cats_dev, x_labels, fig_title, y_label)
 
     if FLAG_BARPLOT:
         # barplot with number of sounds per category
@@ -670,35 +678,35 @@ for ii in range(2):
         # sort by ascending number of TRAINING sounds in category (70% HQ + LQ)
         idx = np.argsort([var_barplot[tt]['nbtotal_tr'] for tt in range(len(var_barplot))])
         data_bottom = list(var_barplot[val]['nbLQ'] for val in idx)
-        data_up = list(var_barplot[val]['nbHQ_tr'] for val in idx)
+        data_up = list(var_barplot[val]['nbHQ_dev'] for val in idx)
         x_labels = list(var_barplot[val]['name'] for val in idx)
         y_label = '# of audio clips'
-        fig_title = 'ALFA - LEAVES | DUR | MIN_HQ_LQ_QE: number of DEV clips per category, split in HQtr and LQ, sorted by total'
-        legenda = ('LQ', 'HQtr')
+        fig_title = 'ALFA - LEAVES | DUR | MIN_HQ_LQ_QE: number of DEV ('\
+                    + str(PERCENTAGE_DEV*100) +  '%) clips per category, split in HQdev and LQ, sorted by total'
+        legenda = ('LQ', 'HQdev')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
-    print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_dev_samples))
+    print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_samples_cats_dev))
 
 
 
 
     print()
     print()
-    print 'APPROACH BETA is less strict: HQ + LQ > MIN_HQ_LQ (joint)'
+    print 'APPROACH BETA is less strict: HQ + LQ > MIN_HQdev_LQ (joint)'
     # CASE BETA
-    # FILTER 4: MIN_HQ_LQ. number of sounds amounted between HQ + LQ should not be less than MIN_HQ_LQ
+    # FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ should not be less than MIN_HQdev_LQ
     data_qual_sets_ld_HQLQb = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
-                               (len(data_qual_sets_ld_HQ[o]['LQ']) + len(data_qual_sets_ld_HQ[o]['HQ'])) >= MIN_HQ_LQ}
+                               (len(data_qual_sets_ld_HQ[o]['LQ']) + np.ceil(PERCENTAGE_DEV *len(data_qual_sets_ld_HQ[o]['HQ']))) >= MIN_HQdev_LQ}
 
     # sanity
     for catid, groups in data_qual_sets_ld_HQLQb.iteritems():
-        if (len(groups['LQ']) + len(groups['HQ'])) < MIN_HQ_LQ:
+        if (len(groups['LQ']) + np.ceil(PERCENTAGE_DEV *len(groups['HQ']))) < MIN_HQdev_LQ:
             print 'error in the category: ' + str(data_onto_by_id[str(catid)]['name'])
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_HQ_LQ) + \
-          ' sounds between HQ and LQ labels, and of duration [' + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(
-        len(data_qual_sets_ld_HQLQb))
+        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels, and of duration ['\
+          + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQb))
 
 
 
@@ -707,20 +715,19 @@ for ii in range(2):
     data_qual_sets_ld_HQLQQEb = {o: data_qual_sets_ld_HQLQb[o] for o in data_qual_sets_ld_HQLQb if
                                  data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE}
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_HQ_LQ) + \
-          ' sounds between HQ and LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
+        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
           + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQQEb))
 
 
     # plot
-    nb_dev_samples = compute_median(data_qual_sets_ld_HQLQQEb)
+    nb_samples_cats_dev = compute_median(data_qual_sets_ld_HQLQQEb)
     # plots before strong filters: all possible categories
     if FLAG_BOXPLOT:
         # boxplot number of examples per category in dev
         x_labels = 'estimated dev'
-        fig_title = 'BETA - LEAVES | DUR | MIN_HQ_LQ_QE: estimated number of clips in categories of DEV set'
+        fig_title = 'BETA - LEAVES | DUR | MIN_HQdev_LQ: estimated number of clips in categories of DEV set'
         y_label = '# of audio clips'
-        plot_boxplot(nb_dev_samples, x_labels, fig_title, y_label)
+        plot_boxplot(nb_samples_cats_dev, x_labels, fig_title, y_label)
 
     if FLAG_BARPLOT:
         # barplot with number of sounds per category
@@ -729,14 +736,27 @@ for ii in range(2):
         # sort by ascending number of TRAINING sounds in category (70% HQ + LQ)
         idx = np.argsort([var_barplot[tt]['nbtotal_tr'] for tt in range(len(var_barplot))])
         data_bottom = list(var_barplot[val]['nbLQ'] for val in idx)
-        data_up = list(var_barplot[val]['nbHQ_tr'] for val in idx)
+        data_up = list(var_barplot[val]['nbHQ_dev'] for val in idx)
         x_labels = list(var_barplot[val]['name'] for val in idx)
         y_label = '# of audio clips'
-        fig_title = 'BETA - LEAVES | DUR | MIN_HQ_LQ_QE: number of DEV clips per category, split in HQtr and LQ, sorted by total'
-        legenda = ('LQ', 'HQtr')
+        fig_title = 'BETA - LEAVES | DUR | MIN_HQdev_LQ: number of DEV ('\
+                    + str(PERCENTAGE_DEV*100) + '%) clips per category, split in HQdev and LQ, sorted by total'
+        legenda = ('LQ', 'HQdev')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
-    print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_dev_samples))
+        # barplot again sorted by HQdev
+        idx = np.argsort([var_barplot[tt]['nbHQ_dev'] for tt in range(len(var_barplot))])
+        data_up = list(var_barplot[val]['nbLQ'] for val in idx)
+        data_bottom = list(var_barplot[val]['nbHQ_dev'] for val in idx)
+        x_labels = list(var_barplot[val]['name'] for val in idx)
+        y_label = '# of audio clips'
+        fig_title = 'BETA - LEAVES | DUR | MIN_HQdev_LQ: number of DEV ('\
+                    + str(PERCENTAGE_DEV*100) + '%) clips per category, split in HQdev and LQ, sorted by HQdev'
+        legenda = ('HQdev', 'LQ')
+        plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
+
+
+    print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_samples_cats_dev))
     print()
     print '======================================================'
     print '\n\n\n'
