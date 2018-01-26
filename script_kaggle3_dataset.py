@@ -21,7 +21,7 @@ MIN_HQdev_LQ = 90  # minimum number of sounds between HQ and LQ labels per categ
 PERCENTAGE_DEV = 0.7 # split 70 / 30 for DEV / EVAL
 # PERCENTAGE_DEV = 0.625 # split 62.5 / 27.5 for DEV / EVAL
 MIN_QE = 0.7  # minimum QE to accept the LQ as decent
-FLAG_BARPLOT = True
+FLAG_BARPLOT = False
 FLAG_BOXPLOT = False
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
@@ -531,6 +531,8 @@ for ii in range(1):
     #
 
 
+    # at this point we have: data_qual_sets, with dicts containing
+    # HQ, LQ, QE for all categories (632)
 
     """ # apply STRONG filters to data_qual_sets********************************************************************"""
 
@@ -761,6 +763,53 @@ for ii in range(1):
     print '======================================================'
     print '\n\n\n'
 
+
+
+    # final set of valid leaf categories for dataset
+    final_set_valid_leafs = [catid for catid in data_qual_sets_ld_HQLQQEb]
+
+    # list all penultimate parents (parents at the penultimate level of the onto)
+    penul_parents = []
+    for catid, info in data_onto_by_id.iteritems():
+        # if they have children
+        if info['child_ids']:
+            # but none of the children have further children
+            flag_penul_parent = True
+            for childid in info['child_ids']:
+                if data_onto_by_id[str(childid)]['child_ids']:
+                    flag_penul_parent = False
+                    break
+            if flag_penul_parent:
+                penul_parents.append({'catid': catid, 'name': data_onto_by_id[str(catid)]['name']})
+                print (data_onto_by_id[str(catid)]['name'])
+
+    print 'There are ' + str(len(penul_parents)) + ' penultimate parents\n'
+
+    # how many of the penultimate parents have ALL children discarded for the dataset?
+    penul_parents_cand = []
+    for penul_parent in penul_parents:
+        flag_all_children_discarded = True
+        for childid in data_onto_by_id[penul_parent['catid']]['child_ids']:
+            if childid in final_set_valid_leafs:
+                flag_all_children_discarded = False
+                break
+        if flag_all_children_discarded:
+            penul_parents_cand.append({'catid': penul_parent['catid'], 'name': penul_parent['name']})
+            print (penul_parent['name'])
+
+    print 'There are ' + str(len(penul_parents_cand)) + ' penultimate parents; ALL children either' \
+                                                        'not eligible (eg RED) or discarded for the dataset\n'
+
+    # these penultimate parents with ALL children not eligible or discarded, are candidates to be part of the dataset
+    # they are candidates to be "new children"
+    # we have to populate them with their useless children (join them):
+    # - only consider the children that do not have multiple parents
+    # - concatenate lists of HQ and LQ (easy)? set (but it can happen that in child is LQ and in parent HQ)
+    # the concepts of LQ and HQ are different when we ppulate higher in the hierarchy. THINK.
+    # - recompute the QE, with votes... think cases: sound in children OR in father vs sound in both
+
+
+    # once we have the new children, repeat filtering as if they were real children.
 a = 9  # for debugging
 
 
