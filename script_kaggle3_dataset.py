@@ -803,10 +803,47 @@ for ii in range(1):
     # these penultimate parents with ALL children not eligible or discarded, are candidates to be part of the dataset
     # they are candidates to be "new children"
     # we have to populate them with their useless children (join them):
-    # - only consider the children that do not have multiple parents
-    # - concatenate lists of HQ and LQ (easy)? set (but it can happen that in child is LQ and in parent HQ)
-    # the concepts of LQ and HQ are different when we ppulate higher in the hierarchy. THINK.
-    # - recompute the QE, with votes... think cases: sound in children OR in father vs sound in both
+    # 1- only consider the children that do not have multiple parents.
+    # For example,HISS is a child and has multiple parents (cat, steam, snake, onomatopeia)
+    # u cannot say that a steam hiss is a cat hiss, so we cannot propagate from hiss to cat.
+    # but the rest of the Cat's children can be populated (meouw, purr, etc)
+
+    # 2-populate parents with valid children: HQ, LQ
+    # concatenate lists of HQ and LQ (easy)? set
+    # but the concepts of LQ and HQ are different when we populate higher in the hierarchy. THINK.
+    # it can happen that in child is LQ while it is HQ in parent: for example, if we have a meow and a purr,
+    # it will be PNP on any of the children, but PP on the immediate parent CAT
+    # we do not know this. it could also be that there is purr + speech (category outside the 'family'), and so
+    # it must stay PNP both in children and parent.
+    # The easiest thing, and more restrictive/demanding/ensuring better quality is:
+    # join HQ and join LQ. whatever it is HQ in children, it will also be in parent
+
+    # 3-recompute the QE, with votes... think cases: sound in children OR in father vs sound in both
+    # if it is only in one of them, it is fine
+    # if it is in both, the belonging to every class (ie annotation) is different.
+
+    # could be contradictory votes. A cat purr candidate to meow
+    # THINK. cont here***************************
+
+    # 1- for every children:
+    # if there is no multiple parents. THINK
+
+    # 2- when populating there are several cases posible
+    # a) sound appears twice in HQ, or on LQ. Do set to keep it once. sanity check.
+    # b) sound appears in parent_HQ and child_LQ: if we have a meow and a purr (PNP) or if you are Unsure between a purr/meow
+    # count how many times this happens. leave in HQ
+    # c) sound appears in parent_LQ and child_HQ: is this possible? in theory it should not:
+    # - absence of noise in one means it is also absent in the other
+    # - PP in children, means PP in parent.
+    # monitor this. it could happen due to different subjective evaluation. same file rated differently by different people.
+    # count how many times this happens. leave in LQ.
+
+
+
+
+
+
+
 
 
     # once we have the new children, repeat filtering as if they were real children.
