@@ -797,26 +797,28 @@ for ii in range(1):
             penul_parents_cand.append({'catid': penul_parent['catid'], 'name': penul_parent['name']})
             print (penul_parent['name'])
 
-    print 'There are ' + str(len(penul_parents_cand)) + ' penultimate parents; ALL children either' \
+    print 'There are ' + str(len(penul_parents_cand)) + ' penultimate parents; ALL children either ' \
                                                         'not eligible (eg RED) or discarded for the dataset\n'
 
     # these penultimate parents with ALL children not eligible or discarded, are candidates to be part of the dataset
     # they are candidates to be "new children"
+
     # we have to populate them with their useless children (join them):
     # 1- only consider the children that do not have multiple parents.
-    # For example,HISS is a child and has multiple parents (cat, steam, snake, onomatopeia)
+    # For example, HISS is a child and has multiple parents (cat, steam, snake, onomatopeia)
     # u cannot say that a steam hiss is a cat hiss, so we cannot propagate from hiss to cat.
     # but the rest of the Cat's children can be populated (meouw, purr, etc)
 
     # 2-populate parents with valid children: HQ, LQ
     # concatenate lists of HQ and LQ (easy)? set
     # but the concepts of LQ and HQ are different when we populate higher in the hierarchy. THINK.
-    # it can happen that in child is LQ while it is HQ in parent: for example, if we have a meow and a purr,
+    # it can happen that in child it is LQ while it is HQ in parent: for example, if we have a meow and a purr,
     # it will be PNP on any of the children, but PP on the immediate parent CAT
     # we do not know this. it could also be that there is purr + speech (category outside the 'family'), and so
     # it must stay PNP both in children and parent.
     # The easiest thing, and more restrictive/demanding/ensuring better quality is:
-    # join HQ and join LQ. whatever it is HQ in children, it will also be in parent
+    # join HQ and join LQ. whatever it is HQ in children, it will also be in parent.
+    # and in this way, the LQ will be of better quality
 
     # 3-recompute the QE, with votes... think cases: sound in children OR in father vs sound in both
     # if it is only in one of them, it is fine
@@ -825,18 +827,87 @@ for ii in range(1):
     # could be contradictory votes. A cat purr candidate to meow
     # THINK. cont here***************************
 
-    # 1- for every children:
-    # if there is no multiple parents. THINK
 
-    # 2- when populating there are several cases posible
-    # a) sound appears twice in HQ, or on LQ. Do set to keep it once. sanity check.
-    # b) sound appears in parent_HQ and child_LQ: if we have a meow and a purr (PNP) or if you are Unsure between a purr/meow
-    # count how many times this happens. leave in HQ
-    # c) sound appears in parent_LQ and child_HQ: is this possible? in theory it should not:
-    # - absence of noise in one means it is also absent in the other
-    # - PP in children, means PP in parent.
-    # monitor this. it could happen due to different subjective evaluation. same file rated differently by different people.
-    # count how many times this happens. leave in LQ.
+    counter_mult_parents = 0
+    for penul_parent in penul_parents_cand:
+        children_valid_popul = []
+        # flag_all_children_discarded = True
+        for childid in data_onto_by_id[penul_parent['catid']]['child_ids']:
+            # 1- for every child: if there is no multiple parents
+            nb_parents = len([parentid for parentid in data_onto_by_id if childid in data_onto_by_id[str(parentid)]['child_ids']])
+            if nb_parents == 1:
+                # only consider children withOUT multiple parents
+                children_valid_popul.append(childid)
+            elif nb_parents == 0:
+                sys.exit('mistake at multiple parents computation')
+            else:
+                counter_mult_parents += 1
+
+        # 2- when populating there are several cases possible
+        # a) sound appears twice in HQ, or on LQ. Do set to keep it once. sanity check.
+
+        # b) sound appears in parent_HQ and child_LQ:
+        # if we have a meow and a purr (PNP) or if you are Unsure between a purr/meow
+        # count how many times this happens. leave in HQ
+
+        # c) sound appears in parent_LQ and child_HQ: is this possible? in theory it should not:
+        # - absence of noise in one means it is also absent in the other
+        # - PP in children, means PP in parent.
+        # monitor this. it could happen due to different subjective evaluation.
+        # same file rated differently by different people.
+        # count how many times this happens. leave in LQ.
+
+        # children_valid_popul
+
+
+
+        """ # from data_qual_sets to data_qual_sets_pparents  *****************************************************"""
+        # let us create HQ and LQ by populating. Then, apply filters step by step.
+
+        # create data_qual_sets_pparents with keys with catids and empty dicts as values
+        data_qual_sets_pparents = copy.deepcopy(data_qual_sets)
+        for catid, groups in data_qual_sets_pparents.iteritems():
+            data_qual_sets_pparents[catid].clear()
+
+        # data_qual_sets_pparents[penul_parent['catid']]['HQ'] = \
+        #     [my_list for my_list in data_qual_sets[penul_parent['catid']]['HQ'] ]
+        if children_valid_popul:
+
+            # cont. consider HQ and LQ
+            # grab all valid children, merge into list, concatenate with parent, set
+            children_joint_lists = [data_qual_sets[str(id)]['HQ'] for id in children_valid_popul]
+            children_joint = list(itertools.chain.from_iterable(children_joint_lists))
+            data_qual_sets_pparents[penul_parent['catid']]['HQ'] = \
+                set(data_qual_sets[penul_parent['catid']]['HQ'] + children_joint)
+
+            # repeat with LQ (review)
+
+        else:
+            # no valid children to populate, so consider only the parent itself
+            # these categories were not considered before because they were not leafs
+            data_qual_sets_pparents[penul_parent['catid']]['HQ'] = data_qual_sets[penul_parent['catid']]['HQ']
+            data_qual_sets_pparents[penul_parent['catid']]['LQ'] = data_qual_sets[penul_parent['catid']]['LQ']
+
+
+
+        #
+        # for catid, sound_groups in data_sounds.iteritems():
+        #     data_qual_sets[catid]['HQ'] = sound_groups['PP']
+        #     list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
+        #     data_qual_sets[catid]['LQ'] = [item for item in list_woPP if item not in sound_groups['NP']]
+        #     data_qual_sets[catid]['QE'] = sound_groups['QE']
+        #
+
+
+
+
+
+    print 'There are ' + str(len(penul_parents_cand)) + ' penultimate parents; ALL children either' \
+                                                        'not eligible (eg RED) or discarded for the dataset\n'
+
+
+
+
 
 
 
