@@ -901,11 +901,11 @@ for ii in range(1):
 
             # consider HQ and LQ
             # grab all valid children, merge into list, set
-            children_joint_lists_HQ = [data_qual_sets[str(id)]['HQ'] for id in children_valid_popul]
+            children_joint_lists_HQ = [data_qual_sets[str(childid)]['HQ'] for childid in children_valid_popul]
             children_joint_HQ_wQE = list(set(list(itertools.chain.from_iterable(children_joint_lists_HQ))))
             # the latter should not produce duplicates
 
-            children_joint_lists_LQ = [data_qual_sets[str(id)]['LQ'] for id in children_valid_popul]
+            children_joint_lists_LQ = [data_qual_sets[str(childid)]['LQ'] for childid in children_valid_popul]
             children_joint_LQ_wQE = list(set(list(itertools.chain.from_iterable(children_joint_lists_LQ))))
             # the latter could produce duplicates
 
@@ -953,7 +953,7 @@ for ii in range(1):
 
             # consider only HQ
             # grab all valid children, merge into list, set
-            children_joint_lists_HQ = [data_qual_sets[str(id)]['HQ'] for id in children_valid_popul_onlyHQ]
+            children_joint_lists_HQ = [data_qual_sets[str(childid)]['HQ'] for childid in children_valid_popul_onlyHQ]
             children_joint_HQ_woQE = list(set(list(itertools.chain.from_iterable(children_joint_lists_HQ))))
             # the latter should not produce duplicates
 
@@ -982,15 +982,15 @@ for ii in range(1):
 
         # now, independent of the children, add the parents if QE allows it
         # these categories were not considered before because they were not leafs
-        FLAG_PARENT_IN = False
+        FLAG_PARENT_IN = 0
         if data_qual_sets[penul_parent['catid']]['QE'] >= MIN_QE:
             # add both HQ and LQ
-            FLAG_PARENT_IN = True
+            FLAG_PARENT_IN = 2
             data_qual_sets_pparents[penul_parent['catid']]['HQ'].extend(data_qual_sets[penul_parent['catid']]['HQ'])
             data_qual_sets_pparents[penul_parent['catid']]['LQ'].extend(data_qual_sets[penul_parent['catid']]['LQ'])
 
         else:
-            FLAG_PARENT_IN = True
+            FLAG_PARENT_IN = 1
             # we cannot trust LQ. Add only HQ
             data_qual_sets_pparents[penul_parent['catid']]['HQ'].extend(data_qual_sets[penul_parent['catid']]['HQ'])
 
@@ -1003,62 +1003,100 @@ for ii in range(1):
 
 
         # Sanity Check
-        # after
+        # sounds after the processing
         nb_sounds_postpop = len(data_qual_sets_pparents[penul_parent['catid']]['HQ']) + \
                             len(data_qual_sets_pparents[penul_parent['catid']]['LQ'])
 
         if children_valid_popul and children_valid_popul_onlyHQ:
             # both types of population
+            # sometimes you get dual population from the children (HQ and LQ at the same time)
+            # sometimes you get only HQ population from the children (not enough QE)
+
             # sanity check: number of sounds must be equal before and after population
             # before, (concatenating groups and set)
-            if FLAG_PARENT_IN:
+            if FLAG_PARENT_IN == 2:
                 nb_sounds_prepop = len(set(children_joint_HQ_wQE + children_joint_LQ_wQE + children_joint_HQ_woQE +
                                            data_qual_sets[penul_parent['catid']]['HQ'] +
                                            data_qual_sets[penul_parent['catid']]['LQ']))
-            else:
+            elif FLAG_PARENT_IN == 1:
+                nb_sounds_prepop = len(set(children_joint_HQ_wQE + children_joint_LQ_wQE + children_joint_HQ_woQE +
+                                           data_qual_sets[penul_parent['catid']]['HQ']))
+            elif FLAG_PARENT_IN == 0:
                 nb_sounds_prepop = len(set(children_joint_HQ_wQE + children_joint_LQ_wQE + children_joint_HQ_woQE))
+            else:
+                sys.exit('sanity check number of sounds')
 
-            if nb_sounds_prepop != nb_sounds_postpop:
-                # print('\n something unexpetected happened in the mapping********************* \n')
-                print(catid)
-                sys.exit(
-                    'number of sounds is not equal before and after population - only dual population (always HQ and LQ)')
-
+            # if nb_sounds_prepop != nb_sounds_postpop:
+            #     # print('\n something unexpetected happened in the mapping********************* \n')
+            #     print(penul_parent)
+            #     sys.exit('number of sounds is not equal before and after population'
+            #              ' - both HQ and also dual population (always HQ and LQ)')
 
         elif children_valid_popul:
-            # only dual population (always HQ and LQ)
+            # only dual population from the children (always HQ and LQ)
 
             # sanity check: number of sounds must be equal before and after population
             # before, (concatenating groups and set)
-            if FLAG_PARENT_IN:
+            if FLAG_PARENT_IN == 2:
                 nb_sounds_prepop = len(set(children_joint_HQ_wQE + children_joint_LQ_wQE +
                                            data_qual_sets[penul_parent['catid']]['HQ'] +
                                            data_qual_sets[penul_parent['catid']]['LQ']))
-            else:
+            elif FLAG_PARENT_IN == 1:
+                nb_sounds_prepop = len(set(children_joint_HQ_wQE + children_joint_LQ_wQE +
+                                           data_qual_sets[penul_parent['catid']]['HQ']))
+            elif FLAG_PARENT_IN == 0:
                 nb_sounds_prepop = len(set(children_joint_HQ_wQE + children_joint_LQ_wQE))
+            else:
+                sys.exit('sanity check number of sounds')
 
-            if nb_sounds_prepop != nb_sounds_postpop:
-                # print('\n something unexpetected happened in the mapping********************* \n')
-                print(catid)
-                sys.exit('number of sounds is not equal before and after population - only dual population (always HQ and LQ)')
+            # if nb_sounds_prepop != nb_sounds_postpop:
+            #     # print('\n something unexpetected happened in the mapping********************* \n')
+            #     print(penul_parent)
+            #     sys.exit('number of sounds is not equal before and after population - only dual population (always HQ and LQ)')
 
         elif children_valid_popul_onlyHQ:
-            # only HQ population
+            # only HQ population from the children (not enough QE)
 
             # sanity check: number of sounds must be equal before and after population
             # before, (concatenating groups and set)
-            if FLAG_PARENT_IN:
-                nb_sounds_prepop = len(set(children_joint_HQ_woQE + data_qual_sets[penul_parent['catid']]['HQ']))
-            else:
+
+            if FLAG_PARENT_IN == 2:
+                nb_sounds_prepop = len(set(children_joint_HQ_woQE +
+                                           data_qual_sets[penul_parent['catid']]['HQ'] +
+                                           data_qual_sets[penul_parent['catid']]['LQ']))
+            elif FLAG_PARENT_IN == 1:
+                nb_sounds_prepop = len(set(children_joint_HQ_woQE +
+                                           data_qual_sets[penul_parent['catid']]['HQ']))
+            elif FLAG_PARENT_IN == 0:
                 nb_sounds_prepop = len(set(children_joint_HQ_woQE))
+            else:
+                sys.exit('sanity check number of sounds')
 
-            if nb_sounds_prepop != nb_sounds_postpop:
-                # print('\n something unexpetected happened in the mapping********************* \n')
-                print(catid)
-                sys.exit('number of sounds is not equal before and after population - only HQ population')
+            # if nb_sounds_prepop != nb_sounds_postpop:
+            #     # print('\n something unexpetected happened in the mapping********************* \n')
+            #     print(catid)
+            #     sys.exit('number of sounds is not equal before and after population - only HQ population')
 
+        else:
+            # no population from the children
 
+            # sanity check: number of sounds must be equal before and after population
+            # before, (concatenating groups and set)
 
+            if FLAG_PARENT_IN == 2:
+                nb_sounds_prepop = len(set(data_qual_sets[penul_parent['catid']]['HQ'] +
+                                           data_qual_sets[penul_parent['catid']]['LQ']))
+            elif FLAG_PARENT_IN == 1:
+                nb_sounds_prepop = len(set(data_qual_sets[penul_parent['catid']]['HQ']))
+            elif FLAG_PARENT_IN == 0:
+                nb_sounds_prepop = 0
+            else:
+                sys.exit('sanity check number of sounds')
+
+            # if nb_sounds_prepop != nb_sounds_postpop:
+            #     # print('\n something unexpetected happened in the mapping********************* \n')
+            #     print(penul_parent)
+            #     sys.exit('number of sounds is not equal before and after population - no population from children')
 
 
         # how many penultimate parents (populated or not) are we considering?)
@@ -1069,12 +1107,12 @@ for ii in range(1):
 
             # if we actually have a new candidate category, sanity checks
 
-            # sanity check: HQ and LQ must be disjoint groups
-            if list(set(data_qual_sets_pparents[penul_parent['catid']]['HQ']) &
-                    set(data_qual_sets_pparents[penul_parent['catid']]['LQ'])):
-                # print('\n something unexpetected happened in the mapping********************* \n')
-                print(penul_parent)
-                sys.exit('data_qual_sets_pparents has not disjoint groups. beware population')
+            # # sanity check: HQ and LQ must be disjoint groups
+            # if list(set(data_qual_sets_pparents[penul_parent['catid']]['HQ']) &
+            #         set(data_qual_sets_pparents[penul_parent['catid']]['LQ'])):
+            #     # print('\n something unexpetected happened in the mapping********************* \n')
+            #     print(penul_parent)
+            #     sys.exit('data_qual_sets_pparents has not disjoint groups. beware population')
 
             # only then, report
             penul_parents_cand_2filt.append(penul_parent)
@@ -1119,14 +1157,24 @@ for ii in range(1):
     # play. copy and paste.
 
 
+# remove empty categories from data_qual_sets_pparents
+data_qual_sets_pparents_clean = {o: data_qual_sets_pparents[o] for o in data_qual_sets_pparents if data_qual_sets_pparents[o]['HQ']}
+print 'Number of added penultimate parents: ' + str(len(data_qual_sets_pparents_clean))
 
 
+
+# joint both dicts
+dataset_final = dict(data_qual_sets_ld_HQLQQEb)  # or orig.copy()
+dataset_final.update(data_qual_sets_pparents_clean)
+print 'Number of final categories: ' + str(len(dataset_final))
+
+# save
+with open('dataset_final.json', 'w') as fp:
+    json.dump(dataset_final, fp)
 
 a = 9  # for debugging
 
-
-
-
+# **********************************END OF INITIAL STAGE: now postprocessing*******************************************
 
 
 
