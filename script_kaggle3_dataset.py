@@ -1002,7 +1002,7 @@ for ii in range(1):
             list(set(data_qual_sets_pparents[penul_parent['catid']]['LQ']))
 
 
-        # SC
+        # Sanity Check
         # after
         nb_sounds_postpop = len(data_qual_sets_pparents[penul_parent['catid']]['HQ']) + \
                             len(data_qual_sets_pparents[penul_parent['catid']]['LQ'])
@@ -1025,8 +1025,6 @@ for ii in range(1):
                     'number of sounds is not equal before and after population - only dual population (always HQ and LQ)')
 
 
-
-
         elif children_valid_popul:
             # only dual population (always HQ and LQ)
 
@@ -1043,7 +1041,6 @@ for ii in range(1):
                 # print('\n something unexpetected happened in the mapping********************* \n')
                 print(catid)
                 sys.exit('number of sounds is not equal before and after population - only dual population (always HQ and LQ)')
-
 
         elif children_valid_popul_onlyHQ:
             # only HQ population
