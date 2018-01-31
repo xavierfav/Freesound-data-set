@@ -7,6 +7,8 @@ import os
 import sys
 import time
 import itertools
+import xlsxwriter
+import manager
 
 FOLDER_DATA = 'kaggle3/'
 
@@ -1186,7 +1188,7 @@ a = 9  # for debugging
 # -------------------------------------------------------------------------- #
 # ------------------------ CREATE SPLIT, FILES, ... ------------------------ #
 # -------------------------------------------------------------------------- #
-
+print '\n\n'
 #dataset_final = json.load(open('', 'rb'))
 result_final_HQ = {node_id: value['HQ'] for node_id, value in dataset_final.iteritems()}
 
@@ -1203,7 +1205,7 @@ for node_id in result_final_HQ:
         sounds_with_labels_HQ[s].append(node_id)
 
 # how many sounds with multiple labels
-print 'Total amount of sounds with more than one label: {0} samples'.format(
+print 'Total amount of HQ sounds with more than one label: {0} samples'.format(
     len([1 for sound_id in sounds_with_labels_HQ if 
          len(sounds_with_labels_HQ[sound_id])>1]))
 
@@ -1225,7 +1227,7 @@ for s in sounds_single:
 
 print 'Number of single labeled HQ sounds: {0}'.format(len(sounds_single))
     
-data_multiple = {r:[] for r in result_final}
+data_multiple = {r:[] for r in result_final_HQ}
 for s in sounds_multiple:
     for i in sounds_multiple[s]: 
         data_multiple[i].append(s)
@@ -1283,6 +1285,7 @@ print '\n ADD LQ TO DEV SET'
 data_dev = copy.deepcopy(data_dev_HQ)
 for node_id in data_dev.keys():
     data_dev[node_id] += dataset_final[node_id]['LQ']
+data_dev_LQ = {node_id: value['LQ'] for node_id, value in dataset_final.iteritems()}
 
 dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'], 
                 'audioset_id': node_id,
@@ -1348,7 +1351,7 @@ def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, ontology):
     category_occurrences.append(('Total number of labels', '', total_sounds, '', ''))
     category_occurrences.reverse()
     
-    workbook = xlsxwriter.Workbook(FOLDER_KAGGLE + 'list_categories_dataset_draft.xlsx')
+    workbook = xlsxwriter.Workbook(FOLDER_DATA + 'list_categories_dataset_draft.xlsx')
     worksheet = workbook.add_worksheet('list categories')
     
     for idx, obj in enumerate(category_occurrences):
@@ -1373,8 +1376,8 @@ sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, data_onto)
 
 print '\n FILTER CATEGORIES'
 
-#dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
-#dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
+#dataset_dev = json.load(open(FOLDER_DATA + 'dataset_dev.json', 'rb'))
+#dataset_eval = json.load(open(FOLDER_DATA + 'dataset_eval.json', 'rb'))
 
 # Music > Music mood > Scary music
 # Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by ...
@@ -1396,8 +1399,8 @@ print '\n FILTER CATEGORIES'
 #    
 #print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
 #
-#json.dump(dataset_dev_filter, open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'w'))
-#json.dump(dataset_eval_filter, open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'w'))
+#json.dump(dataset_dev_filter, open(FOLDER_DATA + 'dataset_dev_filter.json', 'w'))
+#json.dump(dataset_eval_filter, open(FOLDER_DATA + 'dataset_eval_filter.json', 'w'))
 
 
 # --------------------------------------------------------------- #
@@ -1418,7 +1421,7 @@ sound_ids_eval.sort()
 #c = manager.Client(False)
 #b = c.load_basket_pickle('freesound_db_160317.pkl')
 #id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
-license_file = open(FOLDER_KAGGLE + 'licenses_dev.txt', 'w')
+license_file = open(FOLDER_DATA + 'licenses_dev.txt', 'w')
 license_file.write("This dataset uses the following sounds from Freesound:\n\n")
 license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
 license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
@@ -1430,7 +1433,7 @@ for sound_id in sound_ids_dev:
                        .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
 license_file.close()
 
-license_file = open(FOLDER_KAGGLE + 'licenses_eval.txt', 'w')
+license_file = open(FOLDER_DATA + 'licenses_eval.txt', 'w')
 license_file.write("This dataset uses the following sounds from Freesound:\n\n")
 license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
 license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
@@ -1446,11 +1449,11 @@ license_file.close()
 # --------------------------------------------------------------- #
 """
 # -------------------------- CREATE CSV ------------------------- #
-dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'rb'))
-dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'rb'))
+dataset_dev = json.load(open(FOLDER_DATA + 'dataset_dev_filter.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_DATA + 'dataset_eval_filter.json', 'rb'))
 
 try:
-    merge = json.load(open(FOLDER_KAGGLE + 'merge_categories.json', 'rb'))
+    merge = json.load(open(FOLDER_DATA + 'merge_categories.json', 'rb'))
 except:
     raise Exception('CREATE THE FILE "merge_categories.json" for Task2')
 node_id_parent = {}
@@ -1464,7 +1467,7 @@ sounds_A = [] # sounds for dataset A
 sounds_B = [] # sounds for dataset B
 
 import csv
-with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
+with open(FOLDER_DATA + 'dataset_dev.csv', 'wb') as f:
     writer = csv.writer(f)
     for d in dataset_dev:
         for sound_id in d['sound_ids']:
@@ -1475,7 +1478,7 @@ with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
 
-with open(FOLDER_KAGGLE + 'dataset_eval.csv', 'wb') as f:
+with open(FOLDER_DATA + 'dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
