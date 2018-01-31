@@ -1131,3 +1131,316 @@ a = 9  # for debugging
 
 
 # [len(data_qual_sets[l]['HQ']) for l in data_qual_sets.keys() if len(data_qual_sets[l]['HQ'])>40]
+
+
+
+
+# -------------------------------------------------------------------------- #
+# ------------------------ CREATE SPLIT, FILES, ... ------------------------ #
+# -------------------------------------------------------------------------- #
+
+#dataset_final = json.load(open('', 'rb'))
+result_final_HQ = {node_id: value['HQ'] for node_id, value in dataset_final.iteritems()}
+
+
+# ---------------------- EXTRACT HQ SOUNDS --------------------- #
+all_ids_HQ = []
+for key, value in result_final_HQ.iteritems():
+        all_ids_HQ += value
+all_ids_HQ = set(all_ids_HQ)
+
+sounds_with_labels_HQ = {sound_id:[] for sound_id in all_ids_HQ}
+for node_id in result_final_HQ:
+    for s in result_final_HQ[node_id]:
+        sounds_with_labels_HQ[s].append(node_id)
+
+# how many sounds with multiple labels
+print 'Total amount of sounds with more than one label: {0} samples'.format(
+    len([1 for sound_id in sounds_with_labels_HQ if 
+         len(sounds_with_labels_HQ[sound_id])>1]))
+
+print 'Total Number of HQ labeled sounds: {}'.format(len(sounds_with_labels_HQ))
+
+
+# --------------------------------------------------------------- #
+
+# --------------------- SPLIT DEV EVAL HQ ------------------------#
+print '\n SPLIT HQ \n'
+
+# STRUCTURE DATA, SPLIT SINGLE/MULTIPLE LABELED SOUNDS
+sounds_single = {s:sounds_with_labels_HQ[s] for s in sounds_with_labels_HQ if len(sounds_with_labels_HQ[s])==1}
+sounds_multiple = {s:sounds_with_labels_HQ[s] for s in sounds_with_labels_HQ if len(sounds_with_labels_HQ[s])>1}
+
+data_single = {r:[] for r in result_final_HQ}
+for s in sounds_single:
+    data_single[sounds_single[s][0]].append(s)
+
+print 'Number of single labeled HQ sounds: {0}'.format(len(sounds_single))
+    
+data_multiple = {r:[] for r in result_final}
+for s in sounds_multiple:
+    for i in sounds_multiple[s]: 
+        data_multiple[i].append(s)
+
+print 'Number of multi-labeled HQ sounds: {0}'.format(len(sounds_multiple))
+
+# ORDER BY DURATION
+c = manager.Client(False)
+b = c.load_basket_pickle('freesound_db_160317.pkl')
+id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+
+data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
+data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
+
+# SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 7:3 BASED ON DURATION
+rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
+rule73 = ['dev', 'eval', 'dev', 'dev', 'eval', 'dev', 'dev', 'eval', 'dev', 'dev']
+data_single_dev = {r:[] for r in data_single_dur}
+data_single_eval = {r:[] for r in data_single_dur}
+for r in data_single_dur:
+    for idx, s in enumerate(data_single_dur[r]):
+        if rule73[idx%len(rule73)] == 'dev':
+            data_single_dev[r].append(s[0])
+        elif rule73[idx%len(rule73)] == 'eval':
+            data_single_eval[r].append(s[0])
+            
+# RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 7:3
+data_dev_HQ = data_single_dev
+data_eval = data_single_eval
+for idx, s in enumerate(sounds_multiple):
+    if rule73[idx%len(rule73)] == 'dev':
+        for node_id in sounds_multiple[s]:
+            data_dev_HQ[node_id].append(s)
+    elif rule73[idx%len(rule73)] == 'eval':
+        for node_id in sounds_multiple[s]:
+            data_eval[node_id].append(s)
+
+# EXPORT DATASET
+ontology_by_id = {o['id']:o for o in data_onto}
+dataset_dev_HQ = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_dev_HQ[node_id],
+               } for node_id in data_dev_HQ]
+dataset_eval = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_eval[node_id],
+               } for node_id in data_eval]
+
+        
+# --------------------------------------------------------------- #
+
+# --------------------- ADD LQ TO DEV SET ------------------------#
+print '\n ADD LQ TO DEV SET'
+
+data_dev = copy.deepcopy(data_dev_HQ)
+for node_id in data_dev.keys():
+    data_dev[node_id] += dataset_final[node_id]['LQ']
+
+dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': dataset_final[node_id]['LQ'],
+               } for node_id in dataset_final]
+dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_dev[node_id],
+               } for node_id in data_dev_HQ]
+
+
+# --------------------------------------------------------------- #
+
+# --------------------- PRINT ALL CATEGORIES --------------------- #
+### UTILS FUNCTIONS ###
+def get_parents(aso_id, ontology):
+    parents = []
+    ontology_by_id = {o['id']:o for o in ontology}
+    # 1st pass for direct parents
+    for o in ontology:
+        for id_child in o["child_ids"]:
+            if id_child == aso_id:
+                parents.append(o['id'])
+    return [ontology_by_id[parent] for parent in parents]
+        
+def get_all_parents(aso_id, ontology): 
+    """ 
+    Recursive method to get the parents chain for an aso category
+    """
+    ontology_by_id = {o['id']:o for o in ontology}
+    def paths(node_id, cur=list()):
+        parents = get_parents(node_id, ontology)
+        if not parents:
+            yield cur
+        else:
+            for node in parents:
+                for path in paths(node['id'], [node['name']] + cur):
+                    yield path
+    return paths(aso_id)
+
+def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, ontology):
+    """
+    Create the worksheet with the number of sounds in each category of the ASO 
+    Arguments:  - result from previous stage, e.g. result_leaves
+                - ontology from json file
+    """
+    ontology_by_id = {o['id']:o for o in ontology}
+    category_occurrences = []
+    total_sounds = 0
+    for node_id in data_dev_HQ.keys():
+        nb_sample_dev_HQ = len(data_dev_HQ[node_id])
+        nb_sample_dev_LQ = len(data_dev_LQ[node_id])
+        nb_sample_eval = len(data_eval[node_id])
+        total_sounds += nb_sample_dev_HQ + nb_sample_dev_LQ + nb_sample_eval
+        # get the names of parents (if several path, take one only and add (MULTIPLE PARENTS))
+        all_parents = list(get_all_parents(node_id, ontology))
+        if len(all_parents) > 1:
+            names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']]) + ' (MULTIPLE PARENTS)'
+        else:
+            names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']])
+        category_occurrences.append((names, node_id, nb_sample_dev_HQ, nb_sample_dev_LQ, nb_sample_eval))
+    category_occurrences = sorted(category_occurrences, key=lambda oc: oc[0])
+    category_occurrences.append(('Total number of labels', '', total_sounds, '', ''))
+    category_occurrences.reverse()
+    
+    workbook = xlsxwriter.Workbook(FOLDER_KAGGLE + 'list_categories_dataset_draft.xlsx')
+    worksheet = workbook.add_worksheet('list categories')
+    
+    for idx, obj in enumerate(category_occurrences):
+        worksheet.write(idx, 0, obj[0])
+        worksheet.write(idx, 1, obj[1])
+        worksheet.write(idx, 2, obj[2])
+        worksheet.write(idx, 3, obj[3])
+        worksheet.write(idx, 4, obj[4])
+#    print '\n'
+#    print 'Audio Set categories with their number of audio samples:\n'
+#    for i in category_occurrences:
+#        print str(i[0]).ljust(105) + str(i[1])
+
+
+### WRITE EXCEL FILE ###
+sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, data_onto)
+
+
+# --------------------------------------------------------------- #
+
+# -------------------- REMOVE SOME CATEGORIES ------------------- #
+
+print '\n FILTER CATEGORIES'
+
+#dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev.json', 'rb'))
+#dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval.json', 'rb'))
+
+# Music > Music mood > Scary music
+# Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by ...
+#category_id_to_remove = set(['/m/0ltv', '/m/0c1dj', '/m/01vfsf', '/m/05jcn', '/m/09dsr', '/m/01gp74', '/m/05xp3j', '/m/021wwz', '/m/03r5q_', '/t/dd00037', '/m/0174nj'])
+#
+#dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
+#dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
+#
+#nb_labels_left = sum([d['nb_sounds'] for d in dataset_dev_filter] + [d['nb_sounds'] for d in dataset_eval_filter])
+#
+#print 'Number of categories left: {0}'.format(len(dataset_dev_filter))
+#
+#print 'Number of labels left: {0}'.format(nb_labels_left)
+#
+#sounds_left = []
+#for idx in range(len(dataset_dev_filter)):
+#    sounds_left += dataset_dev_filter[idx]['sound_ids']
+#    sounds_left += dataset_eval_filter[idx]['sound_ids']
+#    
+#print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
+#
+#json.dump(dataset_dev_filter, open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'w'))
+#json.dump(dataset_eval_filter, open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'w'))
+
+
+# --------------------------------------------------------------- #
+"""
+# ---------------------- SPLIT LICENSE FILES -------------------- #
+sound_ids_dev = set()
+sound_ids_eval = set()
+for category in dataset_dev:
+    sound_ids_dev.update(category['sound_ids'])
+for category in dataset_eval:
+    sound_ids_eval.update(category['sound_ids'])
+sound_ids_dev = list(sound_ids_dev)  
+sound_ids_eval = list(sound_ids_eval)
+sound_ids_dev.sort()
+sound_ids_eval.sort()
+
+#import manager
+#c = manager.Client(False)
+#b = c.load_basket_pickle('freesound_db_160317.pkl')
+#id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+license_file = open(FOLDER_KAGGLE + 'licenses_dev.txt', 'w')
+license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+for sound_id in sound_ids_dev:
+    sound = b.sounds[id_to_idx[sound_id]]
+    name = sound.name.encode('utf-8').replace('\r', '')
+    license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
+                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+license_file.close()
+
+license_file = open(FOLDER_KAGGLE + 'licenses_eval.txt', 'w')
+license_file.write("This dataset uses the following sounds from Freesound:\n\n")
+license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
+license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
+license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
+for sound_id in sound_ids_eval:
+    sound = b.sounds[id_to_idx[sound_id]]
+    name = sound.name.encode('utf-8').replace('\r', '')
+    license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
+                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+license_file.close()
+
+"""
+# --------------------------------------------------------------- #
+"""
+# -------------------------- CREATE CSV ------------------------- #
+dataset_dev = json.load(open(FOLDER_KAGGLE + 'dataset_dev_filter.json', 'rb'))
+dataset_eval = json.load(open(FOLDER_KAGGLE + 'dataset_eval_filter.json', 'rb'))
+
+try:
+    merge = json.load(open(FOLDER_KAGGLE + 'merge_categories.json', 'rb'))
+except:
+    raise Exception('CREATE THE FILE "merge_categories.json" for Task2')
+node_id_parent = {}
+for d in merge:
+    for dd in merge[d]:
+        node_id_parent[dd] = d
+        
+#ontology = json.load(open('ontology/ontology.json', 'rb'))
+#ontology_by_id = {o['id']:o for o in ontology}
+sounds_A = [] # sounds for dataset A
+sounds_B = [] # sounds for dataset B
+
+import csv
+with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
+    writer = csv.writer(f)
+    for d in dataset_dev:
+        for sound_id in d['sound_ids']:
+            sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+            try:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+                sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+            except:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+
+with open(FOLDER_KAGGLE + 'dataset_eval.csv', 'wb') as f:
+    writer = csv.writer(f)
+    for d in dataset_eval:
+        for sound_id in d['sound_ids']:
+            sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+            try:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+                sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+            except:
+                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+
+print 'Total duration of the dataset A: {0} secondes'.format(sum([s[1] for s in list(set(sounds_A))]))
+print 'Total duration of the dataset B: {0} secondes'.format(sum([s[1] for s in list(set(sounds_B))]))
+print 'Total of classes in dataset B: {0}'.format(len(merge))
+
+"""             
+# --------------------------------------------------------------- #
