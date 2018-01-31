@@ -201,7 +201,7 @@ license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\
 for sound_id in sound_ids:
     sound = b.sounds[id_to_idx[sound_id]]
     name = sound.name.encode('utf-8').replace('\r', '')
-    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+    license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
                        .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
 license_file.close()
 
@@ -374,7 +374,7 @@ license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\
 for sound_id in sound_ids_dev:
     sound = b.sounds[id_to_idx[sound_id]]
     name = sound.name.encode('utf-8').replace('\r', '')
-    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+    license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
                        .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
 license_file.close()
 
@@ -386,7 +386,7 @@ license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\
 for sound_id in sound_ids_eval:
     sound = b.sounds[id_to_idx[sound_id]]
     name = sound.name.encode('utf-8').replace('\r', '')
-    license_file.write("'{0}' of ID {1} by {2} [CC-{3}]\n"
+    license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
                        .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
 license_file.close()
 
@@ -412,7 +412,7 @@ sounds_B = [] # sounds for dataset B
 
 import csv
 with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
-    writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
+    writer = csv.writer(f)
     for d in dataset_dev:
         for sound_id in d['sound_ids']:
             sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
@@ -423,7 +423,7 @@ with open(FOLDER_KAGGLE + 'dataset_dev.csv', 'wb') as f:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
 
 with open(FOLDER_KAGGLE + 'dataset_eval.csv', 'wb') as f:
-    writer = csv.writer(f, delimiter='\t', escapechar='', quoting=csv.QUOTE_NONE)
+    writer = csv.writer(f)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
             sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
