@@ -1,7 +1,6 @@
 import json
 import numpy as np
 import copy
-# import xlsxwriter
 import matplotlib.pyplot as plt
 import os
 import sys
@@ -728,16 +727,34 @@ for ii in range(1):
         if data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE:
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
 
+        # from here on, cannot trust LQ
         elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) >= MIN_HQdev_LQ:
-            # category with enough HQ to fill DEV and EVAL withouth LQ
+            # category with enough HQ to fill all DEV and EVAL without anything of LQ
             # keep HQ and empty LQ, and remove QE
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
             data_qual_sets_ld_HQLQQEb[o]['LQ'] = []
+            # could add LQprior here, but for now let us leave it. The category is already in anyway
             data_qual_sets_ld_HQLQQEb[o]['LQprior'] = []
             del data_qual_sets_ld_HQLQQEb[o]['QE']
-            print 'category with enough HQ to fill DEV and EVAL withouth LQ: ' \
+            print '---category with enough HQ to fill DEV and EVAL withouth LQ: ' \
                   + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
-                  + str(str(len(data_qual_sets_ld_HQLQb[o]['HQ'])))
+                  + str(len(data_qual_sets_ld_HQLQb[o]['HQ']))
+            print()
+
+        # only happens for one category (orchestra). ignore for now
+        # elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) +\
+        #         len(data_qual_sets_ld_HQLQb[o]['LQprior']) >= MIN_HQdev_LQ:
+        #     # only HQ and LQprior together can fill all DEV
+        #     # keep HQ, set LQ only to LQprior, keep LQprior and remove QE
+        #     data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
+        #     data_qual_sets_ld_HQLQQEb[o]['LQ'] = data_qual_sets_ld_HQLQb[o]['LQprior']
+        #     del data_qual_sets_ld_HQLQQEb[o]['QE']
+        #     print '---category where only HQ and LQprior together can fill all DEV: ' \
+        #           + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
+        #           + str(len(data_qual_sets_ld_HQLQb[o]['HQ'])) + ', and number of samples in LQprior: ' \
+        #           + str(len(data_qual_sets_ld_HQLQb[o]['LQprior']))
+        #     print()
+
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
         MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
@@ -780,7 +797,7 @@ for ii in range(1):
         legenda = ('HQdev', 'LQ')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
-    # review LQprior:make sure they are in LQ just in case
+    # review LQprior:make sure they are in LQ (some were deleted due to duration filter)
     for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
         if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
             print 'some LQ were gone in the child level, due to duration'
@@ -871,12 +888,16 @@ for ii in range(1):
 
     penul_parents_cand_2filt = []
     counter_mult_parents = 0
-    count_weird_pop_fromHQ2LQ = 0
+
     for penul_parent in penul_parents_cand:
 
         """ # 1) distribute children  *****************************************************
         ***********************************************************************************************************"""
 
+        if penul_parent['name'] == 'Telephone':
+            a = 9
+
+        count_weird_pop_fromHQ2LQ = 0
         children_valid_popul_HQLQ = []
         children_valid_popul_onlyHQ = []
         for childid in data_onto_by_id[penul_parent['catid']]['child_ids']:
@@ -971,7 +992,7 @@ for ii in range(1):
                     # sound also in parent_LQ
                 elif id in data_qual_sets[penul_parent['catid']]['LQ']:
                     data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
-                    count_weird_pop_fromHQ2LQ =+ 1
+                    count_weird_pop_fromHQ2LQ += 1
 
 
         if children_id_2_parent_LQ:
@@ -1115,13 +1136,19 @@ for ii in range(1):
                                                               'after MultParents, indiv QE filter and population\n'
 
 
+# remove empty categories from data_qual_sets_pparents (keep only the penultimate parents
+data_qual_sets_pparents_clean = {o: data_qual_sets_pparents[o] for o in data_qual_sets_pparents if data_qual_sets_pparents[o]['HQ']}
+print 'Number of added penultimate parents entering the filtering stage: ' + str(len(data_qual_sets_pparents_clean))
+
+# sanity check: dict of valid children and parents are disjoint at this point
+if any(k in data_qual_sets_ld_HQLQQEb for k in data_qual_sets_pparents_clean):
+    sys.exit('dicts of parent and children are not disjoint. DANGER')
+
+
 
 """ # 4) once we have the new children, repeat filtering as if they were real children. ***********************
 ***********************************************************************************************************"""
 
-# remove empty categories from data_qual_sets_pparents (keep only the penultimate parents
-data_qual_sets_pparents_clean = {o: data_qual_sets_pparents[o] for o in data_qual_sets_pparents if data_qual_sets_pparents[o]['HQ']}
-print 'Number of added penultimate parents entering the filtering stage: ' + str(len(data_qual_sets_pparents_clean))
 
 # create copy for next filter
 data_qual_sets_pparents_d = copy.deepcopy(data_qual_sets_pparents_clean)
@@ -1195,6 +1222,9 @@ if FLAG_BARPLOT_PARENT:
     legenda = ('HQdev', 'LQ')
     plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
+
+
+
 """ 5) Merge both dictionaries and save********************************************************************************
 ****************************************************************************************************************"""
 
@@ -1239,7 +1269,6 @@ with open('dataset_final.json', 'w') as fp:
 """**********************************END OF INITIAL STAGE: now postprocessing**************************************
 ****************************************************************************************************************"""
 
-# [len(data_qual_sets[l]['HQ']) for l in data_qual_sets.keys() if len(data_qual_sets[l]['HQ'])>40]
 
 
 
