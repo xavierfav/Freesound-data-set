@@ -1369,21 +1369,26 @@ for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
     data_dev[node_id] += data_dev_LQpior[node_id][:num_to_add]
 
+# FILTER OUT LQprior from LQ
+data_dev_LQ_wo_prior = {}
+for node_id in data_dev_LQ:
+    data_dev_LQ_wo_prior[node_id] = list(set(data_dev_LQ[node_id])-set(data_dev_LQpior[node_id]))
+
 # ORDER BY NUM DOWNLOADS
-for node_id in data_dev_LQ.keys():
+for node_id in data_dev_LQ_wo_prior.keys():
     ll = []
-    for fs_id in data_dev_LQ[node_id]:
+    for fs_id in data_dev_LQ_wo_prior[node_id]:
         try:
             ll.append((fs_id, b.sounds[id_to_idx[fs_id]].num_downloads))
         except:
             ll.append((fs_id, 0))
     freesound_ids_with_num_downloads = sorted(ll, key=lambda x: x[1], reverse=True)
-    data_dev_LQ[node_id] = [fs_id_num_downloads[0] for fs_id_num_downloads in freesound_ids_with_num_downloads]
+    data_dev_LQ_wo_prior[node_id] = [fs_id_num_downloads[0] for fs_id_num_downloads in freesound_ids_with_num_downloads]
 
 # ADD LQ TO DEV SET UNTIL REACHING MAX 300 SOUNDS
 for node_id in data_dev.keys():
-    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ[node_id]))
-    data_dev[node_id] += data_dev_LQ[node_id][:num_to_add]
+    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
+    data_dev[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
     
 dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
                 'audioset_id': node_id,
@@ -1474,6 +1479,9 @@ sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_dev_LQpior, data_dev, d
 # -------------------- REMOVE SOME CATEGORIES ------------------- #
 
 print '\n FILTER CATEGORIES'
+
+category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', '/m/01jnbd']
+
 
 #dataset_dev = json.load(open(FOLDER_DATA + 'dataset_dev.json', 'rb'))
 #dataset_eval = json.load(open(FOLDER_DATA + 'dataset_eval.json', 'rb'))
