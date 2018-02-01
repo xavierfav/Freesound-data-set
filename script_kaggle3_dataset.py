@@ -1346,14 +1346,15 @@ data_dev = copy.deepcopy(data_dev_HQ)
 #    data_dev[node_id] += dataset_final[node_id]['LQ']
 data_dev_LQ = {node_id: value['LQ'] for node_id, value in dataset_final.iteritems()}
 
+for node_id, value in dataset_final.iteritems():
+    if 'LQprior' not in value:
+        value['LQprior'] = []
+data_dev_LQpior = {node_id: value['LQprior'] for node_id, value in dataset_final.iteritems()}
+
 dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'], 
                 'audioset_id': node_id,
                 'sound_ids': dataset_final[node_id]['LQ'],
                } for node_id in dataset_final]
-#dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
-#                'audioset_id': node_id,
-#                'sound_ids': data_dev[node_id],
-#               } for node_id in data_dev_HQ]
 
 
 # ---------------------------------------------------------------- #
@@ -1362,16 +1363,33 @@ dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'],
 MAX_NUM_SOUND_DEV = 300
 b = c.load_basket_pickle('freesound_db_010218.pkl')
 id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+
+# ADD FIRST LQprior
+for node_id in data_dev.keys():
+    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
+    data_dev[node_id] += data_dev_LQpior[node_id][:num_to_add]
+
 # ORDER BY NUM DOWNLOADS
 for node_id in data_dev_LQ.keys():
-    freesound_ids_with_num_downloads = sorted([(fs_id, b.sounds[id_to_idx[fs_id]].num_downloads) for fs_id in data_dev[node_id]], key=lambda x: x[1], reverse=True)
+    ll = []
+    for fs_id in data_dev_LQ[node_id]:
+        try:
+            ll.append((fs_id, b.sounds[id_to_idx[fs_id]].num_downloads))
+        except:
+            ll.append((fs_id, 0))
+    freesound_ids_with_num_downloads = sorted(ll, key=lambda x: x[1], reverse=True)
     data_dev_LQ[node_id] = [fs_id_num_downloads[0] for fs_id_num_downloads in freesound_ids_with_num_downloads]
 
 # ADD LQ TO DEV SET UNTIL REACHING MAX 300 SOUNDS
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ[node_id]))
-    data_dev[node_id] += data_dev_LQ[:num_to_add]
+    data_dev[node_id] += data_dev_LQ[node_id][:num_to_add]
     
+dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_dev[node_id],
+               } for node_id in data_dev]
+
 
 # ---------------------------------------------------------------- #
 
@@ -1402,7 +1420,7 @@ def get_all_parents(aso_id, ontology):
                     yield path
     return paths(aso_id)
 
-def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, ontology):
+def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_dev_LQpior, data_dev, data_eval, ontology):
     """
     Create the worksheet with the number of sounds in each category of the ASO 
     Arguments:  - result from previous stage, e.g. result_leaves
@@ -1415,17 +1433,19 @@ def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, ontology):
         nb_sample_dev_HQ = len(data_dev_HQ[node_id])
         nb_sample_dev_LQ = len(data_dev_LQ[node_id])
         nb_sample_eval = len(data_eval[node_id])
-        total_sounds += nb_sample_dev_HQ + nb_sample_dev_LQ + nb_sample_eval
+        nb_sample_dev = len(data_dev[node_id])
+        nb_sample_dev_LQ_prior = len(data_dev_LQpior[node_id])
+        total_sounds += nb_sample_dev + nb_sample_eval
         # get the names of parents (if several path, take one only and add (MULTIPLE PARENTS))
         all_parents = list(get_all_parents(node_id, ontology))
         if len(all_parents) > 1:
             names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']]) + ' (MULTIPLE PARENTS)'
         else:
             names = ' > '.join(all_parents[0]+[ontology_by_id[node_id]['name']])
-        category_occurrences.append((names, node_id, nb_sample_dev_HQ, nb_sample_dev_LQ, nb_sample_eval))
+        category_occurrences.append((names, node_id, nb_sample_dev_HQ, nb_sample_dev_LQ, nb_sample_dev_LQ_prior, nb_sample_dev, nb_sample_eval))
     category_occurrences = sorted(category_occurrences, key=lambda oc: oc[0])
-    category_occurrences.append(('Total number of labels', '', total_sounds, '', ''))
-    category_occurrences.append(('name', 'id', 'num dev HQ', 'num dev LQ', 'num eval'))
+    category_occurrences.append(('name', 'id', 'num dev HQ', 'num dev LQ', 'num dev LQ prior', 'num dev final', 'num eval'))
+    category_occurrences.append(('Total number of sounds in final dataset', '', total_sounds, '', '', '', ''))
     category_occurrences.reverse()
     
     workbook = xlsxwriter.Workbook(FOLDER_DATA + 'list_categories_dataset_draft.xlsx')
@@ -1437,6 +1457,8 @@ def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, ontology):
         worksheet.write(idx, 2, obj[2])
         worksheet.write(idx, 3, obj[3])
         worksheet.write(idx, 4, obj[4])
+        worksheet.write(idx, 5, obj[5])
+        worksheet.write(idx, 6, obj[6])
 #    print '\n'
 #    print 'Audio Set categories with their number of audio samples:\n'
 #    for i in category_occurrences:
@@ -1444,7 +1466,7 @@ def sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, ontology):
 
 
 ### WRITE EXCEL FILE ###
-sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_eval, data_onto)
+sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_dev_LQpior, data_dev, data_eval, data_onto)
 
 
 # --------------------------------------------------------------- #
