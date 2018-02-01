@@ -1313,7 +1313,7 @@ for r in data_single_dur:
         elif rule73[idx%len(rule73)] == 'eval':
             data_single_eval[r].append(s[0])
             
-# RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 7:3
+## RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 7:3
 data_dev_HQ = data_single_dev
 data_eval = data_single_eval
 for idx, s in enumerate(sounds_multiple):
@@ -1398,6 +1398,71 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
 
 # ---------------------------------------------------------------- #
 
+# -------------------- REMOVE SOME CATEGORIES -------------------- #
+print '\n FILTER CATEGORIES \n'
+
+sounds_left = []
+for idx in range(len(dataset_dev)):
+    sounds_left += dataset_dev[idx]['sound_ids']
+    sounds_left += dataset_eval[idx]['sound_ids']
+print 'Number of sounds before filtering: {0}'.format(len(set(sounds_left)))
+
+category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', '/m/02zsn', '/m/07r660_']
+
+dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
+dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
+
+nb_labels_left = sum([len(d['sound_ids']) for d in dataset_dev_filter] + [len(d['sound_ids']) for d in dataset_eval_filter])
+
+print 'Number of categories left: {0}'.format(len(dataset_dev_filter))
+
+print 'Number of labels left: {0}'.format(nb_labels_left)
+
+sounds_left = []
+for idx in range(len(dataset_dev_filter)):
+    sounds_left += dataset_dev_filter[idx]['sound_ids']
+    sounds_left += dataset_eval_filter[idx]['sound_ids']
+    
+for aso_id in category_id_to_remove:
+    del data_dev[aso_id]
+    del data_dev_HQ[aso_id]
+    del data_dev_LQ[aso_id]
+    del data_dev_LQpior[aso_id]
+    del data_eval[aso_id]
+    
+print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
+
+
+# ---------------------------------------------------------------- #
+
+# -------------- REMOVE SOUND WITH MULTIPLE LABELS --------------- #
+sound_to_remove = [s for s in sounds_left if sounds_left.count(s)>1]
+for aso_id in data_dev.keys():
+    for s in sound_to_remove:
+        if s in data_dev[aso_id]:
+            data_dev[aso_id].remove(s)
+        if s in data_dev_HQ[aso_id]:
+            data_dev_HQ[aso_id].remove(s)
+        if s in data_dev_LQ[aso_id]:
+            data_dev_LQ[aso_id].remove(s)
+        if s in data_dev_LQpior[aso_id]:
+            data_dev_LQpior[aso_id].remove(s)
+        if s in data_eval[aso_id]:
+            data_eval[aso_id].remove(s)
+
+dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_dev[node_id],
+               } for node_id in data_dev]
+
+dataset_eval = [{'name': ontology_by_id[node_id]['name'], 
+                'audioset_id': node_id,
+                'sound_ids': data_eval[node_id],
+               } for node_id in data_eval]
+      
+
+# ---------------------------------------------------------------- #
+
 # --------------------- PRINT ALL CATEGORIES --------------------- #
 ### UTILS FUNCTIONS ###
 def get_parents(aso_id, ontology):
@@ -1476,42 +1541,6 @@ sorted_occurrences_labels(data_dev_HQ, data_dev_LQ, data_dev_LQpior, data_dev, d
 
 # --------------------------------------------------------------- #
 
-# -------------------- REMOVE SOME CATEGORIES ------------------- #
-
-print '\n FILTER CATEGORIES'
-
-category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', '/m/01jnbd']
-
-
-#dataset_dev = json.load(open(FOLDER_DATA + 'dataset_dev.json', 'rb'))
-#dataset_eval = json.load(open(FOLDER_DATA + 'dataset_eval.json', 'rb'))
-
-# Music > Music mood > Scary music
-# Sounds of things > Vehicle > Motor vehicle (road) > Car > Car passing by ...
-#category_id_to_remove = set(['/m/0ltv', '/m/0c1dj', '/m/01vfsf', '/m/05jcn', '/m/09dsr', '/m/01gp74', '/m/05xp3j', '/m/021wwz', '/m/03r5q_', '/t/dd00037', '/m/0174nj'])
-#
-#dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
-#dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
-#
-#nb_labels_left = sum([d['nb_sounds'] for d in dataset_dev_filter] + [d['nb_sounds'] for d in dataset_eval_filter])
-#
-#print 'Number of categories left: {0}'.format(len(dataset_dev_filter))
-#
-#print 'Number of labels left: {0}'.format(nb_labels_left)
-#
-#sounds_left = []
-#for idx in range(len(dataset_dev_filter)):
-#    sounds_left += dataset_dev_filter[idx]['sound_ids']
-#    sounds_left += dataset_eval_filter[idx]['sound_ids']
-#    
-#print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
-#
-#json.dump(dataset_dev_filter, open(FOLDER_DATA + 'dataset_dev_filter.json', 'w'))
-#json.dump(dataset_eval_filter, open(FOLDER_DATA + 'dataset_eval_filter.json', 'w'))
-
-
-# --------------------------------------------------------------- #
-"""
 # ---------------------- SPLIT LICENSE FILES -------------------- #
 sound_ids_dev = set()
 sound_ids_eval = set()
@@ -1526,8 +1555,8 @@ sound_ids_eval.sort()
 
 #import manager
 #c = manager.Client(False)
-#b = c.load_basket_pickle('freesound_db_160317.pkl')
-#id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
+b = c.load_basket_pickle('freesound_db_160317.pkl')
+id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
 license_file = open(FOLDER_DATA + 'licenses_dev.txt', 'w')
 license_file.write("This dataset uses the following sounds from Freesound:\n\n")
 license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
@@ -1552,13 +1581,10 @@ for sound_id in sound_ids_eval:
                        .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
 license_file.close()
 
-"""
-# --------------------------------------------------------------- #
-"""
-# -------------------------- CREATE CSV ------------------------- #
-dataset_dev = json.load(open(FOLDER_DATA + 'dataset_dev_filter.json', 'rb'))
-dataset_eval = json.load(open(FOLDER_DATA + 'dataset_eval_filter.json', 'rb'))
 
+# --------------------------------------------------------------- #
+
+# -------------------------- CREATE CSV ------------------------- #
 try:
     merge = json.load(open(FOLDER_DATA + 'merge_categories.json', 'rb'))
 except:
@@ -1600,5 +1626,7 @@ print 'Total duration of the dataset A: {0} secondes'.format(sum([s[1] for s in 
 print 'Total duration of the dataset B: {0} secondes'.format(sum([s[1] for s in list(set(sounds_B))]))
 print 'Total of classes in dataset B: {0}'.format(len(merge))
 
-"""             
+all_ids = [s[0] for s in sounds_A]
+json.dump(all_ids, open(FOLDER_DATA + 'all_freesound_ids.json', 'w'))
+            
 # --------------------------------------------------------------- #
