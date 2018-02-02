@@ -1436,6 +1436,7 @@ print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
 # ---------------------------------------------------------------- #
 
 # -------------- REMOVE SOUND WITH MULTIPLE LABELS --------------- #
+print '\n REMOVE MULTILABELED SOUNDS \n'
 sound_to_remove = [s for s in sounds_left if sounds_left.count(s)>1]
 for aso_id in data_dev.keys():
     for s in sound_to_remove:
@@ -1604,12 +1605,16 @@ with open(FOLDER_DATA + 'dataset_dev.csv', 'wb') as f:
     writer = csv.writer(f)
     for d in dataset_dev:
         for sound_id in d['sound_ids']:
+            if sound_id in data_dev_HQ[d['audioset_id']]:
+                quality = 1
+            elif sound_id in data_dev_LQ[d['audioset_id']] or sound_id in data_dev_LQpior[d['audioset_id']]:
+                quality = 0
             sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
             try:
-                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
+                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name'], quality])
                 sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
             except:
-                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None, quality])
 
 with open(FOLDER_DATA + 'dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f)
