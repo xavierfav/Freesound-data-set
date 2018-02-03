@@ -270,10 +270,6 @@ def create_var_barplot(data_set, data_onto_by_id):
 # ----------------------------------------------------------------------------------------------------
 
 
-# sanity check:
-# if there is duplicates in the candidates of a category
-
-
 # create copy of data_votes
 data_sounds = copy.deepcopy(data_votes)
 for catid, vote_groups in data_sounds.iteritems():
@@ -292,9 +288,6 @@ for catid, vote_groups in data_votes.iteritems():
     # list to keep track of assigned fsids within a category, to achieve disjoint subsets of audio samples
     fsids_assigned_cat = []
     error_mapping_count_cat = 0
-    # print catid
-    # print ()
-    #
 
     # check GT in PP
     # check GT in the rest of the groups
@@ -394,8 +387,6 @@ for catid, vote_groups in data_votes.iteritems():
                     data_sounds[catid]['NP'].append(fsid)
                     fsids_assigned_cat.append(fsid)
             # else: no need to. already done in previous passes
-            #     # search for GT in the remaining groups of votes
-            #     data_sounds, fsids_assigned_cat, assigned = check_GT('NP', fsid, catid, vote_groups, fsids_assigned_cat, data_sounds)
 
             # no GT was found for the annotation (2 votes in the same group).
             # we must take decisions without inter-annotator agreement
@@ -409,13 +400,11 @@ for catid, vote_groups in data_votes.iteritems():
     error_mapping_count_cats.append(error_mapping_count_cat)
 
     # for every category compute QE here number of votes len(PP) + len(PNP) / all
-    # QE should only be computed if there are more than 20 votes? else not reliable
+    # QE should only be computed if there are more than MIN_VOTES_CAT votes. else not reliable
     if (len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(
             vote_groups['U'])) >= MIN_VOTES_CAT:
         data_sounds[catid]['QE'] = (len(vote_groups['PP']) + len(vote_groups['PNP'])) / float(
             len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U']))
-    # else:
-    #     there is a category with 0 votes... because we have no sounds for it, hence no votes
 
     # sanity check: there should be no duplicated fsids within a group of data_sounds
     if (len(data_sounds[catid]['PP']) != len(set(data_sounds[catid]['PP'])) or
@@ -451,11 +440,7 @@ if sum(error_mapping_count_cats) > 0:
     print 'there are errors in the following number of fsids: ' + str(sum(error_mapping_count_cats))
     print(error_mapping_count_cats)
 
-# TO DO
-# check a few small categories in data_votes and data_sounds for testing
-
-# here we have data_sounds ready to try.
-
+# here we have data_sounds ready
 
 
 
@@ -592,8 +577,7 @@ for ii in range(1):
             if (data_duration[str(fsid)]['duration'] <= MAXLEN) and (data_duration[str(fsid)]['duration'] >= MINLEN):
                 data_qual_sets_ld[catid]['LQ'].append(fsid)
 
-
-    # FILTER 3: critical; number of sounds with HQ. IT should not be less than MIN_HQ (what we proposed already)
+    # FILTER 3:  number of sounds with HQ>= MIN_HQ (what we proposed already)
     # o = catid. create a dict of dicts. the latter are just the dicts that fulfil the condition on MIN_HQ
     data_qual_sets_ld_HQ = {o: data_qual_sets_ld[o] for o in data_qual_sets_ld if
                             len(data_qual_sets_ld[o]['HQ']) >= MIN_HQ}
@@ -694,7 +678,7 @@ for ii in range(1):
     print()
     print 'APPROACH BETA is less strict: HQdev + LQ > MIN_HQdev_LQ (joint)'
     # CASE BETA
-    # FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ should not be less than MIN_HQdev_LQ
+    # FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ s>= MIN_HQdev_LQ
     data_qual_sets_ld_HQLQb = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
                                (len(data_qual_sets_ld_HQ[o]['LQ']) + np.ceil(PERCENTAGE_DEV *len(data_qual_sets_ld_HQ[o]['HQ']))) >= MIN_HQdev_LQ}
 
@@ -810,8 +794,9 @@ for ii in range(1):
     print '======================================================'
     print '\n\n\n'
 
-    # NOTE: we could try to include the parents for which childs are discarded.Process children first.
-    # Once that is done, include parents only if i) they are eligible and ii) no children of theirs are selected.
+    # So far we have considered only leafs. Now, there are parents such that all the childrens are discarded.
+    # we could try to aggregate these children together (the part of them that it is ok)
+    # with the parent (if applicable), and see if the resulting aggregated category meets the requirements.
     # how many categories are gained?
 
     # final set of valid leaf categories for dataset
@@ -834,7 +819,7 @@ for ii in range(1):
 
     print 'There are ' + str(len(penul_parents)) + ' penultimate parents\n'
 
-    # how many of the penultimate parents have ALL children discarded for the dataset?
+    # how many of the penultimate parents have ALL children discarded for the dataset (due to ANY reason)?
     penul_parents_cand = []
     for penul_parent in penul_parents:
         flag_all_children_discarded = True
@@ -866,8 +851,9 @@ for ii in range(1):
     # we do not know this. it could also be that there is purr + speech (category outside the 'family'), and so
     # it must stay PNP both in children and parent.
     # The easiest thing, and more restrictive/demanding/ensuring better quality is:
-    # join HQ and join LQ. whatever it is HQ in children, it will also be in parent.
+    # join HQ and join LQ. whatever it is HQ in children, it should also be in parent.
     # and in this way, the LQ will be of better quality
+    # but there are several cases to be consider. doing it exhaustively.
 
     # 3-recompute the QE, with votes... think cases: sound in children OR in father vs sound in both
     # could be contradictory votes. A cat purr candidate to meow
@@ -945,11 +931,6 @@ for ii in range(1):
         # it can be validated as PP by userA (wrong doing), goes to HQ, but
         # but as PNP by userB in purr, goes to LQ
         # goes to parent_HQ
-
-        # children_joint_HQ_wQE = []
-        # children_joint_LQ_wQE = []
-        # children_joint_HQ_woQE = []
-
 
         # extend lists of HQ/LQ sounds of all children to populate
         children_id_2_parent_HQ = []
@@ -1136,7 +1117,7 @@ for ii in range(1):
                                                               'after MultParents, indiv QE filter and population\n'
 
 
-# remove empty categories from data_qual_sets_pparents (keep only the penultimate parents
+# remove empty categories from data_qual_sets_pparents (keep only the penultimate parents)
 data_qual_sets_pparents_clean = {o: data_qual_sets_pparents[o] for o in data_qual_sets_pparents if data_qual_sets_pparents[o]['HQ']}
 print 'Number of added penultimate parents entering the filtering stage: ' + str(len(data_qual_sets_pparents_clean))
 
@@ -1168,7 +1149,7 @@ for catid, groups in data_qual_sets_pparents_clean.iteritems():
 
 
 
-# FILTER 3: critical; number of sounds with HQ. IT should not be less than MIN_HQ (what we proposed already)
+# FILTER 3: number of sounds with HQ>= MIN_HQ
 # o = catid. create a dict of dicts. the latter are just the dicts that fulfil the condition on MIN_HQ
 data_qual_sets_pparents_d_HQ = {o: data_qual_sets_pparents_d[o] for o in data_qual_sets_pparents_d if
                         len(data_qual_sets_pparents_d[o]['HQ']) >= MIN_HQ}
@@ -1182,7 +1163,7 @@ print()
 print()
 print 'APPROACH BETA is less strict: HQdev + LQ > MIN_HQdev_LQ (joint)'
 # CASE BETA
-# FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ should not be less than MIN_HQdev_LQ
+# FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ s>= MIN_HQdev_LQ
 data_qual_sets_pparents_d_HQLQb = {o: data_qual_sets_pparents_d_HQ[o] for o in data_qual_sets_pparents_d_HQ if
                            (len(data_qual_sets_pparents_d_HQ[o]['LQ']) + np.ceil(
                                PERCENTAGE_DEV * len(data_qual_sets_pparents_d_HQ[o]['HQ']))) >= MIN_HQdev_LQ}
