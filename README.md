@@ -2,7 +2,8 @@
 
 
 IMPORTANT FOLDERS:
-- kaggle2/ is the dataset FSD9k split in development/evaluation 70/30 %. This is the final version sent to Kaggle (except that in the format conversion we lost 3 audio clips in the dev set and 3 others in the eval set (6 clips in total, with respect to what the proposal says)
+- kaggle3/ is the dataset FSD12k, proposed in Feb2018. It comprises annotations with two quality types. DEV is 70% of the human validated clips + a bunch of unnvoted clips. EVAL is 30% of the human validated clips. In the conversion to same format we lost 5 files. More info in [this document and contaning folder](https://www.google.com).
+- kaggle2/ is the dataset FSD9k split in development/evaluation 70/30 %. This is the final version of FSD9k sent to Kaggle (except that in the format conversion we lost 3 audio clips in the dev set and 3 others in the eval set (6 clips in total, with respect to what the proposal says)
 - kaggle/ is a previous attempt for dataset split, using development/evaluation 60/40 %. We discarded this slipt in favour of kaggle2/ to increase development set size.
 
 ANNOTATION:
