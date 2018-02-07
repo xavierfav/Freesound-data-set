@@ -7,7 +7,7 @@ import sys
 import time
 import itertools
 import xlsxwriter
-import manager
+
 
 FOLDER_DATA = 'kaggle3/'
 
@@ -34,7 +34,7 @@ FLAG_BARPLOT_PARENT = True
 # useful to get the duration of every sound
 try:
     with open(FOLDER_DATA + 'json/FS_sounds_ASO_postIQA.json') as data_file:
-        data_duration = json.load(data_file)
+        data_mapping = json.load(data_file)
 except:
     raise Exception(
         'CHOOSE A MAPPING FILE AND ADD IT TO ' + FOLDER_DATA + 'json/ FOLDER (THE FILE INCLUDE DURATION INFORMATION NEEDED)')
@@ -570,11 +570,11 @@ for ii in range(1):
     # FILTER 2: Apply duration filter: Within the 474 categories, keep sounds with durations [MINLEN: MAXLEN]
     for catid, groups in data_qual_sets_l.iteritems():
         for fsid in groups['HQ']:
-            if data_duration[str(fsid)]['duration'] <= MAXLEN and data_duration[str(fsid)]['duration'] >= MINLEN:
+            if data_mapping[str(fsid)]['duration'] <= MAXLEN and data_mapping[str(fsid)]['duration'] >= MINLEN:
                 data_qual_sets_ld[catid]['HQ'].append(fsid)
 
         for fsid in groups['LQ']:
-            if (data_duration[str(fsid)]['duration'] <= MAXLEN) and (data_duration[str(fsid)]['duration'] >= MINLEN):
+            if (data_mapping[str(fsid)]['duration'] <= MAXLEN) and (data_mapping[str(fsid)]['duration'] >= MINLEN):
                 data_qual_sets_ld[catid]['LQ'].append(fsid)
 
     # FILTER 3:  number of sounds with HQ>= MIN_HQ (what we proposed already)
@@ -1140,11 +1140,11 @@ for catid, groups in data_qual_sets_pparents_d.iteritems():
 # FILTER 2: Apply duration filter: Within the categories, keep sounds with durations [MINLEN: MAXLEN]
 for catid, groups in data_qual_sets_pparents_clean.iteritems():
     for fsid in groups['HQ']:
-        if (data_duration[str(fsid)]['duration'] <= MAXLEN and data_duration[str(fsid)]['duration'] >= MINLEN):
+        if (data_mapping[str(fsid)]['duration'] <= MAXLEN and data_mapping[str(fsid)]['duration'] >= MINLEN):
             data_qual_sets_pparents_d[catid]['HQ'].append(fsid)
 
     for fsid in groups['LQ']:
-        if (data_duration[str(fsid)]['duration'] <= MAXLEN) and (data_duration[str(fsid)]['duration'] >= MINLEN):
+        if (data_mapping[str(fsid)]['duration'] <= MAXLEN) and (data_mapping[str(fsid)]['duration'] >= MINLEN):
             data_qual_sets_pparents_d[catid]['LQ'].append(fsid)
 
 
@@ -1304,12 +1304,8 @@ for s in sounds_multiple:
 print 'Number of multi-labeled HQ sounds: {0}'.format(len(sounds_multiple))
 
 # ORDER BY DURATION
-c = manager.Client(False)
-b = c.load_basket_pickle('freesound_db_160317.pkl')
-id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
-
-data_single_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
-data_multiple_dur = {r:sorted([(s, b.sounds[id_to_idx[s]].duration) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
+data_single_dur = {r:sorted([(s, data_mapping[str(s)]['duration']) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
+data_multiple_dur = {r:sorted([(s, data_mapping[str(s)]['duration']) for s in data_multiple[r]], key=lambda c:c[1]) for r in data_multiple}
 
 # SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 7:3 BASED ON DURATION
 rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
@@ -1371,9 +1367,6 @@ dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'],
 
 # ------------------------ SELECT LQ SET ------------------------- #
 MAX_NUM_SOUND_DEV = 300
-b = c.load_basket_pickle('freesound_db_010218.pkl')
-id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
-
 # ADD FIRST LQprior
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
@@ -1389,7 +1382,10 @@ for node_id in data_dev_LQ_wo_prior.keys():
     ll = []
     for fs_id in data_dev_LQ_wo_prior[node_id]:
         try:
-            ll.append((fs_id, b.sounds[id_to_idx[fs_id]].num_downloads))
+            if data_mapping[str(fs_id)]['num_downloads']:
+                ll.append((fs_id, data_mapping[str(fs_id)]['num_downloads']))
+            else:
+                ll.append((fs_id, 0))
         except:
             ll.append((fs_id, 0))
     freesound_ids_with_num_downloads = sorted(ll, key=lambda x: x[1], reverse=True)
@@ -1564,20 +1560,17 @@ sound_ids_eval = list(sound_ids_eval)
 sound_ids_dev.sort()
 sound_ids_eval.sort()
 
-#import manager
-#c = manager.Client(False)
-b = c.load_basket_pickle('freesound_db_160317.pkl')
-id_to_idx = {b.ids[idx]:idx for idx in range(len(b))}
 license_file = open(FOLDER_DATA + 'licenses_dev.txt', 'w')
 license_file.write("This dataset uses the following sounds from Freesound:\n\n")
 license_file.write("to access user page:  http://www.freesound.org/people/<username>\n")
 license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
 license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
 for sound_id in sound_ids_dev:
-    sound = b.sounds[id_to_idx[sound_id]]
-    name = sound.name.encode('utf-8').replace('\r', '')
+    sound = data_mapping[str(sound_id)]
+    name = sound['name'].encode('utf-8').replace('\r', '')
+    username = sound['username'].encode('utf-8').replace('\r', '')
     license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
-                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+                       .format(name, sound_id, username, sound['license'].split('/')[-3].upper()))
 license_file.close()
 
 license_file = open(FOLDER_DATA + 'licenses_eval.txt', 'w')
@@ -1586,10 +1579,11 @@ license_file.write("to access user page:  http://www.freesound.org/people/<usern
 license_file.write("to access sound page: http://www.freesound.org/people/<username>/sounds/<soundid>\n\n")
 license_file.write("'<file name>' with ID <soundid> by <username> [<license>]\n\n")
 for sound_id in sound_ids_eval:
-    sound = b.sounds[id_to_idx[sound_id]]
-    name = sound.name.encode('utf-8').replace('\r', '')
+    sound = data_mapping[str(sound_id)]
+    name = sound['name'].encode('utf-8').replace('\r', '')
+    username = sound['username'].encode('utf-8').replace('\r', '')
     license_file.write("'{0}' with ID {1} by {2} [CC-{3}]\n"
-                       .format(name, sound.id, sound.username, sound.license.split('/')[-3].upper()))
+                       .format(name, sound_id, username, sound['license'].split('/')[-3].upper()))
 license_file.close()
 
 
@@ -1597,9 +1591,9 @@ license_file.close()
 
 # -------------------------- CREATE CSV ------------------------- #
 try:
-    merge = json.load(open(FOLDER_DATA + 'merge_categories.json', 'rb'))
+    merge = json.load(open(FOLDER_DATA + 'json/merge_categories.json', 'rb'))
 except:
-    raise Exception('CREATE THE FILE "merge_categories.json" for Task2')
+    raise Exception('CREATE THE FILE "merge_categories.json"')
 node_id_parent = {}
 for d in merge:
     for dd in merge[d]:
@@ -1619,10 +1613,10 @@ with open(FOLDER_DATA + 'dataset_dev.csv', 'wb') as f:
                 quality = 1
             elif sound_id in data_dev_LQ[d['audioset_id']] or sound_id in data_dev_LQpior[d['audioset_id']]:
                 quality = 0
-            sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+            sounds_A.append((sound_id, data_mapping[str(sound_id)]['duration']))
             try:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name'], quality])
-                sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+                sounds_B.append((sound_id, data_mapping[str(sound_id)]['duration']))
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None, quality])
 
@@ -1630,10 +1624,10 @@ with open(FOLDER_DATA + 'dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
-            sounds_A.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+            sounds_A.append((sound_id, data_mapping[str(sound_id)]['duration']))
             try:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
-                sounds_B.append((sound_id, b.sounds[id_to_idx[sound_id]].duration))
+                sounds_B.append((sound_id, data_mapping[str(sound_id)]['duration']))
             except:
                 writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
 
