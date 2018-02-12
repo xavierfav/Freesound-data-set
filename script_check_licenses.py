@@ -80,26 +80,26 @@ def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda):
     plt.show()
 
 
-# def plot_barplot3(data_bottom, data_mid, data_up, x_labels, y_label, fig_title, legenda):
-#     ind = np.arange(len(data_bottom))  # the x locations for the groups
-#     width = 0.5  # the width of the bars: can also be len(x) sequence
-#     axes = [-0.5, len(data_bottom), 0, 170]
-#
-#     fig = plt.figure()
-#     ax = fig.add_subplot(111)
-#     p1 = plt.bar(ind, data_bottom, width)
-#     p2 = plt.bar(ind, data_mid, width, bottom=data_bottom)
-#     p3 = plt.bar(ind, data_up, width, bottom=data_bottom)
-#     plt.xticks(fontsize=8, rotation=45)
-#     plt.xticks(ind, x_labels)
-#     plt.ylabel(y_label)
-#     plt.title(fig_title)
-#     # plt.yticks(np.arange(0, 81, 10))
-#     plt.legend((p1[0], p2[0], p3[0]), legenda)
-#     plt.axis(axes)
-#     ax.yaxis.grid(True)
-#     # plt.grid(True)
-#     plt.show()
+def plot_barplot3(data_bottom, data_mid, data_up, x_labels, y_label, fig_title, legenda):
+    ind = np.arange(len(data_bottom))  # the x locations for the groups
+    width = 0.5  # the width of the bars: can also be len(x) sequence
+    axes = [-0.5, len(data_bottom), 0, 170]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    p1 = plt.bar(ind, data_bottom, width)
+    p2 = plt.bar(ind, data_mid, width, bottom=data_bottom, color='y')
+    p3 = plt.bar(ind, data_up, width, bottom=[sum(x) for x in zip(data_bottom, data_mid)], color='r')
+    plt.xticks(fontsize=8, rotation=45)
+    plt.xticks(ind, x_labels)
+    plt.ylabel(y_label)
+    plt.title(fig_title)
+    # plt.yticks(np.arange(0, 81, 10))
+    plt.legend((p1[0], p2[0], p3[0]), legenda)
+    plt.axis(axes)
+    ax.yaxis.grid(True)
+    # plt.grid(True)
+    plt.show()
 # =============================================================
 # =============================================================
 
@@ -155,17 +155,17 @@ for catid, sounds in dataset_dev.iteritems():
     list_cats_license_SPLUS.append(count_SPLUS)
 
 
-# data_bottom = [len(sounds) for catid, sounds in dataset_dev.iteritems()]
-# for idx in range(len(data_bottom)):
-#     data_bottom[idx] = data_bottom[idx] - list_cats_license_NC[idx] - list_cats_license_SPLUS[idx]
-#
-# data_mid = list_cats_license_NC
-# data_up = list_cats_license_SPLUS
-# x_labels = [data_onto_by_id[catid]['name'] for catid, sounds in dataset_dev.iteritems()]
-# y_label = 'nb sounds with a license'
-# fig_title = 'number of sounds (votes) per category in DEV'
-# legenda = ('ok', 'NC', 'sampling+')
-# plot_barplot3(data_bottom,data_mid,data_up,x_labels,y_label,fig_title,legenda)
+data_bottom = [len(sounds) for catid, sounds in dataset_dev.iteritems()]
+for idx in range(len(data_bottom)):
+    data_bottom[idx] = data_bottom[idx] - list_cats_license_NC[idx] - list_cats_license_SPLUS[idx]
+
+data_mid = list_cats_license_NC
+data_up = list_cats_license_SPLUS
+x_labels = [data_onto_by_id[catid]['name'] for catid, sounds in dataset_dev.iteritems()]
+y_label = 'nb sounds with a license'
+fig_title = 'number of sounds (votes) per category in DEV'
+legenda = ('ok', 'NC', 'sampling+')
+plot_barplot3(data_bottom,data_mid,data_up,x_labels,y_label,fig_title,legenda)
 
 
 
