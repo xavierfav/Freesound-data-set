@@ -21,7 +21,7 @@ FOLDER_DATA = 'kaggle3/'
 
 
 #### DEFINE CONSTRAIN HERE ###
-
+MIN_HQdev_LQ = 90  # minimum number of sounds between HQ and LQ labels per category
 
 
 # this the result of the mapping from FS sounds to ASO.
@@ -59,15 +59,17 @@ def load_csv(csvfile):
     return dataset
 
 
-def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda):
+def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, axes_up, threshold):
     ind = np.arange(len(data_bottom))  # the x locations for the groups
     width = 0.5  # the width of the bars: can also be len(x) sequence
-    axes = [-0.5, len(data_bottom), 0, 170]
+    axes = [-0.5, len(data_bottom), 0, axes_up]
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
     p1 = plt.bar(ind, data_bottom, width)
     p2 = plt.bar(ind, data_up, width, bottom=data_bottom)
+    # horizontal line indicating the threshold
+    plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
     plt.xticks(fontsize=8, rotation=45)
     plt.xticks(ind, x_labels)
     plt.ylabel(y_label)
@@ -80,16 +82,18 @@ def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda):
     plt.show()
 
 
-def plot_barplot3(data_bottom, data_mid, data_up, x_labels, y_label, fig_title, legenda):
+def plot_barplot3(data_bottom, data_mid, data_up, x_labels, y_label, fig_title, legenda, axes_up, threshold):
     ind = np.arange(len(data_bottom))  # the x locations for the groups
     width = 0.5  # the width of the bars: can also be len(x) sequence
-    axes = [-0.5, len(data_bottom), 0, 170]
+    axes = [-0.5, len(data_bottom), 0, axes_up]
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
     p1 = plt.bar(ind, data_bottom, width)
     p2 = plt.bar(ind, data_mid, width, bottom=data_bottom, color='y')
     p3 = plt.bar(ind, data_up, width, bottom=[sum(x) for x in zip(data_bottom, data_mid)], color='r')
+    # horizontal line indicating the threshold
+    plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
     plt.xticks(fontsize=8, rotation=45)
     plt.xticks(ind, x_labels)
     plt.ylabel(y_label)
@@ -131,15 +135,26 @@ x_labels = [data_onto_by_id[catid]['name'] for catid, sounds in dataset_dev.iter
 y_label = 'nb sounds'
 fig_title = 'number of sounds (votes) per category in DEV'
 legenda = ('-', '--')
-plot_barplot(data_bottom,data_up,x_labels,y_label,fig_title,legenda)
+plot_barplot(data_bottom,data_up,x_labels,y_label,fig_title,legenda,150, MIN_HQdev_LQ)
+
 
 # barplot for EVAL with MIN_HQeval
-# to do
+data_bottom = [len(sounds) for catid, sounds in dataset_eval.iteritems()]
+data_up = [0 for catid, sounds in dataset_dev.iteritems()]
+x_labels = [data_onto_by_id[catid]['name'] for catid, sounds in dataset_eval.iteritems()]
+y_label = 'nb sounds'
+fig_title = 'number of sounds (votes) per category in EVAL'
+legenda = ('-', '--')
+plot_barplot(data_bottom,data_up,x_labels,y_label,fig_title,legenda, 50, 12)
 
-list_cats_license_NC = []
-list_cats_license_SPLUS = []
+
+
+
+
 # 2) is 1), but several colorbars marking upper the souncs with licens: BY-NC and SAMPLING+
 # we will see then 2 of the 3 thresholds
+list_cats_license_NC = []
+list_cats_license_SPLUS = []
 for catid, sounds in dataset_dev.iteritems():
     count_NC = 0
     count_SPLUS = 0
@@ -165,10 +180,39 @@ x_labels = [data_onto_by_id[catid]['name'] for catid, sounds in dataset_dev.iter
 y_label = 'nb sounds with a license'
 fig_title = 'number of sounds (votes) per category in DEV'
 legenda = ('ok', 'NC', 'sampling+')
-plot_barplot3(data_bottom,data_mid,data_up,x_labels,y_label,fig_title,legenda)
+plot_barplot3(data_bottom,data_mid,data_up,x_labels,y_label,fig_title,legenda,150, MIN_HQdev_LQ)
 
 
 
+# EVAL
+list_cats_license_NC = []
+list_cats_license_SPLUS = []
+for catid, sounds in dataset_eval.iteritems():
+    count_NC = 0
+    count_SPLUS = 0
+
+    for sound in sounds:
+        print data_mapping[str(sound)]['license'].split('/')[-3]
+        if data_mapping[str(sound)]['license'].split('/')[-3] == 'by-nc':
+            count_NC += 1
+        elif data_mapping[str(sound)]['license'].split('/')[-3] == 'sampling+':
+            count_SPLUS += 1
+
+    list_cats_license_NC.append(count_NC)
+    list_cats_license_SPLUS.append(count_SPLUS)
+
+
+data_bottom = [len(sounds) for catid, sounds in dataset_eval.iteritems()]
+for idx in range(len(data_bottom)):
+    data_bottom[idx] = data_bottom[idx] - list_cats_license_NC[idx] - list_cats_license_SPLUS[idx]
+
+data_mid = list_cats_license_NC
+data_up = list_cats_license_SPLUS
+x_labels = [data_onto_by_id[catid]['name'] for catid, sounds in dataset_eval.iteritems()]
+y_label = 'nb sounds with a license'
+fig_title = 'number of sounds (votes) per category in EVAL'
+legenda = ('ok', 'NC', 'sampling+')
+plot_barplot3(data_bottom,data_mid,data_up,x_labels,y_label,fig_title,legenda,50, 12)
 
 
 
