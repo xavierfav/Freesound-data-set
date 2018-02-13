@@ -794,6 +794,13 @@ for ii in range(1):
     print '======================================================'
     print '\n\n\n'
 
+
+
+    """ # from data_qual_sets to data_qual_sets_pparents  *****************************************************
+    ***********************************************************************************************************
+    ***********************************************************************************************************"""
+
+
     # So far we have considered only leafs. Now, there are parents such that all the childrens are discarded.
     # we could try to aggregate these children together (the part of them that it is ok)
     # with the parent (if applicable), and see if the resulting aggregated category meets the requirements.
@@ -860,10 +867,6 @@ for ii in range(1):
 
 
 
-
-    """ # from data_qual_sets to data_qual_sets_pparents  *****************************************************
-    ***********************************************************************************************************
-    ***********************************************************************************************************"""
 
     # create data_qual_sets_pparents with keys with catids and empty dicts as values, filled with empty lists for HQ/LQ
     data_qual_sets_pparents = copy.deepcopy(data_qual_sets)
