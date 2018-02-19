@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 
 
 FOLDER_DATA = 'kaggle3/'
@@ -91,7 +91,7 @@ def check_GT(group, fsid, catid, vote_groups, fsids_assigned_cat, data_sounds):
 
 
 def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids_assigned_cat, data_sounds,
-                                                 error_mapping_count_cat):
+                                                 error_mapping_count_cat, count_risky_PP):
     # map the voted sound to a disjoint group  without inter-annotator agreement
     # using set of arbitrary rules that cover all possible options
     # being demanding now. only sending to PP when we are sure
@@ -112,6 +112,7 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
 
     # trivial cases where there is only one single vote by one annotator
     if 1.0 in votes and 0.5 not in votes and -1.0 not in votes and 0.0 not in votes:
+        # the only case where a sound is sent to PP without inter-annotator agreement
         data_sounds[catid]['PP'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 in votes and -1.0 not in votes and 0.0 not in votes:
@@ -129,12 +130,14 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
 
     # 8 PP and PNP
     elif 1.0 in votes and 0.5 in votes and -1.0 not in votes and 0.0 not in votes:
-        data_sounds[catid]['PP'].append(fsid)
+        data_sounds[catid]['PNP'].append(fsid)
         fsids_assigned_cat.append(fsid)
+        count_risky_PP += 1
     # 9 PP and PNP and U
     elif 1.0 in votes and 0.5 in votes and -1.0 not in votes and 0.0 in votes:
-        data_sounds[catid]['PP'].append(fsid)
+        data_sounds[catid]['PNP'].append(fsid)
         fsids_assigned_cat.append(fsid)
+        count_risky_PP += 1
 
 
     # 1 U and NP
@@ -184,7 +187,7 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
         error_mapping_count_cat += 1
         # sys.exit('something unexpetected happened in the mapping!')
 
-    return data_sounds, fsids_assigned_cat, error_mapping_count_cat
+    return data_sounds, fsids_assigned_cat, error_mapping_count_cat, count_risky_PP
 
 
 # turn interactive mode on
@@ -283,6 +286,9 @@ for catid, vote_groups in data_sounds.iteritems():
 error_mapping_count_cats = []
 
 """ # from data_votes to data_sounds ******************************************************************************"""
+# to keep track of combinations
+# PP + PNP and PP + PNP + U
+count_risky_PP = 0
 
 for catid, vote_groups in data_votes.iteritems():
     # list to keep track of assigned fsids within a category, to achieve disjoint subsets of audio samples
@@ -315,8 +321,8 @@ for catid, vote_groups in data_votes.iteritems():
 
         if fsid not in fsids_assigned_cat:
             # map the voted sound to a disjoint group  without inter-annotator agreement
-            data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
-                fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
+            data_sounds, fsids_assigned_cat, error_mapping_count_cat, count_risky_PP = map_votedsound_2_disjointgroups_wo_agreement(
+                fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat, count_risky_PP)
 
     # check GT in PNP
     # check GT in the remaining groups
@@ -344,8 +350,8 @@ for catid, vote_groups in data_votes.iteritems():
 
             if fsid not in fsids_assigned_cat:
                 # map the voted sound to a disjoint group  without inter-annotator agreement
-                data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
-                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
+                data_sounds, fsids_assigned_cat, error_mapping_count_cat, count_risky_PP = map_votedsound_2_disjointgroups_wo_agreement(
+                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat, count_risky_PP)
 
     # check GT in U
     # check GT in the remaining groups
@@ -370,8 +376,8 @@ for catid, vote_groups in data_votes.iteritems():
 
             if fsid not in fsids_assigned_cat:
                 # map the voted sound to a disjoint group  without inter-annotator agreement
-                data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
-                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
+                data_sounds, fsids_assigned_cat, error_mapping_count_cat, count_risky_PP = map_votedsound_2_disjointgroups_wo_agreement(
+                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat, count_risky_PP)
 
     # check GT in NP
     # check GT in the remaining groups? no need to. already done in previous passes
@@ -393,8 +399,8 @@ for catid, vote_groups in data_votes.iteritems():
             else:
                 # if fsid not in fsids_assigned_cat:
                 # map the voted sound to a disjoint group  without inter-annotator agreement
-                data_sounds, fsids_assigned_cat, error_mapping_count_cat = map_votedsound_2_disjointgroups_wo_agreement(
-                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat)
+                data_sounds, fsids_assigned_cat, error_mapping_count_cat, count_risky_PP = map_votedsound_2_disjointgroups_wo_agreement(
+                    fsid, catid, vote_groups, fsids_assigned_cat, data_sounds, error_mapping_count_cat, count_risky_PP)
 
     # store mapping error for every category
     error_mapping_count_cats.append(error_mapping_count_cat)
@@ -405,6 +411,8 @@ for catid, vote_groups in data_votes.iteritems():
             vote_groups['U'])) >= MIN_VOTES_CAT:
         data_sounds[catid]['QE'] = (len(vote_groups['PP']) + len(vote_groups['PNP'])) / float(
             len(vote_groups['PP']) + len(vote_groups['PNP']) + len(vote_groups['NP']) + len(vote_groups['U']))
+
+# =======================SANITY CHECKS===================================
 
     # sanity check: there should be no duplicated fsids within a group of data_sounds
     if (len(data_sounds[catid]['PP']) != len(set(data_sounds[catid]['PP'])) or
@@ -439,6 +447,9 @@ for catid, vote_groups in data_votes.iteritems():
 if sum(error_mapping_count_cats) > 0:
     print 'there are errors in the following number of fsids: ' + str(sum(error_mapping_count_cats))
     print(error_mapping_count_cats)
+
+print 'Number of sounds with voting combination (PP + PNP) or (PP + PNP + U) : ' + str(count_risky_PP)
+# but this number is considering all the ontology, all durations, no filter has been applied yet.
 
 # here we have data_sounds ready
 
@@ -784,7 +795,7 @@ for ii in range(1):
     # review LQprior:make sure they are in LQ (some were deleted due to duration filter)
     for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
         if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
-            print 'some LQ were gone in the child level, due to duration'
+            # print 'some LQ were gone in the child level, due to duration'
             data_qual_sets_ld_HQLQQEb[catid]['LQprior'] = list(set(groups['LQprior']) & set(groups['LQ']))
 
 
@@ -952,8 +963,8 @@ for ii in range(1):
             children_id_2_parent_HQ.extend(children_valid_popul_onlyHQ)
             children_id_2_parent_HQ.extend(children_valid_popul_HQLQ)
             children_id_2_parent_LQ.extend(children_valid_popul_HQLQ)
-        else:
-            print 'no children to populate'
+        # else:
+            # print 'no children to populate'
 
         if children_id_2_parent_HQ:
             # at least we have to populate HQ
@@ -1250,10 +1261,14 @@ with open('dataset_final.json', 'w') as fp:
 
 
 
-"""**********************************END OF INITIAL STAGE: now postprocessing**************************************
+"""**********************************END OF INITIAL STAGE: *****************************************************
 ****************************************************************************************************************"""
 
 
+
+
+"""**********************************BEGIN POST-PROCESSING STAGE: *****************************************************
+****************************************************************************************************************"""
 
 
 
