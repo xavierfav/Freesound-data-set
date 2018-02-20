@@ -250,8 +250,8 @@ def compute_median(data):
     nb_samples = []
     for id, group in data.iteritems():
         nb_samples.append(np.ceil(PERCENTAGE_DEV * len(group['HQ'])) + len(group['LQ']))
-    print 'Estimated Median of number of DEV samples per category: ' + str(np.median(nb_samples))
-    print()
+    # print 'Estimated Median of number of DEV samples per category: ' + str(np.median(nb_samples))
+    # print()
     return nb_samples
 
 
@@ -571,31 +571,53 @@ for ii in range(1):
 
 
 
-
-    # create copy for next filter
+    # FILTER 2: Apply duration filter: Within the 474 categories, keep sounds with durations [MINLEN: MAXLEN]
+    # create copy for result of filter
     data_qual_sets_ld = copy.deepcopy(data_qual_sets_l)
     for catid, groups in data_qual_sets_ld.iteritems():
         data_qual_sets_ld[catid]['HQ'] = []
         data_qual_sets_ld[catid]['LQ'] = []
 
-    # FILTER 2: Apply duration filter: Within the 474 categories, keep sounds with durations [MINLEN: MAXLEN]
     for catid, groups in data_qual_sets_l.iteritems():
         for fsid in groups['HQ']:
-            if data_mapping[str(fsid)]['duration'] <= MAXLEN and data_mapping[str(fsid)]['duration'] >= MINLEN:
+            if (data_mapping[str(fsid)]['duration'] <= MAXLEN) and (data_mapping[str(fsid)]['duration'] >= MINLEN):
                 data_qual_sets_ld[catid]['HQ'].append(fsid)
 
         for fsid in groups['LQ']:
             if (data_mapping[str(fsid)]['duration'] <= MAXLEN) and (data_mapping[str(fsid)]['duration'] >= MINLEN):
                 data_qual_sets_ld[catid]['LQ'].append(fsid)
 
+
+    # FILTER 2.1: NC license. Within the categories, discard sounds with NC licenses
+    # create copy for result of filter
+    data_qual_sets_ldl = copy.deepcopy(data_qual_sets_ld)
+    for catid, groups in data_qual_sets_ldl.iteritems():
+        data_qual_sets_ldl[catid]['HQ'] = []
+        data_qual_sets_ldl[catid]['LQ'] = []
+
+    for catid, groups in data_qual_sets_ld.iteritems():
+        for fsid in groups['HQ']:
+            if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc':
+                data_qual_sets_ldl[catid]['HQ'].append(fsid)
+
+        for fsid in groups['LQ']:
+            if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc':
+                data_qual_sets_ldl[catid]['LQ'].append(fsid)
+
+
     # FILTER 3:  number of sounds with HQ>= MIN_HQ (what we proposed already)
     # o = catid. create a dict of dicts. the latter are just the dicts that fulfil the condition on MIN_HQ
-    data_qual_sets_ld_HQ = {o: data_qual_sets_ld[o] for o in data_qual_sets_ld if
-                            len(data_qual_sets_ld[o]['HQ']) >= MIN_HQ}
+    data_qual_sets_ld_HQ = {o: data_qual_sets_ldl[o] for o in data_qual_sets_ldl if
+                            len(data_qual_sets_ldl[o]['HQ']) >= MIN_HQ}
+
+    # data_qual_sets_ld_HQ means: every category with HQ and LQ after:
+    # - taking leaves
+    # - applying duration filter
+    # - applying license filter (although not explicit in var name)
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and of duration [' + str(
         MINLEN) + ':' + \
-          str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQ))
+          str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQ))
     # print()
 
     # plot
@@ -700,7 +722,7 @@ for ii in range(1):
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
         MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels, and of duration ['\
-          + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQb))
+          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQb))
 
 
 
@@ -753,7 +775,7 @@ for ii in range(1):
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
         MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
-          + str(MINLEN) + ':' + str(MAXLEN) + ']: ' + str(len(data_qual_sets_ld_HQLQQEb))
+          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQQEb))
 
 
     # plot
@@ -1144,14 +1166,13 @@ if any(k in data_qual_sets_ld_HQLQQEb for k in data_qual_sets_pparents_clean):
 """ # 4) once we have the new children, repeat filtering as if they were real children. ***********************
 ***********************************************************************************************************"""
 
-
+# FILTER 2: Apply duration filter: Within the categories, keep sounds with durations [MINLEN: MAXLEN]
 # create copy for next filter
 data_qual_sets_pparents_d = copy.deepcopy(data_qual_sets_pparents_clean)
 for catid, groups in data_qual_sets_pparents_d.iteritems():
     data_qual_sets_pparents_d[catid]['HQ'] = []
     data_qual_sets_pparents_d[catid]['LQ'] = []
 
-# FILTER 2: Apply duration filter: Within the categories, keep sounds with durations [MINLEN: MAXLEN]
 for catid, groups in data_qual_sets_pparents_clean.iteritems():
     for fsid in groups['HQ']:
         if (data_mapping[str(fsid)]['duration'] <= MAXLEN and data_mapping[str(fsid)]['duration'] >= MINLEN):
