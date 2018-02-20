@@ -552,6 +552,16 @@ for ii in range(1):
         y_label = '# of audio clips'
         plot_boxplot(nb_samples_cats_dev, x_labels, fig_title, y_label)
 
+    # remove some leaves manually
+    # case A) there is a leaf that is accepted, but too specific. We prefer its parent
+    # Pizzicato --> Violin
+    # Alto Saxophone --> Saxo
+    leavesid_to_remove = ['/m/0d8_n', '/m/02pprs']
+    for catid in leavesid_to_remove:
+        del data_qual_sets_l[catid]
+
+
+
     if FLAG_BARPLOT:
         # create variable with data for barplotting - function
         var_barplot = create_var_barplot(data_qual_sets_l, data_onto_by_id)
@@ -773,9 +783,15 @@ for ii in range(1):
         #     print()
 
 
-    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', and of duration [' \
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, at least ' + str(
+        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', duration [' \
           + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQQEb))
+
+    print 'List of selected LEAVES categories: \n'
+    idx_print = 1
+    for catid in data_qual_sets_ld_HQLQQEb.keys():
+        print str(idx_print) + '-' + data_onto_by_id[str(catid)]['name']
+        idx_print += 1
 
 
     # plot
@@ -840,7 +856,7 @@ for ii in range(1):
     # how many categories are gained?
 
     # final set of valid leaf categories for dataset
-    final_set_valid_leafs = [catid for catid in data_qual_sets_ld_HQLQQEb]
+    final_set_valid_leaves = [catid for catid in data_qual_sets_ld_HQLQQEb]
 
     # list all penultimate parents (parents at the penultimate level of the onto)
     penul_parents = []
@@ -864,7 +880,7 @@ for ii in range(1):
     for penul_parent in penul_parents:
         flag_all_children_discarded = True
         for childid in data_onto_by_id[penul_parent['catid']]['child_ids']:
-            if childid in final_set_valid_leafs:
+            if childid in final_set_valid_leaves:
                 flag_all_children_discarded = False
                 break
         if flag_all_children_discarded:
@@ -916,7 +932,7 @@ for ii in range(1):
         """ # 1) distribute children  *****************************************************
         ***********************************************************************************************************"""
 
-        if penul_parent['name'] == 'Telephone':
+        if penul_parent['name'] == 'Saxophone':
             a = 9
 
         count_weird_pop_fromHQ2LQ = 0
@@ -932,7 +948,7 @@ for ii in range(1):
 
                 # checking minimum QE for every category individually, for simplicity
                 if data_qual_sets[str(childid)]['QE'] > MIN_QE:
-                    # the number of votes > MIN_VOTES_CAT was checked before. it not, QE = 0 already
+                    # the number of votes > MIN_VOTES_CAT was checked before. if not, QE = 0 already
                     children_valid_popul_HQLQ.append(childid)
                 elif data_qual_sets[str(childid)]['HQ']:
                     children_valid_popul_onlyHQ.append(childid)
