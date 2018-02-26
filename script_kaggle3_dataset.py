@@ -62,6 +62,7 @@ data_onto_by_id = {o['id']: o for o in data_onto}
 
 try:
     # load json with ontology, to map aso_ids to understandable category names
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jan_22.json') as data_file:
     with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
         data_votes = json.load(data_file)
 except:
