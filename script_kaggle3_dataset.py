@@ -557,9 +557,9 @@ for ii in range(1):
     # case A) there is a leaf that is accepted, but too specific. We prefer its parent
     # Pizzicato --> Violin
     # Alto Saxophone --> Saxo
-    leavesid_to_remove = ['/m/0d8_n', '/m/02pprs']
-    for catid in leavesid_to_remove:
-        del data_qual_sets_l[catid]
+    # leavesid_to_remove = ['/m/0d8_n', '/m/02pprs']
+    # for catid in leavesid_to_remove:
+    #     del data_qual_sets_l[catid]
 
 
 
