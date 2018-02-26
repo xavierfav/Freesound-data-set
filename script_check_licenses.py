@@ -165,13 +165,16 @@ if OMIT_LICENSES == 'NC':
         count_NC = 0
 
         for sound in sounds:
-            print data_mapping[str(sound)]['license'].split('/')[-3]
+            # print data_mapping[str(sound)]['license'].split('/')[-3]
             if data_mapping[str(sound)]['license'].split('/')[-3] == 'by-nc':
                 count_NC += 1
 
         list_cats_license_NC.append(count_NC)
 
     data_bottom = [len(sounds) for catid, sounds in dataset_dev.iteritems()]
+    print 'Number of NC sounds in DEV: ' + str(sum(list_cats_license_NC)) + 'out of ' + str(sum(data_bottom)) + \
+          ', being ' + str(sum(list_cats_license_NC)*100/float(sum(data_bottom))) + ' %'
+
     for idx in range(len(data_bottom)):
         data_bottom[idx] = data_bottom[idx] - list_cats_license_NC[idx]
 
@@ -180,22 +183,26 @@ if OMIT_LICENSES == 'NC':
     y_label = 'nb sounds with a license'
     fig_title = 'number of sounds (votes) per category in DEV'
     legenda = ('ok', 'NC')
-    plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, 150, MIN_HQdev_LQ)
+    plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, 290, MIN_HQdev_LQ)
+
+
 
     # EVAL
     list_cats_license_NC = []
-    list_cats_license_SPLUS = []
     for catid, sounds in dataset_eval.iteritems():
         count_NC = 0
 
         for sound in sounds:
-            print data_mapping[str(sound)]['license'].split('/')[-3]
+            # print data_mapping[str(sound)]['license'].split('/')[-3]
             if data_mapping[str(sound)]['license'].split('/')[-3] == 'by-nc':
                 count_NC += 1
 
         list_cats_license_NC.append(count_NC)
 
     data_bottom = [len(sounds) for catid, sounds in dataset_eval.iteritems()]
+    print 'Number of NC sounds in EVAL: ' + str(sum(list_cats_license_NC)) + 'out of ' + str(sum(data_bottom)) + \
+          ', being ' + str(sum(list_cats_license_NC)*100/float(sum(data_bottom))) + ' %'
+
     for idx in range(len(data_bottom)):
         data_bottom[idx] = data_bottom[idx] - list_cats_license_NC[idx]
 
@@ -205,6 +212,7 @@ if OMIT_LICENSES == 'NC':
     fig_title = 'number of sounds (votes) per category in EVAL'
     legenda = ('ok', 'NC')
     plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, 50, 12)
+
 
 # highlight both NC and sampling+
 elif OMIT_LICENSES == 'NC_sampling+':
