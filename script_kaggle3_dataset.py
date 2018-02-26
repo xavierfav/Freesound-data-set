@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-# import xlsxwriter
+import xlsxwriter
 
 
 FOLDER_DATA = 'kaggle3/'
@@ -62,7 +62,7 @@ data_onto_by_id = {o['id']: o for o in data_onto}
 
 try:
     # load json with ontology, to map aso_ids to understandable category names
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Jan_22.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
         data_votes = json.load(data_file)
 except:
     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -1526,11 +1526,14 @@ for idx in range(len(dataset_dev_filter)):
     sounds_left += dataset_eval_filter[idx]['sound_ids']
     
 for aso_id in category_id_to_remove:
-    del data_dev[aso_id]
-    del data_dev_HQ[aso_id]
-    del data_dev_LQ[aso_id]
-    del data_dev_LQpior[aso_id]
-    del data_eval[aso_id]
+    try:
+        del data_dev[aso_id]
+        del data_dev_HQ[aso_id]
+        del data_dev_LQ[aso_id]
+        del data_dev_LQpior[aso_id]
+        del data_eval[aso_id]
+    except:
+        pass
     
 print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
 
