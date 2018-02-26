@@ -598,7 +598,7 @@ for ii in range(1):
                 data_qual_sets_ld[catid]['LQ'].append(fsid)
 
 
-    # FILTER 2.1: NC license. Within the categories, discard sounds with NC licenses
+    # FILTER 2.1: NC license. Within the categories, discard sounds with NC licenses and sampling+
     # create copy for result of filter
     data_qual_sets_ldl = copy.deepcopy(data_qual_sets_ld)
     for catid, groups in data_qual_sets_ldl.iteritems():
@@ -607,11 +607,13 @@ for ii in range(1):
 
     for catid, groups in data_qual_sets_ld.iteritems():
         for fsid in groups['HQ']:
-            if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc':
+            if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc' and\
+                            data_mapping[str(fsid)]['license'].split('/')[-3] != 'sampling+':
                 data_qual_sets_ldl[catid]['HQ'].append(fsid)
 
         for fsid in groups['LQ']:
-            if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc':
+            if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc' and\
+                            data_mapping[str(fsid)]['license'].split('/')[-3] != 'sampling+':
                 data_qual_sets_ldl[catid]['LQ'].append(fsid)
 
 
@@ -1199,7 +1201,7 @@ for catid, groups in data_qual_sets_pparents_clean.iteritems():
             data_qual_sets_pparents_d[catid]['LQ'].append(fsid)
 
 
-# FILTER 2.1: NC license. Within the categories, discard sounds with NC licenses
+# FILTER 2.1: NC license. Within the categories, discard sounds with NC licenses and sampling+
 # create copy for result of filter
 data_qual_sets_pparents_dl = copy.deepcopy(data_qual_sets_pparents_d)
 for catid, groups in data_qual_sets_pparents_dl.iteritems():
@@ -1208,11 +1210,13 @@ for catid, groups in data_qual_sets_pparents_dl.iteritems():
 
 for catid, groups in data_qual_sets_pparents_d.iteritems():
     for fsid in groups['HQ']:
-        if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc':
+        if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc' and \
+                        data_mapping[str(fsid)]['license'].split('/')[-3] != 'sampling+':
             data_qual_sets_pparents_dl[catid]['HQ'].append(fsid)
 
     for fsid in groups['LQ']:
-        if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc':
+        if data_mapping[str(fsid)]['license'].split('/')[-3] != 'by-nc' and \
+                        data_mapping[str(fsid)]['license'].split('/')[-3] != 'sampling+':
             data_qual_sets_pparents_dl[catid]['LQ'].append(fsid)
 
 
@@ -1291,7 +1295,8 @@ for catid, groups in dataset_final_prepro.iteritems():
             for fsid in group:
                 if data_mapping[str(fsid)]['license'].split('/')[-3] == 'by-nc':
                     sys.exit('There are NC sounds. FATAL ERROR')
-
+                elif data_mapping[str(fsid)]['license'].split('/')[-3] == 'sampling+':
+                    sys.exit('There are sampling+ sounds. FATAL ERROR')
 
 
 print 'Number of final categories: ' + str(len(dataset_final_prepro))
