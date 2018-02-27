@@ -117,7 +117,10 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
         data_sounds[catid]['PP'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 in votes and -1.0 not in votes and 0.0 not in votes:
-        data_sounds[catid]['PNP'].append(fsid)
+        # data_sounds[catid]['PNP'].append(fsid)
+        # single vote of PNP may be a bit unreliable. safer to send it to U group
+        # thus it goes to LQ (and not LQprior)
+        data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 not in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['NP'].append(fsid)
@@ -775,6 +778,7 @@ for ii in range(1):
 
         # from here on, cannot trust LQ
 
+        # next two can be collapsed into one clause
         # category with enough HQ to fill all DEV and EVAL without anything of LQ
         elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) >= MIN_HQdev_LQ:
             # keep HQ, put LQ = LQprior (that meet previous filters), keep LQprior and remove QE
@@ -943,6 +947,7 @@ for ii in range(1):
         data_qual_sets_pparents[catid].clear()
         data_qual_sets_pparents[catid]['HQ'] = []
         data_qual_sets_pparents[catid]['LQ'] = []
+        data_qual_sets_pparents[catid]['LQprior'] = []
 
     penul_parents_cand_2filt = []
     counter_mult_parents = 0
@@ -958,7 +963,7 @@ for ii in range(1):
 
         count_weird_pop_fromHQ2LQ = 0
         children_valid_popul_HQLQ = []
-        children_valid_popul_onlyHQ = []
+        children_valid_popul_onlyHQLQprior = []
         for childid in data_onto_by_id[penul_parent['catid']]['child_ids']:
 
             # 1- for every child: if there is no multiple parents
@@ -973,7 +978,9 @@ for ii in range(1):
                     # the QE requirement is met. Leverage both HQ and LQ from the child
                     children_valid_popul_HQLQ.append(childid)
                 elif data_qual_sets[str(childid)]['HQ']:
-                    children_valid_popul_onlyHQ.append(childid)
+                    # data_qual_sets_ld_HQLQQEb
+                    # the QE requirement is NOT met. Leverage only HQ and LQprior from the child
+                    children_valid_popul_onlyHQLQprior.append(childid)
 
             elif nb_parents == 0:
                 sys.exit('mistake at multiple parents computation')
@@ -981,7 +988,7 @@ for ii in range(1):
                 counter_mult_parents += 1
 
         # here we have children_valid_popul_HQLQ with the valid children for penul_parent, including ['QE'] > MIN_QE:
-        # and children_valid_popul_onlyHQ with the valid children for penul_parent that do not meet QE
+        # and children_valid_popul_onlyHQLQprior with the valid children for penul_parent that do not meet QE
 
 
         # 2 - when populating there are several cases possible
@@ -1009,22 +1016,49 @@ for ii in range(1):
         # extend lists of HQ/LQ sounds of all children to populate
         children_id_2_parent_HQ = []
         children_id_2_parent_LQ = []
-        if children_valid_popul_onlyHQ and not children_valid_popul_HQLQ:
-            # only populating HQ
-            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQ)
+        children_id_2_parent_LQprior = []
 
-        elif not children_valid_popul_onlyHQ and children_valid_popul_HQLQ:
-            # only populating both HQ and LQ
+
+# review
+
+
+        if children_valid_popul_onlyHQLQprior and not children_valid_popul_HQLQ:
+            # the QE requirement is NOT met in any case. Leverage only HQ and LQprior from the children
+            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQLQprior)
+            # to count for acceptance: children's LQprior will be sent to LQprior and LQ of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_onlyHQLQprior)
+
+        elif not children_valid_popul_onlyHQLQprior and children_valid_popul_HQLQ:
+            # the QE requirement is met in all cases. Leverage both HQ and LQ from all the children
+            # populating (both HQ and LQ) for all children
             children_id_2_parent_HQ.extend(children_valid_popul_HQLQ)
+
+            # to count for acceptance: children's LQ will be sent to LQ of parent
             children_id_2_parent_LQ.extend(children_valid_popul_HQLQ)
 
-        elif children_valid_popul_onlyHQ and children_valid_popul_HQLQ:
+            # to prioritize: children's LQprior will be sent to LQprior of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_HQLQ)
+
+        elif children_valid_popul_onlyHQLQprior and children_valid_popul_HQLQ:
             # populating both ways: (HQ and LQ) and only HQ
-            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQ)
+            # some children did not meet the QE req
+            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQLQprior)
+
+            # to count for acceptance: children's LQprior will be sent to LQprior and LQ of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_onlyHQLQprior)
+
+            # Others met the QE req
             children_id_2_parent_HQ.extend(children_valid_popul_HQLQ)
+            # to count for acceptance: children's LQ will be sent to LQ of parent
             children_id_2_parent_LQ.extend(children_valid_popul_HQLQ)
+            # to prioritize: children's LQprior will be sent to LQprior of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_HQLQ)
+
         # else:
             # print 'no children to populate'
+
+# review
+
 
         if children_id_2_parent_HQ:
             # at least we have to populate HQ
@@ -1036,7 +1070,8 @@ for ii in range(1):
 
             # distribution of children------------------------------------make function
             for id in children_joint_HQ:
-                # sound only in children. several options
+                # several options
+                # sound only in children
                 if id not in data_qual_sets[penul_parent['catid']]['HQ'] and id not in data_qual_sets[penul_parent['catid']]['LQ']:
                     data_qual_sets_pparents[penul_parent['catid']]['HQ'].append(id)
 
@@ -1049,7 +1084,6 @@ for ii in range(1):
                     data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
                     count_weird_pop_fromHQ2LQ += 1
 
-
         if children_id_2_parent_LQ:
             # we also have to populate LQ (this only happens if there is children_joint_HQ too)
             children_joint_lists_LQ = [data_qual_sets[str(childid)]['LQ'] for childid in children_id_2_parent_LQ]
@@ -1058,8 +1092,8 @@ for ii in range(1):
 
             for id in children_joint_LQ:
                 # sound only in children. several options
-                if id not in data_qual_sets[penul_parent['catid']]['HQ'] and id not in \
-                        data_qual_sets[penul_parent['catid']]['LQ']:
+                if id not in data_qual_sets[penul_parent['catid']]['HQ'] and \
+                        id not in data_qual_sets[penul_parent['catid']]['LQ']:
                     if id in children_joint_LQ and id not in children_joint_HQ:
                         data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
                     elif id in children_joint_LQ and id in children_joint_HQ:
@@ -1073,6 +1107,39 @@ for ii in range(1):
                 elif id in data_qual_sets[penul_parent['catid']]['LQ']:
                     data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
 
+# review. LQprior must be sent to LQ when QE is not met.how to know that?
+#         sendig it always to both LQ and LQprior, then set
+#         pero despues no puedo hacer intersection
+#         think. draw.
+        if children_id_2_parent_LQprior:
+            # regardless the QE, we also have to populate LQprior
+            children_joint_lists_LQprior = [data_qual_sets[str(childid)]['LQprior'] for childid in children_id_2_parent_LQprior]
+            children_joint_LQprior = list(set(list(itertools.chain.from_iterable(children_joint_lists_LQprior))))
+            # the latter could produce duplicates
+
+        for id in children_joint_LQprior:
+            # children_joint_LQprior is list of ids of LQ sounds with priority
+            # they are already within data_qual_sets_pparents[penul_parent['catid']]['LQ'] except:
+            # -a LQ sound in children, moved to HQ in parent in previous if-clause
+            # -
+            # several philosophy
+            # sound only in children. several options
+            if id not in data_qual_sets[penul_parent['catid']]['HQ'] and \
+                    id not in data_qual_sets[penul_parent['catid']]['LQ']:
+                if id in children_joint_LQprior and id not in children_joint_HQ:
+                    # normal case
+                    data_qual_sets_pparents[penul_parent['catid']]['LQprior'].append(id)
+                elif id in children_joint_LQprior and id in children_joint_HQ:
+                    # priority for one child; HQ for a different child. PROBLEMS? unusual
+                    data_qual_sets_pparents[penul_parent['catid']]['HQ'].append(id)
+
+                # sound also in parent_HQ
+            elif id in data_qual_sets[penul_parent['catid']]['HQ']:
+                data_qual_sets_pparents[penul_parent['catid']]['HQ'].append(id)
+
+                # sound also in parent_LQ
+            elif id in data_qual_sets[penul_parent['catid']]['LQ']:
+                data_qual_sets_pparents[penul_parent['catid']]['LQprior'].append(id)
 
         # so far: the children have been distributed in a disjoint fashion
 
@@ -1088,18 +1155,20 @@ for ii in range(1):
             FLAG_PARENT_IN = 2
             data_qual_sets_pparents[penul_parent['catid']]['HQ'].extend(data_qual_sets[penul_parent['catid']]['HQ'])
             data_qual_sets_pparents[penul_parent['catid']]['LQ'].extend(data_qual_sets[penul_parent['catid']]['LQ'])
+        #     add prior
 
         else:
             # we cannot trust LQ. Add only HQ
             FLAG_PARENT_IN = 1
             data_qual_sets_pparents[penul_parent['catid']]['HQ'].extend(data_qual_sets[penul_parent['catid']]['HQ'])
-
+        #     add prior
 
         # remove duplicates from the process
         data_qual_sets_pparents[penul_parent['catid']]['HQ'] = \
             list(set(data_qual_sets_pparents[penul_parent['catid']]['HQ']))
         data_qual_sets_pparents[penul_parent['catid']]['LQ'] = \
             list(set(data_qual_sets_pparents[penul_parent['catid']]['LQ']))
+        #     add prior
 
 
         """ # 3) sanity checks  *****************************************************
@@ -1134,7 +1203,7 @@ for ii in range(1):
                 sys.exit('number of sounds is not equal before and after population'
                          ' - both populations together (HQ and/or dual population (always HQ and LQ))')
 
-        elif children_valid_popul_onlyHQ:
+        elif children_valid_popul_onlyHQLQprior:
             # only HQ population from the children (not enough QE)
 
             # concatenating lists and set
@@ -1203,7 +1272,7 @@ if any(k in data_qual_sets_ld_HQLQQEb for k in data_qual_sets_pparents_clean):
 
 """ # 4) once we have the new children, repeat filtering as if they were real children. ***********************
 ***********************************************************************************************************"""
-
+# apply filters on LQ, then intersection with LQprior
 # FILTER 2: Apply duration filter: Within the categories, keep sounds with durations [MINLEN: MAXLEN]
 # create copy for next filter
 data_qual_sets_pparents_d = copy.deepcopy(data_qual_sets_pparents_clean)
