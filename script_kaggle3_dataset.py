@@ -764,11 +764,14 @@ for ii in range(1):
     # new way: consider that some categories may not meet MIN_QE, but they may have enough HQ to fill MIN_HQdev_LQ
     data_qual_sets_ld_HQLQQEb = {}
     for o in data_qual_sets_ld_HQLQb:
+        if o == '/m/07qrkrw':
+            b = 9
+
         if data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE:
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
             # make sure LQprior are in LQ (some were deleted due to duration and license filters)
             data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
-               list(set(data_qual_sets_ld_HQLQb['LQprior']) & set(data_qual_sets_ld_HQLQb['LQ']))
+               list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
 
         # from here on, cannot trust LQ
 
@@ -949,7 +952,8 @@ for ii in range(1):
         """ # 1) distribute children  *****************************************************
         ***********************************************************************************************************"""
 
-        if penul_parent['name'] == 'Saxophone':
+        # if penul_parent['name'] == 'Saxophone':
+        if penul_parent['name'] == 'Cat':
             a = 9
 
         count_weird_pop_fromHQ2LQ = 0
@@ -966,6 +970,7 @@ for ii in range(1):
                 # checking minimum QE for every category individually, for simplicity
                 if data_qual_sets[str(childid)]['QE'] > MIN_QE:
                     # the number of votes > MIN_VOTES_CAT was checked before. if not, QE = 0 already
+                    # the QE requirement is met. Leverage both HQ and LQ from the child
                     children_valid_popul_HQLQ.append(childid)
                 elif data_qual_sets[str(childid)]['HQ']:
                     children_valid_popul_onlyHQ.append(childid)
