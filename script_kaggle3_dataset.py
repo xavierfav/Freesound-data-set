@@ -465,8 +465,8 @@ print 'Number of sounds with voting combination (PP + PNP) or (PP + PNP + U) : '
 # LQ contains PNP + U + unvoted sounds, and will be denoted as 'non verified'
 # Additionally, we create LQprior: sounds within LQ that come from the PNP group. two reasons:
 # -these sounds have been voted and hence do not depend on QE. They can always be used.
-# -when filling a category with LQ, these should be the first ones to include.
-# creating HQ and LQ with 2 versions. CASE A is prefered.
+# -when filling a category with LQ, these should be prioritized.
+# creating HQ and LQ with 2 versions. CASE A is preferred.
 
 # create data_qual_sets with keys with catids and empty dicts as values
 data_qual_sets = copy.deepcopy(data_votes)
@@ -514,7 +514,7 @@ for ii in range(1):
         print(catid)
         sys.exit('data_qual_sets has not disjoint groups')
 
-    nb_samples_cats_dev = compute_median(data_qual_sets)
+    # nb_samples_cats_dev = compute_median(data_qual_sets)
     # plots before strong filters: all possible categories
     # if FLAG_PLOT:
     #     # boxplot number of examples per category in dev
@@ -729,11 +729,12 @@ for ii in range(1):
     #
 
 
-    print()
+    # print()
     print()
     print 'APPROACH BETA is less strict: HQdev + LQ > MIN_HQdev_LQ (joint)'
     # CASE BETA
     # FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ s>= MIN_HQdev_LQ
+    # remember: LQprior is already contained in LQ (we just use it for prioritization within LQ and when QE is low)
     data_qual_sets_ld_HQLQb = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
                                (len(data_qual_sets_ld_HQ[o]['LQ']) + np.ceil(PERCENTAGE_DEV *len(data_qual_sets_ld_HQ[o]['HQ']))) >= MIN_HQdev_LQ}
 
@@ -743,8 +744,8 @@ for ii in range(1):
             print 'error in the category: ' + str(data_onto_by_id[str(catid)]['name'])
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels, and of duration ['\
-          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQb))
+        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels, duration ['\
+          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQLQb))
 
 
 
@@ -765,46 +766,56 @@ for ii in range(1):
     for o in data_qual_sets_ld_HQLQb:
         if data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE:
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
+            # make sure LQprior are in LQ (some were deleted due to duration and license filters)
+            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
+               list(set(data_qual_sets_ld_HQLQb['LQprior']) & set(data_qual_sets_ld_HQLQb['LQ']))
 
         # from here on, cannot trust LQ
+
+        # category with enough HQ to fill all DEV and EVAL without anything of LQ
         elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) >= MIN_HQdev_LQ:
-            # category with enough HQ to fill all DEV and EVAL without anything of LQ
-            # keep HQ and empty LQ, and remove QE
+            # keep HQ, put LQ = LQprior (that meet previous filters), keep LQprior and remove QE
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
-            data_qual_sets_ld_HQLQQEb[o]['LQ'] = []
-            # could add LQprior here, but for now let us leave it. The category is already in anyway
-            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = []
+            data_qual_sets_ld_HQLQQEb[o]['LQ'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
+            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
             del data_qual_sets_ld_HQLQQEb[o]['QE']
-            print '---category with enough HQ to fill DEV and EVAL withouth LQ: ' \
+            print '---category with enough HQ to fill DEV and EVAL without LQ: ' \
                   + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
                   + str(len(data_qual_sets_ld_HQLQb[o]['HQ']))
             print()
 
-        # only happens for one category (orchestra). ignore for now
-        # elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) +\
-        #         len(data_qual_sets_ld_HQLQb[o]['LQprior']) >= MIN_HQdev_LQ:
-        #     # only HQ and LQprior together can fill all DEV
-        #     # keep HQ, set LQ only to LQprior, keep LQprior and remove QE
-        #     data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
-        #     data_qual_sets_ld_HQLQQEb[o]['LQ'] = data_qual_sets_ld_HQLQb[o]['LQprior']
-        #     del data_qual_sets_ld_HQLQQEb[o]['QE']
-        #     print '---category where only HQ and LQprior together can fill all DEV: ' \
-        #           + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
-        #           + str(len(data_qual_sets_ld_HQLQb[o]['HQ'])) + ', and number of samples in LQprior: ' \
-        #           + str(len(data_qual_sets_ld_HQLQb[o]['LQprior']))
-        #     print()
+        # category with enough (HQ + LQprior) to fill all DEV and EVAL without the rest of LQ
+        elif (np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) + \
+                len(list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ'])))) >= MIN_HQdev_LQ:
+            # keep HQ, put LQ = LQprior (that meet previous filters), keep LQprior and remove QE
+            data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
+            data_qual_sets_ld_HQLQQEb[o]['LQ'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
+            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
+            del data_qual_sets_ld_HQLQQEb[o]['QE']
+            print '---category where only (HQ and LQprior) together, can fill DEV and EVAL: ' \
+                  + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
+                  + str(len(data_qual_sets_ld_HQLQb[o]['HQ'])) + ', and number of samples in LQprior: ' \
+                  + str(len(data_qual_sets_ld_HQLQb[o]['LQprior']))
+            print()
 
+    # sanity check: LQprior must be a subset of LQ
+    for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
+        if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
+            sys.exit('mistake at LQprior filtering in leaves')
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, at least ' + str(
         MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', duration [' \
-          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQQEb))
+          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQLQQEb))
 
     print 'List of selected LEAVES categories: \n'
     idx_print = 1
     for catid in data_qual_sets_ld_HQLQQEb.keys():
         print str(idx_print) + '-' + data_onto_by_id[str(catid)]['name']
         idx_print += 1
-
 
     # plot
     nb_samples_cats_dev = compute_median(data_qual_sets_ld_HQLQQEb)
@@ -842,16 +853,10 @@ for ii in range(1):
         legenda = ('HQdev', 'LQ')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
-    # review LQprior:make sure they are in LQ (some were deleted due to duration filter)
-    for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
-        if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
-            # print 'some LQ were gone in the child level, due to duration'
-            data_qual_sets_ld_HQLQQEb[catid]['LQprior'] = list(set(groups['LQprior']) & set(groups['LQ']))
 
 
-
-    print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_samples_cats_dev))
-    print()
+    # print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_samples_cats_dev))
+    # print()
     print '======================================================'
     print '\n\n\n'
 
