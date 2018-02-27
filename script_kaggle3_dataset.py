@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 
 
 FOLDER_DATA = 'kaggle3/'
@@ -141,44 +141,44 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
         count_risky_PP += 1
 
 
-    # 1 U and NP
+    # 1: NP and U
     elif 1.0 not in votes and 0.5 not in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 2
+    # 2: PNP and U
     elif 1.0 not in votes and 0.5 in votes and -1.0 not in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 3
+    # 3: PNP and NP
     elif 1.0 not in votes and 0.5 in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 4
+    # 4: PNP and NP and U
     elif 1.0 not in votes and 0.5 in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
 
 
-    # 5
+    # 5: PP and U
     elif 1.0 in votes and 0.5 not in votes and -1.0 not in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 6
+    # 6: PP and NP
     elif 1.0 in votes and 0.5 not in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 7
+    # 7: PP and NP and U
     elif 1.0 in votes and 0.5 not in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
 
 
 
-    # 10
+    # 10: PP and PNP and NP
     elif 1.0 in votes and 0.5 in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 11
+    # 11: PP and PNP and NP and U
     elif 1.0 in votes and 0.5 in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
@@ -287,6 +287,9 @@ for catid, vote_groups in data_sounds.iteritems():
 error_mapping_count_cats = []
 
 """ # from data_votes to data_sounds ******************************************************************************"""
+# Assign sounds to disjoint GROUPS (PP, PNP, NP, U) based on the combination of votes that they have
+# Compute also QE for every category
+
 # to keep track of combinations
 # PP + PNP and PP + PNP + U
 count_risky_PP = 0
@@ -457,7 +460,13 @@ print 'Number of sounds with voting combination (PP + PNP) or (PP + PNP + U) : '
 
 
 """ # from data_sounds to data_qual_sets****************************************************************************"""
-# let us create HQ and LQ with 2 versions. Then, apply filters step by step.
+# For every category, merge the disjoint groups of sounds (PP, PNP, NP, U) in two main subsets HQ and LQ.
+# HQ contains only the PP group and will be denoted as 'manually verified'
+# LQ contains PNP + U + unvoted sounds, and will be denoted as 'non verified'
+# Additionally, we create LQprior: sounds within LQ that come from the PNP group. two reasons:
+# -these sounds have been voted and hence do not depend on QE. They can always be used.
+# -when filling a category with LQ, these should be the first ones to include.
+# creating HQ and LQ with 2 versions. CASE A is prefered.
 
 # create data_qual_sets with keys with catids and empty dicts as values
 data_qual_sets = copy.deepcopy(data_votes)
@@ -478,6 +487,7 @@ for ii in range(1):
             list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
             data_qual_sets[catid]['LQ'] = [item for item in list_woPP if item not in sound_groups['NP']]
             data_qual_sets[catid]['QE'] = sound_groups['QE']
+            # sounds in LQprior are already contained in LQ
             data_qual_sets[catid]['LQprior'] = sound_groups['PNP']
     else:
         # CASE B
@@ -489,13 +499,13 @@ for ii in range(1):
         # This means we have more samples in HQ, which can increment the number of categories
         # Maybe this is less clean but if needed...
         print 'SCENARIO B: where HQ = PP + PNP and LQ = U + unvoted sounds'
-        print()
-        for catid, sound_groups in data_sounds.iteritems():
-            data_qual_sets[catid]['HQ'] = sound_groups['PP'] + sound_groups['PNP']
-            list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
-            list_woPP_PNP = [item for item in list_woPP if item not in sound_groups['PNP']]
-            data_qual_sets[catid]['LQ'] = [item for item in list_woPP_PNP if item not in sound_groups['NP']]
-            data_qual_sets[catid]['QE'] = sound_groups['QE']
+        # print()
+        # for catid, sound_groups in data_sounds.iteritems():
+        #     data_qual_sets[catid]['HQ'] = sound_groups['PP'] + sound_groups['PNP']
+        #     list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
+        #     list_woPP_PNP = [item for item in list_woPP if item not in sound_groups['PNP']]
+        #     data_qual_sets[catid]['LQ'] = [item for item in list_woPP_PNP if item not in sound_groups['NP']]
+        #     data_qual_sets[catid]['QE'] = sound_groups['QE']
 
 
     # sanity check: groups in data_qual_sets should be disjoint
@@ -628,9 +638,8 @@ for ii in range(1):
     # - applying duration filter
     # - applying license filter (although not explicit in var name)
 
-    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and of duration [' + str(
-        MINLEN) + ':' + \
-          str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQ))
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, duration [' + str(
+        MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQ))
     # print()
 
     # plot
@@ -1231,7 +1240,7 @@ data_qual_sets_pparents_d_HQ = {o: data_qual_sets_pparents_dl[o] for o in data_q
 # - applying license filter (although not explicit in var name)
 
 print 'Number of pop parent categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, duration [' + \
-      str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_pparents_d_HQ))
+      str(MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_pparents_d_HQ))
 # print()
 
 
