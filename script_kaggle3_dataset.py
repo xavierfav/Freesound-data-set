@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 
 
 FOLDER_DATA = 'kaggle3/'
@@ -62,6 +62,7 @@ data_onto_by_id = {o['id']: o for o in data_onto}
 
 try:
     # load json with ontology, to map aso_ids to understandable category names
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jan_22.json') as data_file:
     with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
         data_votes = json.load(data_file)
 except:
@@ -116,7 +117,10 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
         data_sounds[catid]['PP'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 in votes and -1.0 not in votes and 0.0 not in votes:
-        data_sounds[catid]['PNP'].append(fsid)
+        # data_sounds[catid]['PNP'].append(fsid)
+        # single vote of PNP may be a bit unreliable. safer to send it to U group
+        # thus it goes to LQ (and not LQprior)
+        data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 not in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['NP'].append(fsid)
@@ -140,44 +144,44 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
         count_risky_PP += 1
 
 
-    # 1 U and NP
+    # 1: NP and U
     elif 1.0 not in votes and 0.5 not in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 2
+    # 2: PNP and U
     elif 1.0 not in votes and 0.5 in votes and -1.0 not in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 3
+    # 3: PNP and NP
     elif 1.0 not in votes and 0.5 in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 4
+    # 4: PNP and NP and U
     elif 1.0 not in votes and 0.5 in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
 
 
-    # 5
+    # 5: PP and U
     elif 1.0 in votes and 0.5 not in votes and -1.0 not in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 6
+    # 6: PP and NP
     elif 1.0 in votes and 0.5 not in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 7
+    # 7: PP and NP and U
     elif 1.0 in votes and 0.5 not in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
 
 
 
-    # 10
+    # 10: PP and PNP and NP
     elif 1.0 in votes and 0.5 in votes and -1.0 in votes and 0.0 not in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
-    # 11
+    # 11: PP and PNP and NP and U
     elif 1.0 in votes and 0.5 in votes and -1.0 in votes and 0.0 in votes:
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
@@ -286,6 +290,9 @@ for catid, vote_groups in data_sounds.iteritems():
 error_mapping_count_cats = []
 
 """ # from data_votes to data_sounds ******************************************************************************"""
+# Assign sounds to disjoint GROUPS (PP, PNP, NP, U) based on the combination of votes that they have
+# Compute also QE for every category
+
 # to keep track of combinations
 # PP + PNP and PP + PNP + U
 count_risky_PP = 0
@@ -456,7 +463,13 @@ print 'Number of sounds with voting combination (PP + PNP) or (PP + PNP + U) : '
 
 
 """ # from data_sounds to data_qual_sets****************************************************************************"""
-# let us create HQ and LQ with 2 versions. Then, apply filters step by step.
+# For every category, merge the disjoint groups of sounds (PP, PNP, NP, U) in two main subsets HQ and LQ.
+# HQ contains only the PP group and will be denoted as 'manually verified'
+# LQ contains PNP + U + unvoted sounds, and will be denoted as 'non verified'
+# Additionally, we create LQprior: sounds within LQ that come from the PNP group. two reasons:
+# -these sounds have been voted and hence do not depend on QE. They can always be used.
+# -when filling a category with LQ, these should be prioritized.
+# creating HQ and LQ with 2 versions. CASE A is preferred.
 
 # create data_qual_sets with keys with catids and empty dicts as values
 data_qual_sets = copy.deepcopy(data_votes)
@@ -477,6 +490,7 @@ for ii in range(1):
             list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
             data_qual_sets[catid]['LQ'] = [item for item in list_woPP if item not in sound_groups['NP']]
             data_qual_sets[catid]['QE'] = sound_groups['QE']
+            # sounds in LQprior are already contained in LQ
             data_qual_sets[catid]['LQprior'] = sound_groups['PNP']
     else:
         # CASE B
@@ -488,13 +502,13 @@ for ii in range(1):
         # This means we have more samples in HQ, which can increment the number of categories
         # Maybe this is less clean but if needed...
         print 'SCENARIO B: where HQ = PP + PNP and LQ = U + unvoted sounds'
-        print()
-        for catid, sound_groups in data_sounds.iteritems():
-            data_qual_sets[catid]['HQ'] = sound_groups['PP'] + sound_groups['PNP']
-            list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
-            list_woPP_PNP = [item for item in list_woPP if item not in sound_groups['PNP']]
-            data_qual_sets[catid]['LQ'] = [item for item in list_woPP_PNP if item not in sound_groups['NP']]
-            data_qual_sets[catid]['QE'] = sound_groups['QE']
+        # print()
+        # for catid, sound_groups in data_sounds.iteritems():
+        #     data_qual_sets[catid]['HQ'] = sound_groups['PP'] + sound_groups['PNP']
+        #     list_woPP = [item for item in sound_groups['candidates'] if item not in sound_groups['PP']]
+        #     list_woPP_PNP = [item for item in list_woPP if item not in sound_groups['PNP']]
+        #     data_qual_sets[catid]['LQ'] = [item for item in list_woPP_PNP if item not in sound_groups['NP']]
+        #     data_qual_sets[catid]['QE'] = sound_groups['QE']
 
 
     # sanity check: groups in data_qual_sets should be disjoint
@@ -503,7 +517,7 @@ for ii in range(1):
         print(catid)
         sys.exit('data_qual_sets has not disjoint groups')
 
-    nb_samples_cats_dev = compute_median(data_qual_sets)
+    # nb_samples_cats_dev = compute_median(data_qual_sets)
     # plots before strong filters: all possible categories
     # if FLAG_PLOT:
     #     # boxplot number of examples per category in dev
@@ -556,9 +570,9 @@ for ii in range(1):
     # case A) there is a leaf that is accepted, but too specific. We prefer its parent
     # Pizzicato --> Violin
     # Alto Saxophone --> Saxo
-    leavesid_to_remove = ['/m/0d8_n', '/m/02pprs']
-    for catid in leavesid_to_remove:
-        del data_qual_sets_l[catid]
+    # leavesid_to_remove = ['/m/0d8_n', '/m/02pprs']
+    # for catid in leavesid_to_remove:
+    #     del data_qual_sets_l[catid]
 
 
 
@@ -627,9 +641,8 @@ for ii in range(1):
     # - applying duration filter
     # - applying license filter (although not explicit in var name)
 
-    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and of duration [' + str(
-        MINLEN) + ':' + \
-          str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQ))
+    print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, duration [' + str(
+        MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQ))
     # print()
 
     # plot
@@ -719,11 +732,12 @@ for ii in range(1):
     #
 
 
-    print()
+    # print()
     print()
     print 'APPROACH BETA is less strict: HQdev + LQ > MIN_HQdev_LQ (joint)'
     # CASE BETA
     # FILTER 4: MIN_HQdev_LQ. number of sounds amounted between HQdev + LQ s>= MIN_HQdev_LQ
+    # remember: LQprior is already contained in LQ (we just use it for prioritization within LQ and when QE is low)
     data_qual_sets_ld_HQLQb = {o: data_qual_sets_ld_HQ[o] for o in data_qual_sets_ld_HQ if
                                (len(data_qual_sets_ld_HQ[o]['LQ']) + np.ceil(PERCENTAGE_DEV *len(data_qual_sets_ld_HQ[o]['HQ']))) >= MIN_HQdev_LQ}
 
@@ -733,8 +747,8 @@ for ii in range(1):
             print 'error in the category: ' + str(data_onto_by_id[str(catid)]['name'])
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, and at least ' + str(
-        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels, and of duration ['\
-          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQb))
+        MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels, duration ['\
+          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQLQb))
 
 
 
@@ -753,48 +767,62 @@ for ii in range(1):
     # new way: consider that some categories may not meet MIN_QE, but they may have enough HQ to fill MIN_HQdev_LQ
     data_qual_sets_ld_HQLQQEb = {}
     for o in data_qual_sets_ld_HQLQb:
+        if o == '/m/07qrkrw':
+            b = 9
+
         if data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE:
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
+            # make sure LQprior are in LQ (some were deleted due to duration and license filters)
+            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
+               list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
 
         # from here on, cannot trust LQ
+
+        # next two can be collapsed into one clause
+        # category with enough HQ to fill all DEV and EVAL without anything of LQ
         elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) >= MIN_HQdev_LQ:
-            # category with enough HQ to fill all DEV and EVAL without anything of LQ
-            # keep HQ and empty LQ, and remove QE
+            # keep HQ, put LQ = LQprior (that meet previous filters), keep LQprior and remove QE
             data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
-            data_qual_sets_ld_HQLQQEb[o]['LQ'] = []
-            # could add LQprior here, but for now let us leave it. The category is already in anyway
-            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = []
+            data_qual_sets_ld_HQLQQEb[o]['LQ'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
+            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
             del data_qual_sets_ld_HQLQQEb[o]['QE']
-            print '---category with enough HQ to fill DEV and EVAL withouth LQ: ' \
+            print '---category with enough HQ to fill DEV and EVAL without LQ: ' \
                   + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
                   + str(len(data_qual_sets_ld_HQLQb[o]['HQ']))
             print()
 
-        # only happens for one category (orchestra). ignore for now
-        # elif np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) +\
-        #         len(data_qual_sets_ld_HQLQb[o]['LQprior']) >= MIN_HQdev_LQ:
-        #     # only HQ and LQprior together can fill all DEV
-        #     # keep HQ, set LQ only to LQprior, keep LQprior and remove QE
-        #     data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
-        #     data_qual_sets_ld_HQLQQEb[o]['LQ'] = data_qual_sets_ld_HQLQb[o]['LQprior']
-        #     del data_qual_sets_ld_HQLQQEb[o]['QE']
-        #     print '---category where only HQ and LQprior together can fill all DEV: ' \
-        #           + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
-        #           + str(len(data_qual_sets_ld_HQLQb[o]['HQ'])) + ', and number of samples in LQprior: ' \
-        #           + str(len(data_qual_sets_ld_HQLQb[o]['LQprior']))
-        #     print()
+        # category with enough (HQ + LQprior) to fill all DEV and EVAL without the rest of LQ
+        elif (np.floor(PERCENTAGE_DEV * len(data_qual_sets_ld_HQLQb[o]['HQ'])) + \
+                len(list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ'])))) >= MIN_HQdev_LQ:
+            # keep HQ, put LQ = LQprior (that meet previous filters), keep LQprior and remove QE
+            data_qual_sets_ld_HQLQQEb[o] = data_qual_sets_ld_HQLQb[o]
+            data_qual_sets_ld_HQLQQEb[o]['LQ'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
+            data_qual_sets_ld_HQLQQEb[o]['LQprior'] = \
+                list(set(data_qual_sets_ld_HQLQb[o]['LQprior']) & set(data_qual_sets_ld_HQLQb[o]['LQ']))
+            del data_qual_sets_ld_HQLQQEb[o]['QE']
+            print '---category where only (HQ and LQprior) together, can fill DEV and EVAL: ' \
+                  + str(data_onto_by_id[o]['name']) + ', with number of samples in HQ: ' \
+                  + str(len(data_qual_sets_ld_HQLQb[o]['HQ'])) + ', and number of samples in LQprior: ' \
+                  + str(len(data_qual_sets_ld_HQLQb[o]['LQprior']))
+            print()
 
+    # sanity check: LQprior must be a subset of LQ
+    for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
+        if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
+            sys.exit('mistake at LQprior filtering in leaves')
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, at least ' + str(
         MIN_HQdev_LQ) + ' sounds between HQdev and LQ labels with a QE > ' + str(MIN_QE) + ', duration [' \
-          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_ld_HQLQQEb))
+          + str(MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQLQQEb))
 
     print 'List of selected LEAVES categories: \n'
     idx_print = 1
     for catid in data_qual_sets_ld_HQLQQEb.keys():
         print str(idx_print) + '-' + data_onto_by_id[str(catid)]['name']
         idx_print += 1
-
 
     # plot
     nb_samples_cats_dev = compute_median(data_qual_sets_ld_HQLQQEb)
@@ -832,16 +860,10 @@ for ii in range(1):
         legenda = ('HQdev', 'LQ')
         plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda)
 
-    # review LQprior:make sure they are in LQ (some were deleted due to duration filter)
-    for catid, groups in data_qual_sets_ld_HQLQQEb.iteritems():
-        if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
-            # print 'some LQ were gone in the child level, due to duration'
-            data_qual_sets_ld_HQLQQEb[catid]['LQprior'] = list(set(groups['LQprior']) & set(groups['LQ']))
 
 
-
-    print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_samples_cats_dev))
-    print()
+    # print 'Total Number of sounds in DEV set (estimated), there is a LOT of LQ: ' + str(sum(nb_samples_cats_dev))
+    # print()
     print '======================================================'
     print '\n\n\n'
 
@@ -925,6 +947,7 @@ for ii in range(1):
         data_qual_sets_pparents[catid].clear()
         data_qual_sets_pparents[catid]['HQ'] = []
         data_qual_sets_pparents[catid]['LQ'] = []
+        data_qual_sets_pparents[catid]['LQprior'] = []
 
     penul_parents_cand_2filt = []
     counter_mult_parents = 0
@@ -934,12 +957,13 @@ for ii in range(1):
         """ # 1) distribute children  *****************************************************
         ***********************************************************************************************************"""
 
-        if penul_parent['name'] == 'Saxophone':
+        # if penul_parent['name'] == 'Saxophone':
+        if penul_parent['name'] == 'Cat':
             a = 9
 
         count_weird_pop_fromHQ2LQ = 0
         children_valid_popul_HQLQ = []
-        children_valid_popul_onlyHQ = []
+        children_valid_popul_onlyHQLQprior = []
         for childid in data_onto_by_id[penul_parent['catid']]['child_ids']:
 
             # 1- for every child: if there is no multiple parents
@@ -951,9 +975,12 @@ for ii in range(1):
                 # checking minimum QE for every category individually, for simplicity
                 if data_qual_sets[str(childid)]['QE'] > MIN_QE:
                     # the number of votes > MIN_VOTES_CAT was checked before. if not, QE = 0 already
+                    # the QE requirement is met. Leverage both HQ and LQ from the child
                     children_valid_popul_HQLQ.append(childid)
                 elif data_qual_sets[str(childid)]['HQ']:
-                    children_valid_popul_onlyHQ.append(childid)
+                    # data_qual_sets_ld_HQLQQEb
+                    # the QE requirement is NOT met. Leverage only HQ and LQprior from the child
+                    children_valid_popul_onlyHQLQprior.append(childid)
 
             elif nb_parents == 0:
                 sys.exit('mistake at multiple parents computation')
@@ -961,7 +988,7 @@ for ii in range(1):
                 counter_mult_parents += 1
 
         # here we have children_valid_popul_HQLQ with the valid children for penul_parent, including ['QE'] > MIN_QE:
-        # and children_valid_popul_onlyHQ with the valid children for penul_parent that do not meet QE
+        # and children_valid_popul_onlyHQLQprior with the valid children for penul_parent that do not meet QE
 
 
         # 2 - when populating there are several cases possible
@@ -989,22 +1016,49 @@ for ii in range(1):
         # extend lists of HQ/LQ sounds of all children to populate
         children_id_2_parent_HQ = []
         children_id_2_parent_LQ = []
-        if children_valid_popul_onlyHQ and not children_valid_popul_HQLQ:
-            # only populating HQ
-            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQ)
+        children_id_2_parent_LQprior = []
 
-        elif not children_valid_popul_onlyHQ and children_valid_popul_HQLQ:
-            # only populating both HQ and LQ
+
+# review
+
+
+        if children_valid_popul_onlyHQLQprior and not children_valid_popul_HQLQ:
+            # the QE requirement is NOT met in any case. Leverage only HQ and LQprior from the children
+            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQLQprior)
+            # to count for acceptance: children's LQprior will be sent to LQprior and LQ of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_onlyHQLQprior)
+
+        elif not children_valid_popul_onlyHQLQprior and children_valid_popul_HQLQ:
+            # the QE requirement is met in all cases. Leverage both HQ and LQ from all the children
+            # populating (both HQ and LQ) for all children
             children_id_2_parent_HQ.extend(children_valid_popul_HQLQ)
+
+            # to count for acceptance: children's LQ will be sent to LQ of parent
             children_id_2_parent_LQ.extend(children_valid_popul_HQLQ)
 
-        elif children_valid_popul_onlyHQ and children_valid_popul_HQLQ:
+            # to prioritize: children's LQprior will be sent to LQprior of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_HQLQ)
+
+        elif children_valid_popul_onlyHQLQprior and children_valid_popul_HQLQ:
             # populating both ways: (HQ and LQ) and only HQ
-            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQ)
+            # some children did not meet the QE req
+            children_id_2_parent_HQ.extend(children_valid_popul_onlyHQLQprior)
+
+            # to count for acceptance: children's LQprior will be sent to LQprior and LQ of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_onlyHQLQprior)
+
+            # Others met the QE req
             children_id_2_parent_HQ.extend(children_valid_popul_HQLQ)
+            # to count for acceptance: children's LQ will be sent to LQ of parent
             children_id_2_parent_LQ.extend(children_valid_popul_HQLQ)
+            # to prioritize: children's LQprior will be sent to LQprior of parent
+            children_id_2_parent_LQprior.extend(children_valid_popul_HQLQ)
+
         # else:
             # print 'no children to populate'
+
+# review
+
 
         if children_id_2_parent_HQ:
             # at least we have to populate HQ
@@ -1016,7 +1070,8 @@ for ii in range(1):
 
             # distribution of children------------------------------------make function
             for id in children_joint_HQ:
-                # sound only in children. several options
+                # several options
+                # sound only in children
                 if id not in data_qual_sets[penul_parent['catid']]['HQ'] and id not in data_qual_sets[penul_parent['catid']]['LQ']:
                     data_qual_sets_pparents[penul_parent['catid']]['HQ'].append(id)
 
@@ -1029,7 +1084,6 @@ for ii in range(1):
                     data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
                     count_weird_pop_fromHQ2LQ += 1
 
-
         if children_id_2_parent_LQ:
             # we also have to populate LQ (this only happens if there is children_joint_HQ too)
             children_joint_lists_LQ = [data_qual_sets[str(childid)]['LQ'] for childid in children_id_2_parent_LQ]
@@ -1038,8 +1092,8 @@ for ii in range(1):
 
             for id in children_joint_LQ:
                 # sound only in children. several options
-                if id not in data_qual_sets[penul_parent['catid']]['HQ'] and id not in \
-                        data_qual_sets[penul_parent['catid']]['LQ']:
+                if id not in data_qual_sets[penul_parent['catid']]['HQ'] and \
+                        id not in data_qual_sets[penul_parent['catid']]['LQ']:
                     if id in children_joint_LQ and id not in children_joint_HQ:
                         data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
                     elif id in children_joint_LQ and id in children_joint_HQ:
@@ -1053,6 +1107,39 @@ for ii in range(1):
                 elif id in data_qual_sets[penul_parent['catid']]['LQ']:
                     data_qual_sets_pparents[penul_parent['catid']]['LQ'].append(id)
 
+# review. LQprior must be sent to LQ when QE is not met.how to know that?
+#         sendig it always to both LQ and LQprior, then set
+#         pero despues no puedo hacer intersection
+#         think. draw.
+        if children_id_2_parent_LQprior:
+            # regardless the QE, we also have to populate LQprior
+            children_joint_lists_LQprior = [data_qual_sets[str(childid)]['LQprior'] for childid in children_id_2_parent_LQprior]
+            children_joint_LQprior = list(set(list(itertools.chain.from_iterable(children_joint_lists_LQprior))))
+            # the latter could produce duplicates
+
+        for id in children_joint_LQprior:
+            # children_joint_LQprior is list of ids of LQ sounds with priority
+            # they are already within data_qual_sets_pparents[penul_parent['catid']]['LQ'] except:
+            # -a LQ sound in children, moved to HQ in parent in previous if-clause
+            # -
+            # several philosophy
+            # sound only in children. several options
+            if id not in data_qual_sets[penul_parent['catid']]['HQ'] and \
+                    id not in data_qual_sets[penul_parent['catid']]['LQ']:
+                if id in children_joint_LQprior and id not in children_joint_HQ:
+                    # normal case
+                    data_qual_sets_pparents[penul_parent['catid']]['LQprior'].append(id)
+                elif id in children_joint_LQprior and id in children_joint_HQ:
+                    # priority for one child; HQ for a different child. PROBLEMS? unusual
+                    data_qual_sets_pparents[penul_parent['catid']]['HQ'].append(id)
+
+                # sound also in parent_HQ
+            elif id in data_qual_sets[penul_parent['catid']]['HQ']:
+                data_qual_sets_pparents[penul_parent['catid']]['HQ'].append(id)
+
+                # sound also in parent_LQ
+            elif id in data_qual_sets[penul_parent['catid']]['LQ']:
+                data_qual_sets_pparents[penul_parent['catid']]['LQprior'].append(id)
 
         # so far: the children have been distributed in a disjoint fashion
 
@@ -1068,18 +1155,20 @@ for ii in range(1):
             FLAG_PARENT_IN = 2
             data_qual_sets_pparents[penul_parent['catid']]['HQ'].extend(data_qual_sets[penul_parent['catid']]['HQ'])
             data_qual_sets_pparents[penul_parent['catid']]['LQ'].extend(data_qual_sets[penul_parent['catid']]['LQ'])
+        #     add prior
 
         else:
             # we cannot trust LQ. Add only HQ
             FLAG_PARENT_IN = 1
             data_qual_sets_pparents[penul_parent['catid']]['HQ'].extend(data_qual_sets[penul_parent['catid']]['HQ'])
-
+        #     add prior
 
         # remove duplicates from the process
         data_qual_sets_pparents[penul_parent['catid']]['HQ'] = \
             list(set(data_qual_sets_pparents[penul_parent['catid']]['HQ']))
         data_qual_sets_pparents[penul_parent['catid']]['LQ'] = \
             list(set(data_qual_sets_pparents[penul_parent['catid']]['LQ']))
+        #     add prior
 
 
         """ # 3) sanity checks  *****************************************************
@@ -1114,7 +1203,7 @@ for ii in range(1):
                 sys.exit('number of sounds is not equal before and after population'
                          ' - both populations together (HQ and/or dual population (always HQ and LQ))')
 
-        elif children_valid_popul_onlyHQ:
+        elif children_valid_popul_onlyHQLQprior:
             # only HQ population from the children (not enough QE)
 
             # concatenating lists and set
@@ -1183,7 +1272,7 @@ if any(k in data_qual_sets_ld_HQLQQEb for k in data_qual_sets_pparents_clean):
 
 """ # 4) once we have the new children, repeat filtering as if they were real children. ***********************
 ***********************************************************************************************************"""
-
+# apply filters on LQ, then intersection with LQprior
 # FILTER 2: Apply duration filter: Within the categories, keep sounds with durations [MINLEN: MAXLEN]
 # create copy for next filter
 data_qual_sets_pparents_d = copy.deepcopy(data_qual_sets_pparents_clean)
@@ -1230,7 +1319,7 @@ data_qual_sets_pparents_d_HQ = {o: data_qual_sets_pparents_dl[o] for o in data_q
 # - applying license filter (although not explicit in var name)
 
 print 'Number of pop parent categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, duration [' + \
-      str(MINLEN) + ':' + str(MAXLEN) + '], and NC-free: ' + str(len(data_qual_sets_pparents_d_HQ))
+      str(MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_pparents_d_HQ))
 # print()
 
 
