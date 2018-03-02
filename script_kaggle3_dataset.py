@@ -7,6 +7,7 @@ import sys
 import time
 import itertools
 # import xlsxwriter
+import freesound
 
 
 FOLDER_DATA = 'kaggle3/'
@@ -44,7 +45,7 @@ except:
 # load json with votes, to select only PP and PNP
 # try:
 #     with open(FOLDER_DATA + 'json/votes_sounds_annotations.json') as data_file:
-#         data_votes = json.load(data_file)
+#         data_votes_raw = json.load(data_file)
 # except:
 #     raise Exception('ADD THE FILE CONTAINING THE VOTES (list of dict "value", "freesound_sound_id", "node_id") AND ADD IT TO THE FOLDER ' + FOLDER_DATA +'json/')
 
@@ -66,15 +67,15 @@ try:
     # load json with ontology, to map aso_ids to understandable category names
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jan_22.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
-    # so far we were including in the data_votes:
+    # so far we were including in the data_votes_raw:
     # the trustable votes and the non trustable (verification clips not met)
     # from March1, we include only trustable
     with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
-        data_votes = json.load(data_file)
+        data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
 
-# data_votes is a dict where every key is a cat
+# data_votes_raw is a dict where every key is a cat
 # the value of every cat is a dict, that contains 5 keys: PP, PNP, NP, U, candidates
 # the corresponding values are a list of Freesound ids
 #
@@ -278,10 +279,62 @@ def create_var_barplot(data_set, data_onto_by_id):
     return var_plot
 
 
+def get_sounds_from_pack(sound_id_target):
+
+    client = freesound.FreesoundClient()
+    client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
+
+    # given a sound_id_target which pack we want to omit, retrieve pack_id
+    sound = client.get_sound(sound_id_target)
+    pack_id = int(sound.pack.split('/')[-2])
+    print pack_id, sound.pack_name
+
+    # retrieve the list of sound ids in the pack
+    pack = client.get_pack(pack_id)
+    pack_sounds = pack.get_sounds(fields="id,name,username", page_size=150)
+
+    list_ids_pack_sounds = [sound.id for sound in pack_sounds]
+    list_ids_pack_sounds.sort()
+
+    # confirm
+    print 'all the %d sounds in the pack: %s, of user %s' % (len(list_ids_pack_sounds), pack.name, pack.username)
+    for idx, sound in enumerate(pack_sounds):
+        print (idx + 1), sound.id, sound.name
+
+    return list_ids_pack_sounds
+
+
 # -------------------------end of functions-----------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
 
+
+""" # remove unwanted sounds from specific categories before doing anything else*************************************"""
+
+# given a sound id which pack we want to omit, retrieve all sound ids from the pack and remove them
+# class: Squeak, ASO:'/m/07q6cd_'
+# pack: Stomach, fsid_target = 177365, 40 samples
+# pack: Human Chipmunk, fsid_target = 168135, 28 samples
+
+fsids_to_remove = []
+fsids_target = [177365, 168135]
+for fsid_target in fsids_target:
+    fsids_to_remove.extend(get_sounds_from_pack(fsid_target))
+
+# remove the sounds from data_votes_raw
+data_votes = copy.deepcopy(data_votes_raw)
+
+# empty Squeak category (empty dict as value)
+data_votes['/m/07q6cd_'].clear()
+
+for key, vote_group in data_votes_raw['/m/07q6cd_'].iteritems():
+    data_votes['/m/07q6cd_'][key] = [fsid for fsid in vote_group if fsid not in fsids_to_remove]
+
+
+
+""" # from data_votes to data_sounds ******************************************************************************"""
+# Assign sounds to disjoint GROUPS (PP, PNP, NP, U) based on the combination of votes that they have
+# Compute also QE for every category
 
 # create copy of data_votes
 data_sounds = copy.deepcopy(data_votes)
@@ -294,10 +347,6 @@ for catid, vote_groups in data_sounds.iteritems():
 
 # count cases where the mapping from votes to sounds fails
 error_mapping_count_cats = []
-
-""" # from data_votes to data_sounds ******************************************************************************"""
-# Assign sounds to disjoint GROUPS (PP, PNP, NP, U) based on the combination of votes that they have
-# Compute also QE for every category
 
 # to keep track of combinations
 # PP + PNP and PP + PNP + U
@@ -576,11 +625,11 @@ for ii in range(1):
     # case A) there is a leaf that is accepted, but too specific. We prefer its parent
     # Pizzicato --> Violin
     # Alto Saxophone --> Saxo
-    # leavesid_to_remove = ['/m/0d8_n', '/m/02pprs']
-    # for catid in leavesid_to_remove:
-    #     del data_qual_sets_l[catid]
-
-
+    # case B) wind chime contains clips that should only be in Chime. Use Chime
+    # In this order:
+    leavesid_to_remove = ['/m/0d8_n', '/m/02pprs', '/m/026fgl']
+    for catid in leavesid_to_remove:
+        del data_qual_sets_l[catid]
 
     if FLAG_BARPLOT:
         # create variable with data for barplotting - function
@@ -968,7 +1017,8 @@ for ii in range(1):
         # if penul_parent['name'] == 'Saxophone':
         # if penul_parent['name'] == 'Chicken, rooster':
         # if penul_parent['name'] == 'Vehicle horn, car horn, honking':
-        if penul_parent['name'] == 'Thunderstorm':
+        # if penul_parent['name'] == 'Thunderstorm':
+        if penul_parent['name'] == 'Chime':
             a = 9
 
         count_weird_pop_fromHQ2LQ = 0
