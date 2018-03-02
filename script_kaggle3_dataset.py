@@ -65,7 +65,11 @@ data_onto_by_id = {o['id']: o for o in data_onto}
 try:
     # load json with ontology, to map aso_ids to understandable category names
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jan_22.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
+    # so far we were including in the data_votes:
+    # the trustable votes and the non trustable (verification clips not met)
+    # from March1, we include only trustable
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
         data_votes = json.load(data_file)
 except:
     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
