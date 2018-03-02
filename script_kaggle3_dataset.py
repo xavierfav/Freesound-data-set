@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 import freesound
 
 
@@ -1466,8 +1466,9 @@ if FLAG_BARPLOT_PARENT:
 dataset_final_prepro = dict(data_qual_sets_ld_HQLQQEb)  # or orig.copy()
 dataset_final_prepro.update(data_qual_sets_pparents_d_HQLQb)
 
-# SANITY CHECK: there must be no NC/sampling+ license (we will provide a license file with the dataset)
+# FINAL SANITY CHECKS for whole dataset:
 for catid, groups in dataset_final_prepro.iteritems():
+    # there must be no NC/sampling+ license (we will provide a license file with the dataset)
     for groupid, group in groups.iteritems():
         if groupid != 'QE':
             for fsid in group:
@@ -1475,6 +1476,16 @@ for catid, groups in dataset_final_prepro.iteritems():
                     sys.exit('There are NC sounds. FATAL ERROR')
                 elif data_mapping[str(fsid)]['license'].split('/')[-3] == 'sampling+':
                     sys.exit('There are sampling+ sounds. FATAL ERROR')
+
+    # HQ and LQ groups in dataset_final_prepro should be disjoint
+    if list(set(dataset_final_prepro[catid]['HQ']) & set(dataset_final_prepro[catid]['LQ'])):
+        # print('\n something unexpetected happened in the mapping********************* \n')
+        print(catid)
+        sys.exit('dataset_final_prepro has not disjoint groups')
+
+    # LQprior must be a subset of LQ
+    if len(list(set(groups['LQprior']) & set(groups['LQ']))) != len(groups['LQprior']):
+        sys.exit('dataset_final_prepro: mistake at LQprior filtering in leaves')
 
 
 print 'Number of final categories: ' + str(len(dataset_final_prepro))
