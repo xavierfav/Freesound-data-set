@@ -1539,7 +1539,31 @@ if FLAG_BARPLOT_PARENT:
 """**********************************BEGIN POST-PROCESSING STAGE: *****************************************************
 ****************************************************************************************************************"""
 
+# ---------------------- REMOVE CATEGORIES ---------------------- #
+category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', 
+                         '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', 
+                         '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', 
+                         '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf']
+map(dataset_final_prepro.pop, set(category_id_to_remove) & set(dataset_final_prepro.keys()))
 
+
+# --------------------------------------------------------------- #
+
+# --------------- REMOVE MULTIPLE LABELED SOUNDS ---------------- #
+all_sound_ids = []
+for _, category_sets in dataset_final_prepro.iteritems():
+    for set_name in ['HQ', 'LQ']:
+        all_sound_ids += category_sets[set_name]
+
+sound_to_remove = [s for s in all_sound_ids if all_sound_ids.count(s)>1]
+
+for _, category_sets in dataset_final_prepro.iteritems():
+    for set_name in ['HQ', 'LQ', 'LQprior']:
+        for s in sound_to_remove:
+            if s in category_sets[set_name]:
+                category_sets[set_name].remove(s)
+
+# --------------------------------------------------------------- #
 
 # -------------------------------------------------------------------------- #
 # ------------------------ CREATE SPLIT, FILES, ... ------------------------ #
@@ -1715,7 +1739,7 @@ sounds_left = []
 for idx in range(len(dataset_dev_filter)):
     sounds_left += dataset_dev_filter[idx]['sound_ids']
     sounds_left += dataset_eval_filter[idx]['sound_ids']
-    
+
 for aso_id in category_id_to_remove:
     try:
         del data_dev[aso_id]
