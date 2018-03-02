@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-# import xlsxwriter
+import xlsxwriter
 import freesound
 
 
@@ -70,7 +70,7 @@ try:
     # so far we were including in the data_votes_raw:
     # the trustable votes and the non trustable (verification clips not met)
     # from March1, we include only trustable
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -1689,7 +1689,7 @@ for idx in range(len(dataset_dev)):
     sounds_left += dataset_eval[idx]['sound_ids']
 print 'Number of sounds before filtering: {0}'.format(len(set(sounds_left)))
 
-category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', '/m/02zsn', '/m/07r660_']
+category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf']
 
 dataset_dev_filter = [d for d in dataset_dev if d['audioset_id'] not in category_id_to_remove]
 dataset_eval_filter = [d for d in dataset_eval if d['audioset_id'] not in category_id_to_remove]
