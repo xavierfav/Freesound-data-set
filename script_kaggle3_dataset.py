@@ -8,7 +8,7 @@ import time
 import itertools
 # import xlsxwriter
 import freesound
-
+from openpyxl import load_workbook
 
 FOLDER_DATA = 'kaggle3/'
 
@@ -304,6 +304,46 @@ def get_sounds_from_pack(sound_id_target):
     return list_ids_pack_sounds
 
 
+def get_sounds_to_remove_from_excel(excel_file):
+
+    wb = load_workbook(excel_file)
+
+    fsids_to_remove_per_class = {}
+    count_nb_categories = 0
+
+    # get the content of a sheet
+    ws = wb.get_sheet_by_name('Sheet1')
+
+    # loop to search for ids to remove, for every category. position of cells is hardcoded
+    # categories start in row 3
+    # the sounds to remove start from column I (9th), and go up to K (11th)
+    for row in ws.iter_rows('I{}:I{}'.format(13, ws.max_row)):
+        for cell in row:
+
+            # only if there is any fs_id to remove for each category
+            if cell.value:
+                count_nb_categories += 1
+
+                # fetch cat name and id
+                cat_name = str(ws.cell(row=row[0].row, column=1).value)
+                cat_id = str(ws.cell(row=row[0].row, column=2).value)
+
+                # fetch ids to remove, within a hardcoded range of columns in the current_row
+                fsids_to_remove = []
+                for current_row in ws.iter_rows(min_row=row[0].row, min_col=9, max_row=row[0].row, max_col=11):
+                    for current_cell in current_row:
+                        if current_cell.value:
+                            fsids_to_remove.append(int(current_cell.value))
+
+                print(cat_name, fsids_to_remove)
+                fsids_to_remove_per_class[cat_id] = fsids_to_remove
+
+    print('Removing sounds from excel in %d categories' % count_nb_categories)
+    print(fsids_to_remove_per_class)
+    return fsids_to_remove_per_class
+
+
+
 # -------------------------end of functions-----------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
@@ -316,20 +356,38 @@ def get_sounds_from_pack(sound_id_target):
 # pack: Stomach, fsid_target = 177365, 40 samples
 # pack: Human Chipmunk, fsid_target = 168135, 28 samples
 
-fsids_to_remove = []
+fsids_to_remove_squeak = []
 fsids_target = [177365, 168135]
 for fsid_target in fsids_target:
-    fsids_to_remove.extend(get_sounds_from_pack(fsid_target))
+    fsids_to_remove_squeak.extend(get_sounds_from_pack(fsid_target))
 
-# remove the sounds from data_votes_raw
+# # remove the sounds from data_votes_raw
 data_votes = copy.deepcopy(data_votes_raw)
+#
+# # empty Squeak category (empty dict as value)
+# data_votes['/m/07q6cd_'].clear()
+#
+# for key, vote_group in data_votes_raw['/m/07q6cd_'].iteritems():
+#     data_votes['/m/07q6cd_'][key] = [fsid for fsid in vote_group if fsid not in fsids_to_remove_squeak]
+#
 
-# empty Squeak category (empty dict as value)
-data_votes['/m/07q6cd_'].clear()
 
-for key, vote_group in data_votes_raw['/m/07q6cd_'].iteritems():
-    data_votes['/m/07q6cd_'][key] = [fsid for fsid in vote_group if fsid not in fsids_to_remove]
+# get sounds to remove after final manual review of HQ
+fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories.xlsx')
 
+for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritems():
+    # empty category (empty dict as value)
+    data_votes[cat_id].clear()
+
+    if cat_id == '/m/07q6cd_':
+        print('Squeak case is different. join both lists to remove')
+        fsids_to_remove_oneclass.extend(fsids_to_remove_squeak)
+
+    for key, vote_group in data_votes_raw[cat_id].iteritems():
+        data_votes[cat_id][key] = [fsid for fsid in vote_group if fsid not in fsids_to_remove_oneclass]
+
+
+# add sanity check for this?
 
 
 """ # from data_votes to data_sounds ******************************************************************************"""
