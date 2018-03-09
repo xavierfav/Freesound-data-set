@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-# import xlsxwriter
+import xlsxwriter
 import freesound
 from openpyxl import load_workbook
 
@@ -70,7 +70,7 @@ try:
     # so far we were including in the data_votes_raw:
     # the trustable votes and the non trustable (verification clips not met)
     # from March1, we include only trustable
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
