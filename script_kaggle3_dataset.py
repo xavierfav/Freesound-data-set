@@ -330,7 +330,7 @@ def get_sounds_to_remove_from_excel(excel_file):
 
                 # fetch ids to remove, within a hardcoded range of columns in the current_row
                 fsids_to_remove = []
-                for current_row in ws.iter_rows(min_row=row[0].row, min_col=9, max_row=row[0].row, max_col=11):
+                for current_row in ws.iter_rows(min_row=row[0].row, min_col=9, max_row=row[0].row, max_col=20):
                     for current_cell in current_row:
                         if current_cell.value:
                             fsids_to_remove.append(int(current_cell.value))
@@ -373,7 +373,7 @@ data_votes = copy.deepcopy(data_votes_raw)
 
 
 # get sounds to remove after final manual review of HQ
-fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories.xlsx')
+fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories2.xlsx')
 
 for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritems():
     # empty category (empty dict as value)
