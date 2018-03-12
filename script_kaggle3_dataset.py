@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 import freesound
 from openpyxl import load_workbook
 
@@ -18,14 +18,19 @@ MAXLEN = 30.0
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
 # maybe useless cause all have more than 72 votes (paper)
 
-MIN_HQ = 40  # minimum number of sounds with HQ labels per category
+MIN_HQ = 40  # minimum number of sounds with HQ labels per category. this was used for dump March09
+# MIN_HQ = 64  # minimum number of sounds with HQ labels per category, to include Bass drum but not others
+
 # MIN_LQ = 75  # minimum number of sounds  with LQ labels per category
-MIN_HQdev_LQ = 97  # minimum number of sounds between HQ and LQ labels per category
+MIN_HQdev_LQ = 95  # minimum number of sounds between HQ and LQ labels per category
 # goal is 90 ultimately, we put a bit more cause we will discar some more samples that bear more than one label
 
 PERCENTAGE_DEV = 0.7 # split 70 / 30 for DEV / EVAL
 # PERCENTAGE_DEV = 0.625 # split 62.5 / 27.5 for DEV / EVAL
-MIN_QE = 0.68  # minimum QE to accept the LQ as decent
+
+MIN_QE = 0.68  # minimum QE to accept the LQ as decent. this was used for dump March09
+# MIN_QE = 0.647  # minimum QE to accept the LQ as decent, to include Bass drum
+
 FLAG_BARPLOT = False
 FLAG_BOXPLOT = False
 FLAG_BARPLOT_PARENT = True
@@ -70,6 +75,8 @@ try:
     # so far we were including in the data_votes_raw:
     # the trustable votes and the non trustable (verification clips not met)
     # from March1, we include only trustable
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
     with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
@@ -306,6 +313,8 @@ def get_sounds_from_pack(sound_id_target):
 
 def get_sounds_to_remove_from_excel(excel_file):
 
+    print('\nRemoving the following sounds from HQ, according to Excel %s, after review of HQ:' % excel_file)
+
     wb = load_workbook(excel_file)
 
     fsids_to_remove_per_class = {}
@@ -315,9 +324,9 @@ def get_sounds_to_remove_from_excel(excel_file):
     ws = wb.get_sheet_by_name('Sheet1')
 
     # loop to search for ids to remove, for every category. position of cells is hardcoded
-    # categories start in row 3
-    # the sounds to remove start from column I (9th), and go up to K (11th)
-    for row in ws.iter_rows('I{}:I{}'.format(13, ws.max_row)):
+    # categories start in row 3 (see format())
+    # the sounds to remove start from column I (9th), and go up to T (20th)
+    for row in ws.iter_rows('I{}:I{}'.format(3, ws.max_row)):
         for cell in row:
 
             # only if there is any fs_id to remove for each category
@@ -342,6 +351,46 @@ def get_sounds_to_remove_from_excel(excel_file):
     print(fsids_to_remove_per_class)
     return fsids_to_remove_per_class
 
+
+def get_sounds_to_moveToLQ_from_excel(excel_file):
+
+    print('\nMoving the following sounds from HQ to LQ, according to Excel %s, after review of HQ:' % excel_file)
+
+    wb = load_workbook(excel_file)
+
+    fsids_to_moveToLQ_per_class = {}
+    count_nb_categories = 0
+
+    # get the content of a sheet
+    ws = wb.get_sheet_by_name('dump March_09_Friday')
+
+    # loop to search for ids to move to LQ, for every category. position of cells is hardcoded
+    # categories start in row 3 (see format())
+    # the sounds to remove start from column L (12th), and go consecutively up to AB (28th)
+    for row in ws.iter_rows('L{}:L{}'.format(3, ws.max_row)):
+        for cell in row:
+
+            # only if there is any fs_id to move for each category
+            if cell.value:
+                count_nb_categories += 1
+
+                # fetch cat name and id
+                cat_name = str(ws.cell(row=row[0].row, column=1).value)
+                cat_id = str(ws.cell(row=row[0].row, column=2).value)
+
+                # fetch ids to move, within a hardcoded range of columns in the current_row
+                fsids_to_move = []
+                for current_row in ws.iter_rows(min_row=row[0].row, min_col=12, max_row=row[0].row, max_col=28):
+                    for current_cell in current_row:
+                        if current_cell.value:
+                            fsids_to_move.append(int(current_cell.value))
+
+                print(cat_name, fsids_to_move)
+                fsids_to_moveToLQ_per_class[cat_id] = fsids_to_move
+
+    print('Removing sounds from excel in %d categories' % count_nb_categories)
+    print(fsids_to_moveToLQ_per_class)
+    return fsids_to_moveToLQ_per_class
 
 
 # -------------------------end of functions-----------------------------------------------------------
@@ -373,7 +422,7 @@ data_votes = copy.deepcopy(data_votes_raw)
 
 
 # get sounds to remove after final manual review of HQ
-fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories2.xlsx')
+fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories3.xlsx')
 
 for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritems():
     # empty category (empty dict as value)
@@ -383,11 +432,60 @@ for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritem
         print('Squeak case is different. join both lists to remove')
         fsids_to_remove_oneclass.extend(fsids_to_remove_squeak)
 
+    # if cat_id == '/m/07cx4':
+    #     e = 4
+
+    count_removed_sounds_in_candidates = 0
     for key, vote_group in data_votes_raw[cat_id].iteritems():
+        # removing sounds from the cat_id that appears in the excel
         data_votes[cat_id][key] = [fsid for fsid in vote_group if fsid not in fsids_to_remove_oneclass]
 
+    count_removed_sounds_in_candidates += len(data_votes_raw[cat_id]['candidates']) - len(data_votes[cat_id]['candidates'])
+    print('Removed %d sounds from %s, with id %s, out of %d sounds to remove'
+          % (count_removed_sounds_in_candidates, data_onto_by_id[cat_id]['name'], cat_id, len(fsids_to_remove_oneclass)))
 
-# add sanity check for this?
+    # if the cat_id has children, we are dealing with a populated parent. sounds to delete could be in the children too
+    # retrieve the children and repeat removal for any of them
+    if data_onto_by_id[cat_id]['child_ids']:
+        print('\nRemoving also sounds in the children of %s' % data_onto_by_id[cat_id]['name'])
+
+        for child_id in data_onto_by_id[cat_id]['child_ids']:
+            # empty category (empty dict as value)
+            data_votes[child_id].clear()
+
+            for key_child, vote_group_child in data_votes_raw[child_id].iteritems():
+                # removing sounds from the child_id of the parent that appears in the excel
+                data_votes[child_id][key_child] = [fsid for fsid in vote_group_child if fsid not in fsids_to_remove_oneclass]
+
+            sounds_removed_child = len(data_votes_raw[child_id]['candidates']) - len(data_votes[child_id]['candidates'])
+            print('---Removed %d sounds in %s, out of %d sounds to remove'
+                  % (sounds_removed_child, data_onto_by_id[child_id]['name'], len(fsids_to_remove_oneclass)))
+
+            count_removed_sounds_in_candidates += sounds_removed_child
+    else:
+        # sanity check ONLY for the leaves. what remains + what was to be removed = initial total
+        if len(data_votes[cat_id]['candidates']) + len(fsids_to_remove_oneclass) != len(
+                data_votes_raw[cat_id]['candidates']):
+            print('----------------Something wrong when removing sounds from the leave %s. %d sound(s) were not removed'
+                  % (data_onto_by_id[cat_id]['name'],
+                     (len(data_votes[cat_id]['candidates']) + len(fsids_to_remove_oneclass) -
+                      len(data_votes_raw[cat_id]['candidates']))))
+
+        # sanity check ONLY for the leaves. how many of the files to remove were found (and hence removed)?
+        count_removed_sounds_in_PP = 0
+        for fs_id in fsids_to_remove_oneclass:
+            if fs_id in data_votes_raw[cat_id]['PP']:
+                count_removed_sounds_in_PP += 1
+        # print('Removed %d sounds from PP in %s, out of %d sounds to remove'
+        #       % (count_removed_sounds_in_PP, data_onto_by_id[cat_id]['name'], len(fsids_to_remove_oneclass)))
+        if count_removed_sounds_in_PP != len(fsids_to_remove_oneclass):
+            print('------------------We are trying to remove sounds that do not exist in category %s with id %s'
+                  % (data_onto_by_id[cat_id]['name'], cat_id))
+
+    # sanity check for ALL classes
+    if count_removed_sounds_in_candidates < len(fsids_to_remove_oneclass):
+        print('----------------------Something wrong when removing sounds from %s.' % (data_onto_by_id[cat_id]['name']))
+
 
 
 """ # from data_votes to data_sounds ******************************************************************************"""
@@ -623,12 +721,12 @@ for ii in range(1):
         #     data_qual_sets[catid]['LQ'] = [item for item in list_woPP_PNP if item not in sound_groups['NP']]
         #     data_qual_sets[catid]['QE'] = sound_groups['QE']
 
-
     # sanity check: groups in data_qual_sets should be disjoint
-    if list(set(data_qual_sets[catid]['HQ']) & set(data_qual_sets[catid]['LQ'])):
-        # print('\n something unexpetected happened in the mapping********************* \n')
-        print(catid)
-        sys.exit('data_qual_sets has not disjoint groups')
+    for catid in data_qual_sets:
+        if list(set(data_qual_sets[catid]['HQ']) & set(data_qual_sets[catid]['LQ'])):
+            # print('\n something unexpected happened in the mapping********************* \n')
+            print(catid)
+            sys.exit('data_qual_sets has not disjoint groups')
 
     # nb_samples_cats_dev = compute_median(data_qual_sets)
     # plots before strong filters: all possible categories
@@ -659,6 +757,68 @@ for ii in range(1):
 
     # at this point we have: data_qual_sets, with dicts containing
     # HQ, LQ, QE for all categories (632)
+
+    """but by reviewing the HQ part we detect some sounds that must be in LQ instead"""
+
+    # get sounds to move from HQ to LQ after final manual review of HQ
+    fsids_to_moveToLQ_per_class_excel = get_sounds_to_moveToLQ_from_excel('kaggle3/Categories3.xlsx')
+    # ok till here
+
+    for cat_id, fsids_to_move_oneclass in fsids_to_moveToLQ_per_class_excel.iteritems():
+
+        count_moved_toLQ = 0
+        print('Moving in %s' % data_onto_by_id[cat_id]['name'])
+        for fs_id in fsids_to_move_oneclass:
+            if fs_id in data_qual_sets[cat_id]['HQ']:
+                # remove from HQ
+                data_qual_sets[cat_id]['HQ'].remove(fs_id)
+                # move to LQ
+                data_qual_sets[cat_id]['LQ'].append(fs_id)
+                # count
+                count_moved_toLQ += 1
+
+            elif not data_onto_by_id[cat_id]['child_ids']:
+                # if some sound was not found, the only explanation is that it is in the children
+                print('----------------Something wrong when moving sounds from HQ to LQ in the leave %s. '
+                      % (data_onto_by_id[cat_id]['name']))
+
+        print('Moved %d sounds from HQ to LQ in %s, out of %d sounds to move'
+              % (count_moved_toLQ, data_onto_by_id[cat_id]['name'], len(fsids_to_move_oneclass)))
+
+        # if the cat_id has children, we are dealing with a populated parent. sounds to move could be in the children too
+        # retrieve the children and repeat transfer for any of them
+        if data_onto_by_id[cat_id]['child_ids']:
+            print('\nMoving also sounds in the children of %s' % data_onto_by_id[cat_id]['name'])
+
+            for child_id in data_onto_by_id[cat_id]['child_ids']:
+                count_moved_toLQ_child = 0
+                for fs_id in fsids_to_move_oneclass:
+                    if fs_id in data_qual_sets[child_id]['HQ']:
+                        # remove from HQ
+                        data_qual_sets[child_id]['HQ'].remove(fs_id)
+                        # move to LQ
+                        data_qual_sets[child_id]['LQ'].append(fs_id)
+                        # count
+                        count_moved_toLQ_child += 1
+
+                print('---Moved %d sounds from HQ to LQ in %s, out of %d sounds to move'
+                      % (count_moved_toLQ_child, data_onto_by_id[child_id]['name'], len(fsids_to_move_oneclass)))
+
+                count_moved_toLQ += count_moved_toLQ_child
+
+        else:
+            # sanity check ONLY for the leaves. what we moved = the reading from excel
+            if len(fsids_to_move_oneclass) != count_moved_toLQ:
+                print('----------------Something wrong when moving sounds from HQ to LQ in the leave %s. '
+                      '%d sound(s) were not moved' % (data_onto_by_id[cat_id]['name'],
+                                                      (len(fsids_to_move_oneclass) - count_moved_toLQ)))
+
+        # sanity check for ALL classes
+        if count_moved_toLQ < len(fsids_to_move_oneclass):
+            print('------------------Something wrong when moving sounds from %s.' % (data_onto_by_id[cat_id]['name']))
+
+
+
 
     """ # apply STRONG filters to data_qual_sets********************************************************************"""
 
@@ -753,6 +913,7 @@ for ii in range(1):
     # - taking leaves
     # - applying duration filter
     # - applying license filter (although not explicit in var name)
+    # - num HQ > MIN_HQ
 
     print 'Number of leaf categories with at least ' + str(MIN_HQ) + ' sounds with HQ labels, duration [' + str(
         MINLEN) + ':' + str(MAXLEN) + '], and NC/sampling+ free: ' + str(len(data_qual_sets_ld_HQ))
@@ -880,7 +1041,7 @@ for ii in range(1):
     # new way: consider that some categories may not meet MIN_QE, but they may have enough HQ to fill MIN_HQdev_LQ
     data_qual_sets_ld_HQLQQEb = {}
     for o in data_qual_sets_ld_HQLQb:
-        if o == '/m/07qrkrw':
+        if o == '/m/0bm02':
             b = 9
 
         if data_qual_sets_ld_HQLQb[o]['QE'] >= MIN_QE:
