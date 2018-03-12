@@ -81,7 +81,7 @@ try:
     with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_12.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
-    raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
+    raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
 
 # data_votes_raw is a dict where every key is a cat
 # the value of every cat is a dict, that contains 5 keys: PP, PNP, NP, U, candidates
