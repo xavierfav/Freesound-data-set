@@ -394,6 +394,25 @@ def get_sounds_to_moveToLQ_from_excel(excel_file):
     return fsids_to_moveToLQ_per_class
 
 
+def chunks(l, n):
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+
+
+def query_freesound_by_id(list_ids):
+    """ Query Freesound by chunk of 50 sounds
+        Retrieves only id of sounds """
+    client = freesound.FreesoundClient()
+    client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
+    results = []
+    for sub_list_ids in chunks(list_ids, 50):
+        filter_str = 'id:(' + ' OR '.join([str(i) for i in sub_list_ids]) + ')'
+        page_result = client.text_search(query="", fields="id,pack,pack_name", page_size=50, filter=filter_str)
+        results += [s for s in page_result]
+    return results
+
+
 # -------------------------end of functions-----------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
@@ -1944,30 +1963,31 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
 """"***********************************************************************************************************"""
 """"PACK EFFECT"""
 """"***********************************************************************************************************"""
-# # starting point is:
-# # selected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ
-# # result_final_HQ: dict with ALL the HQ sounds of the dataset
-#
+# starting point is:
+# selected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ
+# result_final_HQ: dict with ALL the HQ sounds of the dataset
+
 # client = freesound.FreesoundClient()
 # client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
 #
+# # stage 1: display info about the pack status for every category to see where we are
+# print('================Analyzing packs in HQ:')
 # pack_status_HQ_per_class = {}
 # sounds_noPack_HQ_per_class = {}
-#
-# # stage 1: display info about the pack status for every category to see where we are
 # for cat_id, group_HQ in result_final_HQ.iteritems():
 #
 #     print('Analyzing packs in %s' % data_onto_by_id[cat_id]['name'])
-#     # go through HQ sounds and extract pack info
-#     count_noPack_HQ = 0
 #     pack_status_HQ_per_class[cat_id] = {}
 #     sounds_noPack_HQ_per_class[cat_id] = []
-#     # pack_status_HQ[cat_id]['noPack_HQ'] = []
 #
-#     for fs_id in group_HQ:
-#         # given a sound_id_target which pack we want to omit, retrieve pack_id
-#         sound = client.get_sound(fs_id)
+#     # instead of making a request for every id, lets optimize it
+#     list_sounds_HQ = query_freesound_by_id(group_HQ)
+#     deleted_sound_ids = set(group_HQ) - set([s.id for s in list_sounds_HQ])
+#     if deleted_sound_ids:
+#         print('-We could not get info in %d sound(s)' % len(deleted_sound_ids))
 #
+#     # process the found sounds
+#     for sound in list_sounds_HQ:
 #         if sound.pack:
 #             # sound belongs to a pack
 #             pack_id = int(sound.pack.split('/')[-2])
@@ -1975,69 +1995,76 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
 #                 # create pack if new pack for cat_id
 #                 pack_status_HQ_per_class[cat_id][pack_id] = {}
 #                 pack_status_HQ_per_class[cat_id][pack_id]['name'] = sound.pack_name
-#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids'] = []
-#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids'].append(fs_id)
+#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids_HQ'] = []
+#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids_HQ'].append(sound.id)
 #             else:
 #                 # already existed. just append
-#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids'].append(fs_id)
-#
+#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids_HQ'].append(sound.id)
 #         else:
 #             # sound DOES NOT belong to pack
+#             sounds_noPack_HQ_per_class[cat_id].append(sound.id)
+#
+#     # process sounds that were not found. we dont know if they belong to a pack. send to sounds_noPack_HQ_per_class
+#     if deleted_sound_ids:
+#         for fs_id in deleted_sound_ids:
 #             sounds_noPack_HQ_per_class[cat_id].append(fs_id)
-#             count_noPack_HQ += 1
 #
 #     # sanity check for the class: number of sounds before and after
-#     if len(group_HQ) != (count_noPack_HQ + int(sum([len(value['fs_ids']) for key, value in pack_status_HQ_per_class[cat_id].iteritems()]))):
+#     if len(group_HQ) != \
+#             (len(sounds_noPack_HQ_per_class[cat_id]) +
+#              sum([len(value['fs_ids_HQ']) for key, value in pack_status_HQ_per_class[cat_id].iteritems()])):
+#         sys.error('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
+#
+# print('\n================Analyzing packs in LQ:')
+# pack_status_LQ_per_class = {}
+# sounds_noPack_LQ_per_class = {}
+# for cat_id, group_LQ in selected_LQ.iteritems():
+#
+#     print('Analyzing packs in %s' % data_onto_by_id[cat_id]['name'])
+#     pack_status_LQ_per_class[cat_id] = {}
+#     sounds_noPack_LQ_per_class[cat_id] = []
+#
+#     # instead of making a request for every id, lets optimize it
+#     list_sounds_LQ = query_freesound_by_id(group_LQ)
+#     deleted_sound_ids = set(group_LQ) - set([s.id for s in list_sounds_LQ])
+#     if deleted_sound_ids:
+#         print('-We could not get info in %d sound(s)' % len(deleted_sound_ids))
+#
+#     # process the found sounds
+#     for sound in list_sounds_LQ:
+#         if sound.pack:
+#             # sound belongs to a pack
+#             pack_id = int(sound.pack.split('/')[-2])
+#             if pack_id not in pack_status_LQ_per_class[cat_id]:
+#                 # create pack if new pack for cat_id
+#                 pack_status_LQ_per_class[cat_id][pack_id] = {}
+#                 pack_status_LQ_per_class[cat_id][pack_id]['name'] = sound.pack_name
+#                 pack_status_LQ_per_class[cat_id][pack_id]['fs_ids_LQ'] = []
+#                 pack_status_LQ_per_class[cat_id][pack_id]['fs_ids_LQ'].append(sound.id)
+#             else:
+#                 # already existed. just append
+#                 pack_status_LQ_per_class[cat_id][pack_id]['fs_ids_LQ'].append(sound.id)
+#         else:
+#             # sound DOES NOT belong to pack
+#             sounds_noPack_LQ_per_class[cat_id].append(sound.id)
+#
+#     # process sounds that were not found. we dont know if they belong to a pack. send to sounds_noPack_HQ_per_class
+#     if deleted_sound_ids:
+#         for fs_id in deleted_sound_ids:
+#             sounds_noPack_LQ_per_class[cat_id].append(fs_id)
+#
+#     # sanity check for the class: number of sounds before and after
+#     if len(group_LQ) != \
+#             (len(sounds_noPack_LQ_per_class[cat_id]) +
+#              sum([len(value['fs_ids_LQ']) for key, value in pack_status_LQ_per_class[cat_id].iteritems()])):
 #         sys.error('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
 #
 #
 #
+# d = 6
 #
 #
 #
-
-
-
-
-
-
-
-# client = freesound.FreesoundClient()
-# client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
-
-# given a sound_id_target which pack we want to omit, retrieve pack_id
-# sound = client.get_sound(sound_id_target)
-# pack_id = int(sound.pack.split('/')[-2])
-# print pack_id, sound.pack_name
-
-# retrieve the list of sound ids in the pack
-# pack = client.get_pack(pack_id)
-# pack_sounds = pack.get_sounds(fields="id,name,username", page_size=150)
-
-# list_ids_pack_sounds = [sound.id for sound in pack_sounds]
-# list_ids_pack_sounds.sort()
-
-# confirm
-# print 'all the %d sounds in the pack: %s, of user %s' % (len(list_ids_pack_sounds), pack.name, pack.username)
-# for idx, sound in enumerate(pack_sounds):
-#     print (idx + 1), sound.id, sound.name
-#
-# return list_ids_pack_sounds
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # stage 2: implement the split strategy that is more appropriate
