@@ -1900,11 +1900,14 @@ dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'],
 
 # ------------------------ SELECT LQ SET ------------------------- #
 MAX_NUM_SOUND_DEV = 300
+selected_LQ = {node_id: [] for node_id in dataset_final_prepro}  # store the selected LQ prior and LQ
+
 # ADD FIRST LQprior
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
     data_dev[node_id] += data_dev_LQpior[node_id][:num_to_add]
-
+    selected_LQ[node_id] += data_dev_LQpior[node_id][:num_to_add]
+    
 # FILTER OUT LQprior from LQ
 data_dev_LQ_wo_prior = {}
 for node_id in data_dev_LQ:
@@ -1928,6 +1931,7 @@ for node_id in data_dev_LQ_wo_prior.keys():
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
     data_dev[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
+    selected_LQ[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
     
 dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
                 'audioset_id': node_id,
