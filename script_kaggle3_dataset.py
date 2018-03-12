@@ -18,8 +18,8 @@ MAXLEN = 30.0
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
 # maybe useless cause all have more than 72 votes (paper)
 
-MIN_HQ = 40  # minimum number of sounds with HQ labels per category. this was used for dump March09
-# MIN_HQ = 64  # minimum number of sounds with HQ labels per category, to include Bass drum but not others
+# MIN_HQ = 40  # minimum number of sounds with HQ labels per category. this was used for dump March09
+MIN_HQ = 64  # minimum number of sounds with HQ labels per category, to include Bass drum but not others
 
 # MIN_LQ = 75  # minimum number of sounds  with LQ labels per category
 MIN_HQdev_LQ = 95  # minimum number of sounds between HQ and LQ labels per category
@@ -28,12 +28,12 @@ MIN_HQdev_LQ = 95  # minimum number of sounds between HQ and LQ labels per categ
 PERCENTAGE_DEV = 0.7 # split 70 / 30 for DEV / EVAL
 # PERCENTAGE_DEV = 0.625 # split 62.5 / 27.5 for DEV / EVAL
 
-MIN_QE = 0.68  # minimum QE to accept the LQ as decent. this was used for dump March09
-# MIN_QE = 0.647  # minimum QE to accept the LQ as decent, to include Bass drum
+# MIN_QE = 0.68  # minimum QE to accept the LQ as decent. this was used for dump March09
+MIN_QE = 0.647  # minimum QE to accept the LQ as decent, to include Bass drum
 
 FLAG_BARPLOT = False
 FLAG_BOXPLOT = False
-FLAG_BARPLOT_PARENT = True
+FLAG_BARPLOT_PARENT = False
 """load initial data with votes, clip duration and ontology--------------------------------- """
 '''------------------------------------------------------------------------------------------'''
 
@@ -1762,7 +1762,7 @@ if FLAG_BARPLOT_PARENT:
 category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', 
                          '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', 
                          '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', 
-                         '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf']
+                         '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf', '/m/0912c9']
 map(dataset_final_prepro.pop, set(category_id_to_remove) & set(dataset_final_prepro.keys()))
 
 
@@ -1937,6 +1937,113 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
                 'audioset_id': node_id,
                 'sound_ids': data_dev[node_id],
                } for node_id in data_dev]
+
+
+""""***********************************************************************************************************"""
+""""PACK EFFECT"""
+""""***********************************************************************************************************"""
+# # starting point is:
+# # selected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ
+# # result_final_HQ: dict with ALL the HQ sounds of the dataset
+#
+# client = freesound.FreesoundClient()
+# client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
+#
+# pack_status_HQ_per_class = {}
+# sounds_noPack_HQ_per_class = {}
+#
+# # stage 1: display info about the pack status for every category to see where we are
+# for cat_id, group_HQ in result_final_HQ.iteritems():
+#
+#     print('Analyzing packs in %s' % data_onto_by_id[cat_id]['name'])
+#     # go through HQ sounds and extract pack info
+#     count_noPack_HQ = 0
+#     pack_status_HQ_per_class[cat_id] = {}
+#     sounds_noPack_HQ_per_class[cat_id] = []
+#     # pack_status_HQ[cat_id]['noPack_HQ'] = []
+#
+#     for fs_id in group_HQ:
+#         # given a sound_id_target which pack we want to omit, retrieve pack_id
+#         sound = client.get_sound(fs_id)
+#
+#         if sound.pack:
+#             # sound belongs to a pack
+#             pack_id = int(sound.pack.split('/')[-2])
+#             if pack_id not in pack_status_HQ_per_class[cat_id]:
+#                 # create pack if new pack for cat_id
+#                 pack_status_HQ_per_class[cat_id][pack_id] = {}
+#                 pack_status_HQ_per_class[cat_id][pack_id]['name'] = sound.pack_name
+#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids'] = []
+#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids'].append(fs_id)
+#             else:
+#                 # already existed. just append
+#                 pack_status_HQ_per_class[cat_id][pack_id]['fs_ids'].append(fs_id)
+#
+#         else:
+#             # sound DOES NOT belong to pack
+#             sounds_noPack_HQ_per_class[cat_id].append(fs_id)
+#             count_noPack_HQ += 1
+#
+#     # sanity check for the class: number of sounds before and after
+#     if len(group_HQ) != (count_noPack_HQ + int(sum([len(value['fs_ids']) for key, value in pack_status_HQ_per_class[cat_id].iteritems()]))):
+#         sys.error('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
+#
+#
+#
+#
+#
+#
+
+
+
+
+
+
+
+# client = freesound.FreesoundClient()
+# client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
+
+# given a sound_id_target which pack we want to omit, retrieve pack_id
+# sound = client.get_sound(sound_id_target)
+# pack_id = int(sound.pack.split('/')[-2])
+# print pack_id, sound.pack_name
+
+# retrieve the list of sound ids in the pack
+# pack = client.get_pack(pack_id)
+# pack_sounds = pack.get_sounds(fields="id,name,username", page_size=150)
+
+# list_ids_pack_sounds = [sound.id for sound in pack_sounds]
+# list_ids_pack_sounds.sort()
+
+# confirm
+# print 'all the %d sounds in the pack: %s, of user %s' % (len(list_ids_pack_sounds), pack.name, pack.username)
+# for idx, sound in enumerate(pack_sounds):
+#     print (idx + 1), sound.id, sound.name
+#
+# return list_ids_pack_sounds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# stage 2: implement the split strategy that is more appropriate
+
+
+
+
+
 
 
 # ---------------------------------------------------------------- #
