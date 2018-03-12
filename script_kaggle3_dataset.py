@@ -1963,20 +1963,28 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
 """"***********************************************************************************************************"""
 """"PACK EFFECT"""
 """"***********************************************************************************************************"""
-# starting point is:
-# selected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ
-# result_final_HQ: dict with ALL the HQ sounds of the dataset
-
+# # starting point is:
+# # selected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ
+# # result_final_HQ: dict with ALL the HQ sounds of the dataset
+#
 # client = freesound.FreesoundClient()
 # client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
 #
 # # stage 1: display info about the pack status for every category to see where we are
-# print('================Analyzing packs in HQ:')
+# print('=====================================================================Analyzing packs in HQ and LQ:')
 # pack_status_HQ_per_class = {}
 # sounds_noPack_HQ_per_class = {}
-# for cat_id, group_HQ in result_final_HQ.iteritems():
+# pack_status_LQ_per_class = {}
+# sounds_noPack_LQ_per_class = {}
+# pack_status_per_class = {}
 #
-#     print('Analyzing packs in %s' % data_onto_by_id[cat_id]['name'])
+# for cat_id in result_final_HQ:
+#
+#     # assuming all the categories have something of HQ and LQ
+#     group_HQ = result_final_HQ[cat_id]
+#     group_LQ = selected_LQ[cat_id]
+#
+#     print('\n======================Analyzing packs in HQ of %s' % data_onto_by_id[cat_id]['name'])
 #     pack_status_HQ_per_class[cat_id] = {}
 #     sounds_noPack_HQ_per_class[cat_id] = []
 #
@@ -2013,14 +2021,12 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
 #     if len(group_HQ) != \
 #             (len(sounds_noPack_HQ_per_class[cat_id]) +
 #              sum([len(value['fs_ids_HQ']) for key, value in pack_status_HQ_per_class[cat_id].iteritems()])):
-#         sys.error('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
+#         sys.exit('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
 #
-# print('\n================Analyzing packs in LQ:')
-# pack_status_LQ_per_class = {}
-# sounds_noPack_LQ_per_class = {}
-# for cat_id, group_LQ in selected_LQ.iteritems():
+#     # ------------------------------------------------------------------------------------------
+#     # ------------------------------------------------------------------------------------------
 #
-#     print('Analyzing packs in %s' % data_onto_by_id[cat_id]['name'])
+#     print('\n======================Analyzing packs in LQ of %s' % data_onto_by_id[cat_id]['name'])
 #     pack_status_LQ_per_class[cat_id] = {}
 #     sounds_noPack_LQ_per_class[cat_id] = []
 #
@@ -2057,13 +2063,92 @@ dataset_dev = [{'name': ontology_by_id[node_id]['name'],
 #     if len(group_LQ) != \
 #             (len(sounds_noPack_LQ_per_class[cat_id]) +
 #              sum([len(value['fs_ids_LQ']) for key, value in pack_status_LQ_per_class[cat_id].iteritems()])):
-#         sys.error('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
+#         sys.exit('PACK parsing error in %s' % data_onto_by_id[cat_id]['name'])
+#
+#     # ------------------------------------------------------------------------------------------
+#     # ------------------------------------------------------------------------------------------
+#
+#     # mixing both dictionaries into one dict that will represent overall status
+#     list_all_pack_ids_in_cat_HQ = [pack_id for pack_id in pack_status_HQ_per_class[cat_id]]
+#     list_all_pack_ids_in_cat_LQ = [pack_id for pack_id in pack_status_LQ_per_class[cat_id]]
+#     list_all_pack_ids_in_cat = list(set(list_all_pack_ids_in_cat_HQ + list_all_pack_ids_in_cat_LQ))
+#
+#     pack_status_per_class[cat_id] = {}
+#     for pack_id in list_all_pack_ids_in_cat:
+#
+#         if pack_id in pack_status_HQ_per_class[cat_id] and pack_id not in pack_status_LQ_per_class[cat_id]:
+#             # we have a pack which has ONLY HQ data
+#             # copying a dict .copy()
+#             pack_status_per_class[cat_id][pack_id] = pack_status_HQ_per_class[cat_id][pack_id].copy()
+#             pack_status_per_class[cat_id][pack_id]['type'] = 'manV'
+#
+#         elif pack_id not in pack_status_HQ_per_class[cat_id] and pack_id in pack_status_LQ_per_class[cat_id]:
+#             # we have a pack which has ONLY LQ data
+#             # copying a dict .copy()
+#             pack_status_per_class[cat_id][pack_id] = pack_status_LQ_per_class[cat_id][pack_id].copy()
+#             pack_status_per_class[cat_id][pack_id]['type'] = 'nonV'
+#
+#         elif pack_id in pack_status_HQ_per_class[cat_id] and pack_id in pack_status_LQ_per_class[cat_id]:
+#             # we have a pack which has BOTH types of data: HQ and LQ
+#             # copying a dict .copy()
+#             pack_status_per_class[cat_id][pack_id] = pack_status_LQ_per_class[cat_id][pack_id].copy()
+#             pack_status_per_class[cat_id][pack_id]['fs_ids_HQ'] = pack_status_HQ_per_class[cat_id][pack_id]['fs_ids_HQ']
+#             pack_status_per_class[cat_id][pack_id]['type'] = 'mix'
+#
+#         else:
+#             sys.exit('PACK parsing error when mixing HQ and LQ into one dict, in %s' % data_onto_by_id[cat_id]['name'])
+#
+#     # sanity check
+#     if len(list_all_pack_ids_in_cat) != len(pack_status_per_class[cat_id]):
+#         sys.exit('PACK parsing error when mixing HQ and LQ into one dict, in %s' % data_onto_by_id[cat_id]['name'])
 #
 #
+#     # ------------------------------------------------------------------------------------------
+#     # ------------------------------------------------------------------------------------------
 #
-# d = 6
+#     # display info
+#     # print(pack_status_per_class[cat_id])
+#     count_manV = 0
+#     count_mix_HQ = 0
+#     count_mix_LQ = 0
+#     count_nonV = 0
+#     print('\nFor %s, packs containing only manually verified data:' % data_onto_by_id[cat_id]['name'])
+#     for key, value in pack_status_per_class[cat_id].iteritems():
+#         if value['type'] == 'manV':
+#             print('-%d - %s: %d sounds' % (key, value['name'], len(value['fs_ids_HQ'])))
+#             count_manV += len(value['fs_ids_HQ'])
+#     print('-Total of sounds: %d' % count_manV)
 #
+#     print('\nFor %s, packs containing MIXED data:' % data_onto_by_id[cat_id]['name'])
+#     for key, value in pack_status_per_class[cat_id].iteritems():
+#         if value['type'] == 'mix':
+#             print('-%d - %s: %d HQ sounds and %d LQ sounds' % (key, value['name'], len(value['fs_ids_HQ']), len(value['fs_ids_LQ'])))
+#             count_mix_HQ += len(value['fs_ids_HQ'])
+#             count_mix_LQ += len(value['fs_ids_LQ'])
+#     print('-Total of HQ sounds: %d --- LQ sounds: %d' % (count_mix_HQ, count_mix_LQ))
 #
+#     print('\nFor %s, packs containing only non verified data:' % data_onto_by_id[cat_id]['name'])
+#     for key, value in pack_status_per_class[cat_id].iteritems():
+#         if value['type'] == 'nonV':
+#             print('-%d - %s: %d sounds' % (key, value['name'], len(value['fs_ids_LQ'])))
+#             count_nonV += len(value['fs_ids_LQ'])
+#     print('-Total of sounds: %d' % count_nonV)
+#
+#     print('\nFor %s, orphan sounds:' % data_onto_by_id[cat_id]['name'])
+#     print('-HQ orphan sounds: %d' % len(sounds_noPack_HQ_per_class[cat_id]))
+#     print('-LQ orphan sounds: %d' % len(sounds_noPack_LQ_per_class[cat_id]))
+#     print('Target = %d HQ sounds' % np.floor(0.3*len(group_HQ)))
+#
+#     # sanity check
+#     # count number of sounds in the pack_status_per_class + the unpacked files and compare it to groupHQ and groupLQ
+#     nb_sounds_before = len(group_HQ) + len(group_LQ)
+#     nb_sounds_after = len(sounds_noPack_HQ_per_class[cat_id]) + len(sounds_noPack_LQ_per_class[cat_id]) + \
+#                       count_manV + count_nonV + count_mix_HQ + count_mix_LQ
+#
+#     if nb_sounds_before != nb_sounds_after:
+#         sys.exit('PACK parsing error when mixing HQ and LQ into one dict, in %s' % data_onto_by_id[cat_id]['name'])
+#
+#     d = 6
 #
 
 
