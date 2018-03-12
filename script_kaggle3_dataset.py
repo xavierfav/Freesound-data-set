@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-# import xlsxwriter
+import xlsxwriter
 import freesound
 from openpyxl import load_workbook
 
@@ -77,7 +77,8 @@ try:
     # from March1, we include only trustable
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
+#    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_12.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -1762,7 +1763,8 @@ if FLAG_BARPLOT_PARENT:
 category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r', 
                          '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', 
                          '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', 
-                         '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf', '/m/0912c9']
+                         '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf', 
+                         '/m/0912c9']
 map(dataset_final_prepro.pop, set(category_id_to_remove) & set(dataset_final_prepro.keys()))
 
 
