@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 import freesound
 from openpyxl import load_workbook
 
@@ -1764,7 +1764,7 @@ category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r',
                          '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', 
                          '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', 
                          '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf', 
-                         '/m/0912c9', '/m/022c7z']
+                         '/m/0912c9', '/m/022c7z', '/m/07qnq_y']
 map(dataset_final_prepro.pop, set(category_id_to_remove) & set(dataset_final_prepro.keys()))
 
 
