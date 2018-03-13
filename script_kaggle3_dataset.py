@@ -1798,7 +1798,9 @@ for _, category_sets in dataset_final_prepro.iteritems():
 sound_to_remove = [s for s in all_sound_ids if all_sound_ids.count(s)>1]
 
 # add duplicate in Freesound
-sound_to_remove += [325477, 235363] # similar to 325480 and 235962 respectivly
+sound_to_remove += [325477, 235363] # similar to 325480, 23596 respectivly
+# 186933, 177288 similar to 140726, 176540 TODO: check if their are both in the dataset before removing them.
+
 
 for _, category_sets in dataset_final_prepro.iteritems():
     for set_name in ['HQ', 'LQ', 'LQprior']:
