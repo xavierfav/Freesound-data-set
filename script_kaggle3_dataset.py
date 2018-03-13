@@ -367,7 +367,7 @@ def get_sounds_to_moveToLQ_from_excel(excel_file):
 
     # loop to search for ids to move to LQ, for every category. position of cells is hardcoded
     # categories start in row 3 (see format())
-    # the sounds to remove start from column L (12th), and go consecutively up to AB (28th)
+    # the sounds to move start from column L (12th), and go consecutively up to AH (34th)
     for row in ws.iter_rows('L{}:L{}'.format(3, ws.max_row)):
         for cell in row:
 
@@ -381,7 +381,7 @@ def get_sounds_to_moveToLQ_from_excel(excel_file):
 
                 # fetch ids to move, within a hardcoded range of columns in the current_row
                 fsids_to_move = []
-                for current_row in ws.iter_rows(min_row=row[0].row, min_col=12, max_row=row[0].row, max_col=28):
+                for current_row in ws.iter_rows(min_row=row[0].row, min_col=12, max_row=row[0].row, max_col=34):
                     for current_cell in current_row:
                         if current_cell.value:
                             fsids_to_move.append(int(current_cell.value))
@@ -389,7 +389,7 @@ def get_sounds_to_moveToLQ_from_excel(excel_file):
                 print(cat_name, fsids_to_move)
                 fsids_to_moveToLQ_per_class[cat_id] = fsids_to_move
 
-    print('Removing sounds from excel in %d categories' % count_nb_categories)
+    print('Moving sounds from HQ to LQ in %d categories' % count_nb_categories)
     print(fsids_to_moveToLQ_per_class)
     return fsids_to_moveToLQ_per_class
 
@@ -442,7 +442,7 @@ data_votes = copy.deepcopy(data_votes_raw)
 
 
 # get sounds to remove after final manual review of HQ
-fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories3.xlsx')
+fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories4.xlsx')
 
 for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritems():
     # empty category (empty dict as value)
@@ -781,7 +781,7 @@ for ii in range(1):
     """but by reviewing the HQ part we detect some sounds that must be in LQ instead"""
 
     # get sounds to move from HQ to LQ after final manual review of HQ
-    fsids_to_moveToLQ_per_class_excel = get_sounds_to_moveToLQ_from_excel('kaggle3/Categories3.xlsx')
+    fsids_to_moveToLQ_per_class_excel = get_sounds_to_moveToLQ_from_excel('kaggle3/Categories4.xlsx')
     # ok till here
 
     for cat_id, fsids_to_move_oneclass in fsids_to_moveToLQ_per_class_excel.iteritems():
