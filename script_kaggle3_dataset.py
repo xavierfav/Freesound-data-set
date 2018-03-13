@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-# import xlsxwriter
+import xlsxwriter
 import freesound
 from openpyxl import load_workbook
 
@@ -78,7 +78,7 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
 #    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_12.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_13.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -1798,9 +1798,7 @@ for _, category_sets in dataset_final_prepro.iteritems():
 sound_to_remove = [s for s in all_sound_ids if all_sound_ids.count(s)>1]
 
 # add duplicate in Freesound
-sound_to_remove += [325477, 235363] # similar to 325480, 23596 respectivly
-# 186933, 177288 similar to 140726, 176540 TODO: check if their are both in the dataset before removing them.
-
+sound_to_remove += [325477, 235363, 186933, 177288] # similar to 325480, 23596, 140726, 176540 respectivly
 
 for _, category_sets in dataset_final_prepro.iteritems():
     for set_name in ['HQ', 'LQ', 'LQprior']:
