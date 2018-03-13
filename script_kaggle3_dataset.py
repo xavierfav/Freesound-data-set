@@ -29,7 +29,7 @@ PERCENTAGE_DEV = 0.7 # split 70 / 30 for DEV / EVAL
 # PERCENTAGE_DEV = 0.625 # split 62.5 / 27.5 for DEV / EVAL
 
 # MIN_QE = 0.68  # minimum QE to accept the LQ as decent. this was used for dump March09
-MIN_QE = 0.637  # minimum QE to accept the LQ as decent, to include Bass drum
+MIN_QE = 0.635  # minimum QE to accept the LQ as decent, to include Bass drum
 
 FLAG_BARPLOT = False
 FLAG_BOXPLOT = False
@@ -78,6 +78,7 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_01.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
 #    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_12.json') as data_file:
     with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_13.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
@@ -1783,7 +1784,7 @@ category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r',
                          '/m/0l14qv', '/m/05jcn', '/m/025l19', '/m/01b9nn', 
                          '/m/01jnbd', '/m/05mxj0q', '/m/06mb1', '/m/02hnl', 
                          '/m/02zsn', '/m/07r660_', '/t/dd00093', '/m/01vfsf', 
-                         '/m/0912c9', '/m/022c7z', '/m/07qnq_y']
+                         '/m/0912c9', '/m/022c7z', '/m/07qnq_y', '/m/06mb1']
 map(dataset_final_prepro.pop, set(category_id_to_remove) & set(dataset_final_prepro.keys()))
 
 
