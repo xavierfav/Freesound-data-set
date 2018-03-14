@@ -1876,8 +1876,8 @@ for r in data_single_dur:
             data_single_eval[r].append(s[0])
             
 ## RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 7:3
-data_dev_HQ = data_single_dev
-data_eval = data_single_eval
+data_dev_HQ_anal = data_single_dev
+# data_eval = data_single_eval
 # for idx, s in enumerate(sounds_multiple):
 #     if rule73[idx%len(rule73)] == 'dev':
 #         for node_id in sounds_multiple[s]:
@@ -1887,25 +1887,25 @@ data_eval = data_single_eval
 #             data_eval[node_id].append(s)
 
 # EXPORT DATASET
-ontology_by_id = {o['id']:o for o in data_onto}
-dataset_dev_HQ = [{'name': ontology_by_id[node_id]['name'], 
-                'audioset_id': node_id,
-                'sound_ids': data_dev_HQ[node_id],
-               } for node_id in data_dev_HQ]
-dataset_eval = [{'name': ontology_by_id[node_id]['name'], 
-                'audioset_id': node_id,
-                'sound_ids': data_eval[node_id],
-               } for node_id in data_eval]
+# ontology_by_id = {o['id']:o for o in data_onto}
+# dataset_dev_HQ = [{'name': ontology_by_id[node_id]['name'],
+#                 'audioset_id': node_id,
+#                 'sound_ids': data_dev_HQ[node_id],
+#                } for node_id in data_dev_HQ]
+# dataset_eval = [{'name': ontology_by_id[node_id]['name'],
+#                 'audioset_id': node_id,
+#                 'sound_ids': data_eval[node_id],
+#                } for node_id in data_eval]
 
         
 # --------------------------------------------------------------- #
 
-# # --------------------- ADD LQ TO DEV SET ------------------------#
-print '\n ADD LQ TO DEV SET'
+# # --------------------- ADD LQ TO TENTATIVE DEV SET FOR PACK ANALYSIS------------------------#
+print '\n ADD LQ TO TENTATIVE DEV SET FOR PACK ANALYSIS'
 
-data_dev = copy.deepcopy(data_dev_HQ)
-#for node_id in data_dev.keys():
-#    data_dev[node_id] += dataset_final_prepro[node_id]['LQ']
+data_dev_anal = copy.deepcopy(data_dev_HQ_anal)
+#for node_id in data_dev_anal.keys():
+#    data_dev_anal[node_id] += dataset_final_prepro[node_id]['LQ']
 data_dev_LQ = {node_id: value['LQ'] for node_id, value in dataset_final_prepro.iteritems()}
 
 for node_id, value in dataset_final_prepro.iteritems():
@@ -1921,14 +1921,19 @@ data_dev_LQpior = {node_id: value['LQprior'] for node_id, value in dataset_final
 
 # ---------------------------------------------------------------- #
 
-# ----- SELECT LQ SET PRESELECTION JUST FOR PRINT INFO ----------- #
+# ----- SELECT TENTATIVE LQ SET PRESELECTION JUST FOR PRINT INFO ABOUT PACKS----------- #
+# preselected_LQ is the LQ sounds until reachin 300 in dev, according to the tentative plit of HQ already done
+# we use this to analyse the composition of packs (how many LQ and HQ)
+# considering this info, we split HQ in dev/eval
+# finally we re-do the selection of LQ to fill dev until 300
+# in practice, the finally selected LQ is practically the same as the preselected_LQ (around 15 sounds of difference)
 MAX_NUM_SOUND_DEV = 300
-selected_LQ = {node_id: [] for node_id in dataset_final_prepro}  # store the selected LQ prior and LQ
+preselected_LQ = {node_id: [] for node_id in dataset_final_prepro}  # store the selected LQ prior and LQ
 
 # ADD FIRST LQprior
-for node_id in data_dev.keys():
-    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
-    selected_LQ[node_id] += data_dev_LQpior[node_id][:num_to_add]
+for node_id in data_dev_anal.keys():
+    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev_anal[node_id]), len(data_dev_LQpior[node_id]))
+    preselected_LQ[node_id] += data_dev_LQpior[node_id][:num_to_add]
 
 # FILTER OUT LQprior from LQ
 data_dev_LQ_wo_prior = {}
@@ -1950,16 +1955,16 @@ for node_id in data_dev_LQ_wo_prior.keys():
     data_dev_LQ_wo_prior[node_id] = [fs_id_num_downloads[0] for fs_id_num_downloads in freesound_ids_with_num_downloads]
 
 # ADD LQ TO DEV SET UNTIL REACHING MAX 300 SOUNDS
-for node_id in data_dev.keys():
-    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
-    selected_LQ[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
+for node_id in data_dev_anal.keys():
+    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev_anal[node_id]), len(data_dev_LQ_wo_prior[node_id]))
+    preselected_LQ[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
 
 
 """"***********************************************************************************************************"""
 """"PACK EFFECT"""
 """"***********************************************************************************************************"""
 # starting point is:
-# selected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ
+# preselected_LQ: dict with ALL the LQ sounds selected for the dataset (in some categories there were much more LQ)
 # result_final_HQ: dict with ALL the HQ sounds of the dataset
 
 client = freesound.FreesoundClient()
@@ -1975,13 +1980,16 @@ sounds_noPack_HQ_per_class = {}
 pack_status_LQ_per_class = {}
 sounds_noPack_LQ_per_class = {}
 pack_status_per_class = {}
+
+# initialize to wind and bowed string instruments of FSD11k, as these were the classes of Good Sounds
+# it will be updated later with classes that do not reach the eval target using pack-based split
 list_cat_ids_split_manually = ['/m/06ncr', '/m/05kms', '/m/0l14j_', '/m/01wy6',
                                '/m/07gql', '/m/07y_7', '/m/02fsn', '/m/01xqw']
 for cat_id in result_final_HQ:
 
     # assuming all the categories have something of HQ and LQ
     group_HQ = result_final_HQ[cat_id]
-    group_LQ = selected_LQ[cat_id]
+    group_LQ = preselected_LQ[cat_id]
 
     print('\n======================Analyzing packs in HQ of %s' % data_onto_by_id[cat_id]['name'])
     pack_status_HQ_per_class[cat_id] = {}
@@ -2241,9 +2249,12 @@ for cat_id in result_final_HQ:
             list_cat_ids_split_manually.append(cat_id)
             data_eval_pack_split[cat_id] = []
 
+print('\n======Categories that need manual split===========')
+for cat_id in list_cat_ids_split_manually:
+    print('- %s' % data_onto_by_id[cat_id]['name'])
 
-# ===================================== compute data_dev_pack_split
 
+# ===================================== compute data_dev_pack_split as complementary to data_eval_pack_split
 for cat_id in result_final_HQ:
     # if we have carried out the split
     if data_eval_pack_split[cat_id]:
@@ -2282,9 +2293,12 @@ data_dev_pack_split_clean = {k: v for k, v in data_dev_pack_split.iteritems() if
 if len(data_eval_pack_split_clean) + len(data_eval_duration_split) != len(result_final_HQ):
     sys.exit('DAMN! data_dev_pack_split - data_eval_pack_split')
 
-# joint both dicts
+# joint both dicts to produce the final EVAL SET: data_eval
 data_eval = dict(data_eval_pack_split_clean)  # or orig.copy()
 data_eval.update(data_eval_duration_split)
+
+# construct dataset_eval containing
+ontology_by_id = {o['id']:o for o in data_onto}
 dataset_eval = [{'name': ontology_by_id[node_id]['name'],
                 'audioset_id': node_id,
                 'sound_ids': data_eval[node_id],
