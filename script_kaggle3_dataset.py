@@ -444,7 +444,7 @@ data_votes = copy.deepcopy(data_votes_raw)
 
 
 # get sounds to remove after final manual review of HQ
-fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories4.xlsx')
+fsids_to_remove_per_class_excel = get_sounds_to_remove_from_excel('kaggle3/Categories5.xlsx')
 
 for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritems():
     # empty category (empty dict as value)
@@ -783,7 +783,7 @@ for ii in range(1):
     """but by reviewing the HQ part we detect some sounds that must be in LQ instead"""
 
     # get sounds to move from HQ to LQ after final manual review of HQ
-    fsids_to_moveToLQ_per_class_excel = get_sounds_to_moveToLQ_from_excel('kaggle3/Categories4.xlsx')
+    fsids_to_moveToLQ_per_class_excel = get_sounds_to_moveToLQ_from_excel('kaggle3/Categories5.xlsx')
     # ok till here
 
     for cat_id, fsids_to_move_oneclass in fsids_to_moveToLQ_per_class_excel.iteritems():
@@ -1984,7 +1984,8 @@ pack_status_per_class = {}
 # initialize to wind and bowed string instruments of FSD11k, as these were the classes of Good Sounds
 # it will be updated later with classes that do not reach the eval target using pack-based split
 list_cat_ids_split_manually = ['/m/06ncr', '/m/05kms', '/m/0l14j_', '/m/01wy6',
-                               '/m/07gql', '/m/07y_7', '/m/02fsn', '/m/01xqw']
+                               '/m/07gql', '/m/07y_7', '/m/02fsn', '/m/01xqw',
+                               '/m/0f8s22', '/m/025_jnm']
 for cat_id in result_final_HQ:
 
     # assuming all the categories have something of HQ and LQ
