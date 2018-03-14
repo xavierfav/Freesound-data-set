@@ -1814,7 +1814,7 @@ for _, category_sets in dataset_final_prepro.iteritems():
 # ------------------------ CREATE SPLIT, FILES, ... ------------------------ #
 # -------------------------------------------------------------------------- #
 print '\n\n'
-#dataset_final_prepro = json.load(open('', 'rb'))
+# dataset_final_prepro = json.load(open('', 'rb'))
 result_final_HQ = {node_id: value['HQ'] for node_id, value in dataset_final_prepro.iteritems()}
 
 
@@ -1900,7 +1900,7 @@ dataset_eval = [{'name': ontology_by_id[node_id]['name'],
         
 # --------------------------------------------------------------- #
 
-# --------------------- ADD LQ TO DEV SET ------------------------#
+# # --------------------- ADD LQ TO DEV SET ------------------------#
 print '\n ADD LQ TO DEV SET'
 
 data_dev = copy.deepcopy(data_dev_HQ)
@@ -1913,24 +1913,23 @@ for node_id, value in dataset_final_prepro.iteritems():
         value['LQprior'] = []
 data_dev_LQpior = {node_id: value['LQprior'] for node_id, value in dataset_final_prepro.iteritems()}
 
-dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'], 
-                'audioset_id': node_id,
-                'sound_ids': dataset_final_prepro[node_id]['LQ'],
-               } for node_id in dataset_final_prepro]
+# dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'],
+#                 'audioset_id': node_id,
+#                 'sound_ids': dataset_final_prepro[node_id]['LQ'],
+#                } for node_id in dataset_final_prepro]
 
 
 # ---------------------------------------------------------------- #
 
-# ------------------------ SELECT LQ SET ------------------------- #
+# ----- SELECT LQ SET PRESELECTION JUST FOR PRINT INFO ----------- #
 MAX_NUM_SOUND_DEV = 300
 selected_LQ = {node_id: [] for node_id in dataset_final_prepro}  # store the selected LQ prior and LQ
 
 # ADD FIRST LQprior
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
-    data_dev[node_id] += data_dev_LQpior[node_id][:num_to_add]
     selected_LQ[node_id] += data_dev_LQpior[node_id][:num_to_add]
-    
+
 # FILTER OUT LQprior from LQ
 data_dev_LQ_wo_prior = {}
 for node_id in data_dev_LQ:
@@ -1953,13 +1952,7 @@ for node_id in data_dev_LQ_wo_prior.keys():
 # ADD LQ TO DEV SET UNTIL REACHING MAX 300 SOUNDS
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
-    data_dev[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
     selected_LQ[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
-    
-dataset_dev = [{'name': ontology_by_id[node_id]['name'], 
-                'audioset_id': node_id,
-                'sound_ids': data_dev[node_id],
-               } for node_id in data_dev]
 
 
 """"***********************************************************************************************************"""
@@ -2209,7 +2202,7 @@ for cat_id in result_final_HQ:
 
 
             if target_done == 0:
-                # step 3: packs with mixed data, smaller than 33% of eval set as long as the LQ part is only 1 and
+                # step 3: packs with mixed data, smaller than 33% of eval set as long as the LQ part is only 3
                 packs_mix_small_LQ1 = {key: value for key, value in pack_status_per_class[cat_id].iteritems() if
                                        value['type'] == 'mix' and
                                        len(value['fs_ids_HQ']) < MAX_SIZE_PACK_EVAL * eval_target and
@@ -2262,13 +2255,9 @@ for cat_id in result_final_HQ:
 
 
 # =====================================perform split based on duration for classes in list_cat_ids_split_manually
-# ORDER BY DURATION
-# data_single_dur =
-# {r:sorted([(s, data_mapping[str(s)]['duration']) for s in data_single[r]], key=lambda c:c[1]) for r in data_single}
+# already ORDERED BY DURATION before in the code data_single_dur
 
 # SPLIT DEV/EVAL FOR SINGLE LABELED WITH RATIO 7:3 BASED ON DURATION
-# rule32 = ['dev', 'eval', 'dev', 'eval', 'dev']
-# rule73 = ['dev', 'eval', 'dev', 'dev', 'eval', 'dev', 'dev', 'eval', 'dev', 'dev']
 data_dev_duration_split = {r: [] for r in list_cat_ids_split_manually}
 data_eval_duration_split = {r: [] for r in list_cat_ids_split_manually}
 for r in list_cat_ids_split_manually:
@@ -2282,7 +2271,7 @@ for r in list_cat_ids_split_manually:
 # =================================================here we have all HQ material split into dev and eval. merge dicts
 # data_dev_pack_split
 # data_eval_pack_split
-# data_dev_NOpack
+# data_dev_duration_split
 # data_eval_duration_split
 
 # keep only cat_ids with content for pack-fashion vars
@@ -2294,27 +2283,82 @@ if len(data_eval_pack_split_clean) + len(data_eval_duration_split) != len(result
     sys.exit('DAMN! data_dev_pack_split - data_eval_pack_split')
 
 # joint both dicts
-dataset_eval_postpro = dict(data_eval_pack_split_clean)  # or orig.copy()
-dataset_eval_postpro.update(data_eval_duration_split)
+data_eval = dict(data_eval_pack_split_clean)  # or orig.copy()
+data_eval.update(data_eval_duration_split)
+dataset_eval = [{'name': ontology_by_id[node_id]['name'],
+                'audioset_id': node_id,
+                'sound_ids': data_eval[node_id],
+               } for node_id in data_eval]
 
-dataset_dev_postpro = dict(data_dev_pack_split)  # or orig.copy()
-dataset_dev_postpro.update(data_dev_duration_split)
+data_dev = dict(data_dev_pack_split)  # or orig.copy()
+data_dev.update(data_dev_duration_split)
+
+# save HQ dev sounds (for verif HTML)
+data_dev_HQ = copy.deepcopy(data_dev)
 
 
-# =====================================finally, add LQ to DEV, please XF
-# -dataset_dev_postpro contains, at this point, all the HQ sounds for development
-# it is a dict of dicts 'cat_id':[fs_id, fs_id, ...]
-
-# -dataset_eval_postpro is already the eval set, containing only HQ sounds
-
+# =====================================finally, add LQ to DEV
 # add selected LQ to dataset_dev_postpro for every class
 
+# # --------------------- ADD LQ TO DEV SET ------------------------#
+print '\n ADD LQ TO DEV SET'
 
+#for node_id in data_dev.keys():
+#    data_dev[node_id] += dataset_final_prepro[node_id]['LQ']
+data_dev_LQ = {node_id: value['LQ'] for node_id, value in dataset_final_prepro.iteritems()}
 
+for node_id, value in dataset_final_prepro.iteritems():
+    if 'LQprior' not in value:
+        value['LQprior'] = []
+data_dev_LQpior = {node_id: value['LQprior'] for node_id, value in dataset_final_prepro.iteritems()}
 
+# dataset_dev_LQ = [{'name': ontology_by_id[node_id]['name'],
+#                 'audioset_id': node_id,
+#                 'sound_ids': dataset_final_prepro[node_id]['LQ'],
+#                } for node_id in dataset_final_prepro]
 
 
 # ---------------------------------------------------------------- #
+
+# ------------------------ SELECT LQ SET ------------------------- #
+MAX_NUM_SOUND_DEV = 300
+
+# ADD FIRST LQprior
+for node_id in data_dev.keys():
+    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
+    data_dev[node_id] += data_dev_LQpior[node_id][:num_to_add]
+
+# FILTER OUT LQprior from LQ
+data_dev_LQ_wo_prior = {}
+for node_id in data_dev_LQ:
+    data_dev_LQ_wo_prior[node_id] = list(set(data_dev_LQ[node_id])-set(data_dev_LQpior[node_id]))
+
+# ORDER BY NUM DOWNLOADS
+for node_id in data_dev_LQ_wo_prior.keys():
+    ll = []
+    for fs_id in data_dev_LQ_wo_prior[node_id]:
+        try:
+            if data_mapping[str(fs_id)]['num_downloads']:
+                ll.append((fs_id, data_mapping[str(fs_id)]['num_downloads']))
+            else:
+                ll.append((fs_id, 0))
+        except:
+            ll.append((fs_id, 0))
+    freesound_ids_with_num_downloads = sorted(ll, key=lambda x: x[1], reverse=True)
+    data_dev_LQ_wo_prior[node_id] = [fs_id_num_downloads[0] for fs_id_num_downloads in freesound_ids_with_num_downloads]
+
+# ADD LQ TO DEV SET UNTIL REACHING MAX 300 SOUNDS
+for node_id in data_dev.keys():
+    num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
+    data_dev[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
+
+dataset_dev = [{'name': ontology_by_id[node_id]['name'],
+                'audioset_id': node_id,
+                'sound_ids': data_dev[node_id],
+               } for node_id in data_dev]
+
+# ---------------------------------------------------------------- #
+
 
 # -------------------- REMOVE SOME CATEGORIES -------------------- #
 print '\n FILTER CATEGORIES \n'
@@ -2512,19 +2556,9 @@ license_file.close()
 # --------------------------------------------------------------- #
 
 # -------------------------- CREATE CSV ------------------------- #
-try:
-    merge = json.load(open(FOLDER_DATA + 'json/merge_categories.json', 'rb'))
-except:
-    raise Exception('CREATE THE FILE "merge_categories.json"')
-node_id_parent = {}
-for d in merge:
-    for dd in merge[d]:
-        node_id_parent[dd] = d
-        
 #ontology = json.load(open('ontology/ontology.json', 'rb'))
 #ontology_by_id = {o['id']:o for o in ontology}
 sounds_A = [] # sounds for dataset A
-sounds_B = [] # sounds for dataset B
 
 import csv
 with open(FOLDER_DATA + 'dataset_dev.csv', 'wb') as f:
@@ -2536,28 +2570,35 @@ with open(FOLDER_DATA + 'dataset_dev.csv', 'wb') as f:
             elif sound_id in data_dev_LQ[d['audioset_id']] or sound_id in data_dev_LQpior[d['audioset_id']]:
                 quality = 0
             sounds_A.append((sound_id, data_mapping[str(sound_id)]['duration']))
-            try:
-                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name'], quality])
-                sounds_B.append((sound_id, data_mapping[str(sound_id)]['duration']))
-            except:
-                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None, quality])
+            writer.writerow([sound_id, d['audioset_id'], d['name'], quality])
 
 with open(FOLDER_DATA + 'dataset_eval.csv', 'wb') as f:
     writer = csv.writer(f)
     for d in dataset_eval:
         for sound_id in d['sound_ids']:
             sounds_A.append((sound_id, data_mapping[str(sound_id)]['duration']))
-            try:
-                writer.writerow([sound_id, d['audioset_id'], d['name'], node_id_parent[d['audioset_id']], ontology_by_id[node_id_parent[d['audioset_id']]]['name']])
-                sounds_B.append((sound_id, data_mapping[str(sound_id)]['duration']))
-            except:
-                writer.writerow([sound_id, d['audioset_id'], d['name'], None, None])
+            writer.writerow([sound_id, d['audioset_id'], d['name']])
 
 print 'Total duration of the dataset A: {0} secondes'.format(sum([s[1] for s in list(set(sounds_A))]))
-print 'Total duration of the dataset B: {0} secondes'.format(sum([s[1] for s in list(set(sounds_B))]))
-print 'Total of classes in dataset B: {0}'.format(len(merge))
+a=9
 
 all_ids = [s[0] for s in sounds_A]
 json.dump(all_ids, open(FOLDER_DATA + 'all_freesound_ids.json', 'w'))
-            
+
+
+
+
+
+# ==================================================================================
+
+# ==================================================================================
+
+
+
 # --------------------------------------------------------------- #
+# ADD FAKE SOUNDS FOR EVAL
+
+# data_eval has all the selected categories id as keys
+# all leaf categories that passed licences, duration filter: data_qual_sets_ldl
+# all sound ids in the dataset: all_ids
+# ADD FAKE SOUNDS UNTIL REACHING 8k sounds (eval + fake_eval)
