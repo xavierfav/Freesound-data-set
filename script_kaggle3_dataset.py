@@ -2629,3 +2629,13 @@ json.dump(all_ids, open(FOLDER_DATA + 'all_freesound_ids.json', 'w'))
 # all leaf categories that passed licences, duration filter: data_qual_sets_ldl
 # all sound ids in the dataset: all_ids
 # ADD FAKE SOUNDS UNTIL REACHING 8k sounds (eval + fake_eval)
+
+all_fake_ids = []
+for cat_id in data_eval:
+    try:
+        all_fake_ids += [fs_id for fs_id in data_qual_sets_ldl[cat_id]['LQ'] if fs_id not in all_ids]
+    except:
+        pass
+shuffle(all_fake_ids)
+
+json.dump(all_fake_ids[:7800], open(FOLDER_DATA + 'all_fake_freesound_ids.json', 'w'))
