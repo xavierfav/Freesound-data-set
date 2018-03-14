@@ -2639,3 +2639,17 @@ for cat_id in data_eval:
 shuffle(all_fake_ids)
 
 json.dump(all_fake_ids[:7800], open(FOLDER_DATA + 'all_fake_freesound_ids.json', 'w'))
+
+
+# final license check. no NC licenses and sampling+ allowed
+for fsid in all_ids:
+    if data_mapping[str(fsid)]['license'].split('/')[-3] == 'by-nc' or \
+                    data_mapping[str(fsid)]['license'].split('/')[-3] == 'sampling+':
+        sys.exit('There are NC or sampling+ sounds in all_ids. FATAL ERROR')
+
+for fsid in all_fake_ids:
+    if data_mapping[str(fsid)]['license'].split('/')[-3] == 'by-nc' or \
+                    data_mapping[str(fsid)]['license'].split('/')[-3] == 'sampling+':
+        sys.exit('There are NC or sampling+ sounds in all_fake_ids. FATAL ERROR')
+
+yay = 1
