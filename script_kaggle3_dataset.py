@@ -1906,7 +1906,7 @@ print '\n ADD LQ TO TENTATIVE DEV SET FOR PACK ANALYSIS'
 data_dev_anal = copy.deepcopy(data_dev_HQ_anal)
 #for node_id in data_dev_anal.keys():
 #    data_dev_anal[node_id] += dataset_final_prepro[node_id]['LQ']
-data_dev_LQ = {node_id: value['LQ'] for node_id, value in dataset_final_prepro.iteritems()}
+data_dev_LQ_anal = {node_id: value['LQ'] for node_id, value in dataset_final_prepro.iteritems()}
 
 for node_id, value in dataset_final_prepro.iteritems():
     if 'LQprior' not in value:
@@ -1937,8 +1937,8 @@ for node_id in data_dev_anal.keys():
 
 # FILTER OUT LQprior from LQ
 data_dev_LQ_wo_prior = {}
-for node_id in data_dev_LQ:
-    data_dev_LQ_wo_prior[node_id] = list(set(data_dev_LQ[node_id])-set(data_dev_LQpior[node_id]))
+for node_id in data_dev_LQ_anal:
+    data_dev_LQ_wo_prior[node_id] = list(set(data_dev_LQ_anal[node_id])-set(data_dev_LQpior[node_id]))
 
 # ORDER BY NUM DOWNLOADS
 for node_id in data_dev_LQ_wo_prior.keys():
@@ -2297,25 +2297,27 @@ if len(data_eval_pack_split_clean) + len(data_eval_duration_split) != len(result
 data_eval = dict(data_eval_pack_split_clean)  # or orig.copy()
 data_eval.update(data_eval_duration_split)
 
-# construct dataset_eval containing
+# construct dataset_eval containing data_eval
 ontology_by_id = {o['id']:o for o in data_onto}
 dataset_eval = [{'name': ontology_by_id[node_id]['name'],
                 'audioset_id': node_id,
                 'sound_ids': data_eval[node_id],
                } for node_id in data_eval]
 
+# joint both dicts to produce only the HQ part of DEV SET: data_dev
+# this will be complemented with the LQ part below
 data_dev = dict(data_dev_pack_split)  # or orig.copy()
 data_dev.update(data_dev_duration_split)
 
-# save HQ dev sounds (for verif HTML)
+# save HQ dev sounds (for listening tests with HTML)
 data_dev_HQ = copy.deepcopy(data_dev)
 
 
-# =====================================finally, add LQ to DEV
-# add selected LQ to dataset_dev_postpro for every class
+# =====================================finally, add LQ to DEV SET (data_dev)
+# re-do the selection of LQ, as done before, this time to add it to data_dev
 
-# # --------------------- ADD LQ TO DEV SET ------------------------#
-print '\n ADD LQ TO DEV SET'
+# # --------------------- ADD LQ TO FINAL DEV SET ------------------------#
+print '\n ADD LQ TO FINAL DEV SET'
 
 #for node_id in data_dev.keys():
 #    data_dev[node_id] += dataset_final_prepro[node_id]['LQ']
@@ -2366,10 +2368,21 @@ for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
     data_dev[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
 
+# now we have the final version of data_dev, including HQ and LQ: yaaaaay
+# construct dataset_dev containing data_dev
 dataset_dev = [{'name': ontology_by_id[node_id]['name'],
                 'audioset_id': node_id,
                 'sound_ids': data_dev[node_id],
                } for node_id in data_dev]
+
+
+# sanity check: dev and eval must be disjoint groups
+for cat_id in data_dev:
+    if list(set(data_dev[cat_id]) & set(data_eval[cat_id])):
+        # print('\n something unexpected happened in the mapping********************* \n')
+        print(catid)
+        sys.exit('data_dev and data_eval have not disjoint groups')
+
 
 # ---------------------------------------------------------------- #
 
