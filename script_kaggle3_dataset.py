@@ -2460,6 +2460,7 @@ dataset_eval = [{'name': ontology_by_id[node_id]['name'],
 # --------------------- EXPORT DATASET JSON ---------------------- #
 json.dump(data_dev_HQ, open(FOLDER_DATA + '/json/data_dev_HQ.json', 'w'))
 json.dump(data_eval, open(FOLDER_DATA + '/json/data_eval.json', 'w'))
+json.dump(data_dev, open(FOLDER_DATA + '/json/data_dev.json', 'w'))
 
 
 # ---------------------------------------------------------------- #
