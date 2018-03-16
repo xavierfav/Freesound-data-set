@@ -1,8 +1,6 @@
 
 import json
 import numpy as np
-import copy
-# import xlsxwriter
 import matplotlib.pyplot as plt
 # import matplotlib
 # matplotlib.get_backend()
@@ -11,9 +9,6 @@ import matplotlib.pyplot as plt
 # wm.window.attributes('-topmost', 1)
 # wm.window.attributes('-topmost', 0)
 
-import os
-import sys
-import time
 
 FOLDER_DATA = ''
 
@@ -72,8 +67,6 @@ with open(FOLDER_DATA + 'json/data_eval.json') as data_file:
 # turn interactive mode on
 
 plt.ion()
-SPLITFIGS = False
-SLAVE_BOXPLOT_DURATIONS = True
 
 def plot_histogram(x,bins,fig_title,axes):
     # plot histogram given an array x
@@ -96,12 +89,12 @@ def plot_histogram(x,bins,fig_title,axes):
     # plt.show()
 
 
-def plot_boxplot(data,x_labels,fig_title,y_label):
+def plot_boxplot(data, x_labels, fig_title, y_label):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     # for tick in ax.get_xticklabels():
     #     tick.set_rotation(45)
-    plt.xticks(fontsize=8, rotation=45)
+    plt.xticks(fontsize=7, rotation=45)
     bp = ax.boxplot(data, patch_artist=True)
     ## change color and linewidth of the whiskers
     for whisker in bp['whiskers']:
@@ -114,6 +107,8 @@ def plot_boxplot(data,x_labels,fig_title,y_label):
     for median in bp['medians']:
         median.set(color='#ef0707', linewidth=3)
 
+    axes = [0.5, len(data) + 0.5, 0, 30.5]
+    plt.axis(axes)
     ax.set_xticklabels(x_labels)
     plt.ylabel(y_label)
     plt.title(fig_title)
@@ -125,7 +120,7 @@ def plot_boxplot(data,x_labels,fig_title,y_label):
 def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, MAX_VERT_AX, threshold=None):
     ind = np.arange(len(data_bottom))  # the x locations for the groups
     width = 0.6  # the width of the bars: can also be len(x) sequence
-    axes = [-0.5, len(data_bottom), 0, MAX_VERT_AX]
+    axes = [-0.4, len(data_bottom), 0, MAX_VERT_AX]
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -229,7 +224,10 @@ data_plot = [nb_sounds_per_cat_dev, nb_sounds_per_cat_eval]
 x_labels = ['dev', 'eval']
 fig_title = 'number of audio samples in categories of dev and eval set'
 y_label = '# of audio samples'
-plot_boxplot(data_plot, x_labels, fig_title, y_label)
+plot_boxplot(data_plot,
+             x_labels,
+             fig_title,
+             y_label)
 
 # DEVELOPMENT SET
 # DEVELOPMENT SET
@@ -248,7 +246,8 @@ medians_cat = [np.median(cat) for cat in durations_all_cats_dev]
 idx_durations_all_cats_dev = np.argsort(medians_cat)
 durations_all_cats_dev_sorted = list(durations_all_cats_dev[val] for val in idx_durations_all_cats_dev)
 names_all_cats_dev_sorted = list(names_all_cats_dev[val] for val in idx_durations_all_cats_dev)
-fig_title = 'clip durations for every category DEV set -- all 41 categories.'
+fig_title = 'audio sample durations for every category DEV set -- all 41 categories'
+y_label = 'duration [seconds]'
 plot_boxplot(durations_all_cats_dev_sorted,
              names_all_cats_dev_sorted,
              fig_title,
@@ -271,7 +270,7 @@ medians_cat = [np.median(cat) for cat in durations_all_cats_eval]
 idx_durations_all_cats_eval = np.argsort(medians_cat)
 durations_all_cats_eval_sorted = list(durations_all_cats_eval[val] for val in idx_durations_all_cats_eval)
 names_all_cats_eval_sorted = list(names_all_cats_eval[val] for val in idx_durations_all_cats_eval)
-fig_title = 'clip durations for every category EVAL set -- all 41 categories.'
+fig_title = 'audio sample durations for every category EVAL set -- all 41 categories.'
 plot_boxplot(durations_all_cats_eval_sorted,
              names_all_cats_eval_sorted,
              fig_title,
