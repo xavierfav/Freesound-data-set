@@ -182,8 +182,8 @@ for id in all_ids:
 
 fig_title = 'all initial clips: ' + str(len(durations))
 
-plot_histogram(durations,bins1,fig_title,axes1)
-plot_histogram(durations,bins10,fig_title,axes10)
+plot_histogram(durations, bins1, fig_title, axes1)
+plot_histogram(durations, bins10, fig_title, axes10)
 
 
 

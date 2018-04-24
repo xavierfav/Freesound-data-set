@@ -11,12 +11,20 @@ client.set_token("eaa4f46407adf86c35c5d5796fd6ea8b05515dca", "token")
 # sound_id_target = 177365
 
 # class: Shatter, pack: Human Chipmunk
-sound_id_target = 168135
+# sound_id_target = 168135
+
+
+# this sound does not belong to a pack
+sound_id_target = 345599
+
 
 sound = client.get_sound(sound_id_target)
 
-pack_id = int(sound.pack.split('/')[-2])
-print pack_id, sound.pack_name
+if sound.pack:
+    pack_id = int(sound.pack.split('/')[-2])
+    print pack_id, sound.pack_name
+else:
+    print('sound does not belong to a pack')
 
 # retrieve the list of sound ids in the pack
 pack = client.get_pack(pack_id)
