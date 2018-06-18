@@ -70,7 +70,6 @@ data_onto_by_id = {o['id']: o for o in data_onto}
 
 
 try:
-    # load json with ontology, to map aso_ids to understandable category names
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jan_22.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Feb_26.json') as data_file:
     # so far we were including in the data_votes_raw:
@@ -419,8 +418,8 @@ def query_freesound_by_id(list_ids):
 # ----------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------
 
-
 """ # remove unwanted sounds from specific categories before doing anything else*************************************"""
+"""******************************************************************************************************************"""
 
 # given a sound id which pack we want to omit, retrieve all sound ids from the pack and remove them
 # class: Squeak, ASO:'/m/07q6cd_'
@@ -509,8 +508,9 @@ for cat_id, fsids_to_remove_oneclass in fsids_to_remove_per_class_excel.iteritem
         print('----------------------Something wrong when removing sounds from %s.' % (data_onto_by_id[cat_id]['name']))
 
 
-
 """ # from data_votes to data_sounds ******************************************************************************"""
+"""******************************************************************************************************************"""
+
 # Assign sounds to disjoint GROUPS (PP, PNP, NP, U) based on the combination of votes that they have
 # Compute also QE for every category
 
