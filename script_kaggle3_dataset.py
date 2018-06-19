@@ -2232,6 +2232,7 @@ for cat_id in result_final_HQ:
                         break
                 print('Step 3 - Eval: %d out of the target of %d' % (len(data_eval_pack_split[cat_id]), eval_target))
 
+                # some exceptions
                 if target_done == 0:
                     if len(data_eval_pack_split[cat_id]) >= np.round(0.25*len(group_HQ)) and len(group_HQ) > NB_HQ_BIG_CLASS:
                         # it is a very abundant HQ so we are fine with 25% of data for eval
@@ -2255,8 +2256,7 @@ for cat_id in list_cat_ids_split_manually:
     print('- %s' % data_onto_by_id[cat_id]['name'])
 
 
-# ===================================== compute data_dev_pack_split as complementary to data_eval_pack_split
-for cat_id in result_final_HQ:
+# ===================================== compute data_dev_pack_split as complementary to data_eval_pack_sfor cat_id in result_final_HQ:
     # if we have carried out the split
     if data_eval_pack_split[cat_id]:
         data_dev_pack_split[cat_id] = [element for element in result_final_HQ[cat_id] if element not in data_eval_pack_split[cat_id]]

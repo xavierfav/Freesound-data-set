@@ -139,6 +139,17 @@ def get_sounds_to_moveToLQ_from_excel(excel_file):
 
 FOLDER_DATA = 'kaggle3/'
 
+try:
+    # load json with ontology, to map aso_ids to understandable category names
+    with open(FOLDER_DATA + 'json/ontology.json') as data_file:
+        data_onto = json.load(data_file)
+except:
+    raise Exception('ADD AN ONTOLOGY JSON FILE TO THE FOLDER ' + FOLDER_DATA + 'json/')
+
+# data_onto is a list of dictionaries
+# to retrieve them by id: for every dict o, we create another dict where key = o['id'] and value is o
+data_onto_by_id = {o['id']: o for o in data_onto}
+
 """ # remove PP votes for fs_ids from specific categories *************************************"""
 
 # given a sound id which pack we want to omit, retrieve all sound ids from the pack and remove them
@@ -161,7 +172,7 @@ fsids_to_removePPvotes_per_class['/m/07q6cd_'].extend(fsids_to_remove_squeak)
 #     pickle.dump(fsids_to_removePPvotes_per_class, handle)
 
 
-json.dump(fsids_to_removePPvotes_per_class, open(FOLDER_DATA + 'fsids_to_removePPvotes_per_class.json', 'w'))
+# json.dump(fsids_to_removePPvotes_per_class, open(FOLDER_DATA + 'fsids_to_removePPvotes_per_class.json', 'w'))
 
 
 """ the following sounds have PP votes but they should not due to several reasons:***********"""
@@ -176,10 +187,7 @@ json.dump(fsids_to_removePPvotes_per_class, open(FOLDER_DATA + 'fsids_to_removeP
 fsids_to_changePPvotes_toPNP_per_class = get_sounds_to_moveToLQ_from_excel('kaggle3/Categories5.xlsx')
 
 
-json.dump(fsids_to_changePPvotes_toPNP_per_class, open(FOLDER_DATA + 'fsids_to_changePPvotes_toPNP_per_class.json', 'w'))
-
-
-a=9
+# json.dump(fsids_to_changePPvotes_toPNP_per_class, open(FOLDER_DATA + 'fsids_to_changePPvotes_toPNP_per_class.json', 'w'))
 
 #
 # # if the cat_id has children, we are dealing with a populated parent. sounds to move could be in the children too
@@ -192,7 +200,51 @@ a=9
 #
 
 
+""" 
+from the previous dict (fsids_to_changePPvotes_toPNP_per_class),
+most of them are PNP, and from these, most of them are PNP due to several sources/categories.
+Let us choose them for testing the beta version of the generation task.
+If people do it good, we have annotations for FSD11k 
+NOTE: 
+removing all children from Music, as they usually dont have multiple sources; just some FX or weird stuff
+"""
 
+fsids_for_generation_task_fromFSD11k = copy.deepcopy(fsids_to_changePPvotes_toPNP_per_class)
+count_sounds = 0
+for cat_id, fs_ids in fsids_to_changePPvotes_toPNP_per_class.iteritems():
+
+    child_id = cat_id
+    # finds the top level category in the hierarchy, by analyzing consecutively the parents
+    while True:
+        print(data_onto_by_id[child_id]['name'])
+        # note: if there are multiple parents, we return all of them, but only consider the first one
+        # (Chime has this, but  by chance, the first one leads to Music)
+        parent = [node_id for node_id in data_onto_by_id if child_id in data_onto_by_id[str(node_id)]['child_ids']]
+        if not parent:
+            # we've reached the top of the hierarchy
+            break
+        else:
+            child_id = parent[0]
+    print('Family: %s' % data_onto_by_id[child_id]['name'])
+
+    if child_id == '/m/04rlf':
+        # if the cat_id belongs to the 'Music' family
+        print('-Removing %s\n' % data_onto_by_id[cat_id]['name'])
+        del fsids_for_generation_task_fromFSD11k[cat_id]
+    else:
+        count_sounds += len(fs_ids)
+
+
+print("\n\nNumber of sounds: %d" % count_sounds)
+print("Number of cats: %d" % len(fsids_for_generation_task_fromFSD11k))
+
+for idx, cat_id in enumerate(fsids_for_generation_task_fromFSD11k):
+    print idx+1, data_onto_by_id[cat_id]['name']
+
+json.dump(fsids_for_generation_task_fromFSD11k, open(FOLDER_DATA + 'fsids_for_generation_task_fromFSD11k.json', 'w'))
+
+
+a = 9
 
 
 
