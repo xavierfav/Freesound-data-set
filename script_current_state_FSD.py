@@ -35,7 +35,7 @@ MINLEN = 0.3  # duration
 MAXLEN = 30.0
 FOLDER_DATA = 'kaggle3/'
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
-TARGET_SAMPLES = 120
+TARGET_SAMPLES = 100
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
 
@@ -325,7 +325,7 @@ data_votes_long = apply_duration_filter(data_votes_select, MAXLEN, 95.0)
 data_votes_all = data_votes_select
 # including NC-license for now
 
-data_votes_study = data_votes_mid
+data_votes_study = data_votes_all
 """ # Categorize the annotations/sounds in every category: valid GT, nonGT, virgin***********************************"""
 """******************************************************************************************************************"""
 
@@ -572,8 +572,8 @@ for catid, groups in data_state.iteritems():
         if estimated_gt>= TARGET_SAMPLES:
             cats_estimated_success[catid] = estimated_gt
 
-print("# how many cats have already 100 samples? (beware, unpopulated): %d" % len(cats_accomplished_success))
-print("# how many cats can reach 100 with gtless and virgin, considering QE (including already accomplished): %d" % (len(cats_estimated_success) + len(cats_accomplished_success)))
+print("# how many cats have already TARGET_SAMPLES samples? (beware, unpopulated): %d" % len(cats_accomplished_success))
+print("# how many cats can reach TARGET_SAMPLES with gtless and virgin, considering QE (including already accomplished): %d" % (len(cats_estimated_success) + len(cats_accomplished_success)))
 
 
 print("\n# how many virgin annotations do we have: %d" % sum(nb_sounds_virgin))
