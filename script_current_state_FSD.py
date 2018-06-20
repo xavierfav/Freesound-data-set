@@ -20,22 +20,51 @@ Specifically, for every class:
 of every class
 
 """
+
 FLAG_PLOT = False
-# nice to compute this class-dependent
+
+"""
+*****************************************************************************CONSTANTS THAT DEFINE THE STUDY
+"""
+
+# nice to compute this as class-dependent
+# number of votes that are needed to reach agreement, on average, for a gtless annotation
+# TODO compute general average for the 396 and based on it, decide these 2
 FACTOR_AGREE_GTLESS = 1.5
-FACTOR_AGREE_VIRGIN = 2.6
+# number of votes that are needed to reach agreement, on average, for a virgin annotation
+FACTOR_AGREE_VIRGIN = 2.8
+# lets consider a bit more of needed votes to be safe (just in case)
 FACTOR_FLEX = 1.1
+
+# we can do packs of roughly 10 categories. it will depend on the siblings and coherence in the groups that can be made.
+# 1 session of 1 class are 66 useful votes. 10 sessions are 660 votes.
+# This can be done in 5 h easily, with rests, carefully, FAQ n FS, 25E
+# of course this depends on the difficulty. Easier classes are faster and viceversa
+NB_VOTES_PACK_PERSON = 660.0
+
+# 5 hours of work at 5 euros/hour. This may be ok for UPF-people. But in Freesound we should give more?
+PRICE_PACK_PERSON = 30
+# 25 /10 / 72 = 3.5 cents per click
+# 30 /10 / 72 = 4.17 cents per click. maybe give 30 then, so that it is a bit more than F8
 
 mode = 'ALL_CATS'
 # mode = 'BEGINNER'
 # mode = 'ADVANCED'
 # mode = 'VALID_LEAF'
 
+# DURATION_MODE = 'ALL'
+# DURATION_MODE = 'SHORT'
+DURATION_MODE = 'MID'
+# DURATION_MODE = 'LONG'
+
 MINLEN = 0.3  # duration
 MAXLEN = 30.0
 FOLDER_DATA = 'kaggle3/'
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
-TARGET_SAMPLES = 100
+TARGET_SAMPLES = 120
+NB_VOTES_PER_SESSION = 66
+
+
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
 
@@ -146,6 +175,33 @@ def check_gt_v2(_group, _fsid, _catid, _votes, _fsids_assigned_cat, _data):
             assigned = True
     return _data, _fsids_assigned_cat, assigned
 
+
+def plot_barplot(data, x_labels, y_label, fig_title, MAX_VERT_AX, threshold=None):
+    ind = np.arange(len(data))  # the x locations for the LEFT bars
+    width = 0.35  # the width of the bars: can also be len(x) sequence
+    axes = [-0.5, len(data), 0, MAX_VERT_AX]
+
+    fig, ax = plt.subplots()
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111)
+    p1 = ax.bar(ind, data, width=width, color='blue')
+    for tt in range(0, ind[-1], 100):
+        ax.axvspan(tt, tt+49, alpha=0.1, color='red')
+    # horizontal line indicating the threshold
+    if threshold:
+        plt.plot([0, 400], [threshold, threshold], "k--", linewidth=3)
+    plt.xticks(fontsize=7, rotation=45)
+    # ax.set_xticks(ind + width)
+    # ax.set_xticklabels(x_labels)
+    plt.xticks(ind, x_labels)
+    ax.set_ylabel(y_label)
+    ax.set_title(fig_title)
+    # plt.yticks(np.arange(0, 81, 10))
+    # ax.legend((p1[0]), legenda)
+    plt.axis(axes)
+    ax.yaxis.grid(True)
+    # plt.grid(True)
+    plt.show()
 
 def plot_barplot_grouped2(data_left, data_right, x_labels, y_label, fig_title, legenda, MAX_VERT_AX, threshold=None):
     ind = np.arange(len(data_left))  # the x locations for the LEFT bars
@@ -325,7 +381,16 @@ data_votes_long = apply_duration_filter(data_votes_select, MAXLEN, 95.0)
 data_votes_all = data_votes_select
 # including NC-license for now
 
-data_votes_study = data_votes_all
+if DURATION_MODE == 'ALL':
+    data_votes_study = data_votes_all
+elif DURATION_MODE == 'SHORT':
+    data_votes_study = data_votes_short
+elif DURATION_MODE == 'MID':
+    data_votes_study = data_votes_mid
+elif DURATION_MODE == 'LONG':
+    data_votes_study = data_votes_long
+
+
 """ # Categorize the annotations/sounds in every category: valid GT, nonGT, virgin***********************************"""
 """******************************************************************************************************************"""
 
@@ -481,7 +546,6 @@ for catid, votes in data_votes_study.iteritems():
 # -- # bar plot of number of sounds of each kind for every category----
 
 names_all_cats = [data_onto_by_id[catid]['name'] for catid, sounds in data_state.iteritems()]
-
 nb_sounds_PPgt = [len(groups['PPgt']) for catid, groups in data_state.iteritems()]
 nb_sounds_PNPgt = [len(groups['PNPgt']) for catid, groups in data_state.iteritems()]
 nb_sounds_valid = [i + j for i, j in zip(nb_sounds_PPgt, nb_sounds_PNPgt)]
@@ -591,24 +655,40 @@ print("# how many gtless annotations do we have (ie voted but not gt yet)(in the
 
 count_votes_gtless = 0
 count_votes_virgin = 0
+count_votes_needed_quantified = 0
 data_needed = {}
 data_noQE = {}
+nb_sessions_needed = []
+names_all_cats_needed = []
+idx_tmp = 0
 for catid, groups in data_state.iteritems():
     if catid not in cats_accomplished_success:
         # there are afew categories that have no QE, and it was set to 0. This classes are strange and probably not worth going into
         if data_votes[catid]['QE'] > 0:
+
             # we want a target per category: this is the number of samples that we need per class
             data_needed[catid] = {}
+            data_needed[catid]['name'] = data_onto_by_id[catid]['name']
             data_needed[catid]['gtneeded'] = TARGET_SAMPLES - (len(groups['PPgt']) + len(groups['PNPgt']))
+            names_all_cats_needed.append(data_needed[catid]['name'])
 
-            # how many annotations can we get with the current gtless?
+            # debug
+            # if data_needed[catid]['name'] == 'String section':
+            if data_needed[catid]['name'] == 'Bathtub (filling or washing)':
+                r = 4
+            # debug
+            if idx_tmp == 8:
+                r = 4
+                print(data_onto_by_id[catid]['name'])
+
+            # how many gt sounds can we get with the current gtless?
             # nb_gtless * QE
             data_needed[catid]['gt_from_gtless'] = np.floor(len(groups['gtless']) * data_votes[catid]['QE'])
             diff_gt = data_needed[catid]['gtneeded'] - data_needed[catid]['gt_from_gtless']
 
             if diff_gt > 0:
                 # we need to use them all. This means voting them ALL of them, the good and the bad ones
-                # and, additionally, we need diff gt taken from virgin samples
+                # and, additionally, we need diff_gt taken from virgin samples
                 # how many votes do we need for this? they require only partial agreement, since they have votes already
                 data_needed[catid]['votes_for_gtless'] = len(groups['gtless']) * FACTOR_AGREE_GTLESS * FACTOR_FLEX
                 data_needed[catid]['success'] = False
@@ -642,30 +722,73 @@ for catid, groups in data_state.iteritems():
             else:
                 data_needed[catid]['votes_for_virgin'] = 0
 
+            # nb of votes needed to reach TARGET_SAMPLES in the catid (or to run out of sounds)
+            data_needed[catid]['votes_needed'] = data_needed[catid]['votes_for_gtless'] + data_needed[catid]['votes_for_virgin']
+
+            # number of complete sessions to achieve it (ceiling)
+            data_needed[catid]['sessions_needed'] = np.ceil(data_needed[catid]['votes_needed'] / float(NB_VOTES_PER_SESSION))
+            # quantify this in number of sessions:
+            # if we need 2.6 sessions, the subject will do 3, and we'll pay 3
+            # but if we have enough data for 1.3 sessions (while we need 3), we'll be considering more money than needed
+            nb_sessions_needed.append(data_needed[catid]['sessions_needed'])
+
+            # recompute nb of votes with the number of sessions needed
+            data_needed[catid]['votes_needed_quantified'] = data_needed[catid]['sessions_needed'] * NB_VOTES_PER_SESSION
+
+            # global counters
             count_votes_virgin += data_needed[catid]['votes_for_virgin'] if data_needed[catid]['votes_for_virgin'] else 0
             count_votes_gtless += data_needed[catid]['votes_for_gtless']
-
+            count_votes_needed_quantified += data_needed[catid]['votes_needed_quantified']
         else:
             data_noQE[catid] = {}
+
+        idx_tmp += 1 # for debug
 
 # we could print first the annotations that lead to number of votes
 print("# Total amount of gtless votes needed (in the classes that have NOT reached the target): %d" % count_votes_gtless)
 print("# Total amount of virgin votes needed (in the classes that have NOT reached the target): %d" % count_votes_virgin)
 
 # 10 categories are 660 useful votes. This can be done in one day easily, with rests, carefully, FAQ n FS, 5 hours, 25E
+price_gtless = count_votes_gtless / NB_VOTES_PACK_PERSON * PRICE_PACK_PERSON
+price_virgin = count_votes_virgin / NB_VOTES_PACK_PERSON * PRICE_PACK_PERSON
 
-price_gtless = count_votes_gtless / 660.0 * 25
-price_virgin = count_votes_virgin / 660.0 * 25
 print("# Money to gather gtless votes (in the classes that have NOT reached the target): %d euros" % price_gtless)
 print("# Money to gather virgin votes (in the classes that have NOT reached the target): %d euros" % price_virgin)
 
+
+# ==================================NEW
+print("\n\n# Total amount of sessions needed to FSD1.0 (in the classes that have NOT reached the target): %d" % sum(nb_sessions_needed))
+print("# Total amount of votes needed to FSD1.0 after quantification (in the classes that have NOT reached the target): %d" % count_votes_needed_quantified)
+
+price_after_quantification = count_votes_needed_quantified / NB_VOTES_PACK_PERSON * PRICE_PACK_PERSON
+print("# Money to gather all the votes needed to FSD1.0 after quantification (in the classes that have NOT reached the target): %d euros" % price_after_quantification)
+
+
 catids_no_sucess = [catid for catid in data_needed if data_needed[catid]['success']==False]
-print("\n# After this, we still have categories that have not reached the target: %d" % len(catids_no_sucess))
+print("\n# After this, we still have categories that have not reached TARGET_SAMPLES: %d" % len(catids_no_sucess))
 print("\n# And categories that never had QE hence out of simulation: %d" % len(data_noQE))
 
 
+# plot nb of sessions needed
+idx_nb_sessions = np.argsort(-np.array(nb_sessions_needed))
+nb_sessions_needed_sorted = list(nb_sessions_needed[val] for val in idx_nb_sessions)
+
+# names_all_cats_needed = [data_onto_by_id[catid]['name'] for catid, sounds in data_needed.iteritems()]
+names_all_cats_needed_sorted = list(names_all_cats_needed[val] for val in idx_nb_sessions)
+
+y_label = '# of sessions'
+fig_title = 'number of sessions needed per category to reach FSD1.0'
+plot_barplot(nb_sessions_needed_sorted,
+             names_all_cats_needed_sorted,
+             y_label,
+             fig_title,
+             18,
+             threshold=2)
+
 a=9
-# to consider, we have blocks of 66 annotations to be validated. That is our mininimum presentation unit.
+# TODO: como es posible que en algunas categorias hagan falta 12 sessiones? horrible QE? re run mapping?
+# ojo, igual matas dos pajaros. Mejoras los tag matching, re run del mapping, y ahorras pasta y tiempo
+# a nadie le interesa tener un tio anotando cosas que sabes que estan mal. es tiempo y dinero.
 
 
 # TODO
@@ -719,3 +842,35 @@ a=9
 # -print QE on plots
 # -sort by QE?
 #
+
+
+# =========================================================================================Settings plan A:
+# mode = ALL_CATS. means meeting the target in 396 classes, independently, ie unpopulated. The most demanding case.
+# Difference with LEAF mode:
+# -coincides with the LEAF mode in 296 classes (75%)
+# -with only the 296 leafs meeting the target (either TARGET_SAMPLES or less of there is not enough), we'd be able to populate some of inmediate parents, but not all
+# -so the difference in number of classes meeting TARGET_SAMPLES is not that high, but it includes some inmediate paretns (that are interesting)
+# Using mode = ALL_CATS means we are demanding TARGET_SAMPLES in 25% more of the classes. But in some cases we actually need it cause children have little data
+# Example: throat clearing has 30 gt. We need to annotate Cough almost entirely. with LEAF mode, we dont consider it.
+# So in reality, we need a bit more than LEAF mode, but a bit less than ALL_CATS
+# Lets use ALL_CATS for cost estimation, to be safe. Then we prioritize leafs and inmediate parents for annotation.
+#
+# TARGET_SAMPLES = 120 to start with. Comparable with Audioset. It means a bigger effort if we rely on good will, but if we paid for it, maybe it can be possible
+#
+# Duration: 0.3 : 30. Too short are kind of useless. Too long are a mess and impact on dataset imbalance.
+#
+
+
+
+# NB_VOTES_PACK_PERSON = 660.0
+# we can do packs of roughly 10 categories. it will depend on the siblings and coherence in the groups that can be made.
+# 1 session of 1 class are 66 useful votes. 10 sessions are 660 votes.
+# This can be done in 5 h easily, with rests, carefully, FAQ n FS, 25E
+# of course this depends on the difficulty. Easier classes are faster and viceversa
+
+# PRICE_PACK_PERSON = 25
+# 5 hours of work at 5 euros/hour. This may be ok for UPF-people. But in Freesound we should give more?
+#
+
+
+# Finally, if needed we can always fix some classes in-house, if needed.
