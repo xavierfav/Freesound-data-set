@@ -21,7 +21,7 @@ of every class
 
 """
 
-FLAG_PLOT = False
+FLAG_PLOT = True
 
 """
 *****************************************************************************CONSTANTS THAT DEFINE THE STUDY
@@ -32,7 +32,7 @@ FLAG_PLOT = False
 # TODO compute general average for the 396 and based on it, decide these 2
 FACTOR_AGREE_GTLESS = 1.5
 # number of votes that are needed to reach agreement, on average, for a virgin annotation
-FACTOR_AGREE_VIRGIN = 2.8
+FACTOR_AGREE_VIRGIN = 3.0
 # lets consider a bit more of needed votes to be safe (just in case)
 FACTOR_FLEX = 1.1
 
@@ -61,9 +61,15 @@ MINLEN = 0.3  # duration
 MAXLEN = 30.0
 FOLDER_DATA = 'kaggle3/'
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
-TARGET_SAMPLES = 120
-NB_VOTES_PER_SESSION = 66
+TARGET_SAMPLES = 125
+# in kaggle we have minimum 84 samples/class, and on average 130. we have to significantly improve this
+# audioset has minimum of 120
+# let's say 125 as a target for annotation, then we can lower it to 120 for acceptance.
 
+NB_VOTES_PER_SESSION = 66.0
+NB_SESSIONS_PER_PACK = 10.0   # this is 5 hours of work
+NB_PACKS_PER_WEEK = 4.0       # to have part-time job
+NB_SUBJECTS_AVAILABLE = 4.0   # assuming 4 annotators during the summer
 
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
@@ -170,8 +176,12 @@ def check_gt_v2(_group, _fsid, _catid, _votes, _fsids_assigned_cat, _data):
     assigned = False
     if _votes[_group].count(_fsid) > 1:
         if _fsid not in _fsids_assigned_cat:
+            # more than one vote, and first time we see it (never been assigned yet)
             _data[_catid][_group + 'gt'].append(_fsid)
             _fsids_assigned_cat.append(_fsid)
+            assigned = True
+        else:
+            # there is more than one vote, hence it is gt, but it has been already assigned before, hence flag it
             assigned = True
     return _data, _fsids_assigned_cat, assigned
 
@@ -184,12 +194,12 @@ def plot_barplot(data, x_labels, y_label, fig_title, MAX_VERT_AX, threshold=None
     fig, ax = plt.subplots()
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
-    p1 = ax.bar(ind, data, width=width, color='blue')
+    p1 = ax.bar(ind, data, width=width, color='blue', edgecolor="none")
     for tt in range(0, ind[-1], 100):
         ax.axvspan(tt, tt+49, alpha=0.1, color='red')
     # horizontal line indicating the threshold
     if threshold:
-        plt.plot([0, 400], [threshold, threshold], "k--", linewidth=3)
+        plt.plot([0, 400], [threshold, threshold], "k--", linewidth=2)
     plt.xticks(fontsize=7, rotation=45)
     # ax.set_xticks(ind + width)
     # ax.set_xticklabels(x_labels)
@@ -203,6 +213,7 @@ def plot_barplot(data, x_labels, y_label, fig_title, MAX_VERT_AX, threshold=None
     # plt.grid(True)
     plt.show()
 
+
 def plot_barplot_grouped2(data_left, data_right, x_labels, y_label, fig_title, legenda, MAX_VERT_AX, threshold=None):
     ind = np.arange(len(data_left))  # the x locations for the LEFT bars
     width = 0.35  # the width of the bars: can also be len(x) sequence
@@ -211,11 +222,11 @@ def plot_barplot_grouped2(data_left, data_right, x_labels, y_label, fig_title, l
     fig, ax = plt.subplots()
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
-    p1 = ax.bar(ind, data_left, width=width, color='blue')
-    p2 = ax.bar(ind + width, data_right, width=width, color='cyan')
+    p1 = ax.bar(ind, data_left, width=width, color='blue', edgecolor="none")
+    p2 = ax.bar(ind + width, data_right, width=width, color='cyan', edgecolor="none")
     # horizontal line indicating the threshold
     if threshold:
-        plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
+        plt.plot([0, 48], [threshold, threshold], "k--", linewidth=2)
     plt.xticks(fontsize=7, rotation=45)
     # ax.set_xticks(ind + width)
     # ax.set_xticklabels(x_labels)
@@ -238,9 +249,9 @@ def plot_barplot_grouped3(data_left, data_middle, data_right, x_labels, y_label,
     fig, ax = plt.subplots()
     # fig = plt.figure()
     # ax = fig.add_subplot(111)
-    p1 = ax.bar(ind, data_left, width=width, color='blue')
-    p2 = ax.bar(ind + width, data_middle, width=width, color='cyan')
-    p3 = ax.bar(ind + 2*width, data_right, width=width, color='green')
+    p1 = ax.bar(ind, data_left, width=width, color='blue', edgecolor="none")
+    p2 = ax.bar(ind + width, data_middle, width=width, color='cyan', edgecolor="none")
+    p3 = ax.bar(ind + 2*width, data_right, width=width, color='yellow', edgecolor="none")
     for tt in range(0, ind[-1], 100):
         ax.axvspan(tt, tt+49, alpha=0.1, color='red')
     # horizontal line indicating the threshold
@@ -391,8 +402,14 @@ elif DURATION_MODE == 'LONG':
     data_votes_study = data_votes_long
 
 
-""" # Categorize the annotations/sounds in every category: valid GT, nonGT, virgin***********************************"""
-"""******************************************************************************************************************"""
+""" # Categorize the annotations/sounds in every category: as
+-PPgt
+-PNPgt
+-NPgt
+-Ugt
+-gtless
+-virgin
+******************************************************************************************************************"""
 
 # considering only sounds between  [MINLEN: MAXLEN): data_votes_study
 
@@ -413,8 +430,11 @@ for catid, votes in data_votes_study.iteritems():
     fsids_assigned_cat = []
 
     # to debug certain categories
-    if data_onto_by_id[catid]['name'] == 'Pizzicato':
-        a=8
+    # if data_onto_by_id[catid]['name'] == 'Pizzicato':
+    # if data_onto_by_id[catid]['name'] == 'Toothbrush':
+    # if data_onto_by_id[catid]['name'] == 'Camera':
+    if data_onto_by_id[catid]['name'] == 'Bathtub (filling or washing)':
+        a = 8
 
     # check GT in PP
     # check GT in the rest of the groups
@@ -538,7 +558,9 @@ for catid, votes in data_votes_study.iteritems():
         print(data_onto_by_id[catid]['name'], catid)
         sys.exit('number of sounds is not equal in data_state and data_votes')
 
-
+# checked that the conversion from intial set of votes from the dump, to the keys in data_state is fine.
+# Cases that do not match with the platform:
+# Camera: platform: 123 gt, here 92+2 gt
 """ # plots**********************************************************************************************************"""
 """******************************************************************************************************************"""
 
@@ -553,6 +575,7 @@ nb_sounds_gtless = [len(groups['gtless']) for catid, groups in data_state.iterit
 nb_sounds_virgin = [len(groups['virgin']) for catid, groups in data_state.iteritems()]
 qe_per_class = [data_votes[catid]['QE'] for catid, groups in data_state.iteritems()]
 
+# TODO should be fine til here
 
 # sort classes according to several criteria for plotting
 # sort in descending order of valid samples
@@ -563,15 +586,7 @@ idx_gtless = np.argsort(-np.array(nb_sounds_gtless))
 idx_virgin = np.argsort(-np.array(nb_sounds_virgin))
 
 y_label = '# of audio samples'
-# fig_title = 'number of samples per category'
-# legenda = ('valid', 'virgin')
-# plot_barplot_grouped2(nb_sounds_valid_sorted,
-#                      nb_sounds_virgin_sorted,
-#                      names_all_cats_sorted,
-#                      y_label,
-#                      fig_title,
-#                      legenda,
-#                      400)
+
 
 if FLAG_PLOT:
     names_all_cats_sorted, nb_sounds_valid_sorted, nb_sounds_gtless_sorted, nb_sounds_virgin_sorted = sort_all_by_criteria(
@@ -587,7 +602,7 @@ if FLAG_PLOT:
                           fig_title,
                           legenda,
                           300,
-                          threshold=100)
+                          threshold=TARGET_SAMPLES)
 
     names_all_cats_sorted, nb_sounds_valid_sorted, nb_sounds_gtless_sorted, nb_sounds_virgin_sorted = sort_all_by_criteria(
         names_all_cats, nb_sounds_valid, nb_sounds_gtless, nb_sounds_virgin, idx_gtless)
@@ -601,7 +616,7 @@ if FLAG_PLOT:
                           fig_title,
                           legenda,
                           300,
-                          threshold=100)
+                          threshold=TARGET_SAMPLES)
 
     names_all_cats_sorted, nb_sounds_valid_sorted, nb_sounds_gtless_sorted, nb_sounds_virgin_sorted = sort_all_by_criteria(
         names_all_cats, nb_sounds_valid, nb_sounds_gtless, nb_sounds_virgin, idx_virgin)
@@ -615,7 +630,7 @@ if FLAG_PLOT:
                           fig_title,
                           legenda,
                           400,
-                          threshold=100)
+                          threshold=TARGET_SAMPLES)
 
 
 
@@ -783,12 +798,26 @@ plot_barplot(nb_sessions_needed_sorted,
              y_label,
              fig_title,
              18,
-             threshold=2)
+             threshold=4)
 
-a=9
-# TODO: como es posible que en algunas categorias hagan falta 12 sessiones? horrible QE? re run mapping?
-# ojo, igual matas dos pajaros. Mejoras los tag matching, re run del mapping, y ahorras pasta y tiempo
+
+# como es posible que en algunas categorias hagan falta 30 sessiones?
+# -horrible QE
+# -few gt currently
+# -a lot of data available, (hence it is possible to achieve TARGET_SAMP
+# -ojo, igual matas dos pajaros. Mejoras los tag matching, re run del mapping, y ahorras pasta y tiempo
 # a nadie le interesa tener un tio anotando cosas que sabes que estan mal. es tiempo y dinero.
+
+print("\n\n# Total amount of sessions needed to FSD1.0 (in the classes that have NOT reached the target): %d" % sum(nb_sessions_needed))
+print("# Based on that: Total amount of PACKS (ie groups) (of 10 sessions each): %d" % np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK))
+print("# Assuming %d packs per week by a subject, total amount of weeks: %d" % (NB_PACKS_PER_WEEK,
+                                                                                np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK))
+print("# Assuming %d subjects simultaneously, total amount of weeks in parallel: %d" % (NB_SUBJECTS_AVAILABLE,
+                                                                                       (np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK)/NB_SUBJECTS_AVAILABLE))
+
+a = 9
+
+
 
 
 # TODO
