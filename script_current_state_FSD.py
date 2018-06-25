@@ -3,7 +3,7 @@ import json
 import numpy as np
 import copy
 import matplotlib.pyplot as plt
-
+import pprint
 
 
 # DIY
@@ -21,7 +21,7 @@ of every class
 
 """
 
-FLAG_PLOT = True
+FLAG_PLOT = False
 
 """
 *****************************************************************************CONSTANTS THAT DEFINE THE STUDY
@@ -52,9 +52,9 @@ mode = 'ALL_CATS'
 # mode = 'ADVANCED'
 # mode = 'VALID_LEAF'
 
-DURATION_MODE = 'ALL'
+# DURATION_MODE = 'ALL'
 # DURATION_MODE = 'SHORT'
-# DURATION_MODE = 'MID'
+DURATION_MODE = 'MID'
 # DURATION_MODE = 'LONG'
 
 MINLEN = 0.3  # duration
@@ -70,6 +70,11 @@ NB_VOTES_PER_SESSION = 66.0
 NB_SESSIONS_PER_PACK = 10.0   # this is 5 hours of work
 NB_PACKS_PER_WEEK = 4.0       # to have part-time job
 NB_SUBJECTS_AVAILABLE = 4.0   # assuming 4 annotators during the summer
+
+print('\nParams for simulation=')
+pprint.pprint(mode, width=1, indent=4)
+pprint.pprint(DURATION_MODE, width=1, indent=4)
+pprint.pprint(TARGET_SAMPLES, width=1, indent=4)
 
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
@@ -95,13 +100,15 @@ except:
 # data_onto is a list of dictionaries
 # to retrieve them by id: for every dict o, we create another dict where key = o['id'] and value is o
 data_onto_by_id = {o['id']: o for o in data_onto}
+data_onto_by_name = {o['name']: o for o in data_onto}
 
 
 try:
     # from March1, in the dumps we include only the trustable votes  (verification clips are met)
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_May_16.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_18.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_22.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_22.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_25.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -118,20 +125,28 @@ try:
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
 
+# get hierarchy path for every category
+try:
+    with open(FOLDER_DATA + 'json/hierarchy_dict.json') as data_file:
+        hierarchy_dict = json.load(data_file)
+except:
+    raise Exception('ADD JSON FILE with the hierarchy paths for every class to the folder: ' + FOLDER_DATA + 'json/')
+
+
+
+
+# sanity checks right after loading the dump
+# gt_sounds_cam = [item for item in data_votes_raw['/m/0dv5r']['PP'] if data_votes_raw['/m/0dv5r']['PP'].count(item) > 1]
+# num_gt_sounds_cam = len(gt_sounds_cam)/2.0
 #
-
-gt_sounds_cam = [item for item in data_votes_raw['/m/0dv5r']['PP'] if data_votes_raw['/m/0dv5r']['PP'].count(item) > 1]
-num_gt_sounds_cam = len(gt_sounds_cam)/2.0
-
-gt_sounds_ba = [item for item in data_votes_raw['/m/03dnzn']['PP'] if data_votes_raw['/m/03dnzn']['PP'].count(item) > 1]
-num_gt_sounds_ba = len(gt_sounds_ba)/2.0
-
+# gt_sounds_ba = [item for item in data_votes_raw['/m/03dnzn']['PP'] if data_votes_raw['/m/03dnzn']['PP'].count(item) > 1]
+# num_gt_sounds_ba = len(gt_sounds_ba)/2.0
+#
 #
 #
 """
 *****************************************************************************FUNCTIONS
 """
-
 
 def apply_duration_filter(data_in, _minlen, _maxlen):
     """
@@ -823,8 +838,15 @@ print("# Assuming %d packs per week by a subject, total amount of weeks: %d" % (
 print("# Assuming %d subjects simultaneously, total amount of weeks in parallel: %d" % (NB_SUBJECTS_AVAILABLE,
                                                                                        (np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK)/NB_SUBJECTS_AVAILABLE))
 
-a = 9
 
+# print all cats by nb of sessions
+for i, j in zip(names_all_cats_needed_sorted, nb_sessions_needed_sorted):
+    # print(i,j)
+    print(hierarchy_dict[data_onto_by_name[str(i)]['id']], j)
+
+
+# data_onto_by_id = {o['id']: o for o in data_onto}
+a = 9
 
 
 
