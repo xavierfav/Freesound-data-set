@@ -52,9 +52,9 @@ mode = 'ALL_CATS'
 # mode = 'ADVANCED'
 # mode = 'VALID_LEAF'
 
-# DURATION_MODE = 'ALL'
+DURATION_MODE = 'ALL'
 # DURATION_MODE = 'SHORT'
-DURATION_MODE = 'MID'
+# DURATION_MODE = 'MID'
 # DURATION_MODE = 'LONG'
 
 MINLEN = 0.3  # duration
@@ -100,7 +100,8 @@ data_onto_by_id = {o['id']: o for o in data_onto}
 try:
     # from March1, in the dumps we include only the trustable votes  (verification clips are met)
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_May_16.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_18.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_18.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_22.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -118,6 +119,13 @@ except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
 
 #
+
+gt_sounds_cam = [item for item in data_votes_raw['/m/0dv5r']['PP'] if data_votes_raw['/m/0dv5r']['PP'].count(item) > 1]
+num_gt_sounds_cam = len(gt_sounds_cam)/2.0
+
+gt_sounds_ba = [item for item in data_votes_raw['/m/03dnzn']['PP'] if data_votes_raw['/m/03dnzn']['PP'].count(item) > 1]
+num_gt_sounds_ba = len(gt_sounds_ba)/2.0
+
 #
 #
 """
@@ -432,8 +440,8 @@ for catid, votes in data_votes_study.iteritems():
     # to debug certain categories
     # if data_onto_by_id[catid]['name'] == 'Pizzicato':
     # if data_onto_by_id[catid]['name'] == 'Toothbrush':
-    # if data_onto_by_id[catid]['name'] == 'Camera':
-    if data_onto_by_id[catid]['name'] == 'Bathtub (filling or washing)':
+    if data_onto_by_id[catid]['name'] == 'Camera':
+    # if data_onto_by_id[catid]['name'] == 'Bathtub (filling or washing)':
         a = 8
 
     # check GT in PP
