@@ -338,4 +338,28 @@ plot_barplot_grouped(nb_HQ_per_cat_dev_sorted,
                      260)
 
 # another option would be to group them by families, as in the excel
+
+
+
+"""
+find duration of each category in the DEV set
+"""
+
+total_dur = []
+durations_perclass_dev = {}
+for cat_id, sounds in data_dev.iteritems():
+    # create key with cat name, and empyt list as value
+    durations_perclass_dev[data_onto_by_id[cat_id]['name']] = []
+    durations_perclass_dev[data_onto_by_id[cat_id]['name']].extend([data_duration[str(fs_id)]['duration'] for fs_id in sounds])
+    print()
+    print(data_onto_by_id[cat_id]['name'])
+    # print(durations_perclass_dev[data_onto_by_id[cat_id]['name']])
+    # print(sum(durations_perclass_dev[data_onto_by_id[cat_id]['name']]))
+    n_min = sum(durations_perclass_dev[data_onto_by_id[cat_id]['name']])/60.0
+    print(n_min)
+    total_dur.append(n_min)
+
+print("\ntotal duration in hours:")
+print(sum(total_dur)/60.0)
+
 a=9
