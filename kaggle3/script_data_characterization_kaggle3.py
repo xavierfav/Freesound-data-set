@@ -129,16 +129,34 @@ def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, MA
     # horizontal line indicating the threshold
     if threshold:
         plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
-    plt.xticks(fontsize=7, rotation=45)
+    plt.xticks(fontsize=8, rotation=90)
     plt.xticks(ind + width/2, x_labels)
-    plt.ylabel(y_label)
-    plt.title(fig_title)
+    # plt.xticks(ind, x_labels)
+    plt.yticks(fontsize=10)
+    plt.ylabel(y_label, fontsize=11)
+    # plt.title(fig_title)
     # plt.yticks(np.arange(0, 81, 10))
-    plt.legend((p1[0], p2[0]), legenda)
+    plt.legend((p1[0], p2[0]), legenda, fontsize=9)
     plt.axis(axes)
     ax.yaxis.grid(True)
     # plt.grid(True)
+
+
+    # size_w = 3.487
+    size_w = 10
+    # size_h = size_w / 1.618
+    size_h = 6
+    # golden_mean = (np.sqrt(5) - 1.0) / 2.0  # Aesthetic ratio
+    # size_h = size_w * golden_mean  # height in inches
+
+    size_w = 12
+    # size_h = size_w / 1.618
+    size_h = 7
+
+    fig.set_size_inches(size_w, size_h)
+
     plt.show()
+    fig.savefig('plot.png')
 
 
 def plot_barplot_grouped(data_left, data_right, x_labels, y_label, fig_title, legenda, MAX_VERT_AX, threshold=None):
@@ -298,16 +316,10 @@ nb_LQ_per_cat_dev = [i - j for i, j in zip(nb_sounds_per_cat_dev, nb_HQ_per_cat_
 
 y_label = '# of audio samples'
 fig_title = 'number of samples per category in DEV, split in HQ - LQ'
-legenda = ('manually verified', 'non verified')
+legenda = ('manually-verified', 'non-verified')
 #
-# plot_barplot(nb_HQ_per_cat_dev,
-#              nb_LQ_per_cat_dev,
-#              names_all_cats_dev,
-#              y_label,
-#              fig_title,
-#              legenda,
-#              305)
-#
+
+
 # plot_barplot_grouped(nb_HQ_per_cat_dev,
 #                      nb_LQ_per_cat_dev,
 #                      names_all_cats_dev,
@@ -316,10 +328,42 @@ legenda = ('manually verified', 'non verified')
 #                      legenda,
 #                      260)
 
+
+# plot para paper=======================================================
+y_label = 'audio samples'
+
+
+
+# alphabeticaly
+idx_alpha =sorted(range(len(names_all_cats_dev)), key=lambda k: names_all_cats_dev[k])
+names_all_cats_dev_idx_alpha = list(names_all_cats_dev[val] for val in idx_alpha)
+nb_HQ_per_cat_dev_idx_alpha = list(nb_HQ_per_cat_dev[val] for val in idx_alpha)
+nb_LQ_per_cat_dev_idx_alpha = list(nb_LQ_per_cat_dev[val] for val in idx_alpha)
+
+plot_barplot(nb_HQ_per_cat_dev_idx_alpha,
+             nb_LQ_per_cat_dev_idx_alpha,
+             names_all_cats_dev_idx_alpha,
+             y_label,
+             fig_title,
+             legenda,
+             305)
+
+
+
+# sorted accordin to the pycharm way
+plot_barplot(nb_HQ_per_cat_dev,
+             nb_LQ_per_cat_dev,
+             names_all_cats_dev,
+             y_label,
+             fig_title,
+             legenda,
+             305)
+
 # say we want the classes in development set ordered by median of clip duration (consider only dev set)
 names_all_cats_dev_sorted = list(names_all_cats_dev[val] for val in idx_durations_all_cats_dev)
 nb_HQ_per_cat_dev_sorted = list(nb_HQ_per_cat_dev[val] for val in idx_durations_all_cats_dev)
 nb_LQ_per_cat_dev_sorted = list(nb_LQ_per_cat_dev[val] for val in idx_durations_all_cats_dev)
+
 
 plot_barplot(nb_HQ_per_cat_dev_sorted,
              nb_LQ_per_cat_dev_sorted,
@@ -329,13 +373,18 @@ plot_barplot(nb_HQ_per_cat_dev_sorted,
              legenda,
              305)
 
-plot_barplot_grouped(nb_HQ_per_cat_dev_sorted,
-                     nb_LQ_per_cat_dev_sorted,
-                     names_all_cats_dev_sorted,
-                     y_label,
-                     fig_title,
-                     legenda,
-                     260)
+
+
+
+
+
+# plot_barplot_grouped(nb_HQ_per_cat_dev_sorted,
+#                      nb_LQ_per_cat_dev_sorted,
+#                      names_all_cats_dev_sorted,
+#                      y_label,
+#                      fig_title,
+#                      legenda,
+#                      260)
 
 # another option would be to group them by families, as in the excel
 
