@@ -34,7 +34,7 @@ FACTOR_AGREE_GTLESS = 1.5
 # number of votes that are needed to reach agreement, on average, for a virgin annotation
 FACTOR_AGREE_VIRGIN = 3.0
 # lets consider a bit more of needed votes to be safe (just in case)
-FACTOR_FLEX = 1.1
+FACTOR_FLEX = 1.15
 
 # we can do packs of roughly 10 categories. it will depend on the siblings and coherence in the groups that can be made.
 # 1 session of 1 class are 66 useful votes. 10 sessions are 660 votes.
@@ -56,12 +56,14 @@ mode = 'ALL_CATS'
 # DURATION_MODE = 'SHORT'
 DURATION_MODE = 'MID'
 # DURATION_MODE = 'LONG'
+# DURATION_MODE = 'MID_n_LONG'
+
 
 MINLEN = 0.3  # duration
 MAXLEN = 30.0
 FOLDER_DATA = 'kaggle3/'
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
-TARGET_SAMPLES = 125
+TARGET_SAMPLES = 130
 # in kaggle we have minimum 84 samples/class, and on average 130. we have to significantly improve this
 # audioset has minimum of 120
 # let's say 125 as a target for annotation, then we can lower it to 120 for acceptance.
@@ -75,6 +77,7 @@ print('\nParams for simulation=')
 pprint.pprint(mode, width=1, indent=4)
 pprint.pprint(DURATION_MODE, width=1, indent=4)
 pprint.pprint(TARGET_SAMPLES, width=1, indent=4)
+pprint.pprint(FACTOR_FLEX, width=1, indent=4)
 
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
@@ -108,7 +111,10 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_May_16.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_18.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_22.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_25.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_25.json') as data_file:
+
+    # Aug2 es el dump ANTES de cargar cosas nuevas en la platform.
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -330,6 +336,41 @@ print('Number of sounds in the dump: %d' % len(set(accum_fsids)))
 print('Number of automatically generated annotations in the dump: %d' % len(accum_fsids))
 print('Number of categories from the dump: %d' % len(data_votes_raw))
 
+nb_gt = 0
+for cat_id, groups in data_votes_raw.iteritems():
+    # beware, if they are 3 or 4, the y are counted more.
+
+    for fs_id in groups['candidates']:
+        if groups['PP'].count(fs_id) > 1:
+            nb_gt += 1
+        elif groups['PNP'].count(fs_id) > 1:
+            nb_gt += 1
+
+    # the following yields very similar results
+    # gt_soundsPP = [item for item in groups['PP'] if groups['PP'].count(item) > 1]
+    # nb_gt_PP = len(gt_soundsPP)/2.0
+    #
+    # # repeat for PNP
+    # gt_soundsPNP = [item for item in groups['PNP'] if groups['PNP'].count(item) > 1]
+    # nb_gt_PNP = len(gt_soundsPNP)/2.0
+    #
+    # # add
+    # nb_gt += nb_gt_PP
+    # nb_gt += nb_gt_PNP
+
+print('\nNumber of ground truth PP*2 and PNP*2 from the dump: %d' % nb_gt)
+
+a=9
+
+# sanity checks right after loading the dump
+# gt_sounds_cam = [item for item in data_votes_raw['/m/0dv5r']['PP'] if data_votes_raw['/m/0dv5r']['PP'].count(item) > 1]
+# num_gt_sounds_cam = len(gt_sounds_cam)/2.0
+#
+# gt_sounds_ba = [item for item in data_votes_raw['/m/03dnzn']['PP'] if data_votes_raw['/m/03dnzn']['PP'].count(item) > 1]
+# num_gt_sounds_ba = len(gt_sounds_ba)/2.0
+#
+
+
 
 """ # remove unwanted sounds from specific categories before doing anything else*************************************"""
 """******************************************************************************************************************"""
@@ -383,7 +424,7 @@ print 'Number of valid beginner categories in the dump: ' + str(len(data_votes_v
 data_votes_va = {o: data_votes[o] for o in data_votes if o in data_info_valid and data_info_valid[o]['beginner_task'] == False}
 print 'Number of valid advanced categories in the dump: ' + str(len(data_votes_va))
 
-# apply FILTER 0 and 1: by taking the union of the above
+# apply FILTER 0 and 1: by taking the union of the above (valid and leaf)
 data_votes_vl = {o: data_votes[o] for o in data_votes if o in data_votes_v and o in data_votes_l}
 print 'Number of valid AND leaf categories in the dump: ' + str(len(data_votes_vl))
 
@@ -413,6 +454,8 @@ data_votes_short = apply_duration_filter(data_votes_select, 0, MINLEN)
 data_votes_mid = apply_duration_filter(data_votes_select, MINLEN, MAXLEN)
 data_votes_long = apply_duration_filter(data_votes_select, MAXLEN, 95.0)
 data_votes_all = data_votes_select
+data_votes_midlong = apply_duration_filter(data_votes_select, MINLEN, 95.0)
+
 # including NC-license for now
 
 if DURATION_MODE == 'ALL':
@@ -423,6 +466,10 @@ elif DURATION_MODE == 'MID':
     data_votes_study = data_votes_mid
 elif DURATION_MODE == 'LONG':
     data_votes_study = data_votes_long
+elif DURATION_MODE == 'MID_n_LONG':
+    data_votes_study = data_votes_midlong
+
+
 
 
 """ # Categorize the annotations/sounds in every category: as
@@ -666,13 +713,16 @@ print("**************************************************Report for mode %s" % m
 cats_accomplished_success = {}
 cats_estimated_success = {}
 for catid, groups in data_state.iteritems():
+    # they already have TARGET_SAMPLES
     if len(groups['PPgt']) + len(groups['PNPgt']) >= TARGET_SAMPLES:
         cats_accomplished_success[catid] = len(groups['PPgt']) + len(groups['PNPgt'])
 
     else:
-        estimated_gt = len(groups['PPgt']) + len(groups['PNPgt']) + (len(groups['gtless']) + len(groups['virgin']))* data_votes[catid]['QE']
-        if estimated_gt>= TARGET_SAMPLES:
-            cats_estimated_success[catid] = estimated_gt
+        # they dont have TARGET_SAMPLES, but we estimate how much it can have with the QE (only if QE is well estimated)
+        if data_votes[catid]['QE'] > 0:
+            estimated_gt = len(groups['PPgt']) + len(groups['PNPgt']) + (len(groups['gtless']) + len(groups['virgin']))* data_votes[catid]['QE']
+            if estimated_gt >= TARGET_SAMPLES:
+                cats_estimated_success[catid] = estimated_gt
 
 print("# how many cats have already TARGET_SAMPLES samples? (beware, unpopulated): %d" % len(cats_accomplished_success))
 print("# how many cats can reach TARGET_SAMPLES with gtless and virgin, considering QE (including already accomplished): %d" % (len(cats_estimated_success) + len(cats_accomplished_success)))
@@ -717,7 +767,7 @@ for catid, groups in data_state.iteritems():
             # debug
             if idx_tmp == 8:
                 r = 4
-                print(data_onto_by_id[catid]['name'])
+                # print(data_onto_by_id[catid]['name'])
 
             # how many gt sounds can we get with the current gtless?
             # nb_gtless * QE
@@ -725,7 +775,7 @@ for catid, groups in data_state.iteritems():
             diff_gt = data_needed[catid]['gtneeded'] - data_needed[catid]['gt_from_gtless']
 
             if diff_gt > 0:
-                # we need to use them all. This means voting them ALL of them, the good and the bad ones
+                # we need to use them all. This means voting ALL of them, the good and the bad ones
                 # and, additionally, we need diff_gt taken from virgin samples
                 # how many votes do we need for this? they require only partial agreement, since they have votes already
                 data_needed[catid]['votes_for_gtless'] = len(groups['gtless']) * FACTOR_AGREE_GTLESS * FACTOR_FLEX
@@ -754,7 +804,8 @@ for catid, groups in data_state.iteritems():
                     data_needed[catid]['success'] = True
 
                 else:
-                    # no, there are not enough, so use them all and still we need more, or hide the category for now
+                    # no, there are not enough, but we still annotate them all for the future,
+                    # we may hide the category for now, but in the future this will be very helpful
                     data_needed[catid]['votes_for_virgin'] = len(groups['virgin']) * FACTOR_AGREE_VIRGIN
                     data_needed[catid]['success'] = False
             else:
@@ -803,7 +854,7 @@ print("# Money to gather all the votes needed to FSD1.0 after quantification (in
 
 
 catids_no_sucess = [catid for catid in data_needed if data_needed[catid]['success']==False]
-print("\n# After this, we still have categories that have not reached TARGET_SAMPLES: %d" % len(catids_no_sucess))
+print("\n# After this, we still have categories that have not reached TARGET_SAMPLES, but all their content is annotated, hence easily expandable: %d" % len(catids_no_sucess))
 print("\n# And categories that never had QE hence out of simulation: %d" % len(data_noQE))
 
 
@@ -814,15 +865,15 @@ nb_sessions_needed_sorted = list(nb_sessions_needed[val] for val in idx_nb_sessi
 # names_all_cats_needed = [data_onto_by_id[catid]['name'] for catid, sounds in data_needed.iteritems()]
 names_all_cats_needed_sorted = list(names_all_cats_needed[val] for val in idx_nb_sessions)
 
-y_label = '# of sessions'
-fig_title = 'number of sessions needed per category to reach FSD1.0'
-plot_barplot(nb_sessions_needed_sorted,
-             names_all_cats_needed_sorted,
-             y_label,
-             fig_title,
-             18,
-             threshold=4)
-
+# y_label = '# of sessions'
+# fig_title = 'number of sessions needed per category to reach FSD1.0'
+# plot_barplot(nb_sessions_needed_sorted,
+#              names_all_cats_needed_sorted,
+#              y_label,
+#              fig_title,
+#              18,
+#              threshold=4)
+#
 
 # como es posible que en algunas categorias hagan falta 30 sessiones?
 # -horrible QE
@@ -832,20 +883,38 @@ plot_barplot(nb_sessions_needed_sorted,
 # a nadie le interesa tener un tio anotando cosas que sabes que estan mal. es tiempo y dinero.
 
 print("\n\n# Total amount of sessions needed to FSD1.0 (in the classes that have NOT reached the target): %d" % sum(nb_sessions_needed))
-print("# Based on that: Total amount of PACKS (ie groups) (of 10 sessions each): %d" % np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK))
+print("# Based on that: Total amount of PACKS (ie groups of 10 sessions each): %d" % np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK))
 print("# Assuming %d packs per week by a subject, total amount of weeks: %d" % (NB_PACKS_PER_WEEK,
                                                                                 np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK))
 print("# Assuming %d subjects simultaneously, total amount of weeks in parallel: %d" % (NB_SUBJECTS_AVAILABLE,
                                                                                        (np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK)/NB_SUBJECTS_AVAILABLE))
 
-
-# print all cats by nb of sessions
+full_paths = []
+# print all cats sorted by nb of sessions
 for i, j in zip(names_all_cats_needed_sorted, nb_sessions_needed_sorted):
     # print(i,j)
-    print(hierarchy_dict[data_onto_by_name[str(i)]['id']], j)
+    print hierarchy_dict[data_onto_by_name[str(i)]['id']], '///', j
+
+    hierarchy_paths_list = [str(item) for item in hierarchy_dict[data_onto_by_name[str(i)]['id']][0]]
+
+    # concatenate all hiearchy path names with a > to allow alphabetical sorting
+    full_path = ' > '.join(hierarchy_paths_list)
+    full_paths.append(full_path)
+
+# full_paths are the string paths for every class, in a list sorted by the number of sessions required.
+# we wanna sort them by alphabetical order and apply that sorting to the number of sessions needed, to create groups
+idx_alfa = sorted(range(len(full_paths)), key=lambda k: full_paths[k])
+
+# sort by alfabetical order
+full_paths_sorted_alfa = [full_paths[val] for val in idx_alfa]
+nb_sessions_needed_sorted_alfa = [nb_sessions_needed_sorted[val] for val in idx_alfa]
+
+# print
+print('\n Printing by alphabetical order')
+for i, j in zip(full_paths_sorted_alfa, nb_sessions_needed_sorted_alfa):
+    print i, '///', j
 
 
-# data_onto_by_id = {o['id']: o for o in data_onto}
 a = 9
 
 
@@ -869,17 +938,6 @@ a = 9
 # find how many leafs cannot make it but populate a succesful parent?
 
 
-# ask specific questions:
-# how many cats have already 100 samples? does it match the platform?
-# -here we dont populate so difficult to say
-
-
-# how many cats can reach 100 with what we have, considering:
-# -gtless + QE
-# -virgin + QE
-# see doc
-# this question is pertinent for the leafs
-
 # if we were to use F8, what would be the data for it: how many virgin annotations do we have?
 # - beginner classes
 # - all classes
@@ -900,7 +958,6 @@ a = 9
 # left_
 # -print QE on plots
 # -sort by QE?
-#
 
 
 # =========================================================================================Settings plan A:
@@ -913,23 +970,29 @@ a = 9
 # Example: throat clearing has 30 gt. We need to annotate Cough almost entirely. with LEAF mode, we dont consider it.
 # So in reality, we need a bit more than LEAF mode, but a bit less than ALL_CATS
 # Lets use ALL_CATS for cost estimation, to be safe. Then we prioritize leafs and inmediate parents for annotation.
-#
-# TARGET_SAMPLES = 120 to start with. Comparable with Audioset. It means a bigger effort if we rely on good will, but if we paid for it, maybe it can be possible
-#
-# Duration: 0.3 : 30. Too short are kind of useless. Too long are a mess and impact on dataset imbalance.
-#
+# nice thing: by using ALL_CATS, we make sure all cats have TARGET_SAMPLES, hence in the upper hierarchy levels, we can end up with several hundreds of samples.
 
 
+# TARGET_SAMPLES = 130 to start with.
+# Comparable with Audioset.
+# It means a bigger effort if we rely on good will, but if we paid for it, maybe it can be possible
+# gives room for playing a bit when doing the splits.
+# Else, we have to resign to split packs, hence dataset small and easy: useless.
+# ideally, 150 would be better, but this may be too much for a target. Let's use 130, and if needed for some categories, we can annotate more in-house.
+# if we have more subjects, we can increase to 150.
+
+# Duration: 0.3 : 30. Too short are kind of useless.
+# Too long are a mess and impact on dataset imbalance.
+#
 
 # NB_VOTES_PACK_PERSON = 660.0
 # we can do packs of roughly 10 categories. it will depend on the siblings and coherence in the groups that can be made.
 # 1 session of 1 class are 66 useful votes. 10 sessions are 660 votes.
-# This can be done in 5 h easily, with rests, carefully, FAQ n FS, 25E
+# This can be done in 5 h easily, with rests, carefully, FAQ n FS, 30E. means one session + rest in 30 minutes
 # of course this depends on the difficulty. Easier classes are faster and viceversa
 
-# PRICE_PACK_PERSON = 25
-# 5 hours of work at 5 euros/hour. This may be ok for UPF-people. But in Freesound we should give more?
+# PRICE_PACK_PERSON = 30
+# 5 hours of work at 6 euros/hour. This may be ok for UPF-people. But in Freesound we should give more?
 #
-
 
 # Finally, if needed we can always fix some classes in-house, if needed.

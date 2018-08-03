@@ -79,7 +79,9 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
 #    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_12.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_13.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_13.json') as data_file: # Mar13 was the original I think
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
+
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
