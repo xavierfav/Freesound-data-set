@@ -6,7 +6,7 @@ import os
 import sys
 import time
 import itertools
-import xlsxwriter
+# import xlsxwriter
 import freesound
 from openpyxl import load_workbook
 from random import shuffle
@@ -130,20 +130,24 @@ def map_votedsound_2_disjointgroups_wo_agreement(fsid, catid, vote_groups, fsids
     # votes has all the votes for fsid. let us take decisions
 
     # trivial cases where there is only one single vote by one annotator
+    # PP goes to PP
     if 1.0 in votes and 0.5 not in votes and -1.0 not in votes and 0.0 not in votes:
         # the only case where a sound is sent to PP without inter-annotator agreement
         data_sounds[catid]['PP'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 in votes and -1.0 not in votes and 0.0 not in votes:
+        # PNP goes to U (just in case)
         # data_sounds[catid]['PNP'].append(fsid)
         # single vote of PNP may be a bit unreliable. safer to send it to U group
         # thus it goes to LQ (and not LQprior)
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 not in votes and -1.0 in votes and 0.0 not in votes:
+        # NP goes to NP
         data_sounds[catid]['NP'].append(fsid)
         fsids_assigned_cat.append(fsid)
     elif 1.0 not in votes and 0.5 not in votes and -1.0 not in votes and 0.0 in votes:
+        # U goes to U
         data_sounds[catid]['U'].append(fsid)
         fsids_assigned_cat.append(fsid)
 
@@ -1790,15 +1794,15 @@ category_id_to_remove = ['/m/0c1dj', '/m/07phxs1', '/m/02rr_', '/m/07s0s5r',
                          '/m/0912c9', '/m/022c7z', '/m/07qnq_y', '/m/06mb1']
 map(dataset_final_prepro.pop, set(category_id_to_remove) & set(dataset_final_prepro.keys()))
 
-
+# --------------- REMOVE MULTIPLE LABELED SOUNDS ---------------- #
 # --------------------------------------------------------------- #
-
+# BEWARE this is ONLY IN DOMAIN, ie remove the sounds that happen to be in 2 classes within the set of 41
 # --------------- REMOVE MULTIPLE LABELED SOUNDS ---------------- #
 all_sound_ids = []
 for _, category_sets in dataset_final_prepro.iteritems():
     for set_name in ['HQ', 'LQ']:
         all_sound_ids += category_sets[set_name]
-
+# gather all sound ids together, some of them will be repeated as they come from several categories (HQ and LQ are disjoint in every class), ie they have several labels.
 sound_to_remove = [s for s in all_sound_ids if all_sound_ids.count(s)>1]
 
 # add duplicate in Freesound
@@ -1809,7 +1813,7 @@ for _, category_sets in dataset_final_prepro.iteritems():
         for s in sound_to_remove:
             if s in category_sets[set_name]:
                 category_sets[set_name].remove(s)
-
+# sounds with multiple labels are removed from ALL groups, so that they dont exist anymore in the dataset
 # --------------------------------------------------------------- #
 
 # -------------------------------------------------------------------------- #
@@ -1876,7 +1880,7 @@ for r in data_single_dur:
             data_single_dev[r].append(s[0])
         elif rule73[idx%len(rule73)] == 'eval':
             data_single_eval[r].append(s[0])
-            
+# here we have the split done in dev/eval, for each of the 41 classes, based on duration (ONLY A FEW OF THESE CLASSES WILL BE USED; the rest will be with the pack effect)
 ## RANDOMLY ADDING MULTIPLE LABELED WITH RATIO 7:3
 data_dev_HQ_anal = data_single_dev
 # data_eval = data_single_eval
@@ -1924,7 +1928,7 @@ data_dev_LQpior = {node_id: value['LQprior'] for node_id, value in dataset_final
 # ---------------------------------------------------------------- #
 
 # ----- SELECT TENTATIVE LQ SET PRESELECTION JUST FOR PRINT INFO ABOUT PACKS----------- #
-# preselected_LQ is the LQ sounds until reachin 300 in dev, according to the tentative plit of HQ already done
+# preselected_LQ is the LQ sounds until reachin 300 in dev, according to the tentative split of HQ already done
 # we use this to analyse the composition of packs (how many LQ and HQ)
 # considering this info, we split HQ in dev/eval
 # finally we re-do the selection of LQ to fill dev until 300
@@ -2176,7 +2180,7 @@ for cat_id in result_final_HQ:
         eval_target = np.round(0.3*len(group_HQ))
         target_done = 0
 
-        # step 1: packs containing only manually verified data, as long as they are smaller than 33% of eval set
+        # step 1: add packs containing only manually verified data, as long as they are smaller than 33% of eval set
         packs_manV_small = {key: value for key, value in pack_status_per_class[cat_id].iteritems()
                             if value['type'] == 'manV' and len(value['fs_ids_HQ']) < MAX_SIZE_PACK_EVAL*eval_target}
 
@@ -2197,7 +2201,7 @@ for cat_id in result_final_HQ:
 
 
         if target_done == 0:
-            # step 2: orphan HQ sounds, until 60% of eval set
+            # step 2: add orphan HQ sounds, until 60% of eval set
             shuffle(sounds_noPack_HQ_per_class[cat_id])
             list_orphan_sounds_HQ = sounds_noPack_HQ_per_class[cat_id][:int(np.floor(MAX_NB_ORPHANS_EVAL*eval_target))]
 
@@ -2213,7 +2217,7 @@ for cat_id in result_final_HQ:
 
 
             if target_done == 0:
-                # step 3: packs with mixed data, smaller than 33% of eval set as long as the LQ part is only 3
+                # step 3: add packs with mixed data, smaller than 33% of eval set as long as the LQ part is only 3
                 packs_mix_small_LQ1 = {key: value for key, value in pack_status_per_class[cat_id].iteritems() if
                                        value['type'] == 'mix' and
                                        len(value['fs_ids_HQ']) < MAX_SIZE_PACK_EVAL * eval_target and
@@ -2258,7 +2262,7 @@ for cat_id in list_cat_ids_split_manually:
     print('- %s' % data_onto_by_id[cat_id]['name'])
 
 
-# ===================================== compute data_dev_pack_split as complementary to data_eval_pack_sfor cat_id in result_final_HQ:
+    # ===================================== compute data_dev_pack_split as complementary to data_eval_pack_sfor cat_id in result_final_HQ:
     # if we have carried out the split
     if data_eval_pack_split[cat_id]:
         data_dev_pack_split[cat_id] = [element for element in result_final_HQ[cat_id] if element not in data_eval_pack_split[cat_id]]
@@ -2388,7 +2392,9 @@ for cat_id in data_dev:
 
 
 # ---------------------------------------------------------------- #
-
+# TODO this was meant to be for review (and it works in the sense that no additional sounds or categories are removed
+# TODO but sounds_left is a list of 9855 sounds. WHY? it should be 11073 sounds!!!
+# why the difference???
 
 # -------------------- REMOVE SOME CATEGORIES -------------------- #
 print '\n FILTER CATEGORIES \n'
@@ -2430,7 +2436,7 @@ print 'Number of sounds left: {0}'.format(len(set(sounds_left)))
 
 # ---------------------------------------------------------------- #
 
-# -------------- REMOVE SOUND WITH MULTIPLE LABELS --------------- #
+# -------------- REMOVE SOUND WITH MULTIPLE LABELS --------------- # already done at the beggining, this is just Sanity
 print '\n REMOVE MULTILABELED SOUNDS \n'
 sound_to_remove = [s for s in sounds_left if sounds_left.count(s)>1]
 for aso_id in data_dev.keys():
