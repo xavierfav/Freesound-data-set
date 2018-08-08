@@ -63,7 +63,11 @@ MINLEN = 0.3  # duration
 MAXLEN = 30.0
 FOLDER_DATA = 'kaggle3/'
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
-TARGET_SAMPLES = 130
+# TARGET_SAMPLES = 130
+# at August 7th
+TARGET_SAMPLES = 260
+# TARGET_SAMPLES = 320
+
 # in kaggle we have minimum 84 samples/class, and on average 130. we have to significantly improve this
 # audioset has minimum of 120
 # let's say 125 as a target for annotation, then we can lower it to 120 for acceptance.
@@ -71,7 +75,7 @@ TARGET_SAMPLES = 130
 NB_VOTES_PER_SESSION = 66.0
 NB_SESSIONS_PER_PACK = 10.0   # this is 5 hours of work
 NB_PACKS_PER_WEEK = 4.0       # to have part-time job
-NB_SUBJECTS_AVAILABLE = 4.0   # assuming 4 annotators during the summer
+NB_SUBJECTS_AVAILABLE = 5.0   # assuming 5 annotators during the august
 
 print('\nParams for simulation=')
 pprint.pprint(mode, width=1, indent=4)
@@ -83,6 +87,7 @@ pprint.pprint(FACTOR_FLEX, width=1, indent=4)
 """load initial data with votes, clip duration and ontology--------------------------------- """
 
 # this the result of the mapping from FS sounds to ASO.
+# a dict with 268k keys (the fs_ids) and values include metadata for every sound)
 # 268k sounds with basic metadata and their corresponding ASO id.
 # useful to get the duration of every sound
 try:
@@ -91,6 +96,13 @@ try:
 except:
     raise Exception(
         'CHOOSE A MAPPING FILE AND ADD IT TO ' + FOLDER_DATA + 'json/ FOLDER (THE FILE INCLUDE DURATION INFORMATION NEEDED)')
+
+# UPDATE: this does not contain the sounds added on August 3rd.
+# We need to get this info
+# for every id that is in data_votes_raw and is not in data_mapping (ie los 30k nuevos que se cargaron con el new mapping),
+# retrieve duration with FS API
+# los otros 40k old no aparecen porque no tienen candidates annotations. luego estan en platform, pero no en dump.
+# done in script aside. if it takes too long, ask FF.
 
 
 try:
@@ -105,6 +117,11 @@ except:
 data_onto_by_id = {o['id']: o for o in data_onto}
 data_onto_by_name = {o['name']: o for o in data_onto}
 
+# NOTE:
+# Aug2: last dump before the addition:
+# - of 30k new FSounds (last year) with original mapping +
+# - 40k (old sounds that were never included in the original mapping)
+# Aug3: dump right after that
 
 try:
     # from March1, in the dumps we include only the trustable votes  (verification clips are met)
@@ -112,9 +129,10 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_18.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_22.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Jun_25.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
 
     # Aug2 es el dump ANTES de cargar cosas nuevas en la platform.
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug_07.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -321,7 +339,7 @@ def sort_all_by_criteria(names_all_cats, nb_sounds_valid, nb_sounds_gtless, nb_s
 
 
 """
-*****************************************************************************SCRIPT
+*****************************************************************************BEGIN SCRIPT
 """
 
 """ # report initial stats on the dump*************************************"""
