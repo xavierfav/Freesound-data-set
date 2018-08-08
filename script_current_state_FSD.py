@@ -87,6 +87,7 @@ pprint.pprint(FACTOR_FLEX, width=1, indent=4)
 """load initial data with votes, clip duration and ontology--------------------------------- """
 
 # this the result of the mapping from FS sounds to ASO.
+# a dict with 268k keys (the fs_ids) and values include metadata for every sound)
 # 268k sounds with basic metadata and their corresponding ASO id.
 # useful to get the duration of every sound
 try:

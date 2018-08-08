@@ -39,6 +39,7 @@ FLAG_BARPLOT_PARENT = False
 '''------------------------------------------------------------------------------------------'''
 
 # this the result of the mapping from FS sounds to ASO.
+# a dict with 268k keys (the fs_ids) and values include metadata for every sound)
 # 268k sounds with basic metadata and their corresponding ASO id.
 # useful to get the duration of every sound
 try:
