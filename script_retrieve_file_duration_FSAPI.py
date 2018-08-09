@@ -194,7 +194,7 @@ json.dump(data_mapping_updated, open(FOLDER_DATA + '/json/FS_sounds_ASO_postIQA_
 # en total: 297,291
 # en web: 297291
 
-# dos sonidos de los que no se la duracion: Fred la tenía
+# dos sonidos de los que no se la duracion: Fred la tenia
 data_mapping_updated[str(434155)] = {}
 data_mapping_updated[str(434155)]['duration'] = 17.18
 
