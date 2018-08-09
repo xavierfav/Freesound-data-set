@@ -43,7 +43,7 @@ FACTOR_FLEX = 1.15
 NB_VOTES_PACK_PERSON = 660.0
 
 # 5 hours of work at 5 euros/hour. This may be ok for UPF-people. But in Freesound we should give more?
-PRICE_PACK_PERSON = 30
+PRICE_PACK_PERSON = 27
 # 25 /10 / 72 = 3.5 cents per click
 # 30 /10 / 72 = 4.17 cents per click. maybe give 30 then, so that it is a bit more than F8
 
@@ -65,7 +65,7 @@ FOLDER_DATA = 'kaggle3/'
 MIN_VOTES_CAT = 70  # minimum number of votes per category to produce a QE.
 # TARGET_SAMPLES = 130
 # at August 7th
-TARGET_SAMPLES = 260
+TARGET_SAMPLES = 300
 # TARGET_SAMPLES = 320
 
 # in kaggle we have minimum 84 samples/class, and on average 130. we have to significantly improve this
@@ -74,8 +74,8 @@ TARGET_SAMPLES = 260
 
 NB_VOTES_PER_SESSION = 66.0
 NB_SESSIONS_PER_PACK = 10.0   # this is 5 hours of work
-NB_PACKS_PER_WEEK = 4.0       # to have part-time job
-NB_SUBJECTS_AVAILABLE = 5.0   # assuming 5 annotators during the august
+NB_PACKS_PER_WEEK = 4.5       # to have part-time job
+NB_SUBJECTS_AVAILABLE = 4.5   # assuming 5 annotators during the august
 
 print('\nParams for simulation=')
 pprint.pprint(mode, width=1, indent=4)
@@ -90,20 +90,26 @@ pprint.pprint(FACTOR_FLEX, width=1, indent=4)
 # a dict with 268k keys (the fs_ids) and values include metadata for every sound)
 # 268k sounds with basic metadata and their corresponding ASO id.
 # useful to get the duration of every sound
-try:
-    with open(FOLDER_DATA + 'json/FS_sounds_ASO_postIQA.json') as data_file:
-        data_mapping = json.load(data_file)
-except:
-    raise Exception(
-        'CHOOSE A MAPPING FILE AND ADD IT TO ' + FOLDER_DATA + 'json/ FOLDER (THE FILE INCLUDE DURATION INFORMATION NEEDED)')
+# try:
+#     with open(FOLDER_DATA + 'json/FS_sounds_ASO_postIQA.json') as data_file:
+#         data_mapping = json.load(data_file)
+# except:
+#     raise Exception(
+#         'CHOOSE A MAPPING FILE AND ADD IT TO ' + FOLDER_DATA + 'json/ FOLDER (THE FILE INCLUDE DURATION INFORMATION NEEDED)')
 
-# UPDATE: this does not contain the sounds added on August 3rd.
+# UPDATE: the above does not contain the sounds added on August 3rd.
 # We need to get this info
 # for every id that is in data_votes_raw and is not in data_mapping (ie los 30k nuevos que se cargaron con el new mapping),
 # retrieve duration with FS API
 # los otros 40k old no aparecen porque no tienen candidates annotations. luego estan en platform, pero no en dump.
-# done in script aside. if it takes too long, ask FF.
-
+# done in script aside. the info for the 297291 files is in FS_sounds_ASO_postIQA_Aug_08.json
+try:
+    with open(FOLDER_DATA + 'json/FS_sounds_ASO_postIQA_Aug_08.json') as data_file:
+        data_mapping = json.load(data_file)
+except:
+    raise Exception(
+        'CHOOSE A MAPPING FILE AND ADD IT TO ' + FOLDER_DATA + 'json/ FOLDER (THE FILE INCLUDE DURATION INFORMATION NEEDED)')
+# this mapping has 297291 sounds, ie old 268k + 30k new
 
 try:
     # load json with ontology, to map aso_ids to understandable category names
@@ -132,7 +138,7 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
 
     # Aug2 es el dump ANTES de cargar cosas nuevas en la platform.
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug_07.json') as data_file:
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug_08.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -501,7 +507,7 @@ elif DURATION_MODE == 'MID_n_LONG':
 
 # considering only sounds between  [MINLEN: MAXLEN): data_votes_study
 
-# create data_stats_l_mid with keys with catids and empty dicts as values
+# create data_state with keys with catids and empty dicts as values
 data_state = copy.deepcopy(data_votes_study)
 for catid, votes in data_state.iteritems():
     data_state[catid].clear()
@@ -520,9 +526,9 @@ for catid, votes in data_votes_study.iteritems():
     # to debug certain categories
     # if data_onto_by_id[catid]['name'] == 'Pizzicato':
     # if data_onto_by_id[catid]['name'] == 'Toothbrush':
-    if data_onto_by_id[catid]['name'] == 'Camera':
+    # if data_onto_by_id[catid]['name'] == 'Camera':
     # if data_onto_by_id[catid]['name'] == 'Bathtub (filling or washing)':
-        a = 8
+    #     a = 8
 
     # check GT in PP
     # check GT in the rest of the groups
@@ -647,10 +653,15 @@ for catid, votes in data_votes_study.iteritems():
         sys.exit('number of sounds is not equal in data_state and data_votes')
 
 # checked that the conversion from intial set of votes from the dump, to the keys in data_state is fine.
-# Cases that do not match with the platform:
-# Camera: platform: 123 gt, here 92+2 gt
+# Cases that do not match with the platform: for now it is ok
+#
+
+
+
 """ # plots**********************************************************************************************************"""
 """******************************************************************************************************************"""
+
+
 
 # plot current status of what is to finalize per class
 # -- # bar plot of number of sounds of each kind for every category----
@@ -727,9 +738,12 @@ if FLAG_PLOT:
 
 print("**************************************************Report for mode %s" % mode)
 
+# need comments here
+cats_accomplished_success = {}          # classes that already have TARGET_SAMPLES. ready to do the split tr/te
+cats_estimated_success = {}             # classes that we estimate that MAY reach TARGET_SAMPLES, through annotation
+cats_runout_content = {}                # classes that we have run out of content.
 
-cats_accomplished_success = {}
-cats_estimated_success = {}
+
 for catid, groups in data_state.iteritems():
     # they already have TARGET_SAMPLES
     if len(groups['PPgt']) + len(groups['PNPgt']) >= TARGET_SAMPLES:
@@ -738,26 +752,50 @@ for catid, groups in data_state.iteritems():
     else:
         # they dont have TARGET_SAMPLES, but we estimate how much it can have with the QE (only if QE is well estimated)
         if data_votes[catid]['QE'] > 0:
-            estimated_gt = len(groups['PPgt']) + len(groups['PNPgt']) + (len(groups['gtless']) + len(groups['virgin']))* data_votes[catid]['QE']
+            estimated_gt = len(groups['PPgt']) + len(groups['PNPgt']) + \
+                           (len(groups['gtless']) + len(groups['virgin'])) * data_votes[catid]['QE']
             if estimated_gt >= TARGET_SAMPLES:
                 cats_estimated_success[catid] = estimated_gt
 
-print("# how many cats have already TARGET_SAMPLES samples? (beware, unpopulated): %d" % len(cats_accomplished_success))
-print("# how many cats can reach TARGET_SAMPLES with gtless and virgin, considering QE (including already accomplished): %d" % (len(cats_estimated_success) + len(cats_accomplished_success)))
+    if len(groups['gtless']) + len(groups['virgin']) == 0:
+        # there is no more content available, except if we improve the mapping and by doing it we gather some more
+        cats_runout_content[catid] = len(groups['PPgt']) + len(groups['PNPgt'])
+
+print("# how many cats have already TARGET_SAMPLES? (beware, unpopulated): %d" % len(cats_accomplished_success))
+for idx, (cat_id,v) in enumerate(cats_accomplished_success.iteritems(), 1):
+    print("%d - %-25s: sounds: %-3d" % (idx, data_onto_by_id[cat_id]['name'], v))
+
+print("# how many cats can reach TARGET_SAMPLES with gtless and virgin, "
+      "considering QE (including already accomplished): %d" % (len(cats_estimated_success) + len(cats_accomplished_success)))
+
+print("# how many cats have run out of content: %d" % len(cats_runout_content))
+for idx, (cat_id,v) in enumerate(cats_runout_content.iteritems(), 1):
+    print("%d - %-25s: sounds: %-3d" % (idx, data_onto_by_id[cat_id]['name'], v))
 
 
-print("\n# how many virgin annotations do we have: %d" % sum(nb_sounds_virgin))
-print("# how many gtless annotations do we have (ie voted but not gt yet): %d" % sum(nb_sounds_gtless))
+# ===================
+print("\n# how many gtless annotations do we have (ie voted but not gt yet): %d" % sum(nb_sounds_gtless))
+print("# how many virgin annotations do we have: %d" % sum(nb_sounds_virgin))
 
+# lets focus on classes where we did not reach the target
 nb_sounds_gtless_left = [len(groups['gtless']) for catid, groups in data_state.iteritems() if catid not in cats_accomplished_success]
 nb_sounds_virgin_left = [len(groups['virgin']) for catid, groups in data_state.iteritems() if catid not in cats_accomplished_success]
 # two ways of seeing this:
-# - consider ALL categories that have not accomplished goal. thinking big, this is the way (we have one year of new data)
-# - consider the categories that have not accomplished goal, but might do it, based on our expectations
+# - consider only classes that have not accomplished goal, but might do it, based on our expectations (not sustainable)
+# - consider ALL classes that have not accomplished goal. thinking big, this is the way (we have one year of new data)
+# lets annotate them all, and it will me useful for the future: they are closer to the goal.
 
-print("\n# how many virgin annotations do we have (in the classes that have NOT reached the target): %d" % sum(nb_sounds_virgin_left))
-print("# how many gtless annotations do we have (ie voted but not gt yet)(in the classes that have NOT reached the target): %d" % sum(nb_sounds_gtless_left))
 
+print("\n# how many gtless annotations do we have (ie voted but not gt yet)"
+      "(in the classes that have NOT reached the target): %d" % sum(nb_sounds_gtless_left))
+print("# how many virgin annotations do we have "
+      "(in the classes that have NOT reached the target): %d" % sum(nb_sounds_virgin_left))
+
+
+# ===================let us compute a budget estimation
+# ===================let us compute a budget estimation
+# ===================let us compute a budget estimation
+# ===================let us compute a budget estimation
 
 count_votes_gtless = 0
 count_votes_virgin = 0
@@ -767,9 +805,11 @@ data_noQE = {}
 nb_sessions_needed = []
 names_all_cats_needed = []
 idx_tmp = 0
+
 for catid, groups in data_state.iteritems():
     if catid not in cats_accomplished_success:
-        # there are afew categories that have no QE, and it was set to 0. This classes are strange and probably not worth going into
+        # there are few classes with no QE, and it was set to 0.
+        # This classes are strange and probably not worth going into
         if data_votes[catid]['QE'] > 0:
 
             # we want a target per category: this is the number of samples that we need per class
@@ -779,13 +819,13 @@ for catid, groups in data_state.iteritems():
             names_all_cats_needed.append(data_needed[catid]['name'])
 
             # debug
-            # if data_needed[catid]['name'] == 'String section':
-            if data_needed[catid]['name'] == 'Bathtub (filling or washing)':
-                r = 4
-            # debug
-            if idx_tmp == 8:
-                r = 4
-                # print(data_onto_by_id[catid]['name'])
+            # # if data_needed[catid]['name'] == 'String section':
+            # if data_needed[catid]['name'] == 'Bathtub (filling or washing)':
+            #     r = 4
+            # # debug
+            # if idx_tmp == 8:
+            #     r = 4
+            #     # print(data_onto_by_id[catid]['name'])
 
             # how many gt sounds can we get with the current gtless?
             # nb_gtless * QE
@@ -794,22 +834,24 @@ for catid, groups in data_state.iteritems():
 
             if diff_gt > 0:
                 # we need to use them all. This means voting ALL of them, the good and the bad ones
-                # and, additionally, we need diff_gt taken from virgin samples
+                # (and, additionally, we need diff_gt taken from virgin samples)
                 # how many votes do we need for this? they require only partial agreement, since they have votes already
                 data_needed[catid]['votes_for_gtless'] = len(groups['gtless']) * FACTOR_AGREE_GTLESS * FACTOR_FLEX
                 data_needed[catid]['success'] = False
 
             else:
+                # diff_gt < 0
                 # we reach TARGET_SAMPLES only with gtless. WE dont even need all of them (only enough to reach TARGET)
                 # how many votes do we need for this? they require only partial agreement, since they have votes already
-                data_needed[catid]['votes_for_gtless'] = (len(groups['gtless']) + np.floor(diff_gt / data_votes[catid]['QE'])) * FACTOR_AGREE_GTLESS * FACTOR_FLEX
+                data_needed[catid]['votes_for_gtless'] = \
+                    (len(groups['gtless']) + np.floor(diff_gt / data_votes[catid]['QE'])) * FACTOR_AGREE_GTLESS * FACTOR_FLEX
                 data_needed[catid]['success'] = True
 
             # so far this is what I can do with the gtless. Now leverage virgin samples
 
             if diff_gt > 0:
                 # now diff_gt is the target that we need to fill the class
-                # the annotations that we need to get from te virgin subset
+                # the annotations that we need to get from the virgin subset
                 # diff_gt / QE * FACTOR_FLEX
                 data_needed[catid]['annot_needed_from_virgin'] = diff_gt/float(data_votes[catid]['QE']) * FACTOR_FLEX
 
@@ -829,6 +871,7 @@ for catid, groups in data_state.iteritems():
             else:
                 data_needed[catid]['votes_for_virgin'] = 0
 
+
             # nb of votes needed to reach TARGET_SAMPLES in the catid (or to run out of sounds)
             data_needed[catid]['votes_needed'] = data_needed[catid]['votes_for_gtless'] + data_needed[catid]['votes_for_virgin']
 
@@ -836,6 +879,7 @@ for catid, groups in data_state.iteritems():
             data_needed[catid]['sessions_needed'] = np.ceil(data_needed[catid]['votes_needed'] / float(NB_VOTES_PER_SESSION))
             # quantify this in number of sessions:
             # if we need 2.6 sessions, the subject will do 3, and we'll pay 3
+            # KEY not sure the following comment is correct
             # but if we have enough data for 1.3 sessions (while we need 3), we'll be considering more money than needed
             nb_sessions_needed.append(data_needed[catid]['sessions_needed'])
 
@@ -843,39 +887,46 @@ for catid, groups in data_state.iteritems():
             data_needed[catid]['votes_needed_quantified'] = data_needed[catid]['sessions_needed'] * NB_VOTES_PER_SESSION
 
             # global counters
-            count_votes_virgin += data_needed[catid]['votes_for_virgin'] if data_needed[catid]['votes_for_virgin'] else 0
+            count_votes_virgin += data_needed[catid]['votes_for_virgin']
             count_votes_gtless += data_needed[catid]['votes_for_gtless']
             count_votes_needed_quantified += data_needed[catid]['votes_needed_quantified']
+
         else:
             data_noQE[catid] = {}
 
-        idx_tmp += 1 # for debug
+        # idx_tmp += 1 # for debug
 
+# =======================
 # we could print first the annotations that lead to number of votes
-print("# Total amount of gtless votes needed (in the classes that have NOT reached the target): %d" % count_votes_gtless)
-print("# Total amount of virgin votes needed (in the classes that have NOT reached the target): %d" % count_votes_virgin)
+print("\n# Total amount of gtless votes needed (in classes that have NOT reached the target): %d" % count_votes_gtless)
+print("# Total amount of virgin votes needed (in classes that have NOT reached the target): %d" % count_votes_virgin)
 
 # 10 categories are 660 useful votes. This can be done in one day easily, with rests, carefully, FAQ n FS, 5 hours, 25E
 price_gtless = count_votes_gtless / NB_VOTES_PACK_PERSON * PRICE_PACK_PERSON
 price_virgin = count_votes_virgin / NB_VOTES_PACK_PERSON * PRICE_PACK_PERSON
 
-print("# Money to gather gtless votes (in the classes that have NOT reached the target): %d euros" % price_gtless)
+print("\n# Money to gather gtless votes (in the classes that have NOT reached the target): %d euros" % price_gtless)
 print("# Money to gather virgin votes (in the classes that have NOT reached the target): %d euros" % price_virgin)
 
 
-# ==================================NEW
-print("\n\n# Total amount of sessions needed to FSD1.0 (in the classes that have NOT reached the target): %d" % sum(nb_sessions_needed))
-print("# Total amount of votes needed to FSD1.0 after quantification (in the classes that have NOT reached the target): %d" % count_votes_needed_quantified)
+# ==================================
+print("\n\n# Total amount of sessions needed to FSD1.0 (in classes that have NOT reached the target):"
+      " %d" % sum(nb_sessions_needed))
+print("# Total amount of votes needed to FSD1.0 after quantification (in the classes that have NOT reached the target):"
+      " %d" % count_votes_needed_quantified)
 
 price_after_quantification = count_votes_needed_quantified / NB_VOTES_PACK_PERSON * PRICE_PACK_PERSON
-print("# Money to gather all the votes needed to FSD1.0 after quantification (in the classes that have NOT reached the target): %d euros" % price_after_quantification)
+print("# Money to gather all the votes needed to FSD1.0 after quantification "
+      "(in the classes that have NOT reached the target): %d euros" % price_after_quantification)
 
 
-catids_no_sucess = [catid for catid in data_needed if data_needed[catid]['success']==False]
-print("\n# After this, we still have categories that have not reached TARGET_SAMPLES, but all their content is annotated, hence easily expandable: %d" % len(catids_no_sucess))
-print("\n# And categories that never had QE hence out of simulation: %d" % len(data_noQE))
+catids_no_sucess = [catid for catid in data_needed if data_needed[catid]['success'] is False]
+print("\n# After this, we still have classes that have not reached TARGET_SAMPLES, "
+      "but all their content is annotated, hence easily expandable: %d" % len(catids_no_sucess))
+print("# And categories that never had QE hence out of simulation: %d" % len(data_noQE))
 
 
+# ==================================
 # plot nb of sessions needed
 idx_nb_sessions = np.argsort(-np.array(nb_sessions_needed))
 nb_sessions_needed_sorted = list(nb_sessions_needed[val] for val in idx_nb_sessions)
@@ -896,17 +947,21 @@ names_all_cats_needed_sorted = list(names_all_cats_needed[val] for val in idx_nb
 # como es posible que en algunas categorias hagan falta 30 sessiones?
 # -horrible QE
 # -few gt currently
-# -a lot of data available, (hence it is possible to achieve TARGET_SAMP
+# -a lot of data available, (hence it is theoretically possible to achieve TARGET_SAMPLES)
 # -ojo, igual matas dos pajaros. Mejoras los tag matching, re run del mapping, y ahorras pasta y tiempo
 # a nadie le interesa tener un tio anotando cosas que sabes que estan mal. es tiempo y dinero.
 
-print("\n\n# Total amount of sessions needed to FSD1.0 (in the classes that have NOT reached the target): %d" % sum(nb_sessions_needed))
-print("# Based on that: Total amount of PACKS (ie groups of 10 sessions each): %d" % np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK))
-print("# Assuming %d packs per week by a subject, total amount of weeks: %d" % (NB_PACKS_PER_WEEK,
-                                                                                np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK))
-print("# Assuming %d subjects simultaneously, total amount of weeks in parallel: %d" % (NB_SUBJECTS_AVAILABLE,
-                                                                                       (np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK)/NB_SUBJECTS_AVAILABLE))
+print("\n\n# Total amount of SESSIONS needed to FSD1.0"
+      " (in the classes that have NOT reached the target): %d" % sum(nb_sessions_needed))
+print("# Based on that: Total amount of PACKS (ie groups of 10 sessions each):"
+      " %d" % np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK))
+print("# Assuming %f packs per week by a subject, total amount of weeks:"
+      " %d" % (NB_PACKS_PER_WEEK, np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK))
+print("# Assuming %f subjects simultaneously, total amount of weeks in parallel:"
+      " %d" % (NB_SUBJECTS_AVAILABLE, (np.ceil(sum(nb_sessions_needed)/NB_SESSIONS_PER_PACK)/NB_PACKS_PER_WEEK)/NB_SUBJECTS_AVAILABLE))
 
+
+# ==============
 full_paths = []
 # print all cats sorted by nb of sessions
 for i, j in zip(names_all_cats_needed_sorted, nb_sessions_needed_sorted):
@@ -920,7 +975,9 @@ for i, j in zip(names_all_cats_needed_sorted, nb_sessions_needed_sorted):
     full_paths.append(full_path)
 
 # full_paths are the string paths for every class, in a list sorted by the number of sessions required.
-# we wanna sort them by alphabetical order and apply that sorting to the number of sessions needed, to create groups
+
+# ===============
+# now we wanna sort them by alphabetical order and apply that sorting to the number of sessions needed, to create groups
 idx_alfa = sorted(range(len(full_paths)), key=lambda k: full_paths[k])
 
 # sort by alfabetical order
@@ -945,8 +1002,10 @@ a = 9
 # do we prefer cat or meow? dog or bark?
 
 # Discussion:
-# the stats on landing page (98/396) use population, ie if bark reaches 100, we set as valid category, dog, domestic animal, and animal, correct?
-# the horizontal bar per class in the platform presents the same: Bird has 397, out of which 217 are populated from children and 180 belong only to Bird
+# the stats on landing page (98/396) use population, ie if bark reaches 100, we set as valid category, dog, domestic animal,
+# and animal
+# the horizontal bar per class in the platform presents the same: Bird has 397, out of which 217 are populated from children
+# and 180 belong only to Bird
 # in this script we do not populate. we treat classes as independent, hence here Bird has 180 valid GT.
 
 # the most interesting case to annotate is the leafs, If we have data in leafs, the parents come naturally
@@ -982,22 +1041,27 @@ a = 9
 # mode = ALL_CATS. means meeting the target in 396 classes, independently, ie unpopulated. The most demanding case.
 # Difference with LEAF mode:
 # -coincides with the LEAF mode in 296 classes (75%)
-# -with only the 296 leafs meeting the target (either TARGET_SAMPLES or less of there is not enough), we'd be able to populate some of inmediate parents, but not all
-# -so the difference in number of classes meeting TARGET_SAMPLES is not that high, but it includes some inmediate paretns (that are interesting)
-# Using mode = ALL_CATS means we are demanding TARGET_SAMPLES in 25% more of the classes. But in some cases we actually need it cause children have little data
+# -with only the 296 leafs meeting the target (either TARGET_SAMPLES or less of there is not enough),
+# we'd be able to populate some of inmediate parents, but not all
+
+# -so the difference in number of classes meeting TARGET_SAMPLES is not that high,
+# but it includes some inmediate paretns (that are interesting)
+# Using mode = ALL_CATS means we are demanding TARGET_SAMPLES in 25% more of the classes.
+# But in some cases we actually need it cause children have little data
 # Example: throat clearing has 30 gt. We need to annotate Cough almost entirely. with LEAF mode, we dont consider it.
 # So in reality, we need a bit more than LEAF mode, but a bit less than ALL_CATS
 # Lets use ALL_CATS for cost estimation, to be safe. Then we prioritize leafs and inmediate parents for annotation.
-# nice thing: by using ALL_CATS, we make sure all cats have TARGET_SAMPLES, hence in the upper hierarchy levels, we can end up with several hundreds of samples.
+# nice thing: by using ALL_CATS, we make sure all cats have TARGET_SAMPLES,
+# hence in the upper hierarchy levels, we can end up with several hundreds of samples.
 
 
 # TARGET_SAMPLES = 130 to start with.
-# Comparable with Audioset.
+# Comparable with AudioSet.
 # It means a bigger effort if we rely on good will, but if we paid for it, maybe it can be possible
 # gives room for playing a bit when doing the splits.
 # Else, we have to resign to split packs, hence dataset small and easy: useless.
-# ideally, 150 would be better, but this may be too much for a target. Let's use 130, and if needed for some categories, we can annotate more in-house.
-# if we have more subjects, we can increase to 150.
+# ideally, 150 would be better, but this may be too much for a target.
+# Let's use 130, and if needed for some categories, we can annotate more in-house. if we have more subjects, we can increase to 150.
 
 # Duration: 0.3 : 30. Too short are kind of useless.
 # Too long are a mess and impact on dataset imbalance.
@@ -1006,10 +1070,10 @@ a = 9
 # NB_VOTES_PACK_PERSON = 660.0
 # we can do packs of roughly 10 categories. it will depend on the siblings and coherence in the groups that can be made.
 # 1 session of 1 class are 66 useful votes. 10 sessions are 660 votes.
-# This can be done in 5 h easily, with rests, carefully, FAQ n FS, 30E. means one session + rest in 30 minutes
+# This can be done in 5 h easily, with rests, carefully, FAQ n FS, 25-30E. means one session + rest in 30 minutes
 # of course this depends on the difficulty. Easier classes are faster and viceversa
 
-# PRICE_PACK_PERSON = 30
+# PRICE_PACK_PERSON = 25-30
 # 5 hours of work at 6 euros/hour. This may be ok for UPF-people. But in Freesound we should give more?
 #
 
