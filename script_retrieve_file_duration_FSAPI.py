@@ -180,7 +180,7 @@ for s in list_sound_objects:
 json.dump(data_mapping_updated, open(FOLDER_DATA + '/json/FS_sounds_ASO_postIQA_Aug_08.json', 'w'))
 
 
-a=9
+
 
 # Number of sounds not found in data_mapping; they must be new from last year (BEFORE SET): 85953
 # Number of sounds not found in data_mapping; they must be new from last year (AFTER SET): 29030
@@ -194,11 +194,11 @@ a=9
 # en total: 297,291
 # en web: 297291
 
-# todo ok, menos dos sonidos de los que no sé la duracion
-# como son solo dos, y no sé nada de ellos, la defino a 31s y quedan fuera. Los podria meter dentro, pero definiria una fake duration algo rara
+# dos sonidos de los que no se la duracion: Fred la tenía
+data_mapping_updated[str(434155)] = {}
+data_mapping_updated[str(434155)]['duration'] = 17.18
 
-# data_mapping_updated[str(434155)] = {}
-# data_mapping_updated[str(434155)]['duration'] = 31.0
-#
-# data_mapping_updated[str(434156)] = {}
-# data_mapping_updated[str(434156)]['duration'] = 31.0
+data_mapping_updated[str(434156)] = {}
+data_mapping_updated[str(434156)]['duration'] = 18.57
+
+a=9
