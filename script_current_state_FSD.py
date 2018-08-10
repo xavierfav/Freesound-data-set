@@ -102,9 +102,9 @@ pprint.pprint(FACTOR_FLEX, width=1, indent=4)
 # for every id that is in data_votes_raw and is not in data_mapping (ie los 30k nuevos que se cargaron con el new mapping),
 # retrieve duration with FS API
 # los otros 40k old no aparecen porque no tienen candidates annotations. luego estan en platform, pero no en dump.
-# done in script aside. the info for the 297291 files is in FS_sounds_ASO_postIQA_Aug_08.json
+# done in script aside. the info for the 297291 files is in FS_sounds_ASO_postIQA_2018_Aug_08.json
 try:
-    with open(FOLDER_DATA + 'json/FS_sounds_ASO_postIQA_Aug_08.json') as data_file:
+    with open(FOLDER_DATA + 'json/FS_sounds_ASO_postIQA_2018_Aug_08.json') as data_file:
         data_mapping = json.load(data_file)
 except:
     raise Exception(
