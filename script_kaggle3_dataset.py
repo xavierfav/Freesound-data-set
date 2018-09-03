@@ -80,7 +80,7 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_02.json') as data_file:
 #    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_09.json') as data_file:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_12.json') as data_file:
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_13.json') as data_file: # Mar13 was the original I think
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Mar_13.json') as data_file: # Mar13 was the original, checked
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
 
         data_votes_raw = json.load(data_file)
@@ -2258,11 +2258,6 @@ for cat_id in result_final_HQ:
             list_cat_ids_split_manually.append(cat_id)
             data_eval_pack_split[cat_id] = []
 
-print('\n======Categories that need manual split===========')
-for cat_id in list_cat_ids_split_manually:
-    print('- %s' % data_onto_by_id[cat_id]['name'])
-
-
     # ===================================== compute data_dev_pack_split as complementary to data_eval_pack_sfor cat_id in result_final_HQ:
     # if we have carried out the split
     if data_eval_pack_split[cat_id]:
@@ -2271,6 +2266,12 @@ for cat_id in list_cat_ids_split_manually:
         # sanity check
         if len(set(data_dev_pack_split[cat_id])) + len(set(data_eval_pack_split[cat_id])) != len(set(result_final_HQ[cat_id])):
             sys.exit('DAMN! data_dev_pack_split - data_eval_pack_split')
+
+
+print('\n======Categories that need manual split===========')
+for cat_id in list_cat_ids_split_manually:
+    print('- %s' % data_onto_by_id[cat_id]['name'])
+
 
 
 # =====================================perform split based on duration for classes in list_cat_ids_split_manually
@@ -2345,12 +2346,23 @@ data_dev_LQpior = {node_id: value['LQprior'] for node_id, value in dataset_final
 # ---------------------------------------------------------------- #
 
 # ------------------------ SELECT LQ SET ------------------------- #
-MAX_NUM_SOUND_DEV = 300
+"""delme:used for FSDKaggle2018extension. nothing else before here"""
+# data_dev_LQ_extended = {}
+# count_delme = 0
+# # MAX_NUM_SOUND_DEV = 300
+# MAX_NUM_SOUND_DEV = 1000
+"""delme:used for FSDKaggle2018extension"""
 
 # ADD FIRST LQprior
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQpior[node_id]))
     data_dev[node_id] += data_dev_LQpior[node_id][:num_to_add]
+    """delme:used for FSDKaggle2018extension"""
+    # # init
+    # data_dev_LQ_extended[node_id] = []
+    # data_dev_LQ_extended[node_id] += data_dev_LQpior[node_id][:num_to_add]
+    """delme:used for FSDKaggle2018extension"""
+
 
 # FILTER OUT LQprior from LQ
 data_dev_LQ_wo_prior = {}
@@ -2375,6 +2387,18 @@ for node_id in data_dev_LQ_wo_prior.keys():
 for node_id in data_dev.keys():
     num_to_add = min(MAX_NUM_SOUND_DEV - len(data_dev[node_id]), len(data_dev_LQ_wo_prior[node_id]))
     data_dev[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
+    """delme:used for FSDKaggle2018extension"""
+    # data_dev_LQ_extended[node_id] += data_dev_LQ_wo_prior[node_id][:num_to_add]
+    # count_delme += len(data_dev_LQ_extended[node_id])
+    """delme:used for FSDKaggle2018extension"""
+
+"""delme:used for FSDKaggle2018extension"""
+# print count_delme
+# json.dump(data_dev_LQ_extended, open(FOLDER_DATA + '/new/data_dev_LQ_extended_' + str(MAX_NUM_SOUND_DEV) + '.json', 'w'))
+"""delme:used for FSDKaggle2018extension. nothing else from here on"""
+
+# =================================
+# =================================
 
 # now we have the final version of data_dev, including HQ and LQ: yaaaaay
 # construct dataset_dev containing data_dev
@@ -2393,9 +2417,6 @@ for cat_id in data_dev:
 
 
 # ---------------------------------------------------------------- #
-# TODO this was meant to be for review (and it works in the sense that no additional sounds or categories are removed
-# TODO but sounds_left is a list of 9855 sounds. WHY? it should be 11073 sounds!!!
-# why the difference???
 
 # -------------------- REMOVE SOME CATEGORIES -------------------- #
 print '\n FILTER CATEGORIES \n'
