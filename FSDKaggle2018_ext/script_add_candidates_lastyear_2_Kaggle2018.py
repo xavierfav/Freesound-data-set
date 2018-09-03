@@ -5,8 +5,9 @@ import json
 
 MINLEN = 0.3  # duration
 MAXLEN = 30.0
+APPLY_LICENSE_FILTER = False
 
-FOLDER_DATA = 'kaggle3/'
+FOLDER_DATA = '../kaggle3/'
 
 """load initial data with votes, clip duration and ontology--------------------------------- """
 
@@ -79,23 +80,37 @@ except:
     raise Exception('ADD JSON FILE with the 41 classes of FSDKaggle2018: ' + FOLDER_DATA + 'json/')
 
 
-
 """
 *****************************************************************************BEGIN SCRIPT
 """
 
 """
-# the goal is to add more candidates to some categories that do not have a lot.
-some have enough to reach 1k, but in others we have less than one hundred candidates in the dataset.
-To mitigate this, we search for new candidates and then we add them only in the less abundant classes.
-Procedure:
-# gather sounds in the 41 classes of Kaggle2018 that are not in data_mapping (ie they are new, unvoted, ie candidates)
-# then, apply filters (need duration and license) to meet restrictions in FSDKaggle2018
-# for simplicity, we do not populate, eg in Violin, we only consider candidates to Violin (and we do not care about pizzicato etc)
-# then post-processing: in-domain multilabel, re
-# these are the potential true candidates that could be added to FSDKaggle2018.
-# save a json with them all (only 2.6k)
-TODO: then we will decide which classes are more in need of them (not all of them will be needing them)
+# the ultimate goal is:
+ -to add more candidates to some categories that do not have a lot.
+ -some have enough to reach 1k, but in others we have less than one hundred candidates in the dataset.
+ -To mitigate this, we search for new candidates and then we add them only in the less abundant classes.
+
+ but IN THIS SCRIPT WE DO THE PRE-PROCESSING of the above:
+ -we load the dump of new sounds from March2017 to July2018 in Freesound
+ -they had not been in the platform at the time of the dump, so they are new
+ -since they were not loaded in the platform, they were unvoted, ie virgin, at the time: all can be candidates
+ -we select ALL of those candidates that comply with the restrictions of FSDKaggle2018 with the procedure:
+
+    # gather sounds in the 41 classes of Kaggle2018 that are not in data_mapping (ie they are new, unvoted, ie candidates)
+    # then, apply filters (duration and license) to meet restrictions in FSDKaggle2018
+    # for simplicity, we do not populate, eg in Violin, we only consider candidates to Violin (and we do not care about pizzicato etc)
+    # then post-processing: in-domain multilabel, re
+    # these are the potential candidates that could be added to FSDKaggle2018.
+    # save a json with them all (only 2.6k)
+    # save 2 lists (json) and send to FF in order to download the files from Freesound
+
+Then, in the next script we will do the dataset creation:
+-load all the candidates (old, new) from where dev_LQ will be formed. And load dev_HQ and the eval (manually-verified portion, ie fixed fro FSDKaggle2018
+-add dev_LQ_extended_1000 (ie old candidates to dev_HQ)
+-in classes that do not reach 1000 samples, grab as needed from dev_LQ_new until reaching 1k (in most cases we will have to add them all, if we need to select, do random)
+
+# create another dev_LQ_new_finally_included.json with *only* those that are added to complement dev_LQ_extended_1000
+
 """
 
 # check data
@@ -134,32 +149,34 @@ for catid, sound_ids in data_dev_LQ_new_41.iteritems():
 # FILTER 2.1: NC license. Within the categories, discard sounds with NC licenses and sampling+
 # create copy for result of filter
 data_dev_LQ_new_41_dl = copy.deepcopy(data_dev_LQ_new_41_d)
-for catid, groups in data_dev_LQ_new_41_dl.iteritems():
-    data_dev_LQ_new_41_dl[catid] = []
+if APPLY_LICENSE_FILTER:
+    for catid, groups in data_dev_LQ_new_41_dl.iteritems():
+        data_dev_LQ_new_41_dl[catid] = []
 
-for catid, sound_ids in data_dev_LQ_new_41_d.iteritems():
-    for fsid in sound_ids:
-        if data_mapping_only30k_1718[str(fsid)]['license'].split('/')[-3] != 'by-nc' and \
-                        data_mapping_only30k_1718[str(fsid)]['license'].split('/')[-3] != 'sampling+':
-            data_dev_LQ_new_41_dl[catid].append(fsid)
+    for catid, sound_ids in data_dev_LQ_new_41_d.iteritems():
+        for fsid in sound_ids:
+            if data_mapping_only30k_1718[str(fsid)]['license'].split('/')[-3] != 'by-nc' and \
+                            data_mapping_only30k_1718[str(fsid)]['license'].split('/')[-3] != 'sampling+':
+                data_dev_LQ_new_41_dl[catid].append(fsid)
 
 
 """
 POST PROCESSING STAGE
 only inline multilabel analysis
 """
+
 # report first
 all_annotations = []
 for catid, sound_ids in data_dev_LQ_new_41_dl.iteritems():
     all_annotations += sound_ids
 
 print('\nNumber of candidate annotations: %d' % len(all_annotations))
-# some are multilabel inline, get rid of them
+# some are multilabel in-domain, get rid of them
 
 # naturally, there can be multiple annotations for every sound
 all_sound_ids = list(set(all_annotations))
 print('Number of sounds: %d' % len(all_sound_ids))
-# therefore, some of them are repeated, and will have to be removed (not only the repetetition but all the instances)
+# therefore, some of them are repeated, and will have to be removed (not only the repetition but all the instances)
 
 # difference is 270 items, this can mean:
 # 270 sounds with 2 annotations
@@ -197,36 +214,45 @@ print('\n Finally, in the selected sample: number of candidate annotations: %d' 
 all_sound_ids_single = list(set(all_annotations_single))
 print('Number of sounds: %d' % len(all_sound_ids_single))
 
+
+# --------------------------------------------------------------- #
+# --------------------------------------------------------------- #
 # --------------------------------------------------------------- #
 
 
-# here we have, for every category, the new sounds from March17/July18 that comply with restrictions of FSDKaggle2018
+# here we have, for every class, the new sounds from March2017/July2018 that comply with restrictions of FSDKaggle2018
 for idx, (cat_id, sound_ids) in enumerate(data_dev_LQ_new_41_dl_single.iteritems(), 1):
     print("%d - %-25s: sounds: %-3d" % (idx, data_onto_by_id[cat_id]['name'], len(sound_ids)))
 
 # since they are 2.6k only, we store a json with all of them to fetch them from FS, and we decide what to do
 # json.dump(data_dev_LQ_new_41_dl_single, open(FOLDER_DATA + '/new/data_dev_LQ_new.json', 'w'))
+# json.dump(data_dev_LQ_new_41_dl_single, open(FOLDER_DATA + 'json/new/data_dev_LQ_new_allLicenses.json', 'w'))
 
 
-# Now, the goal is to add it to:
-# -see which categories of FSDKaggle2018 need it (those that by themselves do not reach 1k (worst case)
-# -select new candidates randomly until reaching 1k
-# (i think they will have to be all of the new candidates for simplicity, and considering they are not that many)
+# Then, in the next script we will do the dataset creation:
+# -load all the candidates (old, new) from where dev_LQ will be formed. And load dev_HQ and the eval (manually-verified portion, ie fixed fro FSDKaggle2018
+# -add dev_LQ_extended_1000 (ie old candidates to dev_HQ)
+# -in classes that do not reach 1000 samples, grab as needed from dev_LQ_new until reaching 1k (in most cases we will have to add them all, if we need to select, do random)
 
-# TODO we may create another json with *only* those to be added
+# create another dev_LQ_new_finally_included.json with *only* those that are added to complement dev_LQ_extended_1000
 
-# To send FF:
-# then, json for the old candidates,
-# and json for the new ones: data_dev_LQ_new
+
+# --------------------------------------------------------------- #
+# --------------------------------------------------------------- #
+# --------------------------------------------------------------- #
+
+# To send FF for downloading sounds:
+# all_fs_ids_old.json for the old candidates,
+# and all_fs_ids_new.json for the new ones: data_dev_LQ_new
 
 # compute them lists
-with open(FOLDER_DATA + 'new/data_dev_LQ_extended_1000.json') as data_file:
-    data_old = json.load(data_file)
-
-all_fs_ids_old = []
-for catid, sound_ids in data_old.iteritems():
-    all_fs_ids_old += sound_ids
-print(len(all_fs_ids_old))
+# with open(FOLDER_DATA + 'new/data_dev_LQ_extended_1000.json') as data_file:
+#     data_old = json.load(data_file)
+#
+# all_fs_ids_old = []
+# for catid, sound_ids in data_old.iteritems():
+#     all_fs_ids_old += sound_ids
+# print(len(all_fs_ids_old))
 
 all_fs_ids_new = []
 for catid, sound_ids in data_dev_LQ_new_41_dl_single.iteritems():
@@ -236,6 +262,8 @@ print(len(all_fs_ids_new))
 # store this and send to FF
 # json.dump(all_fs_ids_old, open(FOLDER_DATA + '/new/all_fs_ids_old.json', 'w'))
 # json.dump(all_fs_ids_new, open(FOLDER_DATA + '/new/all_fs_ids_new.json', 'w'))
+
+# json.dump(all_fs_ids_new, open(FOLDER_DATA + 'json/new/all_fs_ids_new_updatedversion.json', 'w'))
 
 a=9
 

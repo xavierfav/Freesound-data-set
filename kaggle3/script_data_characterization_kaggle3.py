@@ -329,7 +329,7 @@ legenda = ('manually-verified', 'non-verified')
 #                      260)
 
 
-# plot para paper=======================================================
+# plot para paper Task2 dcase18=======================================================
 y_label = 'audio samples'
 
 
