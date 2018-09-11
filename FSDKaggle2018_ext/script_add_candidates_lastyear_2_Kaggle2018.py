@@ -72,7 +72,7 @@ except:
 # except:
 #     raise Exception('ADD JSON FILE with the hierarchy paths for every class to the folder: ' + FOLDER_DATA + 'json/')
 
-# get 41 classes from Kaggle2018
+# only to get 41 classes from Kaggle2018
 try:
     with open(FOLDER_DATA + 'json/data_eval.json') as data_file:
         data_eval41classes = json.load(data_file)
