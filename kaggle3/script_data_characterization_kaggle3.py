@@ -559,7 +559,7 @@ plot_barplot_simple(mAPs,
 # 'Ducky' 0.940467
 
 # Number of PRIVATE files evaluated: 1299
-# MAP_3 for PRIVATE files evaluated: 0.940467
+# MAP_3 for PRIVATE files evaluated: 0.940467, this is the submission that counts for private LB in kaggle
 #
 # Number of PUBLIC files evaluated: 301
 # MAP_3 for PUBLIC files evaluated: 0.973422
