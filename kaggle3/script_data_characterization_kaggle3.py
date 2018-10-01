@@ -165,14 +165,19 @@ def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, MA
     # horizontal line indicating the threshold
     if threshold:
         plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
-    plt.xticks(fontsize=8, rotation=90)
-    plt.xticks(ind + width/2, x_labels)
+
+    # magic to plot the labels correctly pointing in parallel to a bar point
+    xticks_pos = [0.5 * patch.get_width() + patch.get_xy()[0] for patch in p1]
+    plt.xticks(xticks_pos, x_labels, ha='right', rotation=45, fontsize=10)
+
+    # plt.xticks(fontsize=8, rotation=90)
+    # plt.xticks(ind + width/2, x_labels)
     # plt.xticks(ind, x_labels)
-    plt.yticks(fontsize=10)
-    plt.ylabel(y_label, fontsize=11)
+    plt.yticks(fontsize=12)
+    plt.ylabel(y_label, fontsize=13)
     # plt.title(fig_title)
     # plt.yticks(np.arange(0, 81, 10))
-    plt.legend((p1[0], p2[0]), legenda, fontsize=9)
+    plt.legend((p1[0], p2[0]), legenda, fontsize=11)
     plt.axis(axes)
     ax.yaxis.grid(True)
     # plt.grid(True)
@@ -428,15 +433,15 @@ if FLAG_PLOT:
 
 
 """# plot para paper Task2 dcase18======================================================="""
-"""ojo, nb_HQ_per_cat_dev_idx_alpha basado en data_dev_HQ, que igual esta mal
+"""ojo, nb_HQ_per_cat_dev_idx_alpha estaba basado en una var antigua data_dev_HQ, que tenia un PEQUEno error
 
-rehacer usando:
+por eso, hice la carga de los datos usando
 2018_Mar_14_FSDKaggle2018_delivered/dataset_dev.csv
-pandas
-
+y pandas
+ahora el plot es correcto, las duraciones tb, y todo es perfecto
 """
 
-y_label = 'audio samples'
+y_label = 'audio clips'
 
 # alphabeticaly
 idx_alpha =sorted(range(len(names_all_cats_dev)), key=lambda k: names_all_cats_dev[k])
@@ -444,14 +449,14 @@ names_all_cats_dev_idx_alpha = list(names_all_cats_dev[val] for val in idx_alpha
 nb_HQ_per_cat_dev_idx_alpha = list(nb_HQ_per_cat_dev[val] for val in idx_alpha)
 nb_LQ_per_cat_dev_idx_alpha = list(nb_LQ_per_cat_dev[val] for val in idx_alpha)
 
-if FLAG_PLOT:
-    plot_barplot(nb_HQ_per_cat_dev_idx_alpha,
-                 nb_LQ_per_cat_dev_idx_alpha,
-                 names_all_cats_dev_idx_alpha,
-                 y_label,
-                 fig_title,
-                 legenda,
-                 305)
+# if FLAG_PLOT:
+plot_barplot(nb_HQ_per_cat_dev_idx_alpha,
+             nb_LQ_per_cat_dev_idx_alpha,
+             names_all_cats_dev_idx_alpha,
+             y_label,
+             fig_title,
+             legenda,
+             305)
 """# end of plot para paper Task2 dcase18======================================================="""
 
 
@@ -507,7 +512,7 @@ for cat_id, sounds in data_dev.iteritems():
     durations_perclass_dev[data_onto_by_id[cat_id]['name']] = []
     durations_perclass_dev[data_onto_by_id[cat_id]['name']].extend([data_duration[str(fs_id)]['duration'] for fs_id in sounds])
     print()
-    print(data_onto_by_id[cat_id]['name'])
+    print(data_onto_by_id[cat_id]['name'], len(sounds))
     # print(durations_perclass_dev[data_onto_by_id[cat_id]['name']])
     # print(sum(durations_perclass_dev[data_onto_by_id[cat_id]['name']]))
     n_min = sum(durations_perclass_dev[data_onto_by_id[cat_id]['name']])/60.0
