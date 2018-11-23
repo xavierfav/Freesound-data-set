@@ -199,6 +199,173 @@ def plot_barplot(data_bottom, data_up, x_labels, y_label, fig_title, legenda, MA
     fig.savefig('plot.png')
 
 
+def plot_barplot_poster_dcase(data_bottom, data_up, x_labels, y_label, fig_title, legenda, MAX_VERT_AX, threshold=None):
+    ind = np.arange(len(data_bottom))  # the x locations for the groups
+    width = 0.6  # the width of the bars: can also be len(x) sequence
+    axes = [-0.4, len(data_bottom), 0, MAX_VERT_AX]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    # p1 = plt.bar(ind, data_bottom, width=width, color='blue')
+    # p2 = plt.bar(ind, data_up, width=width, bottom=data_bottom, color='cyan')
+    p1 = plt.bar(ind, data_bottom, width=width, color='#f8ebc6')
+    p2 = plt.bar(ind, data_up, width=width, bottom=data_bottom, color='#a4c2f4')
+
+    # horizontal line indicating the threshold
+    if threshold:
+        plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
+
+    # magic to plot the labels correctly pointing in parallel to a bar point
+    xticks_pos = [0.5 * patch.get_width() + patch.get_xy()[0] for patch in p1]
+    plt.xticks(xticks_pos, x_labels, ha='right', rotation=45, fontsize=13)
+
+    # plt.xticks(fontsize=8, rotation=90)
+    # plt.xticks(ind + width/2, x_labels)
+    # plt.xticks(ind, x_labels)
+    plt.yticks(fontsize=15)
+    plt.ylabel(y_label, fontsize=16)
+    plt.title('train set', fontsize=17)
+    # plt.yticks(np.arange(0, 81, 10))
+    plt.legend((p1[0], p2[0]), legenda, fontsize=13)
+    plt.axis(axes)
+    ax.yaxis.grid(True)
+    # plt.grid(True)
+
+    # size_w = 3.487
+    # size_w = 10
+    # size_h = size_w / 1.618
+    # size_h = 6
+    # golden_mean = (np.sqrt(5) - 1.0) / 2.0  # Aesthetic ratio
+    # size_h = size_w * golden_mean  # height in inches
+
+    size_w = 12
+    # size_h = size_w / 1.618
+    size_h = 7
+
+    fig.set_size_inches(size_w, size_h)
+
+    plt.show()
+    fig.savefig('plot_mVnV_slides.png')
+    # fig.savefig('plot.pdf', transparent=True)
+
+
+def plot_boxplot_poster_dcase(data, x_labels, fig_title, y_label):
+
+    axes = [0.3, 41.7, 0, 30.4]
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    bp = plt.boxplot(data, patch_artist=True)
+
+    ## change color and linewidth of the whiskers
+    for whisker in bp['whiskers']:
+        whisker.set(color='#7570b3', linewidth=1)
+
+    for flier in bp['fliers']:
+        flier.set(marker='.', color='#e7298a', alpha=0.5)
+
+    ## change color and linewidth of the medians
+    for median in bp['medians']:
+        median.set(color='#ef0707', linewidth=3)
+
+    # magic to plot the labels correctly pointing in parallel to a bar point
+    xticks_pos = [0.25 + patch._path.vertices[0,0] for patch in bp['boxes']]
+    plt.xticks(xticks_pos, x_labels, ha='right', rotation=45, fontsize=13)
+
+    # axes = [0.5, len(data) + 0.5, 0, 30.5]
+    plt.yticks(fontsize=15)
+    plt.ylabel('seconds', fontsize=16)
+    plt.title(fig_title, fontsize=17)
+    plt.axis(axes)
+    ax.yaxis.grid(True)
+
+    size_w = 12
+    size_h = 7
+
+    fig.set_size_inches(size_w, size_h)
+
+    plt.show()
+    fig.savefig('barplot.png', transparent=True)
+    # fig.savefig('barplot.pdf', transparent=True)
+
+
+def plot_barplot_results_poster_dcase(data, x_labels, y_label, fig_title, MAX_VERT_AX, threshold=None):
+    index = np.arange(len(data))  # the x locations for the LEFT bars
+    width = 0.71  # the width of the bars: can also be len(x) sequence
+    # axes = [-0.5, len(data), 0, MAX_VERT_AX]
+    axes = [-0.2, len(data), 0.90, MAX_VERT_AX]
+    opacity = 0.8
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(111)
+
+    # fig, ax = plt.subplots()
+    # fig = plt.figure()
+    # p1 = plt.bar(ind, data, width=width, color='#f8ebc6')
+    # p1 = ax.bar(ind, data, width=width, color='#ffd28c')
+
+    sub1 = ax1.bar(index, data,
+                   color='#f8ebc6')
+
+    # horizontal line indicating the threshold
+    if threshold:
+        plt.plot([0, 48], [threshold, threshold], "k--", linewidth=3)
+
+    # magic to plot the labels correctly pointing in parallel to a bar point
+    # xticks_pos = [0.5 * patch.get_width() + patch.get_xy()[0] for patch in p1]
+    # plt.xticks(xticks_pos, x_labels, ha='right', rotation=45, fontsize=13)
+
+    plt.axis(axes)
+    plt.yticks(fontsize=15)
+    plt.ylabel(y_label, fontsize=16)
+    # plt.title('train set', fontsize=17)
+    # plt.yticks(np.arange(0, 81, 10))
+    ax1.yaxis.grid(True)
+    # ax1.xaxis.xticks.set_visible(False)
+    plt.tick_params(
+        axis='x',  # changes apply to the x-axis
+        which='both',  # both major and minor ticks are affected
+        bottom=False,  # ticks along the bottom edge are off
+        top=False,  # ticks along the top edge are off
+        labelbottom=False)  # labels along the bottom edge are off
+
+    # display text within each bar
+    # upshift = 1.007
+    for rect, label in zip(sub1, x_labels):
+        # height = rect.get_height()
+        ax1.text(rect.get_x() + rect.get_width() / 2., 0.902,
+                 '%s' % label, ha='center', va='bottom', fontsize=16, rotation=90)
+
+    size_w = 12
+    # size_h = size_w / 1.618
+    size_h = 7
+
+    fig.set_size_inches(size_w, size_h)
+    plt.show()
+    # fig.savefig('plot.png')
+    fig.savefig('plot_results.pdf', transparent=True)
+
+
+
+
+# # ax2.set_xlabel('System')
+# ax1.set_title('evaluation set', fontsize=14)
+# ax1.set_ylabel('Classification Accuracy [%]', fontsize=14)
+# ax1.set_xlabel('number of filter shapes in first layer', fontsize=14)
+# ax1.set_ylim(sub2_ymin, sub2_ymax)
+# ax1.set_xticks(index)
+# ax1.set_xticklabels(xlabels, fontsize=14)
+#
+# # display accuracy value on top of the bar and CI
+# # autolabel(sub1, ax1, upshift=1.007)
+# upshift = 1.007
+# for rect in sub1:
+#     height = rect.get_height()
+#     ax1.text(rect.get_x() + rect.get_width() / 2., upshift * height,
+#              '%4.1f' % height,
+#              ha='center', va='bottom', fontsize=14)
+
+
 def plot_barplot_grouped(data_left, data_right, x_labels, y_label, fig_title, legenda, MAX_VERT_AX, threshold=None):
     ind = np.arange(len(data_left))  # the x locations for the LEFT bars
     width = 0.35  # the width of the bars: can also be len(x) sequence
@@ -458,6 +625,84 @@ plot_barplot(nb_HQ_per_cat_dev_idx_alpha,
              legenda,
              305)
 """# end of plot para paper Task2 dcase18======================================================="""
+
+
+
+
+
+
+"""# plots para POSTER Task2 dcase18======================================================="""
+"""
+it is the same as the paper plot but: it is all aesthethics
+-background must br tranbsparent
+all the labels must be bigger
+match the colors of the data split
+"""
+y_label = 'audio clips'
+
+# number of clips and manually verified or not.***********************************************************************
+# alphabeticaly
+idx_alpha =sorted(range(len(names_all_cats_dev)), key=lambda k: names_all_cats_dev[k])
+names_all_cats_dev_idx_alpha = list(names_all_cats_dev[val] for val in idx_alpha)
+nb_HQ_per_cat_dev_idx_alpha = list(nb_HQ_per_cat_dev[val] for val in idx_alpha)
+nb_LQ_per_cat_dev_idx_alpha = list(nb_LQ_per_cat_dev[val] for val in idx_alpha)
+
+
+# plot_barplot_poster_dcase(nb_HQ_per_cat_dev_idx_alpha,
+#              nb_LQ_per_cat_dev_idx_alpha,
+#              names_all_cats_dev_idx_alpha,
+#              y_label,
+#              fig_title,
+#              legenda,
+#              305)
+
+
+# now, boxplot with durations.****************************************************************************************
+#  the computation is done above and it is as follows:
+# for cat_id, sounds in data_dev.iteritems():
+#     names_all_cats_dev.append(data_onto_by_id[cat_id]['name'])
+#     durations_dev_one_cat = [data_duration[str(fs_id)]['duration'] for fs_id in sounds]
+#     durations_all_cats_dev.append(durations_dev_one_cat)
+#
+# # sort by ascending order by median
+# medians_cat = [np.median(cat) for cat in durations_all_cats_dev]
+# idx_durations_all_cats_dev = np.argsort(medians_cat)
+# durations_all_cats_dev_sorted = list(durations_all_cats_dev[val] for val in idx_durations_all_cats_dev)
+# names_all_cats_dev_sorted = list(names_all_cats_dev[val] for val in idx_durations_all_cats_dev)
+fig_title = 'audio clip durations in train set'
+y_label = 'duration [seconds]'
+
+# computing the plot with enhanced function
+plot_boxplot_poster_dcase(durations_all_cats_dev_sorted,
+             names_all_cats_dev_sorted,
+             fig_title,
+             y_label)
+
+
+
+# plot with the results: choosing only top 10, including Dorfer*******************************************************
+mAPs = [0.9538, 0.9518, 0.9512, 0.9498, 0.9496,
+        0.9435, 0.9423, 0.9419, 0.9414, 0.9405]
+
+x_labels = ['Jeong', 'Dorfer', 'Iqbal', 'Kele', 'Nguyen',
+            'Wilhelm', 'Kuaiyu', 'Pantic', 'Wilkinghoff', 'Shan']
+
+
+y_label = 'mAP @ private leaderboard'
+# plot_barplot_results_poster_dcase(mAPs,
+#                     x_labels,
+#                     y_label,
+#                     fig_title,
+#                     0.96)
+
+
+
+
+
+
+
+"""# end of plots para POSTER Task2 dcase18======================================================="""
+
 
 
 # sorted accordin to the pycharm way
