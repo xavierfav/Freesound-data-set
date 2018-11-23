@@ -138,7 +138,11 @@ try:
     # with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug2.json') as data_file:
 
     # Aug2 es el dump ANTES de cargar cosas nuevas en la platform.
-    with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug_08.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Aug_08.json') as data_file:
+    # with open(FOLDER_DATA + 'json/votes_dumped_2018_Nov_07.json') as data_file:
+
+
+    with open(FOLDER_DATA + 'json/votes_dumped_2018_Nov_21.json') as data_file:
         data_votes_raw = json.load(data_file)
 except:
     raise Exception('ADD A DUMP JSON FILE OF THE FSD VOTES TO THE FOLDER ' + FOLDER_DATA + 'json/')
@@ -200,24 +204,46 @@ def apply_duration_filter(data_in, _minlen, _maxlen):
 
     for catid, votes in data_in.iteritems():
         for fsid in votes['PP']:
-            if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
-                data_out[catid]['PP'].append(fsid)
+            try:
+                if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
+                    data_out[catid]['PP'].append(fsid)
+            except:
+                print('=========================there is a fs_id {0} not found in data_mapping'.format(fsid))
+
 
         for fsid in votes['PNP']:
-            if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
-                data_out[catid]['PNP'].append(fsid)
+            try:
+                if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
+                    data_out[catid]['PNP'].append(fsid)
+            except:
+                print('=========================there is a fs_id {0} not found in data_mapping'.format(fsid))
+
 
         for fsid in votes['NP']:
-            if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
-                data_out[catid]['NP'].append(fsid)
+            # if fsid == 351266:
+            #     j=9
+            try:
+                if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
+                    data_out[catid]['NP'].append(fsid)
+            except:
+                print('=========================there is a fs_id {0} not found in data_mapping'.format(fsid))
+
 
         for fsid in votes['U']:
-            if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
-                data_out[catid]['U'].append(fsid)
+            try:
+                if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
+                    data_out[catid]['U'].append(fsid)
+            except:
+                print('=========================there is a fs_id {0} not found in data_mapping'.format(fsid))
+
 
         for fsid in votes['candidates']:
-            if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
-                data_out[catid]['candidates'].append(fsid)
+            try:
+                if (data_mapping[str(fsid)]['duration'] < _maxlen) and (data_mapping[str(fsid)]['duration'] >= _minlen):
+                    data_out[catid]['candidates'].append(fsid)
+            except:
+                print('=========================there is a fs_id {0} not found in data_mapping'.format(fsid))
+
 
     return data_out
 
@@ -773,6 +799,53 @@ for idx, (cat_id,v) in enumerate(cats_runout_content.iteritems(), 1):
     print("%d - %-25s: sounds: %-3d" % (idx, data_onto_by_id[cat_id]['name'], v))
 
 
+"""new report"""
+list_nb_gt_clips_class = []
+list_catid_gt_clips_class = []
+for catid, groups in data_state.iteritems():
+    groups['gt_clips'] = len(groups['PPgt']) + len(groups['PNPgt'])
+    # create corresponding lists with gt_clips and catids, for sorting
+    list_nb_gt_clips_class.append(groups['gt_clips'])
+    list_catid_gt_clips_class.append(catid)
+
+# list_nb_gt_clips_class = [groups['gt_clips'] for catid, groups in data_state.iteritems()]
+# list_catid_gt_clips_class = [catid for catid, groups in data_state.iteritems()]
+
+# sort in descending order of gt_clips
+idx_gt_clips = np.argsort(-np.array(list_nb_gt_clips_class))
+
+# catids ordered by descending number of of gt_clips, to print metadata
+list_catid_gt_clips_class_sorted = list(list_catid_gt_clips_class[val] for val in idx_gt_clips)
+
+print('=Printing new report: desceding order of gt clips\n')
+for idx_count, catid in enumerate(list_catid_gt_clips_class_sorted, 1):
+    # print stuff
+    print( "%d - %-25s: gt_clips: %-3d PPgt: %-3d PNPgt: %-3d gtless: %-3d unrated: %-4d QE: %1.3f" %
+    (idx_count,
+     data_onto_by_id[catid]['name'], data_state[catid]['gt_clips'], len(data_state[catid]['PPgt']),
+     len(data_state[catid]['PNPgt']), len(data_state[catid]['gtless']), len(data_state[catid]['virgin']),
+     data_votes[catid]['QE']))
+
+
+
+
+#
+# def print_status_data(data, ref):
+#     # print('=Printing status after applying: {0}:'.format(ref))
+#     for idx, (cat_id, v) in enumerate(data.items(), 1):
+#         print("%d - %-25s: PPgt: %-3d PP: %-3d PNPgt: %-3d NPgt: %-3d Ugt: %-3d gtless: %-3d unvo: %-4d cand: %-4d QE: %1.3f" %
+#               (idx, data_onto_by_id[cat_id]['name'], len(data[cat_id]['PPgt']),
+#                len(data[cat_id]['PP']), len(data[cat_id]['PNPgt']),
+#                len(data[cat_id]['NPgt']), len(data[cat_id]['Ugt']),
+#                len(data[cat_id]['gtless']), len(data[cat_id]['unvo']),
+#                len(data[cat_id]['cand']),  data[cat_id]['QE']))
+#
+#
+
+
+
+
+
 # ===================
 print("\n# how many gtless annotations do we have (ie voted but not gt yet): %d" % sum(nb_sounds_gtless))
 print("# how many virgin annotations do we have: %d" % sum(nb_sounds_virgin))
@@ -1041,7 +1114,7 @@ a = 9
 # mode = ALL_CATS. means meeting the target in 396 classes, independently, ie unpopulated. The most demanding case.
 # Difference with LEAF mode:
 # -coincides with the LEAF mode in 296 classes (75%)
-# -with only the 296 leafs meeting the target (either TARGET_SAMPLES or less of there is not enough),
+# -with only the 296 leafs meeting the target (either TARGET_SAMPLES or less of) there is not enough,
 # we'd be able to populate some of inmediate parents, but not all
 
 # -so the difference in number of classes meeting TARGET_SAMPLES is not that high,
